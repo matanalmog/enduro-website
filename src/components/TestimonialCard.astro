@@ -1,0 +1,62 @@
+---
+// כרטיס המלצה — תומך גם בהמלצות בלי תמונה (חלק מהתמונות המקוריות לא שומרו, ראו decisions/enduro-media-keep-list.csv).
+export interface Props {
+  quote: string;
+  name: string;
+  role?: string;
+  image?: string;
+}
+
+const { quote, name, role, image } = Astro.props;
+---
+
+<figure class="testimonial-card">
+  {image && <img src={image} alt={name} width="72" height="72" />}
+  <blockquote>
+    <p>&ldquo;{quote}&rdquo;</p>
+  </blockquote>
+  <figcaption>
+    <span class="name">{name}</span>
+    {role && <span class="role">{role}</span>}
+  </figcaption>
+</figure>
+
+<style>
+  .testimonial-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    height: 100%;
+  }
+
+  .testimonial-card img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  blockquote {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: auto;
+  }
+
+  .name {
+    font-weight: 700;
+    color: var(--color-text);
+  }
+</style>

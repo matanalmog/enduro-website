@@ -1,0 +1,206 @@
+---
+// פוטר — קישורים מהירים, יצירת קשר, סושיאל.
+// "צור קשר" / "תקנון פרטיות" / "הצהרת בריאות" ממוזגים בתוך עמוד "מי אני" (ראו decisions/enduro-full-page-list.csv).
+import SocialIcon from "./SocialIcon.astro";
+
+const year = new Date().getFullYear();
+
+const quickLinks = [
+  { label: "דף בית", href: "/" },
+  { label: "תוכניות אימון אונליין", href: "/training-plans/" },
+  { label: "קבוצות ריצה", href: "/groups/" },
+  { label: "לוח תחרויות", href: "/races/" },
+  { label: "בלוג", href: "/blog/" },
+  { label: "מי אני", href: "/about-me/" },
+];
+
+const socialLinks = [
+  { label: "פייסבוק", href: "https://www.facebook.com/tomeral/", icon: "facebook" },
+  { label: "אינסטגרם", href: "https://www.instagram.com/tomer_almog_enduro_runners/", icon: "instagram" },
+  { label: "יוטיוב", href: "https://www.youtube.com/@tomeralmog", icon: "youtube" },
+  { label: "טיקטוק", href: "https://www.tiktok.com/@tomeralmog_coach", icon: "tiktok" },
+];
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-about">
+      <div class="footer-logo">
+        <img src="/images/logo/enduro-icon-96.png" alt="" width="40" height="40" />
+        <span class="logo-mark">ENDURO</span>
+      </div>
+      <p>
+        תומר אלמוג, מאמן ריצה וכושר, תוכניות אימון ריצה אונליין מותאמות,
+        קבוצות ריצה בארגונים, פיתוח יכולות אתלטיות לילדים ומבוגרים.
+      </p>
+      <div class="social-row" aria-label="קישורים לרשתות חברתיות">
+        {socialLinks.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} class="social-link">
+            <SocialIcon name={s.icon} />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <nav class="footer-col" aria-label="קישורים מהירים">
+      <h2 class="footer-heading">קישורים מהירים</h2>
+      <ul class="footer-links">
+        {quickLinks.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="footer-col">
+      <h2 class="footer-heading">יצירת קשר</h2>
+      <ul class="footer-links">
+        <li>רחוב הזית 6, רמת השרון</li>
+        <li><a href="tel:+972526982993">052-6982993</a></li>
+        <li><a href="mailto:tomeral@gmail.com">tomeral@gmail.com</a></li>
+        <li><a href="/questionnaire/">שאלון קליטת מתאמן</a></li>
+        <li><a href="/about-me/#health-form">טופס הצהרת בריאות</a></li>
+        <li><a href="/about-me/#privacy">תקנון פרטיות</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container brand-strip">
+    <span class="brand-strip-mark">ENDURO</span>
+    <span class="brand-strip-tagline">התמדה | נחישות | קהילה</span>
+  </div>
+
+  <div class="container footer-bottom">
+    <p>© {year} Enduro · sport4you.co.il. כל הזכויות שמורות.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-footer-bg);
+    color: var(--color-footer-text);
+    margin-top: var(--space-6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-5);
+  }
+
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .footer-logo img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .footer-about .logo-mark {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--color-brand);
+  }
+
+  .footer-about p {
+    color: var(--color-gray-300);
+    font-size: 0.92rem;
+    max-width: 40ch;
+  }
+
+  .footer-heading {
+    color: var(--color-white);
+    font-size: 1rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--color-gray-300);
+    font-size: 0.92rem;
+  }
+
+  .footer-links a:hover,
+  .footer-links a:focus-visible {
+    color: var(--color-brand);
+  }
+
+  .social-row {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--color-navy-800);
+    color: var(--color-gray-300);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .social-link:hover,
+  .social-link:focus-visible {
+    background: var(--color-brand);
+    color: var(--color-white);
+  }
+
+  .brand-strip {
+    border-top: 1px solid var(--color-navy-700);
+    padding-block: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+  }
+
+  .brand-strip-mark {
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    letter-spacing: 0.06em;
+    color: var(--color-brand);
+  }
+
+  .brand-strip-tagline {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-gray-300);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid var(--color-navy-700);
+    padding-block: var(--space-2);
+    font-size: 0.82rem;
+    color: var(--color-gray-300);
+  }
+
+  .footer-bottom p {
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+  }
+</style>

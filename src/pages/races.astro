@@ -1,0 +1,686 @@
+---
+// לוח תחרויות ריצה — עמוד התנועה החזק ביותר באתר (88 קליקים / 4,180 הופעות ב-28 יום, כמעט
+// שליש מכל התנועה של האתר). זהו עמוד עם סוכן אוטומציה (סעיף 6 באפיון, סוכן א').
+//
+// לוח המרוצים בפועל (למטה) נטען מ-src/data/races.json, שנכתב על ידי
+// scripts/update-races.mjs (מריץ npm run update-races) — מושך נתונים חיים
+// מ-6 מקורות אמיתיים (realtiming.co.il + runpanel.co.il + marathonisrael.co.il +
+// 3plus.co.il לישראל, aims-worldrunning.org לעולם [12 חודשים קדימה], utmb.world
+// לסבב ה-UTMB [מוגבל ל-20 המרוצים הקרובים - מגבלת מקור, ראו הערה בסקריפט]).
+// תוכן לוח המרוצים המקורי מ-wordpress_export.xml לא שימש כאן כי כל התאריכים בו
+// כבר עברו ביחס להיום, ושיוך תאריך-לאירוע בטקסט החופשי של המקור לא היה אמין מספיק.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FaqItem from "../components/FaqItem.astro";
+import RaceTable from "../components/RaceTable.astro";
+import racesData from "../data/races.json";
+
+const israelRaces = racesData.israel ?? [];
+const internationalRaces = racesData.international ?? [];
+const utmbRaces = racesData.utmbSeries ?? [];
+const hasAnyRaces = israelRaces.length + internationalRaces.length + utmbRaces.length > 0;
+
+function formatHebrewDate(iso: string) {
+  const [y, m, d] = iso.split("-");
+  return `${d}.${m}.${y}`;
+}
+
+// קודים מומלצים שביקשת שיוצגו בנפרד ובבולט בראש העמוד.
+const featuredDiscountCodes = [
+  { race: "מרוץ אייל", code: "ER26RG", note: "הרשמה רגילה" },
+  { race: "DMR דימונה", code: "dmr27_enduro", note: "קבוצתי" },
+  { race: "מרתון תל אביב", code: "785859", note: "קבוצת ENDURO" },
+  { race: "מרוץ הלילה תל אביב", code: "348200", note: "קבוצת ENDURO" },
+  { race: "מרתון חיפה", code: "HMRTN26", note: "Shvoong" },
+  { race: "מרתון ירושלים", code: "f3a48", note: "10% הנחה, לא כולל מקצה משפחות" },
+];
+
+// רשימה שטוחה: שורה אחת לכל מרוץ (לא מקובצת לפי מארגן/חברת תזמון, ששם חסר משמעות
+// למבקר באתר שמחפש קוד למרוץ ספציפי).
+const discountCodes = [
+  { race: "מרוץ הסרגל", code: "enduro26" },
+  { race: "אולטרה יישובי העוטף", code: "enduro26" },
+  { race: "מרתון תל אביב", code: "785859" },
+  { race: "מרוץ הלילה של תל אביב", code: "348200" },
+  { race: "בשביל הבנים", code: "480944" },
+  { race: "מרתון ירושלים", code: "f3a48", note: "10% הנחה, לא כולל מקצה משפחות" },
+  { race: "מרתון חיפה", code: "HMRTN26" },
+  { race: "מרוץ כפר סבא", code: "KFRSB26" },
+  { race: "מרוץ מדבר (מצפה רמון)", code: "DRMR26" },
+  { race: "מרוץ עיר ועמק (עמק המעיינות)", code: "EMEK26" },
+  { race: "שאר מקצי Shvoong", code: "ENDURO" },
+  { race: "מרוץ דימונה (DMR)", code: "dmr27_enduro" },
+  { race: "מרוץ ים המלח", code: "ENDURO10" },
+  { race: "מרוץ התקווה", code: "TIKGRU" },
+  { race: "מרוץ הבוז׳ולה", code: "BWR" },
+  { race: "מרוץ העגור", code: "CRRG26" },
+  { race: "מרתון המדבר אילת", code: "DES26" },
+  { race: "סובב עמק, כל המקצים", code: "SOVEVGROUP" },
+  { race: "מרוץ אייל (רמת השרון)", code: "ER26RG" },
+];
+
+const faqs = [
+  {
+    q: "מה כולל לוח המרוצים?",
+    a: "לוח המרוצים כולל את כל התחרויות בארץ, שטח וכביש, עם מידע מלא וקישור לאתר ולהרשמה. ככל האפשר, מצורפים גם קופוני הנחה לרישום.",
+  },
+  {
+    q: "האם לוח תחרויות הריצה כולל גם מרוצים מהעולם?",
+    a: "בהחלט. בלוח מופיעים המרוצים הבולטים בעולם, מרתונים, חצאי מרתון, 10 ק\"מ, וגם אולטרה מרתון בשטח או בכביש.",
+  },
+  {
+    q: "האם יש בלוח מרוצי UTMB?",
+    a: "כן, בלוח מופיע סבב ה-UTMB World Series בכל רחבי העולם, כולל קישורים לאתרי ההרשמה הרשמיים.",
+  },
+  {
+    q: "האם יש קוד קופון הנחה למרוצים ולתחרויות?",
+    a: "כן. אנחנו פונים למארגני המרוצים ולרוב מקבלים קוד קופון הנחה. מי שמבקש קוד קופון יכול לכתוב לנו בוואטסאפ ויקבל את קוד ההנחה, וגם הנחה על ציוד ריצה.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="לוח תחרויות ריצה בארץ ובעולם"
+  description="לוח תחרויות ריצה בארץ ובעולם מעודכן, עם קישור לכל אתר הרשמה וקודי הנחה בלעדיים. מירוצי כביש ושטח לכל המרחקים, כולל אולטרה מרתון וסבב UTMB."
+  canonicalPath="/races/"
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>לוח תחרויות ריצה בארץ ובעולם</h1>
+      <p class="lead">
+        מידע מקיף ומעודכן על מירוצי כביש ושטח, עזרה בתכנון עונת המירוצים
+        וגילוי אתגרים חדשים, וקודי הנחה בלעדיים לחברי Enduro.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:+972526982993" class="btn btn-primary">צלצלו אליי</a>
+        <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ, עזרה בבחירת מרוץ</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container promo-banner">
+    <img src="/images/action/tomer-portrait-sunglasses.jpg" alt="תומר אלמוג" class="promo-photo" />
+    <span class="promo-text">
+      <strong>תומר אלמוג - תוכניות אימון ריצה אונליין</strong>
+      תוכנית מקצועית מותאמת אישית, עם ליווי צמוד עד קו הסיום
+    </span>
+    <a href="https://wa.me/972526982993" class="btn promo-btn" target="_blank" rel="noopener noreferrer">צור קשר עוד היום</a>
+  </div>
+
+  <section class="container section featured-codes">
+    <h2>קודי הנחה מובילים</h2>
+    <div class="featured-grid">
+      {featuredDiscountCodes.map((item) => (
+        item.code ? (
+          <details class="featured-card featured-reveal">
+            <summary>
+              <span class="featured-race">{item.race}</span>
+              <span class="featured-hint">לחצו לצפייה בקוד</span>
+            </summary>
+            <code class="featured-code">{item.code}</code>
+            <span class="featured-note">{item.note}</span>
+          </details>
+        ) : (
+          <div class="featured-card">
+            <span class="featured-race">{item.race}</span>
+            <span class="featured-pending">קוד לבירור</span>
+            <span class="featured-note">{item.note}</span>
+          </div>
+        )
+      ))}
+    </div>
+  </section>
+
+  <div class="container quick-jump">
+    <a href="#calendar-il" class="quick-jump-card">מרוצים בארץ</a>
+    <a href="#calendar-world" class="quick-jump-card">מרוצים בעולם</a>
+    <a href="#calendar-utmb" class="quick-jump-card">מרוצי שטח</a>
+  </div>
+
+  <section class="container section" id="discounts">
+    <details class="discount-accordion">
+      <summary>
+        <h2>קודי ההנחה</h2>
+        <span class="discount-hint">לחצו לפתיחה</span>
+        <span class="feature-toggle" aria-hidden="true">+</span>
+      </summary>
+      <p class="section-note">
+        לקוד הנחה עדכני או למרוץ שלא ברשימה, כתבו לנו בוואטסאפ.
+      </p>
+      <div class="discount-list">
+        {discountCodes.map((row) => (
+          <div class="discount-row">
+            <span class="discount-race">
+              {row.race}
+              {row.note && <span class="discount-note">{row.note}</span>}
+            </span>
+            <code class="discount-code">{row.code}</code>
+          </div>
+        ))}
+      </div>
+    </details>
+  </section>
+
+  {hasAnyRaces && (
+    <p class="container section-note update-note">
+      מתעדכן אוטומטית ממקורות חיים,
+      עודכן לאחרונה ב-{formatHebrewDate(racesData.generatedAt.slice(0, 10))}.
+      לא מצאתם את המרוץ שחיפשתם? כתבו לנו בוואטסאפ.
+    </p>
+  )}
+
+  {israelRaces.length > 0 && (
+    <section class="container section section-muted" id="calendar-il">
+      <h2>מירוצים קרובים בישראל</h2>
+      <RaceTable races={israelRaces} showDistance filterable />
+    </section>
+  )}
+
+  {internationalRaces.length > 0 && (
+    <section class="container section" id="calendar-world">
+      <h2>מרתונים וחצאי מרתון קרובים בעולם</h2>
+      <RaceTable races={internationalRaces} />
+    </section>
+  )}
+
+  {utmbRaces.length > 0 && (
+    <section class="container section section-muted" id="calendar-utmb">
+      <h2>סבב UTMB, מרוצי שטח בעולם</h2>
+      <RaceTable races={utmbRaces} showDistance />
+    </section>
+  )}
+
+  {!hasAnyRaces && (
+    <section class="container section section-muted" id="calendar">
+      <h2>מירוצים קרובים</h2>
+      <div class="coming-soon-card">
+        <p>
+          לוח המירוצים מתעדכן אוטומטית על ידי סוכן ייעודי. אם הרשימה
+          ריקה, יש להריץ <code>npm run update-races</code>.
+        </p>
+        <a href="https://wa.me/972526982993" class="btn btn-primary" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+      </div>
+    </section>
+  )}
+
+  <section class="container section" id="tips">
+    <h2>טיפים לבחירת מרוץ</h2>
+    <ul class="tips-list">
+      <li><strong>התאמה לרמה</strong>, בחרו תחרות שמתאימה ליכולות הנוכחיות שלכם</li>
+      <li><strong>זמן הכנה</strong>, ודאו שיש מספיק זמן להכנה ראויה</li>
+      <li><strong>תנאי מזג אוויר</strong>, בדקו את התנאים האופייניים לתקופת התחרות</li>
+      <li><strong>לוגיסטיקה</strong>, תכננו מראש הגעה, לינה וציוד נדרש</li>
+    </ul>
+    <h3>איך להתכונן נכון?</h3>
+    <ul class="tips-list">
+      <li>תוכנית אימונים מותאמת אישית הכוללת ליווי מקצועי לאורך תקופת ההכנה</li>
+      <li>תזונה נכונה לקראת התחרות ואסטרטגיית מרוץ מתוכננת היטב</li>
+      <li>ייעוץ מקצועי בבחירת המרוץ המתאים</li>
+    </ul>
+  </section>
+
+  <section class="container section section-muted" id="faq">
+    <h2>שאלות נפוצות</h2>
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <FaqItem question={f.q}>
+          <p>{f.a}</p>
+        </FaqItem>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>בואו נתחיל עוד היום!</h2>
+    <p>נבנה יחד תוכנית הכנה מותאמת אישית ליעד שבחרתם.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .promo-banner {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: linear-gradient(90deg, var(--color-orange-600), var(--color-orange-500));
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .promo-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 30%,
+      rgba(227, 168, 54, 0.6) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    animation: promo-shine 6s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes promo-shine {
+    0% {
+      transform: translateX(-120%);
+    }
+    100% {
+      transform: translateX(120%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .promo-banner::after {
+      animation: none;
+    }
+  }
+
+  .promo-photo {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-navy-950);
+  }
+
+  .promo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    color: var(--color-navy-950);
+  }
+
+  .promo-text strong {
+    font-size: 1.3rem;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  @media (max-width: 560px) {
+    .promo-text strong {
+      font-size: 1.05rem;
+    }
+  }
+
+  .promo-btn {
+    flex: none;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    white-space: nowrap;
+    border: none;
+  }
+
+  .promo-btn:hover,
+  .promo-btn:focus-visible {
+    background: var(--color-navy-900);
+  }
+
+  .quick-jump {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    padding-top: var(--space-4);
+    margin-top: var(--space-4);
+    border-top: 1px solid var(--color-gray-100);
+  }
+
+  .quick-jump-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-3);
+    background: var(--color-white);
+    border: 2px solid var(--color-navy-950);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-navy-950);
+    font-weight: 700;
+    transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .quick-jump-card:hover,
+  .quick-jump-card:focus-visible {
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 640px) {
+    .quick-jump {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.1rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+
+  .hero .btn-outline {
+    color: var(--color-white);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .section-note {
+    color: var(--color-text-muted);
+    max-width: 70ch;
+  }
+
+  .featured-codes {
+    padding-block: var(--space-4);
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .featured-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-2);
+    transition: background-color 0.2s ease;
+  }
+
+  .featured-card:hover {
+    background: var(--color-navy-700);
+  }
+
+  .featured-reveal {
+    cursor: pointer;
+  }
+
+  .featured-reveal summary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .featured-reveal summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .featured-reveal[open] summary {
+    margin-bottom: 0.3rem;
+  }
+
+  .featured-reveal[open] .featured-code,
+  .featured-reveal[open] .featured-note {
+    animation: discount-open 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .featured-reveal[open] .featured-code,
+    .featured-reveal[open] .featured-note {
+      animation: none;
+    }
+  }
+
+  .featured-race {
+    font-weight: 700;
+  }
+
+  .featured-hint {
+    color: var(--color-brand);
+    font-size: 0.78rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .featured-reveal:hover .featured-hint {
+    color: var(--color-white);
+  }
+
+  .featured-code {
+    background: var(--color-brand);
+    color: var(--color-white);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+  }
+
+  .featured-pending {
+    background: var(--color-navy-700);
+    color: var(--color-gray-300);
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+  }
+
+  .featured-note {
+    color: var(--color-gray-300);
+    font-size: 0.8rem;
+  }
+
+  .discount-accordion summary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--space-2);
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .discount-accordion summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .discount-accordion summary h2 {
+    margin: 0;
+  }
+
+  .discount-hint {
+    color: var(--color-brand);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .discount-accordion[open] .discount-hint {
+    display: none;
+  }
+
+  .discount-accordion .feature-toggle {
+    flex-shrink: 0;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--color-brand);
+    transition: transform 0.25s ease;
+  }
+
+  .discount-accordion[open] .feature-toggle {
+    transform: rotate(45deg);
+  }
+
+  .discount-accordion .section-note {
+    margin-top: var(--space-2);
+  }
+
+  .discount-accordion[open] .discount-list {
+    animation: discount-open 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .discount-accordion[open] .discount-list {
+      animation: none;
+    }
+  }
+
+  .discount-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-white);
+    margin-top: var(--space-2);
+  }
+
+  .discount-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .discount-list .discount-row:last-child {
+    border-bottom: none;
+  }
+
+  .discount-race {
+    font-weight: 700;
+  }
+
+  .discount-note {
+    display: block;
+    font-weight: 400;
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    margin-top: 0.15rem;
+  }
+
+  .discount-code {
+    flex: none;
+    background: var(--color-navy-950);
+    color: var(--color-gold-500);
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+
+  @keyframes discount-open {
+    from { opacity: 0; transform: scaleY(0.85); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+
+  .update-note {
+    padding-block: var(--space-4);
+  }
+
+  .coming-soon-card {
+    background: var(--color-white);
+    border: 1px dashed var(--color-gray-300);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    max-width: 620px;
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .coming-soon-card p {
+    color: var(--color-text-muted);
+  }
+
+  .tips-list {
+    max-width: 70ch;
+    margin-bottom: var(--space-3);
+  }
+
+  .tips-list li {
+    margin-bottom: var(--space-1);
+  }
+
+  .faq-list {
+    max-width: 760px;
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+</style>

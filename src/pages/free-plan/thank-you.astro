@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="תודה!"
+  description="הפרטים התקבלו בהצלחה, ניצור איתכם קשר בהקדם."
+  canonicalPath="/free-plan/thank-you/"
+  noindex
+>
+  <section class="container section">
+    <div class="thank-you">
+      <h1>תודה! הפרטים התקבלו</h1>
+      <p>
+        נחזור אליכם בהקדם עם תוכנית האימון. בינתיים, מוזמנים להעיף מבט
+        בלוח התחרויות הקרובות או בבלוג.
+      </p>
+      <div class="actions">
+        <a href="/races/" class="btn btn-primary">לוח תחרויות</a>
+        <a href="/" class="btn btn-outline">חזרה לדף הבית</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding-block: var(--space-6);
+  }
+
+  .thank-you {
+    max-width: 560px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .thank-you p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

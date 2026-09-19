@@ -1,0 +1,135 @@
+---
+// עמוד-שער לקבוצות הריצה — מפנה לששת התתי-עמודים (סעיף 2 באפיון).
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { runningGroups } from "../../data/running-groups";
+
+const sortedGroups = [...runningGroups].sort((a, b) => a.order - b.order);
+---
+
+<BaseLayout
+  title="קבוצות ריצה"
+  description="קבוצות ריצה בליווי מקצועי, רמת השרון, תל אביב, מתחילים, עסקים וארגונים, שטח והרים. השאירו פרטים לאימון ניסיון."
+  canonicalPath="/groups/"
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>קבוצות ריצה</h1>
+      <p class="lead">
+        אימון קבוצתי בליווי מקצועי, תחושת שייכות, מוטיבציה גבוהה יותר
+        ותוכנית מסודרת שמתאימה לכל רמה.
+      </p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="groups-grid">
+      {sortedGroups.map((group) => (
+        <a href={`/groups/${group.slug}/`} class="group-card">
+          <h2>{group.title}</h2>
+          <p>{group.intro[0]}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>לא בטוחים איזו קבוצה מתאימה לכם?</h2>
+    <p>בואו נתחיל עוד היום, השאירו פרטים ונמליץ על הקבוצה הנכונה לכם.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .group-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .group-card:hover,
+  .group-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .group-card h2 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .group-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+</style>

@@ -1,0 +1,284 @@
+---
+// תבנית משותפת ל-4 עמודי "מאמן כושר אישי" (3 ערים + גיל שלישי) — כפילות עירונית מכוונת
+// עם תוכן ייחודי לכל עמוד (סעיף 2 באפיון).
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FaqItem from "../../components/FaqItem.astro";
+import TestimonialCard from "../../components/TestimonialCard.astro";
+import SectionPhoto from "../../components/SectionPhoto.astro";
+import { personalCoachingPages, type CityCoachingPage } from "../../data/personal-coaching";
+
+export function getStaticPaths() {
+  return personalCoachingPages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+interface Props {
+  page: CityCoachingPage;
+}
+
+const { page } = Astro.props;
+
+const otherPages = personalCoachingPages
+  .filter((p) => p.slug !== page.slug)
+  .sort((a, b) => a.order - b.order);
+
+const schema = page.faq.length
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": page.faq.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a },
+        })),
+      },
+    ]
+  : undefined;
+---
+
+<BaseLayout
+  title={page.title}
+  description={page.description}
+  canonicalPath={`/personal-coaching/${page.slug}/`}
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>{page.title}</h1>
+      {page.intro.map((p) => <p class="lead">{p}</p>)}
+      <div class="hero-actions">
+        <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+        <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+      </div>
+    </div>
+  </section>
+
+  {page.image && (
+    <section class="container section photo-section">
+      <SectionPhoto src={page.image.src} alt={page.image.alt} eager />
+    </section>
+  )}
+
+  {page.locations && (
+    <section class="container section section-muted">
+      <h2>מיקומי האימונים</h2>
+      <ul class="plain-list">
+        {page.locations.map((l) => <li>{l}</li>)}
+      </ul>
+    </section>
+  )}
+
+  {page.routes && (
+    <section class="container section">
+      <h2>דוגמאות למסלולי ריצה</h2>
+      <div class="two-col">
+        {page.routes.map((r) => (
+          <div class="feature-card">
+            <h3>{r.name}</h3>
+            <p>{r.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="container section section-muted">
+    <h2>מה מתאמנים אומרים</h2>
+    <div class="testimonials-grid">
+      <TestimonialCard
+        image="/images/testimonials/udi-birkan.jpg"
+        name="אודי בירקאן"
+        role="מנכ״ל GPS"
+        quote="תומר מנחה אותי ומכוון אותי ברגישות והבנה מקצועית, מייעץ לי לתזונה נכונה ואימונים משלימים, וזו הפעם הראשונה יותר משנה וחצי בלי פציעות."
+      />
+      <TestimonialCard
+        name="אורנה אלעד"
+        quote="תומר מקצועי ומקסים, מומלץ בחום! גם אימן את אבא שלי בן 80 וגם אותי."
+      />
+    </div>
+  </section>
+
+  {page.faq.length > 0 && (
+    <section class="container section" id="faq">
+      <h2>שאלות נפוצות</h2>
+      <div class="faq-list">
+        {page.faq.map((f) => (
+          <FaqItem question={f.q}>
+            <p>{f.a}</p>
+          </FaqItem>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="container section section-muted">
+    <h2>מאמן כושר אישי, אפשרויות נוספות</h2>
+    <div class="cities-grid">
+      {otherPages.map((p) => (
+        <a href={`/personal-coaching/${p.slug}/`} class="city-card">{p.title}</a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>בואו נתחיל עוד היום!</h2>
+    <p>השאירו פרטים ונחזור אליכם עם התוכנית המתאימה.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: right;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    text-wrap: pretty;
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+
+  .hero .btn-outline {
+    color: var(--color-white);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .photo-section {
+    padding-block: var(--space-4) 0;
+    max-width: 900px;
+  }
+
+  .photo-section :global(.section-photo img) {
+    aspect-ratio: 16 / 9;
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .plain-list {
+    max-width: 70ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .feature-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .feature-card p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .faq-list {
+    max-width: 760px;
+  }
+
+  .cities-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .city-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 600;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .city-card:hover,
+  .city-card:focus-visible {
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+
+  @media (max-width: 780px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

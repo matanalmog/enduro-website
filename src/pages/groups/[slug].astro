@@ -1,0 +1,349 @@
+---
+// תבנית משותפת ל-6 עמודי קבוצות הריצה (סעיף 2 באפיון).
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FaqItem from "../../components/FaqItem.astro";
+import TestimonialCard from "../../components/TestimonialCard.astro";
+import SectionPhoto from "../../components/SectionPhoto.astro";
+import { runningGroups, type RunningGroup } from "../../data/running-groups";
+
+export function getStaticPaths() {
+  return runningGroups.map((group) => ({
+    params: { slug: group.slug },
+    props: { group },
+  }));
+}
+
+interface Props {
+  group: RunningGroup;
+}
+
+const { group } = Astro.props;
+
+const otherGroups = runningGroups
+  .filter((g) => g.slug !== group.slug)
+  .sort((a, b) => a.order - b.order);
+
+const schema = group.faq.length
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": group.faq.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a },
+        })),
+      },
+    ]
+  : undefined;
+---
+
+<BaseLayout
+  title={group.title}
+  description={group.description}
+  canonicalPath={`/groups/${group.slug}/`}
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>{group.title}</h1>
+      {group.intro.map((p) => <p class="lead">{p}</p>)}
+      <div class="hero-actions">
+        <a href="/free-plan/" class="btn btn-primary">אימון ניסיון / השאירו פרטים</a>
+        <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+      </div>
+    </div>
+  </section>
+
+  {group.image && (
+    <section class="container section photo-section">
+      <SectionPhoto src={group.image.src} alt={group.image.alt} eager />
+    </section>
+  )}
+
+  {group.schedule && (
+    <section class="container section">
+      <h2>לוח זמנים ומבנה האימונים</h2>
+      <ul class="plain-list">
+        {group.schedule.map((s) => <li>{s}</li>)}
+      </ul>
+    </section>
+  )}
+
+  {group.locations && (
+    <section class="container section section-muted">
+      <h2>מיקומי האימונים</h2>
+      <ul class="plain-list">
+        {group.locations.map((l) => <li>{l}</li>)}
+      </ul>
+    </section>
+  )}
+
+  {group.routes && (
+    <section class="container section">
+      <h2>דוגמאות למסלולי ריצה</h2>
+      <div class="three-col">
+        {group.routes.map((r) => (
+          <div class="feature-card">
+            <h3>{r.name}</h3>
+            <p>{r.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {group.clients && (
+    <section class="container section section-muted">
+      <h2>ארגונים שכבר איתנו</h2>
+      <div class="clients-row">
+        {group.clients.map((c) => <span class="client-chip">{c}</span>)}
+      </div>
+    </section>
+  )}
+
+  <section class="container section section-muted">
+    <h2>מה מתאמנים אומרים</h2>
+    <div class="testimonials-grid">
+      <TestimonialCard
+        image="/images/testimonials/oshr-zelig.jpg"
+        name="אושר זליג"
+        quote="3 חודשים של אימון הספיקו לי כדי לנפץ את שיאי בחצי מרתון לאחר 3 שנים של ניסיונות. תומר מסור עד הרגע האחרון."
+      />
+      <TestimonialCard
+        image="/images/testimonials/udi-birkan.jpg"
+        name="אודי בירקאן"
+        role="מנכ״ל GPS"
+        quote="תומר מנחה אותי ומכוון אותי ברגישות והבנה מקצועית, מייעץ לי לתזונה נכונה ואימונים משלימים, וזו הפעם הראשונה יותר משנה וחצי בלי פציעות."
+      />
+      <TestimonialCard
+        name="אורנה אלעד"
+        quote="תומר מקצועי ומקסים, מומלץ בחום! גם אימן את אבא שלי בן 80 וגם אותי."
+      />
+    </div>
+  </section>
+
+  {group.faq.length > 0 && (
+    <section class="container section" id="faq">
+      <h2>שאלות נפוצות</h2>
+      <div class="faq-list">
+        {group.faq.map((f) => (
+          <FaqItem question={f.q}>
+            <p>{f.a}</p>
+          </FaqItem>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="container section section-muted">
+    <h2>קבוצות ריצה נוספות</h2>
+    <div class="groups-grid">
+      {otherGroups.map((g) => (
+        <a href={`/groups/${g.slug}/`} class="group-card">
+          <h3>{g.title}</h3>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>בואו נתחיל עוד היום!</h2>
+    <p>אימון ניסיון ראשון, ללא התחייבות.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: right;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    text-wrap: pretty;
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+
+  .hero .btn-outline {
+    color: var(--color-white);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .photo-section {
+    padding-block: var(--space-4) 0;
+    max-width: 900px;
+  }
+
+  .photo-section :global(.section-photo img) {
+    aspect-ratio: 16 / 9;
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .plain-list {
+    max-width: 70ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .feature-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+
+  .feature-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .feature-card p {
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .clients-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .client-chip {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .price-card {
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    max-width: 320px;
+  }
+
+  .price {
+    color: var(--color-brand-hover);
+    font-weight: 800;
+    font-size: 1.3rem;
+    margin: 0 0 0.25rem;
+  }
+
+  .price-note {
+    color: var(--color-text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .faq-list {
+    max-width: 760px;
+  }
+
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .group-card {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .group-card:hover,
+  .group-card:focus-visible {
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .group-card h3 {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+
+  @media (max-width: 780px) {
+    .three-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

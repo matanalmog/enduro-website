@@ -1,0 +1,848 @@
+---
+// שאלון קליטת מתאמן — 10 שלבים, הועבר מהאתר הישן (page_id=739 ב-wordpress_export.xml).
+// נשלח ל-Google Apps Script הקיים (אותו חיבור ל-Drive שכבר פעיל היום), לא ל-Netlify Forms.
+// כתובת ישנה (טופס-רישום-לאימון) מנותבת לכאן דרך public/_redirects.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbxN5rBCrPIsKcDsr-HSWXoq0pMLglF5FaT8jwaC89FTAVJoMBE4kjnI7nRWlnAfIlHW/exec";
+
+const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
+---
+
+<BaseLayout
+  title="שאלון קליטת מתאמן"
+  description="שאלון קליטת מתאמן חדש — עוזר לתומר אלמוג להכיר אתכם טוב יותר ולבנות תוכנית אימונים מדויקת ואישית."
+  canonicalPath="/questionnaire/"
+>
+  <section class="q-hero">
+    <div class="container q-hero-inner">
+      <h1>שאלון קליטת מתאמן</h1>
+      <p class="lead">
+        השאלון נועד להכיר אתכם טוב יותר — כרצים וכאנשים — כדי שאוכל להתאים
+        את האימונים ליכולות, למטרות, לשגרת החיים ולצרכים שלכם. מומלץ לענות
+        בצורה מדויקת וכנה ככל האפשר. לוקח כ-5 דקות.
+      </p>
+    </div>
+  </section>
+
+  <section class="container section q-section">
+    <div class="q-card">
+      <div class="q-track">
+        <div class="q-lanes" id="q-lanes"></div>
+        <div class="q-track-label">
+          <span>שלב <b id="q-step-num">1</b> מתוך 10</span>
+          <span id="q-step-pct">10%</span>
+        </div>
+      </div>
+
+      <form id="q-form" novalidate>
+        <!-- 1. פרטים אישיים -->
+        <div class="q-step" data-step="1">
+          <p class="q-kicker">1 · פרטים אישיים</p>
+          <h2>קצת עליך</h2>
+          <p class="q-desc">
+            השאלון נועד להכיר אותך טוב יותר — כרץ וכאדם — כדי שאוכל להתאים
+            את האימונים ליכולות, למטרות, לשגרת החיים ולצרכים שלך.
+          </p>
+          <div class="q-field">
+            <label class="q-q" for="q-name">שם מלא</label>
+            <input type="text" id="q-name" name="שם מלא" required />
+          </div>
+          <div class="row2">
+            <div class="q-field">
+              <label class="q-q" for="q-birth">תאריך לידה</label>
+              <input type="date" id="q-birth" name="תאריך לידה" required />
+            </div>
+            <div class="q-field">
+              <label class="q-q" for="q-city">עיר מגורים</label>
+              <input type="text" id="q-city" name="עיר מגורים" required />
+            </div>
+          </div>
+          <div class="q-field">
+            <label class="q-q" for="q-status">מצב משפחתי <span class="opt">(לא חובה)</span></label>
+            <select id="q-status" name="מצב משפחתי">
+              <option value="">בחר/י</option>
+              <option>רווק/ה</option>
+              <option>נשוי/אה</option>
+              <option>בזוגיות</option>
+              <option>גרוש/ה</option>
+              <option>אלמן/ה</option>
+              <option>אחר</option>
+            </select>
+          </div>
+          <div class="q-field">
+            <label class="q-q" for="q-job">עיסוק</label>
+            <input type="text" id="q-job" name="עיסוק" required />
+          </div>
+          <div class="q-field">
+            <label class="q-q" for="q-email">כתובת אימייל</label>
+            <input type="email" id="q-email" name="אימייל" required />
+          </div>
+          <div class="row2">
+            <div class="q-field">
+              <label class="q-q" for="q-height">גובה (בס״מ)</label>
+              <input type="number" id="q-height" name="גובה בסמ" required />
+            </div>
+            <div class="q-field">
+              <label class="q-q" for="q-weight">משקל נוכחי (בק״ג)</label>
+              <input type="number" id="q-weight" name="משקל נוכחי בקג" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. בריאות ופציעות -->
+        <div class="q-step" data-step="2" hidden>
+          <p class="q-kicker">2 · בריאות ופציעות</p>
+          <h2>בריאות ופציעות</h2>
+          <p class="q-desc">חשוב לנו לדעת כדי לשמור עליך בריא/ה ולהתאים נכון.</p>
+
+          <div class="q-field">
+            <label class="q-q">
+              האם קיימים כיום, או היו בעבר, מצבים רפואיים, מחלות, ניתוחים או
+              אשפוזים שעליי כמאמן לקחת בחשבון בעת בניית תוכנית האימונים?
+            </label>
+            <div class="choices" data-cond-group="q-cond-medical">
+              <label class="choice"><input type="radio" name="מצבים רפואיים" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="מצבים רפואיים" value="כן" required data-reveal="q-cond-medical" /><span>כן</span></label>
+            </div>
+            <div class="cond" id="q-cond-medical">
+              <label class="q-q">פרט/י</label>
+              <textarea name="מצבים רפואיים - פירוט"></textarea>
+            </div>
+          </div>
+
+          <div class="q-field">
+            <label class="q-q">האם היו לך בעבר פציעות הקשורות לריצה או לפעילות גופנית?</label>
+            <div class="choices" data-cond-group="q-cond-injury">
+              <label class="choice"><input type="radio" name="פציעות עבר" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="פציעות עבר" value="כן" required data-reveal="q-cond-injury" /><span>כן</span></label>
+            </div>
+            <div class="cond" id="q-cond-injury">
+              <label class="q-q">פרט/י איזו פציעה, באיזה אזור, מתי התרחשה והאם היא עדיין משפיעה עליך</label>
+              <textarea name="פציעות עבר - פירוט"></textarea>
+            </div>
+          </div>
+
+          <div class="q-field">
+            <label class="q-q">האם את/ה מתמודד/ת כיום עם כאב, אי־נוחות או מגבלה כלשהי בזמן ריצה או לאחריה?</label>
+            <div class="choices" data-cond-group="q-cond-pain">
+              <label class="choice"><input type="radio" name="כאב נוכחי" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="כאב נוכחי" value="כן, באופן קל" required data-reveal="q-cond-pain" /><span>כן, באופן קל</span></label>
+              <label class="choice"><input type="radio" name="כאב נוכחי" value="כן, באופן בינוני" required data-reveal="q-cond-pain" /><span>כן, באופן בינוני</span></label>
+              <label class="choice"><input type="radio" name="כאב נוכחי" value="כן, באופן משמעותי" required data-reveal="q-cond-pain" /><span>כן, באופן משמעותי</span></label>
+            </div>
+            <div class="cond" id="q-cond-pain">
+              <label class="q-q">היכן הכאב/אי־הנוחות מופיעים, מתי הם מופיעים, ומה מחמיר או מקל עליהם</label>
+              <textarea name="כאב נוכחי - פירוט"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ציוד והרגלי ריצה -->
+        <div class="q-step" data-step="3" hidden>
+          <p class="q-kicker">3 · ציוד והרגלי ריצה</p>
+          <h2>ציוד והרגלי ריצה</h2>
+
+          <div class="row2">
+            <div class="q-field">
+              <label class="q-q" for="q-shoes">באילו נעלי ריצה את/ה משתמש/ת כיום? (חברה ודגם)</label>
+              <input type="text" id="q-shoes" name="נעלי ריצה" required />
+            </div>
+            <div class="q-field">
+              <label class="q-q" for="q-shoes-km">כמה ק״מ לערך צברת עם זוג הנעליים הנוכחי?</label>
+              <input type="number" id="q-shoes-km" name="קמ עם הנעליים" required />
+            </div>
+          </div>
+
+          <div class="q-field">
+            <label class="q-q">האם את/ה משתמש/ת במדרסים בזמן ריצה?</label>
+            <div class="choices">
+              <label class="choice"><input type="radio" name="מדרסים" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="מדרסים" value="כן, מדרסים בהתאמה אישית" required /><span>כן, בהתאמה אישית</span></label>
+              <label class="choice"><input type="radio" name="מדרסים" value="כן, מדרסים מוכנים" required /><span>כן, מוכנים</span></label>
+              <label class="choice"><input type="radio" name="מדרסים" value="השתמשתי בעבר אך כיום לא" required /><span>השתמשתי בעבר, כיום לא</span></label>
+            </div>
+          </div>
+
+          <div class="q-field">
+            <label class="q-q">האם את/ה משתמש/ת באופן קבוע בתוספי תזונה?</label>
+            <div class="choices" data-cond-group="q-cond-supp">
+              <label class="choice"><input type="radio" name="תוספי תזונה" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="תוספי תזונה" value="כן" required data-reveal="q-cond-supp" /><span>כן</span></label>
+            </div>
+            <div class="cond" id="q-cond-supp">
+              <label class="q-q">אילו תוספים, באיזו תדירות ובאיזה מינון</label>
+              <textarea name="תוספי תזונה - פירוט"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. טכנולוגיה ומדידת אימונים -->
+        <div class="q-step" data-step="4" hidden>
+          <p class="q-kicker">4 · טכנולוגיה ומדידת אימונים</p>
+          <h2>טכנולוגיה ומדידת אימונים</h2>
+          <div class="q-field">
+            <label class="q-q" for="q-strava">שם המשתמש שלך ב-Strava</label>
+            <input type="text" id="q-strava" name="Strava" required />
+          </div>
+          <div class="q-field">
+            <label class="q-q" for="q-garmin">שם המשתמש שלך ב-Garmin Connect <span class="opt">(לא חובה)</span></label>
+            <input type="text" id="q-garmin" name="Garmin Connect" />
+          </div>
+          <div class="q-field">
+            <label class="q-q" for="q-watch">באיזה שעון ריצה את/ה משתמש/ת? (חברה ודגם)</label>
+            <input type="text" id="q-watch" name="שעון ריצה" required />
+          </div>
+        </div>
+
+        <!-- 5. רקע בריצה והישגים -->
+        <div class="q-step" data-step="5" hidden>
+          <p class="q-kicker">5 · רקע בריצה והישגים</p>
+          <h2>רקע בריצה והישגים</h2>
+          <div class="q-field">
+            <label class="q-q" for="q-years">כמה שנים את/ה רץ/ה באופן קבוע?</label>
+            <input type="number" id="q-years" name="שנות ריצה" required />
+          </div>
+          <div class="q-field">
+            <label class="q-q">מהן תוצאות השיא שלך? (מלא/י את הרלוונטי — זמן + תאריך)</label>
+            <input type="text" name="שיא - 5 קמ" placeholder="5 ק״מ: זמן + תאריך" />
+            <input type="text" name="שיא - 10 קמ" placeholder="10 ק״מ: זמן + תאריך" />
+            <input type="text" name="שיא - חצי מרתון" placeholder="חצי מרתון: זמן + תאריך" />
+            <input type="text" name="שיא - מרתון" placeholder="מרתון: זמן + תאריך" />
+            <input type="text" name="שיא - אולטרה או אחר" placeholder="מרחקים נוספים / אולטרה: זמן + תאריך" />
+          </div>
+          <div class="row2">
+            <div class="q-field">
+              <label class="q-q" for="q-longest">מהו המרחק הארוך ביותר שרצת עד היום?</label>
+              <input type="text" id="q-longest" name="מרחק ארוך ביותר" required />
+            </div>
+            <div class="q-field">
+              <label class="q-q" for="q-longest-when">מתי ובאיזה אירוע? <span class="opt">(לא חובה)</span></label>
+              <input type="text" id="q-longest-when" name="מתי ואיזה אירוע" />
+            </div>
+          </div>
+          <div class="q-field">
+            <label class="q-q">כיצד היית מדרג/ת את רמת הכושר שלך כיום?</label>
+            <div class="range-wrap">
+              <input type="range" id="q-fitness" name="דירוג כושר 1-10" min="1" max="10" value="5" required />
+              <span class="range-val" id="q-fitness-val">5</span>
+            </div>
+            <div class="range-caption">
+              <span>1 = כושר נמוך מאוד</span>
+              <span>10 = כושר מצוין</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. עומס אימונים נוכחי -->
+        <div class="q-step" data-step="6" hidden>
+          <p class="q-kicker">6 · עומס אימונים נוכחי</p>
+          <h2>עומס אימונים נוכחי</h2>
+          <p class="q-desc">על סמך החודש האחרון.</p>
+          <div class="q-field">
+            <label class="q-q">כמה פעמים בשבוע רצת בממוצע במהלך החודש האחרון?</label>
+            <div class="choices">
+              {["1", "2", "3", "4", "5", "6", "7+"].map((v) => (
+                <label class="choice"><input type="radio" name="פעמים בשבוע - חודש אחרון" value={v} required /><span>{v}</span></label>
+              ))}
+            </div>
+          </div>
+          <div class="row2">
+            <div class="q-field">
+              <label class="q-q" for="q-weekly-km">מרחק ריצה שבועי ממוצע (בק״מ)</label>
+              <input type="number" id="q-weekly-km" name="מרחק שבועי ממוצע" required />
+            </div>
+            <div class="q-field">
+              <label class="q-q" for="q-longrun">הריצה הארוכה ביותר בחודש האחרון (בק״מ)</label>
+              <input type="number" id="q-longrun" name="ריצה ארוכה - חודש אחרון" required />
+            </div>
+          </div>
+          <div class="q-field">
+            <label class="q-q">כמה אימוני כוח / חדר כושר את/ה מבצע/ת בממוצע בשבוע?</label>
+            <div class="choices">
+              {["0", "1", "2", "3", "4+"].map((v) => (
+                <label class="choice"><input type="radio" name="אימוני כוח בשבוע" value={v} required /><span>{v}</span></label>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. זמינות לאימונים -->
+        <div class="q-step" data-step="7" hidden>
+          <p class="q-kicker">7 · זמינות לאימונים</p>
+          <h2>זמינות לאימונים</h2>
+          <p class="q-desc">אפשר לסמן כמה שרלוונטי.</p>
+          <div class="q-field">
+            <label class="q-q">באילו ימים בשבוע נוח לך לבצע אימוני ריצה?</label>
+            <div class="choices">
+              {days.map((d) => (
+                <label class="choice"><input type="checkbox" name="ימי ריצה[]" value={d} /><span>{d}</span></label>
+              ))}
+            </div>
+          </div>
+          <div class="q-field">
+            <label class="q-q">באילו ימים בשבוע נוח לך לבצע אימוני כוח?</label>
+            <div class="choices">
+              {days.map((d) => (
+                <label class="choice"><input type="checkbox" name="ימי כוח[]" value={d} /><span>{d}</span></label>
+              ))}
+            </div>
+          </div>
+          <div class="q-field">
+            <label class="q-q">האם יש ימים שבהם את/ה לא יכול/ה להתאמן כלל?</label>
+            <div class="choices" data-cond-group="q-cond-unavailable">
+              <label class="choice"><input type="radio" name="ימים לא זמינים" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="ימים לא זמינים" value="כן" required data-reveal="q-cond-unavailable" /><span>כן</span></label>
+            </div>
+            <div class="cond" id="q-cond-unavailable">
+              <label class="q-q">אילו ימים ולמה?</label>
+              <input type="text" name="ימים לא זמינים - פירוט" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. מטרות -->
+        <div class="q-step" data-step="8" hidden>
+          <p class="q-kicker">8 · מטרות</p>
+          <h2>המטרות שלך</h2>
+          <div class="q-field">
+            <label class="q-q">מהי המטרה המרכזית שלך בריצה לטווח הארוך — שנה ומעלה?</label>
+            <p class="q-hint">
+              לדוגמה: מרתון בזמן מסוים, אולטרה, שיפור אישי, הגדלת מרחקים,
+              בריאות וכושר, השתתפות בתחרות מסוימת וכו'.
+            </p>
+            <textarea name="מטרה מרכזית - טווח ארוך" required></textarea>
+          </div>
+          <div class="q-field">
+            <label class="q-q">מהן 1–3 המטרות המרכזיות שלך ל-6–12 החודשים הקרובים?</label>
+            <input type="text" name="מטרה 6-12 חודשים - 1" placeholder="מטרה 1" required />
+            <input type="text" name="מטרה 6-12 חודשים - 2" placeholder="מטרה 2" />
+            <input type="text" name="מטרה 6-12 חודשים - 3" placeholder="מטרה 3" />
+          </div>
+          <div class="q-field">
+            <label class="q-q">האם יש תחרות או מרוץ ספציפי שאת/ה מתכנן/ת להשתתף בו בתקופה הקרובה?</label>
+            <div class="choices" data-cond-group="q-cond-race">
+              <label class="choice"><input type="radio" name="תחרות קרובה" value="לא" required /><span>לא</span></label>
+              <label class="choice"><input type="radio" name="תחרות קרובה" value="כן" required data-reveal="q-cond-race" /><span>כן</span></label>
+            </div>
+            <div class="cond" id="q-cond-race">
+              <label class="q-q">שם המרוץ, מרחק ותאריך</label>
+              <input type="text" name="תחרות קרובה - פירוט" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. מוטיבציה והרגלים -->
+        <div class="q-step" data-step="9" hidden>
+          <p class="q-kicker">9 · מוטיבציה והרגלים</p>
+          <h2>מוטיבציה והרגלים</h2>
+          <div class="q-field">
+            <label class="q-q">מהי הסיבה המרכזית שבגללה את/ה רץ/ה ומתאמן/ת?</label>
+            <textarea name="סיבה מרכזית לריצה" required></textarea>
+          </div>
+          <div class="q-field">
+            <label class="q-q">מה בדרך כלל מקשה עליך להתמיד באימונים?</label>
+            <textarea name="מה מקשה על ההתמדה" required></textarea>
+          </div>
+          <div class="row2">
+            <div class="q-field">
+              <label class="q-q" for="q-fav">איזה סוג אימון הכי אוהב/ת? <span class="opt">(לא חובה)</span></label>
+              <input type="text" id="q-fav" name="אימון אהוב" />
+            </div>
+            <div class="q-field">
+              <label class="q-q" for="q-unfav">איזה סוג אימון הכי פחות אוהב/ת? <span class="opt">(לא חובה)</span></label>
+              <input type="text" id="q-unfav" name="אימון פחות אהוב" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. ציפיות מהמאמן -->
+        <div class="q-step" data-step="10" hidden>
+          <p class="q-kicker">10 · ציפיות מהמאמן</p>
+          <h2>ציפיות ממני, כמאמן</h2>
+          <p class="q-desc">השלב האחרון.</p>
+          <div class="q-field">
+            <label class="q-q">מה את/ה מצפה ממני כמאמן כדי לעזור לך להגיע למטרות שלך?</label>
+            <textarea name="ציפיות מהמאמן" required></textarea>
+          </div>
+          <div class="q-field">
+            <label class="q-q">
+              האם יש משהו נוסף שחשוב לי לדעת עליך, על שגרת החיים שלך, על
+              האימונים שלך או על המטרות שלך? <span class="opt">(לא חובה)</span>
+            </label>
+            <textarea name="משהו נוסף לדעת"></textarea>
+          </div>
+        </div>
+
+        <div class="q-done" hidden>
+          <div class="q-done-mark">✓</div>
+          <h2>תודה!</h2>
+          <p>תודה על הזמן ועל הכנות.</p>
+          <p>
+            המידע שמסרת יעזור לי להכיר אותך טוב יותר ולבנות עבורך תהליך
+            אימונים מדויק, אישי ובטוח יותר.
+          </p>
+          <p class="q-tagline">ENDURO — התמדה | חברות | איזון</p>
+        </div>
+
+        <p class="q-error" id="q-error" hidden>נא למלא את כל השדות המסומנים בשלב זה.</p>
+
+        <div class="q-nav">
+          <button type="button" class="btn btn-outline" id="q-back">חזרה</button>
+          <button type="button" class="btn btn-primary" id="q-next">המשך</button>
+          <button type="submit" class="btn btn-primary" id="q-submit" hidden>שליחה</button>
+        </div>
+      </form>
+      <p class="q-foot">ENDURO · השאלון נשמר בדרייב שלנו ומשמש אך ורק לבניית תוכנית האימונים שלך.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .q-hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .q-hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 720px;
+    margin-inline: auto;
+    text-align: right;
+  }
+
+  .q-hero h1 {
+    color: var(--color-white);
+    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+    text-wrap: balance;
+  }
+
+  .q-hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .q-section {
+    display: flex;
+    justify-content: center;
+  }
+
+  .q-card {
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .q-track {
+    margin-bottom: var(--space-4);
+  }
+
+  .q-lanes {
+    display: flex;
+    gap: 4px;
+  }
+
+  .q-lanes span {
+    flex: 1;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--color-gray-100);
+    overflow: hidden;
+  }
+
+  .q-lanes span.done {
+    background: var(--color-brand);
+  }
+
+  .q-lanes span.current {
+    background: linear-gradient(90deg, var(--color-brand) 50%, var(--color-gray-100) 50%);
+  }
+
+  .q-track-label {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .q-track-label b {
+    color: var(--color-text);
+  }
+
+  #q-form {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+    box-shadow: var(--shadow-md);
+  }
+
+  .q-kicker {
+    color: var(--color-brand);
+    font-weight: 700;
+    font-size: 0.82rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .q-step h2 {
+    font-size: 1.35rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .q-desc {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    margin: 0 0 var(--space-3);
+  }
+
+  .q-field {
+    margin-bottom: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .q-field input[type="text"],
+  .q-field input[type="number"],
+  .q-field input[type="email"],
+  .q-field input[type="date"],
+  .q-field input:not([type]) {
+    margin-bottom: 0.5rem;
+  }
+
+  .q-field input:last-child {
+    margin-bottom: 0;
+  }
+
+  .q-q {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .q-q .opt {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    font-size: 0.8rem;
+  }
+
+  .q-hint {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin: -0.2rem 0 0;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    background: var(--color-gray-50);
+    color: var(--color-text);
+    width: 100%;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    background: var(--color-white);
+    box-shadow: 0 0 0 3px var(--color-orange-100);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2);
+  }
+
+  .choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .choice {
+    position: relative;
+  }
+
+  .choice input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .choice span {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-gray-100);
+    background: var(--color-gray-50);
+    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .choice input:checked + span {
+    background: var(--color-orange-100);
+    border-color: var(--color-brand);
+    color: var(--color-brand-hover);
+    font-weight: 700;
+  }
+
+  .choice input:focus-visible + span {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+
+  .cond {
+    margin-top: 0.7rem;
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    background: var(--color-gray-50);
+    border: 1px dashed var(--color-gray-300);
+    display: none;
+  }
+
+  .cond.show {
+    display: block;
+    animation: q-cond-open 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes q-cond-open {
+    from { opacity: 0; transform: scaleY(0.9); }
+    to { opacity: 1; transform: scaleY(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cond.show {
+      animation: none;
+    }
+  }
+
+  .range-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  input[type="range"] {
+    accent-color: var(--color-brand);
+    padding: 0;
+    border: none;
+    background: none;
+  }
+
+  .range-val {
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: none;
+    border-radius: var(--radius-md);
+    background: var(--color-orange-100);
+    border: 1px solid var(--color-brand);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: var(--color-brand-hover);
+  }
+
+  .range-caption {
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    margin-top: 0.4rem;
+  }
+
+  .q-done {
+    text-align: center;
+    padding: var(--space-4) 0;
+  }
+
+  .q-done-mark {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-moss-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--space-3);
+    font-size: 1.8rem;
+    color: var(--color-white);
+    font-weight: 800;
+  }
+
+  .q-done p {
+    color: var(--color-text-muted);
+  }
+
+  .q-tagline {
+    margin-top: var(--space-2);
+    font-weight: 700;
+    color: var(--color-brand-hover);
+    letter-spacing: 0.02em;
+  }
+
+  .q-error {
+    color: var(--color-brand-hover);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 var(--space-2);
+  }
+
+  .q-nav {
+    display: flex;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .q-nav .btn {
+    flex: 1;
+  }
+
+  .q-foot {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.78rem;
+    margin-top: var(--space-3);
+  }
+
+  @media (max-width: 560px) {
+    .row2 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script define:vars={{ SCRIPT_URL }}>
+  const form = document.getElementById("q-form");
+  const steps = [...form.querySelectorAll(".q-step")];
+  const doneScreen = form.querySelector(".q-done");
+  const lanesEl = document.getElementById("q-lanes");
+  const stepNumEl = document.getElementById("q-step-num");
+  const stepPctEl = document.getElementById("q-step-pct");
+  const backBtn = document.getElementById("q-back");
+  const nextBtn = document.getElementById("q-next");
+  const submitBtn = document.getElementById("q-submit");
+  const errorEl = document.getElementById("q-error");
+  const total = steps.length;
+  let current = 1;
+
+  for (let i = 0; i < total; i++) {
+    const lane = document.createElement("span");
+    lanesEl.appendChild(lane);
+  }
+  const lanes = [...lanesEl.children];
+
+  function renderProgress() {
+    lanes.forEach((lane, i) => {
+      lane.classList.toggle("done", i < current - 1);
+      lane.classList.toggle("current", i === current - 1);
+    });
+    stepNumEl.textContent = String(current);
+    stepPctEl.textContent = `${Math.round((current / total) * 100)}%`;
+  }
+
+  function showStep(n) {
+    steps.forEach((step) => {
+      step.hidden = Number(step.dataset.step) !== n;
+    });
+    backBtn.hidden = n === 1;
+    nextBtn.hidden = n === total;
+    submitBtn.hidden = n !== total;
+    errorEl.hidden = true;
+    renderProgress();
+  }
+
+  function isStepValid(n) {
+    const step = steps.find((s) => Number(s.dataset.step) === n);
+    const fields = [...step.querySelectorAll("input, select, textarea")];
+    for (const field of fields) {
+      if (field.closest(".cond") && !field.closest(".cond").classList.contains("show")) continue;
+      if (!field.checkValidity()) return false;
+    }
+    return true;
+  }
+
+  // חשיפת שדות מותנים: רדיו עם data-reveal מציג את ה-.cond שלו, אחרים בקבוצה מסתירים אותו.
+  form.querySelectorAll("[data-cond-group]").forEach((group) => {
+    const targetId = group.dataset.condGroup;
+    const target = document.getElementById(targetId);
+    group.querySelectorAll("input[type=radio]").forEach((radio) => {
+      radio.addEventListener("change", () => {
+        const shouldShow = group.querySelectorAll(`input[data-reveal="${targetId}"]:checked`).length > 0;
+        target.classList.toggle("show", shouldShow);
+        target.querySelectorAll("textarea, input").forEach((f) => {
+          if (!shouldShow) f.required = false;
+        });
+      });
+    });
+  });
+
+  const fitnessRange = document.getElementById("q-fitness");
+  const fitnessVal = document.getElementById("q-fitness-val");
+  fitnessRange?.addEventListener("input", () => {
+    fitnessVal.textContent = fitnessRange.value;
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (!isStepValid(current)) {
+      const step = steps.find((s) => Number(s.dataset.step) === current);
+      step.querySelector("input:invalid, select:invalid, textarea:invalid")?.reportValidity();
+      errorEl.hidden = false;
+      return;
+    }
+    current = Math.min(current + 1, total);
+    showStep(current);
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  backBtn.addEventListener("click", () => {
+    current = Math.max(current - 1, 1);
+    showStep(current);
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!isStepValid(current)) {
+      errorEl.hidden = false;
+      return;
+    }
+    submitBtn.disabled = true;
+    submitBtn.textContent = "שולח...";
+
+    const formData = new FormData(form);
+    try {
+      await fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: formData,
+      });
+    } catch {
+      // no-cors לא מאפשר לקרוא את התגובה; ממשיכים למסך התודה בכל מקרה.
+    }
+
+    steps.forEach((s) => (s.hidden = true));
+    document.querySelector(".q-nav").hidden = true;
+    doneScreen.hidden = false;
+    doneScreen.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  showStep(current);
+</script>

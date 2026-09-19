@@ -1,0 +1,862 @@
+---
+// דף הבית — נבנה מתוך התוכן האמיתי של "תוכניות אימון ריצה ONLINE" (URL הבית, wordpress_export.xml),
+// עם תיקון מבנה כותרות (H1 יחיד) לפי סעיף 4 באפיון. מילות המפתח המדורגות בגוגל
+// ("מאמן ריצה אונליין" - מיקום 1.12, "מרוצים בעולם" - מיקום 1.0) נשמרות בכוונה ב-H1/lead.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import FaqItem from "../components/FaqItem.astro";
+import SectionPhoto from "../components/SectionPhoto.astro";
+import { trainingPlans } from "../data/training-plans";
+
+const beginnersPlan = trainingPlans.find((p) => p.slug === "beginners")!;
+const halfMarathonPlan = trainingPlans.find((p) => p.slug === "half-marathon")!;
+const marathonPlan = trainingPlans.find((p) => p.slug === "marathon")!;
+const ultraMarathonPlan = trainingPlans.find((p) => p.slug === "ultra-marathon")!;
+
+const homepagePlans = [
+  {
+    slug: beginnersPlan.slug,
+    distanceLabel: "מתחילים עד 10 ק\"מ",
+    title: "תוכנית אימונים מתחילים עד 10 ק\"מ",
+    audience: beginnersPlan.audience,
+    price: beginnersPlan.price,
+  },
+  {
+    slug: halfMarathonPlan.slug,
+    distanceLabel: halfMarathonPlan.distanceLabel,
+    title: halfMarathonPlan.title,
+    audience: halfMarathonPlan.audience,
+    price: halfMarathonPlan.price,
+  },
+  {
+    slug: marathonPlan.slug,
+    distanceLabel: marathonPlan.distanceLabel,
+    title: marathonPlan.title,
+    audience: marathonPlan.audience,
+    price: marathonPlan.price,
+  },
+  {
+    slug: ultraMarathonPlan.slug,
+    distanceLabel: ultraMarathonPlan.distanceLabel,
+    title: ultraMarathonPlan.title,
+    audience: ultraMarathonPlan.audience,
+    price: ultraMarathonPlan.price,
+  },
+];
+
+const faqs = [
+  {
+    q: "מה זה תוכנית אימון ריצה אונליין?",
+    a: "תוכנית אימון ריצה אונליין מאפשרת לכל מי שרוצה לרוץ לבד, בלי מגבלת מיקום, להגיע להישגים באופן עצמאי. התוכנית מועברת באמצעות אפליקציה מתקדמת וייעודית, כוללת תכנון שבועי ויומי עם מעקב ובקרה שוטפת, והדרכה להכנה לאימונים, לתחרויות ולתנאי מזג אוויר ושטח משתנים.",
+  },
+  {
+    q: "למי תוכנית אימון ריצה אונליין מתאימה?",
+    a: "התוכנית מקיפה וכוללת הנחיות תזונתיות ומנטליות מניסיון של מאמן מוסמך ומנוסה, מרצים שרק מתחילים ועד רצים מנוסים המבקשים לשפר תוצאות במרתון. השאירו פרטים ותקבלו איפיון מתאים עבורכם.",
+  },
+  {
+    q: "כמה עולה תוכנית אימון ריצה אונליין?",
+    a: "מחיר תוכנית אימון ריצה אישית אונליין נע בין 350 ל-500 ש\"ח לחודש, בהתאם למסלול, לרמה ולאינטנסיביות המבוקשת. פירוט מלא של כל המסלולים והמחירים מופיע בטבלת המחירון בעמוד זה.",
+  },
+];
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Enduro | sport4you.co.il",
+    "image": "https://www.sport4you.co.il/images/logo.jpg",
+    "description": "אימוני ריצה וכושר אישיים וקבוצתיים עם המאמן תומר אלמוג, רחוב הזית 6, רמת השרון.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "רחוב הזית 6",
+      "addressLocality": "רמת השרון",
+      "addressCountry": "IL",
+    },
+    "telephone": "+972-52-6982993",
+    "email": "tomeral@gmail.com",
+    "founder": {
+      "@type": "Person",
+      "name": "תומר אלמוג",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((f) => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": f.a,
+      },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title="מאמן ריצה אונליין | תוכנית אימון ריצה אישית"
+  description="תוכנית אימון ריצה אונליין אישית עם תומר אלמוג, מאמן ריצה וכושר מוסמך. ליווי מלא באפליקציה, ממתחילים ועד אולטרה מרתון. השאירו פרטים ונחזור אליכם."
+  canonicalPath="/"
+  schema={schema}
+>
+  <section class="hero">
+    <svg class="hero-route" viewBox="0 0 1000 500" preserveAspectRatio="none" fill="none" aria-hidden="true">
+      <path class="hero-route-path" d="M -20 420 C 140 460, 240 300, 380 340 S 560 180, 680 210 S 880 100, 1020 130"
+        stroke="var(--color-orange-500)" stroke-width="2.5" stroke-opacity="0.5" />
+      <circle cx="680" cy="210" r="4" fill="var(--color-gold-500)" />
+    </svg>
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <div class="hero-brand">
+          <span class="num">ENDURO</span>
+          <span class="hero-brand-line"></span>
+          <span>תומר אלמוג, מאמן ריצה וכושר</span>
+        </div>
+        <h1>מאמן ריצה אונליין | תוכנית אימון ריצה אישית</h1>
+        <p class="lead">
+          תוכנית אימון ריצה אונליין במסגרת אישית, מותאמת לרמת המתאמן/ת,
+          מ-10 ק"מ ועד אולטרה מרתון, בגמישות מלאה: מתאמנים בכל מקום ובכל
+          זמן, עם ליווי צמוד של מאמן ריצה וכושר מוסמך.
+        </p>
+        <div class="hero-actions">
+          <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+          <div class="hero-actions-secondary">
+            <a href="tel:+972526982993" class="btn btn-outline">צלצלו אליי</a>
+            <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="#photo-strip" class="hero-scroll" aria-label="גללו למטה">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+  </section>
+
+  <section id="photo-strip" class="container section photo-strip pop-in">
+    <SectionPhoto
+      src="/images/action/tomer-elite-race-pack.jpg"
+      alt="תומר אלמוג רץ בקבוצה מובילה במרוץ תחרותי"
+      eager
+    />
+    <SectionPhoto
+      src="/images/action/club-team-track-lineup.jpg"
+      alt="קבוצת רצים באיצטדיון אתלטיקה לפני תחרות"
+      eager
+    />
+    <SectionPhoto
+      src="/images/action/training-plan-dashboard.webp"
+      alt="תוכנית אימון ריצה אישית במעקב דיגיטלי"
+      eager
+    />
+  </section>
+
+  <section class="container section">
+    <h2>מה מקבלים בתוכנית?</h2>
+    <div class="two-col included-grid">
+      <div class="feature-card included-card pop-in">
+        <span class="included-index num">01</span>
+        <h3>למה דווקא התוכנית שלנו?</h3>
+        <ul>
+          <li>תוכנית אימון ריצה אונליין במסגרת אישית, מותאמת לרמת המתאמן/ת</li>
+          <li>תוכניות אימון מ-10 ק"מ ועד אולטרה מרתון בהתאמה אישית מלאה</li>
+          <li>גמישות מלאה, מתאמנים בכל מקום ובכל זמן</li>
+        </ul>
+      </div>
+      <div class="feature-card included-card pop-in">
+        <span class="included-index num">02</span>
+        <h3>למי התוכנית מתאימה?</h3>
+        <ul>
+          <li>רצים המעוניינים להגיע להישגים אישיים</li>
+          <li>מתאמנים המחפשים תוכנית מותאמת אישית</li>
+          <li>ספורטאים הזקוקים לפתרון גמיש ומקצועי</li>
+          <li>מי שרוצה לבצע קפיצה משמעותית בתחום הריצה</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section section-muted">
+    <h2>מה כלול בליווי</h2>
+    <div class="three-col included-grid">
+      <div class="feature-card included-card pop-in">
+        <span class="included-index num">01</span>
+        <h3>אימון מקצועי מלא</h3>
+        <ul>
+          <li>תוכנית אימונים דיגיטלית מתקדמת</li>
+          <li>אימוני ריצה, תרגילי כוח ותרגולי גמישות</li>
+          <li>זמינות מלאה באפליקציה מתקדמת</li>
+          <li>התאמה אישית מלאה ליכולות המתאמן/ת</li>
+        </ul>
+      </div>
+      <div class="feature-card included-card pop-in">
+        <span class="included-index num">02</span>
+        <h3>ליווי מקצועי מלא</h3>
+        <ul>
+          <li>ייעוץ רציף עם מאמן מוסמך, זמין 24/7</li>
+          <li>תמיכה באמצעות וואטסאפ, מייל ובאפליקציה</li>
+          <li>המלצות תזונה מותאמות אישית</li>
+          <li>זמינות מלאה לקבלת מענה מהיר</li>
+        </ul>
+      </div>
+      <div class="feature-card included-card pop-in">
+        <span class="included-index num">03</span>
+        <h3>בונוסים והטבות</h3>
+        <ul>
+          <li>מפגשים קבוצתיים חצי שנתיים</li>
+          <li>השתתפות בתחרויות</li>
+          <li>הנחות לאביזרי ספורט</li>
+          <li>הטבות למירוצים בארץ ובעולם</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section section-muted" id="pricing">
+    <h2>מסלולי אימון אונליין</h2>
+    <div class="plans-grid">
+      {homepagePlans.map((plan) => (
+        <a href={`/training-plans/${plan.slug}/`} class="plan-card">
+          <span class="distance num">{plan.distanceLabel}</span>
+          <h3>{plan.title}</h3>
+          <p>{plan.audience}</p>
+          {plan.price && <span class="price num">{plan.price}</span>}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section" id="about-me">
+    <img
+      src="/images/action/tomer-portrait-sunglasses.jpg"
+      alt="תומר אלמוג, מאמן ריצה וכושר"
+      class="about-photo"
+    />
+    <h2>קצת עליי</h2>
+    <p class="about-intro">
+      <strong>תומר אלמוג בן 47, מאמן ריצה וכושר מקצועי, אב לשלושה.</strong> ניסיון עשיר בריצות מסלול ועד אולטרה מרתון.
+    </p>
+    <div class="stat-strip">
+      <div><span class="num">2:43</span><span>מרתון</span></div>
+      <div><span class="num">1:17</span><span>חצי מרתון</span></div>
+      <div><span class="num">34:12</span><span>10 ק"מ</span></div>
+      <div><span class="num">#1</span><span>אולטרה 66 ק"מ</span></div>
+    </div>
+    <div class="about-cards">
+      <div class="feature-card pop-in">
+        <h3>הסמכות</h3>
+        <ul>
+          <li>בוגר מכון וינגייט</li>
+          <li>הסמכות אוניברסיטת תל אביב</li>
+          <li>מאמן מנטלי מוסמך</li>
+        </ul>
+      </div>
+      <div class="feature-card pop-in">
+        <h3>מומחיות</h3>
+        <ul>
+          <li>ליווי מקצועי למתאמנים מכל הרמות</li>
+          <li>תוכניות אימון מותאמות אישית</li>
+          <li>הכנה לתחרות וראיית תהליך כולל</li>
+          <li>הכנה למבחני כיתות ספורט</li>
+          <li>מומחה בפיתוח יכולות גופניות</li>
+        </ul>
+      </div>
+      <div class="feature-card pop-in">
+        <h3>התמחויות ייחודיות</h3>
+        <ul>
+          <li>אימון קבוצות ריצה, כולל קבוצות בארגונים ועסקים</li>
+          <li>עבודה עם ילדים וגיל שלישי</li>
+          <li>תוכניות אימון אונליין מקצועיות</li>
+          <li>ניסיון רב שנים בליווי מתאמנים בכל הרמות</li>
+          <li>הכנה למבחני הסמכה לשופטים</li>
+        </ul>
+      </div>
+      <div class="feature-card pop-in">
+        <h3>הישגים מקצועיים</h3>
+        <ul>
+          <li>ליווה מאות מתאמנים</li>
+          <li>ניסיון בתחרויות מ-800 מ׳ ועד אולטרה מרתון</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section section-muted">
+    <h2>מה מתאמנים אומרים</h2>
+    <div class="testimonials-grid">
+      <TestimonialCard
+        image="/images/testimonials/mariana-mali.jpg"
+        name="Mariana Mali"
+        quote="תודה למאמן התותח שלי תומר אלמוג שבחודש מאי קיבל אותי פצועה בגוף ובנפש, ועם תנאים בלתי אפשריים שהצבתי לו מדי שבוע, לימד אותי לעוף על השטח, לאהוב עליות, ובעיקר להנות מהדרך. תודה תומר, שלימדת אותי מהי חדות ריצה אמיתית."
+      />
+      <TestimonialCard
+        name="ערן טל"
+        quote="תודה רבה על 8 החודשים האחרונים. אתה והסגנון אימון שלך זה בדיוק מה שהייתי צריך: מקצועיות שנובעת משנים של ניסיון, עבודה מסודרת, בלי שטויות ובלגן. תודה שעזרת לי לכבוש את הפסגה הזאת."
+      />
+      <TestimonialCard
+        image="/images/testimonials/oshr-zelig.jpg"
+        name="אושר זליג"
+        quote="3 חודשים של אימון אונליין הספיקו לי כדי לנפץ את שיאי בחצי מרתון לאחר 3 שנים של ניסיונות. תומר מסור עד הרגע האחרון."
+      />
+      <TestimonialCard
+        image="/images/testimonials/udi-birkan.jpg"
+        name="אודי בירקאן"
+        role="מנכ״ל GPS"
+        quote="תומר מנחה אותי ומכוון אותי ברגישות והבנה מקצועית, מייעץ לי לתזונה נכונה ואימונים משלימים, וזו הפעם הראשונה יותר משנה וחצי בלי פציעות."
+      />
+      <TestimonialCard
+        name="אורנה אלעד"
+        quote="תומר מקצועי ומקסים, מומלץ בחום! גם אימן את אבא שלי בן 80 וגם אותי."
+      />
+      <TestimonialCard
+        name="איתן יאיר"
+        quote="10 קילו זה מה שירדתי תוך כמה חודשים בעזרת תומר, והיד עוד נטויה. המון אימוני כושר, ריצות, תרגילים, אבל הסיבה העיקרית: תומר היה מסור לאימונים, עבד ועקב אחריי כאילו אני זה הוא."
+      />
+      <TestimonialCard
+        name="דנה דניאל"
+        quote="ראיתי הרבה מאמנים. שתדעו שזכינו במאמן ברמה הכי גבוהה ויותר מזה רגיש לילדים. תומר אתה ספר מקצועי ואיזה כיף לראות אותך מאמן אותם ומשפר אותם."
+      />
+      <TestimonialCard
+        name="אלרום"
+        quote="תומר, רוצה להגיד לך באופן אישי תודה ענקית. בזכותך הגשמתי חלום ועמדתי ביעד. נהניתי מהדרך איתך, מהמירוץ עצמו בטירוף למרות הקשיים."
+      />
+    </div>
+  </section>
+
+  <section class="container section" id="faq">
+    <h2>שאלות נפוצות</h2>
+    <div class="faq-list">
+      {faqs.map((f) => (
+        <FaqItem question={f.q}>
+          <p>{f.a}</p>
+        </FaqItem>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>בואו נתחיל עוד היום!</h2>
+    <p>השאירו פרטים ונתחיל יחד את הדרך להצלחה.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .hero-route {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-route-path {
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+    animation: hero-route-draw 3.5s ease-out forwards;
+  }
+
+  @keyframes hero-route-draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-route-path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    padding-block: var(--space-6) var(--space-5);
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    max-width: 700px;
+    margin-inline: auto;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--color-gray-300);
+  }
+
+  .hero-brand .num {
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    color: var(--color-gold-500);
+  }
+
+  .hero-brand-line {
+    width: 26px;
+    height: 1px;
+    background: var(--color-gold-500);
+    opacity: 0.6;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 420px) {
+    .hero h1 {
+      font-size: 1.4rem;
+    }
+
+    .hero .lead {
+      font-size: 0.95rem;
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+
+  .hero .btn-outline {
+    color: var(--color-white);
+  }
+
+  .hero-actions-secondary {
+    display: contents;
+  }
+
+  @media (max-width: 560px) {
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-actions > .btn {
+      width: 100%;
+    }
+
+    .hero-actions-secondary {
+      display: flex;
+      gap: var(--space-2);
+      width: 100%;
+    }
+
+    .hero-actions-secondary .btn {
+      flex: 1;
+      width: auto;
+    }
+  }
+
+  .hero-scroll {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto var(--space-3);
+    border-radius: 50%;
+    border: 1px solid var(--color-navy-700);
+    color: var(--color-gray-300);
+    animation: hero-scroll-bounce 2s ease-in-out infinite;
+  }
+
+  .hero-scroll:hover,
+  .hero-scroll:focus-visible {
+    color: var(--color-gold-500);
+    border-color: var(--color-gold-500);
+  }
+
+  @keyframes hero-scroll-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-scroll {
+      animation: none;
+    }
+  }
+
+  .pop-in {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .pop-in.is-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .photo-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+  }
+
+  .photo-strip :global(.section-photo img) {
+    aspect-ratio: 4 / 3;
+  }
+
+  @media (max-width: 780px) {
+    .photo-strip {
+      grid-template-columns: 1fr;
+    }
+
+    .photo-strip > :global(*:not(:first-child)) {
+      display: none;
+    }
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .section h2 {
+    margin-bottom: var(--space-3);
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .feature-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+
+  .section-muted .feature-card {
+    background: var(--color-white);
+  }
+
+  .unique-benefits {
+    margin-top: var(--space-3);
+    color: var(--color-text-muted);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .plan-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .plan-card {
+    border-top: 3px solid transparent;
+  }
+
+  .plan-card:hover,
+  .plan-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    border-top-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .plan-card .distance {
+    color: var(--color-brand-hover);
+    font-weight: 800;
+    font-size: 1.4rem;
+  }
+
+  .plan-card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .plan-card p {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .plan-card .price {
+    margin-top: auto;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--color-navy-950);
+  }
+
+  .included-grid {
+    align-items: start;
+  }
+
+  .included-card {
+    position: relative;
+    padding-top: var(--space-4);
+  }
+
+  .included-card h3 {
+    margin: 0 0 var(--space-2);
+  }
+
+  .feature-card ul {
+    margin-top: var(--space-2);
+  }
+
+  .included-index {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--color-orange-100);
+    -webkit-text-stroke: 1.5px var(--color-brand);
+    line-height: 1;
+    margin-bottom: var(--space-2);
+  }
+
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+    max-width: 640px;
+    margin: 0 auto var(--space-5);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--color-gray-100);
+    border-bottom: 1px solid var(--color-gray-100);
+    text-align: center;
+  }
+
+  .stat-strip > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .stat-strip .num {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 800;
+    color: var(--color-navy-950);
+    line-height: 1;
+  }
+
+  .stat-strip span:last-child {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 560px) {
+    .stat-strip {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3) var(--space-2);
+    }
+  }
+
+  .about-photo {
+    display: block;
+    width: 140px;
+    height: 140px;
+    margin: 0 auto var(--space-3);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    border: 4px solid var(--color-orange-500);
+    box-shadow: var(--shadow-md);
+  }
+
+  #about-me h2 {
+    text-align: center;
+  }
+
+  .about-intro {
+    max-width: 55ch;
+    margin: 0 auto var(--space-4);
+    text-align: center;
+    font-size: 1.05rem;
+    text-wrap: balance;
+  }
+
+  .about-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-3);
+    text-align: center;
+  }
+
+  .about-cards h3 {
+    font-size: 1.05rem;
+  }
+
+  .about-cards ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: var(--color-text-muted);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .faq-list {
+    max-width: 760px;
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+
+  @media (max-width: 780px) {
+    .two-col,
+    .three-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const popEls = document.querySelectorAll(".pop-in");
+  if ("IntersectionObserver" in window && popEls.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    popEls.forEach((el) => observer.observe(el));
+  } else {
+    popEls.forEach((el) => el.classList.add("is-visible"));
+  }
+
+  document.querySelector(".hero-scroll")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    document.getElementById("photo-strip")?.scrollIntoView({ behavior: "smooth" });
+  });
+
+  const statStrip = document.querySelector(".stat-strip");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (statStrip && "IntersectionObserver" in window && !prefersReducedMotion) {
+    const digits = "0123456789";
+    function scrambleStat(el, delay) {
+      const finalText = el.textContent ?? "";
+      const chars = finalText.split("");
+      const duration = 550;
+      const step = 35;
+      let elapsed = 0;
+      setTimeout(() => {
+        const timer = setInterval(() => {
+          elapsed += step;
+          const lockedCount = Math.floor((elapsed / duration) * chars.length);
+          el.textContent = chars
+            .map((c, i) => {
+              if (!/[0-9]/.test(c)) return c;
+              return i < lockedCount ? c : digits[(Math.random() * 10) | 0];
+            })
+            .join("");
+          if (elapsed >= duration) {
+            clearInterval(timer);
+            el.textContent = finalText;
+          }
+        }, step);
+      }, delay);
+    }
+
+    const statObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll(".num").forEach((el, i) => scrambleStat(el, i * 90));
+            statObserver.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.4 }
+    );
+    statObserver.observe(statStrip);
+  }
+</script>

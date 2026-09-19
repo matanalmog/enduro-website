@@ -1,0 +1,263 @@
+---
+// עמוד "השאירו פרטים" — יעד ה-CTA המרכזי מכל עמודי האתר.
+// הטופס בנוי לפורמט Netlify Forms (data-netlify="true") — מתאים לאחסון המוצע באפיון (סעיף 3),
+// ולא תלוי ב-iframe שביר (בניגוד לטופס המקורי באתר הישן, ראו סעיף 5 באפיון).
+// עיצוב מפוצל: תמונה אנרגטית מלאה בצד אחד, טופס בצד השני — פחות "טופס יבש", יותר הזמנה.
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="השאירו פרטים"
+  description="השאירו פרטים ונחזור אליכם עם המידע והתוכנית המתאימה לכם, מאת תומר אלמוג, מאמן ריצה וכושר מוסמך."
+  canonicalPath="/free-plan/"
+>
+  <section class="split">
+    <div class="split-photo">
+      <img src="/images/action/ramat-hasharon-group-night.jpg" alt="קבוצת מתאמנים חוגגת יחד אחרי אימון ערב" />
+      <div class="photo-overlay"></div>
+      <div class="photo-badge">
+        <span class="badge-number">100+</span>
+        <span class="badge-label">מתאמנים כבר בדרך</span>
+      </div>
+    </div>
+
+    <div class="split-form">
+      <div class="form-inner">
+        <span class="eyebrow">הצעד הראשון מתחיל כאן</span>
+        <h1>בואו נבנה לך תוכנית ריצה</h1>
+        <p class="lead">
+          שתי דקות מילוי, ותוך זמן קצר תקבלו ממני חזרה עם המסלול, הקצב
+          והליווי שמתאימים בדיוק לכם.
+        </p>
+
+        <form name="free-plan" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/free-plan/thank-you/">
+          <input type="hidden" name="form-name" value="free-plan" />
+          <p class="hidden-field">
+            <label>אל תמלאו שדה זה: <input name="bot-field" /></label>
+          </p>
+
+          <div class="field">
+            <label for="name">שם מלא *</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">טלפון *</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="field">
+            <label for="email">אימייל</label>
+            <input type="email" id="email" name="email" />
+          </div>
+
+          <div class="field">
+            <label for="goal">מטרה / מסלול</label>
+            <select id="goal" name="goal">
+              <option value="beginners">מתחילים</option>
+              <option value="10k">10 ק"מ</option>
+              <option value="half-marathon">חצי מרתון</option>
+              <option value="marathon">מרתון</option>
+              <option value="ultra-marathon">אולטרה מרתון</option>
+              <option value="personal-coaching">אימון כושר אישי</option>
+              <option value="kids-coaching">אימון כושר לילדים</option>
+              <option value="group">קבוצת ריצה</option>
+              <option value="other">אחר</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="message">משהו נוסף שכדאי שנדע?</label>
+            <textarea id="message" name="message" rows="3"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">שלחו וקבלו תוכנית</button>
+        </form>
+
+        <div class="alt-contact">
+          <p>מעדיפים לדבר ישירות?</p>
+          <div class="alt-actions">
+            <a href="tel:+972526982993" class="btn btn-outline">צלצלו אליי</a>
+            <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: calc(100vh - var(--header-height));
+  }
+
+  .split-photo {
+    position: relative;
+    overflow: hidden;
+    min-height: 280px;
+  }
+
+  .split-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    inset: 0;
+  }
+
+  .photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 18, 32, 0.1), rgba(11, 18, 32, 0.55));
+  }
+
+  [dir="rtl"] .photo-overlay {
+    background: linear-gradient(90deg, rgba(11, 18, 32, 0.15), rgba(11, 18, 32, 0.05));
+  }
+
+  .photo-badge {
+    position: absolute;
+    bottom: var(--space-4);
+    inset-inline-start: var(--space-4);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: rgba(11, 18, 32, 0.75);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: var(--space-2) var(--space-3);
+    color: var(--color-white);
+  }
+
+  .badge-number {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-brand);
+    line-height: 1;
+  }
+
+  .badge-label {
+    font-size: 0.85rem;
+    color: var(--color-gray-300);
+    max-width: 10ch;
+  }
+
+  .split-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-5) var(--space-3);
+    background: var(--color-white);
+  }
+
+  .form-inner {
+    width: 100%;
+    max-width: 440px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    color: var(--color-brand-hover);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-1);
+  }
+
+  .form-inner h1 {
+    margin-bottom: var(--space-1);
+  }
+
+  .lead {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .hidden-field {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .field {
+    margin-bottom: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    background: var(--color-gray-50);
+    color: var(--color-text);
+    transition: border-color 0.15s ease, background-color 0.15s ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    background: var(--color-white);
+    box-shadow: 0 0 0 3px var(--color-orange-100);
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    margin-top: var(--space-2);
+    font-size: 1.02rem;
+  }
+
+  .alt-contact {
+    margin-top: var(--space-5);
+    text-align: center;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-gray-100);
+  }
+
+  .alt-contact p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .alt-actions {
+    display: flex;
+    gap: var(--space-2);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 860px) {
+    .split {
+      grid-template-columns: 1fr;
+      min-height: 0;
+    }
+
+    .split-photo {
+      min-height: 220px;
+    }
+
+    .split-form {
+      padding-block: var(--space-4);
+    }
+  }
+</style>

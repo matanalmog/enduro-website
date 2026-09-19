@@ -1,0 +1,439 @@
+---
+// תבנית משותפת ל-5 עמודי תוכניות האימון (סעיף 2+3 באפיון).
+// כל עמוד מקבל H1/meta/FAQ/מחיר ייחודיים משלו (src/data/training-plans.ts) כדי למנוע
+// Duplicate Content — רק חלקי המבנה הכלליים ("מה כלול", "איך זה עובד") משותפים בכוונה.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PricingCard from "../../components/PricingCard.astro";
+import FaqItem from "../../components/FaqItem.astro";
+import SectionPhoto from "../../components/SectionPhoto.astro";
+import { trainingPlans, type TrainingPlan } from "../../data/training-plans";
+
+export function getStaticPaths() {
+  return trainingPlans.map((plan) => ({
+    params: { slug: plan.slug },
+    props: { plan },
+  }));
+}
+
+interface Props {
+  plan: TrainingPlan;
+}
+
+const { plan } = Astro.props;
+
+const otherPlans = trainingPlans
+  .filter((p) => p.slug !== plan.slug)
+  .sort((a, b) => a.order - b.order);
+
+const schema = plan.faq.length
+  ? [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": plan.faq.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a },
+        })),
+      },
+    ]
+  : undefined;
+---
+
+<BaseLayout
+  title={plan.title}
+  description={plan.description}
+  canonicalPath={`/training-plans/${plan.slug}/`}
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">{plan.distanceLabel}</p>
+      <h1>{plan.title}</h1>
+      {plan.intro.map((p) => <p class="lead">{p}</p>)}
+      <div class="hero-actions">
+        <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+        <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section photo-section">
+    <SectionPhoto
+      src={plan.image?.src ?? "/images/action/solo-beach-stairs.jpg"}
+      alt={plan.image?.alt ?? "ריצת מדרגות בטיילת חוף הים כחלק מתוכנית אימון אישית"}
+      eager
+    />
+  </section>
+
+  <section class="container section">
+    <h2>למי התוכנית מתאימה?</h2>
+    <p class="audience-text">{plan.audience}</p>
+    {plan.prerequisite && (
+      <p class="prerequisite-note">
+        עדיין לא שם? מומלץ להתחיל מ-
+        <a href={`/training-plans/${plan.prerequisite.slug}/`}>{plan.prerequisite.label}</a>.
+      </p>
+    )}
+  </section>
+
+  <section class="container section section-muted">
+    <h2>מה כלול בתוכנית</h2>
+    <div class="three-col">
+      <div class="feature-card pop-in">
+        <h3>אימון מקצועי מלא</h3>
+        <ul>
+          <li>תוכנית אימונים דיגיטלית מתקדמת, מתעדכנת מדי שבוע</li>
+          <li>אימוני ריצה, תרגילי כוח ותרגולי גמישות</li>
+          <li>זמינות מלאה באפליקציה, מחוברת לשעון הריצה</li>
+        </ul>
+      </div>
+      <div class="feature-card pop-in">
+        <h3>ליווי מקצועי מלא</h3>
+        <ul>
+          <li>ייעוץ רציף עם מאמן מוסמך דרך וואטסאפ ומייל</li>
+          <li>המלצות תזונה מותאמות אישית</li>
+          <li>זמינות מלאה לקבלת מענה מהיר</li>
+        </ul>
+      </div>
+      <div class="feature-card pop-in">
+        <h3>בונוסים והטבות</h3>
+        <ul>
+          <li>מפגשים קבוצתיים חצי שנתיים</li>
+          <li>קודי הנחה למירוצים ולציוד ריצה</li>
+          <li>השתתפות בתחרויות קבוצתיות</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>איך זה עובד</h2>
+    <ol class="steps-list">
+      <li>פגישת טלפון או זום, בדיקת מצב בריאות, רמת כושר ואורח חיים</li>
+      <li>הגדרת מטרות: מרחק יעד, תחרות ספציפית, או שיפור זמן</li>
+      <li>בניית תוכנית מותאמת אישית ליכולות, לעיסוק ולאילוצים היומיומיים</li>
+      <li>תוכנית שבועית שמתעדכנת יום־יום, עם בקרה דרך האפליקציה וקהילת וואטסאפ</li>
+      <li>ליווי שוטף מרחוק, כולל ייעוץ לפני תחרויות</li>
+      <li>אימוני כוח וגמישות למניעת פציעות ולשיפור טווחי תנועה</li>
+    </ol>
+  </section>
+
+  {plan.price && (
+    <section class="container section section-muted" id="pricing">
+      <h2>מחיר</h2>
+      <div class="price-wrap">
+        <PricingCard title={plan.title} price={plan.price} frequency={plan.priceNote ?? ""} />
+      </div>
+    </section>
+  )}
+
+  {plan.freePlanImages && plan.freePlanImages.length > 0 && (
+    <section class="container section" id="free-plan">
+      <h2>תוכנית בסיסית חינמית</h2>
+      <p class="section-note">
+        תוכנית גנרית ללא עלות, לפי חודשים. חשוב לציין: התוכנית הזו כוללנית
+        ואינה מותאמת אישית ליכולת, לרקע הרפואי או לקצב ההתקדמות שלכם.
+        ללוח אימונים מדויק ומותאם אישית, השאירו פרטים.
+      </p>
+      <div class="free-plan-grid">
+        {plan.freePlanImages.map((img, i) => (
+          <a href={img.src} target="_blank" rel="noopener noreferrer" class="free-plan-item">
+            <img src={img.src} alt={img.alt} loading="lazy" />
+            <span>חודש {i + 1}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {plan.faq.length > 0 && (
+    <section class="container section" id="faq">
+      <h2>שאלות נפוצות</h2>
+      <div class="faq-list">
+        {plan.faq.map((f) => (
+          <FaqItem question={f.q}>
+            <p>{f.a}</p>
+          </FaqItem>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="container section section-muted">
+    <h2>תוכניות אימון נוספות</h2>
+    <div class="plans-grid">
+      {otherPlans.map((p) => (
+        <a href={`/training-plans/${p.slug}/`} class="plan-card">
+          <h3>{p.title}</h3>
+          <span>{p.distanceLabel}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>בואו נתחיל עוד היום!</h2>
+    <p>השאירו פרטים ונבנה יחד את התוכנית המתאימה לכם.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: right;
+  }
+
+  .eyebrow {
+    color: var(--color-brand);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+    margin-bottom: var(--space-1);
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    text-wrap: pretty;
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+    margin-top: var(--space-3);
+  }
+
+  .hero .btn-outline {
+    color: var(--color-white);
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .photo-section {
+    padding-block: var(--space-4) 0;
+    max-width: 900px;
+  }
+
+  .photo-section :global(.section-photo img) {
+    aspect-ratio: 16 / 9;
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .audience-text {
+    max-width: 70ch;
+    color: var(--color-text-muted);
+  }
+
+  .prerequisite-note {
+    background: var(--color-orange-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    max-width: 70ch;
+    color: var(--color-navy-950);
+  }
+
+  .prerequisite-note a {
+    color: var(--color-brand-hover);
+    font-weight: 700;
+  }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .feature-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+
+  .feature-card h3 {
+    margin: 0 0 var(--space-2);
+  }
+
+  .pop-in {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .pop-in.is-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pop-in {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
+  .steps-list {
+    max-width: 70ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-inline-start: 1.3em;
+  }
+
+  .price-wrap {
+    max-width: 320px;
+  }
+
+  .free-plan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-2);
+    max-width: 720px;
+  }
+
+  .free-plan-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .free-plan-item img {
+    width: 100%;
+    aspect-ratio: 707 / 1000;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-gray-100);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .free-plan-item:hover img,
+  .free-plan-item:focus-visible img {
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .free-plan-item span {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .faq-list {
+    max-width: 760px;
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-2);
+  }
+
+  .plan-card {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .plan-card:hover,
+  .plan-card:focus-visible {
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .plan-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .plan-card span {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+
+  @media (max-width: 780px) {
+    .three-col {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const popEls = document.querySelectorAll(".pop-in");
+  if ("IntersectionObserver" in window && popEls.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    popEls.forEach((el) => observer.observe(el));
+  } else {
+    popEls.forEach((el) => el.classList.add("is-visible"));
+  }
+</script>

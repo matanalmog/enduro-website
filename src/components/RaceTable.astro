@@ -1,0 +1,469 @@
+---
+// רשימת מרוצים גנרית — בשימוש לכל שלוש הרשימות בעמוד הלוח (ישראל / עולם / UTMB).
+// בכוונה לא <table>: בעמודה עם 4-5 שדות בעברית, טבלה דורשת גלילה אופקית במובייל
+// (בדיוק הבעיה שדווחה). כרטיס-שורה עם flex/grid נשבר בצורה טבעית לכמה שורות
+// במקום לדרוש גלילה — כל השדות תמיד גלויים.
+export interface RaceRow {
+  name: string;
+  region: string;
+  date: string;
+  link: string | null;
+  isNew?: boolean;
+  distanceKm?: number | null;
+  distanceLabel?: string | null;
+  discountCode?: string | null;
+}
+
+export interface Props {
+  races: RaceRow[];
+  showDistance?: boolean;
+  filterable?: boolean;
+}
+
+const { races, showDistance = false, filterable = false } = Astro.props;
+
+const HEBREW_MONTHS_SHORT = [
+  "ינו׳", "פבר׳", "מרץ", "אפר׳", "מאי", "יוני",
+  "יולי", "אוג׳", "ספט׳", "אוק׳", "נוב׳", "דצמ׳",
+];
+
+const HEBREW_MONTHS = [
+  "ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני",
+  "יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר",
+];
+
+function dayAndMonth(iso: string) {
+  const [, m, d] = iso.split("-");
+  return { day: d, month: HEBREW_MONTHS_SHORT[Number(m) - 1] };
+}
+
+function monthLabel(iso: string) {
+  const [y, m] = iso.split("-");
+  return `${HEBREW_MONTHS[Number(m) - 1]} ${y}`;
+}
+
+// קיבוץ המרוצים לפי חודש+שנה, עם שורת כותרת מפרידה לכל חודש חדש (הרשימה כבר ממוינת
+// כרונולוגית מהסקריפט, כך שהקיבוץ נשאר ברצף).
+let lastMonthKey = "";
+const rowsWithMonthMarkers = races.map((race) => {
+  const key = race.date.slice(0, 7);
+  const isNewMonth = key !== lastMonthKey;
+  lastMonthKey = key;
+  return { race, isNewMonth };
+});
+
+// --- נתוני סינון (בהשראת races.co.il): מרחק, אזור, חודש. מחושב רק כשfilterable=true. ---
+const DISTANCE_BUCKETS = [
+  { key: "5", label: "5 ק\"מ", test: (n: number) => n > 0 && n <= 6 },
+  { key: "10", label: "10 ק\"מ", test: (n: number) => n > 6 && n <= 12 },
+  { key: "21", label: "חצי מרתון", test: (n: number) => n > 12 && n <= 25 },
+  { key: "42", label: "מרתון+", test: (n: number) => n > 25 },
+];
+
+function distanceBucketsFor(race: RaceRow): string[] {
+  const label = race.distanceLabel ?? (race.distanceKm ? String(race.distanceKm) : "");
+  const nums = [...label.matchAll(/\d+(\.\d+)?/g)].map((m) => Number(m[0]));
+  const buckets = new Set<string>();
+  for (const n of nums) {
+    for (const b of DISTANCE_BUCKETS) if (b.test(n)) buckets.add(b.key);
+  }
+  return [...buckets];
+}
+
+const raceFilterData = races.map((race) => ({
+  region: race.region || "",
+  month: race.date.slice(0, 7),
+  distances: distanceBucketsFor(race),
+}));
+
+const monthOptions = filterable
+  ? [...new Set(raceFilterData.map((r) => r.month))].sort().map((key) => ({
+      key,
+      label: monthLabel(`${key}-01`),
+    }))
+  : [];
+
+const distanceOptionsPresent = filterable
+  ? DISTANCE_BUCKETS.filter((b) => raceFilterData.some((r) => r.distances.includes(b.key)))
+  : [];
+---
+
+<div class="race-table-instance">
+{filterable && (
+  <div class="race-filter-bar">
+    {distanceOptionsPresent.length > 0 && (
+      <div class="filter-group">
+        <span class="filter-label">מרחק</span>
+        <div class="filter-chips" data-filter-type="distance">
+          {distanceOptionsPresent.map((b) => (
+            <button type="button" class="filter-chip" data-value={b.key}>{b.label}</button>
+          ))}
+        </div>
+      </div>
+    )}
+    {monthOptions.length > 0 && (
+      <div class="filter-group">
+        <span class="filter-label">חודש</span>
+        <div class="filter-chips" data-filter-type="month">
+          {monthOptions.map((mo) => (
+            <button type="button" class="filter-chip" data-value={mo.key}>{mo.label}</button>
+          ))}
+        </div>
+      </div>
+    )}
+    <button type="button" class="filter-reset" hidden>נקו סינון</button>
+  </div>
+)}
+
+<p class="filter-empty" hidden>לא נמצאו מרוצים התואמים לסינון שבחרתם.</p>
+
+<div class="race-list">
+  {rowsWithMonthMarkers.map(({ race, isNewMonth }, i) => {
+    const { day, month } = dayAndMonth(race.date);
+    const distance = race.distanceLabel ?? (race.distanceKm ? `${race.distanceKm} ק"מ` : null);
+    return (
+      <>
+        {isNewMonth && (
+          <div class="month-row" data-month-row={race.date.slice(0, 7)}>
+            {monthLabel(race.date)}
+          </div>
+        )}
+        <div
+          class="race-row"
+          data-race-row
+          data-region={raceFilterData[i].region}
+          data-month={raceFilterData[i].month}
+          data-distances={raceFilterData[i].distances.join(" ")}
+        >
+          <div class="race-date">
+            <span class="race-day num">{day}</span>
+            <span class="race-month">{month}</span>
+          </div>
+          <div class="race-main">
+            <div class="race-name">
+              {race.name}
+              {race.isNew && <span class="new-badge">חדש</span>}
+            </div>
+            <div class="race-tags">
+              {race.region && <span class="race-tag">{race.region}</span>}
+              {showDistance && distance && <span class="race-tag race-tag-distance num">{distance}</span>}
+              {race.discountCode && <span class="code-badge">קוד: {race.discountCode}</span>}
+            </div>
+          </div>
+          {race.link && (
+            <a href={race.link} target="_blank" rel="noopener noreferrer" class="race-cta">להרשמה</a>
+          )}
+        </div>
+      </>
+    );
+  })}
+</div>
+</div>
+
+<style>
+  .race-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-3);
+    margin-bottom: var(--space-2);
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+  }
+
+  .filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .filter-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .filter-chips {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .filter-chips[data-filter-type="distance"] {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .filter-chips[data-filter-type="month"] {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    .filter-chips[data-filter-type="month"] {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .filter-chip {
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.3rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-navy-700);
+    background: var(--color-white);
+    color: var(--color-text);
+    cursor: pointer;
+    text-align: center;
+    white-space: normal;
+    line-height: 1.25;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  @media (max-width: 480px) {
+    .filter-chip {
+      font-size: 0.7rem;
+      padding: 0.3rem 0.35rem;
+    }
+  }
+
+  .filter-chip:hover {
+    border-color: var(--color-brand);
+  }
+
+  .filter-chip.is-active {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    color: var(--color-white);
+  }
+
+  .filter-reset {
+    align-self: flex-end;
+    margin-inline-start: auto;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-brand-hover);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .filter-empty {
+    padding: var(--space-3);
+    text-align: center;
+    color: var(--color-text-muted);
+    background: var(--color-gray-50);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+  }
+
+  .race-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-white);
+  }
+
+  .month-row {
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 0.55rem var(--space-2);
+  }
+
+  .race-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2);
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .race-list .race-row:last-child {
+    border-bottom: none;
+  }
+
+  .race-date {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    line-height: 1.1;
+  }
+
+  .race-day {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--color-navy-950);
+  }
+
+  .race-month {
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+  }
+
+  .race-main {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .race-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    overflow-wrap: break-word;
+  }
+
+  .race-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .race-tag {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    background: var(--color-gray-50);
+    border-radius: 4px;
+    padding: 0.1rem 0.45rem;
+  }
+
+  .race-tag-distance {
+    color: var(--color-brand-hover);
+    background: var(--color-orange-100);
+    font-weight: 700;
+  }
+
+  .race-cta {
+    flex: none;
+    color: var(--color-brand-hover);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--color-brand);
+    border-radius: var(--radius-sm);
+  }
+
+  .race-cta:hover {
+    background: var(--color-brand);
+    color: var(--color-white);
+  }
+
+  .new-badge {
+    display: inline-block;
+    margin-inline-start: 0.4rem;
+    background: var(--color-brand);
+    color: var(--color-white);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.1rem 0.4rem;
+    border-radius: 999px;
+    vertical-align: middle;
+  }
+
+  .code-badge {
+    display: inline-block;
+    background: var(--color-orange-100);
+    color: var(--color-brand-hover);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1rem 0.45rem;
+    border-radius: 4px;
+    font-family: monospace;
+  }
+
+  @media (max-width: 560px) {
+    .race-row {
+      flex-wrap: wrap;
+    }
+
+    .race-cta {
+      margin-inline-start: calc(46px + var(--space-2));
+    }
+  }
+</style>
+
+<script>
+  // מפעיל סינון עצמאי לכל מופע של הרשימה בעמוד (יכולים להיות כמה RaceTable בעמוד אחד,
+  // וה-script המשותף שלהם רץ פעם אחת בלבד, לכן הלולאה מטפלת בכל מופעי .race-table-instance).
+  document.querySelectorAll(".race-table-instance").forEach((instance) => {
+    const bar = instance.querySelector(".race-filter-bar");
+    if (!bar) return;
+
+    const rows = [...instance.querySelectorAll("[data-race-row]")];
+    const monthRows = [...instance.querySelectorAll("[data-month-row]")];
+    const emptyMsg = instance.querySelector(".filter-empty");
+    const resetBtn = instance.querySelector(".filter-reset");
+
+    const active = { distance: new Set(), month: new Set() };
+
+    function apply() {
+      let visibleCount = 0;
+      for (const row of rows) {
+        const month = row.getAttribute("data-month") || "";
+        const distances = (row.getAttribute("data-distances") || "").split(" ").filter(Boolean);
+
+        const monthOk = active.month.size === 0 || active.month.has(month);
+        const distanceOk =
+          active.distance.size === 0 || distances.some((d) => active.distance.has(d));
+
+        const show = monthOk && distanceOk;
+        row.hidden = !show;
+        if (show) visibleCount++;
+      }
+
+      for (const mRow of monthRows) {
+        let next = mRow.nextElementSibling;
+        let anyVisible = false;
+        while (next && !next.hasAttribute("data-month-row")) {
+          if (!next.hidden) anyVisible = true;
+          next = next.nextElementSibling;
+        }
+        mRow.hidden = !anyVisible;
+      }
+
+      const anyFilterActive = active.distance.size > 0 || active.month.size > 0;
+      if (resetBtn) resetBtn.hidden = !anyFilterActive;
+      if (emptyMsg) emptyMsg.hidden = visibleCount > 0;
+    }
+
+    bar.querySelectorAll(".filter-chip").forEach((chip) => {
+      chip.addEventListener("click", () => {
+        const group = chip.closest(".filter-chips");
+        const type = group?.getAttribute("data-filter-type");
+        const value = chip.getAttribute("data-value");
+        if (!type || !value) return;
+        const set = active[type];
+        if (set.has(value)) {
+          set.delete(value);
+          chip.classList.remove("is-active");
+        } else {
+          set.add(value);
+          chip.classList.add("is-active");
+        }
+        apply();
+      });
+    });
+
+    resetBtn?.addEventListener("click", () => {
+      active.distance.clear();
+      active.month.clear();
+      bar.querySelectorAll(".filter-chip.is-active").forEach((c) => c.classList.remove("is-active"));
+      apply();
+    });
+  });
+</script>

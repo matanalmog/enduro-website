@@ -1,0 +1,183 @@
+---
+// עמוד-שער לתוכניות האימון — מפנה לחמשת התתי-עמודים (סעיף 2 באפיון).
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { trainingPlans } from "../../data/training-plans";
+
+const beginnersPlan = trainingPlans.find((p) => p.slug === "beginners")!;
+const halfMarathonPlan = trainingPlans.find((p) => p.slug === "half-marathon")!;
+const marathonPlan = trainingPlans.find((p) => p.slug === "marathon")!;
+const ultraMarathonPlan = trainingPlans.find((p) => p.slug === "ultra-marathon")!;
+
+const sortedPlans = [
+  {
+    slug: beginnersPlan.slug,
+    distanceLabel: "מתחילים עד 10 ק\"מ",
+    title: "תוכנית אימונים מתחילים עד 10 ק\"מ",
+    audience: beginnersPlan.audience,
+    price: beginnersPlan.price,
+  },
+  {
+    slug: halfMarathonPlan.slug,
+    distanceLabel: halfMarathonPlan.distanceLabel,
+    title: halfMarathonPlan.title,
+    audience: halfMarathonPlan.audience,
+    price: halfMarathonPlan.price,
+  },
+  {
+    slug: marathonPlan.slug,
+    distanceLabel: marathonPlan.distanceLabel,
+    title: marathonPlan.title,
+    audience: marathonPlan.audience,
+    price: marathonPlan.price,
+  },
+  {
+    slug: ultraMarathonPlan.slug,
+    distanceLabel: ultraMarathonPlan.distanceLabel,
+    title: ultraMarathonPlan.title,
+    audience: ultraMarathonPlan.audience,
+    price: ultraMarathonPlan.price,
+  },
+];
+---
+
+<BaseLayout
+  title="תוכניות אימון ריצה אונליין"
+  description="תוכניות אימון ריצה אונליין בליווי אישי, ממתחילים ועד אולטרה מרתון. בחרו את המסלול המתאים לכם והשאירו פרטים."
+  canonicalPath="/training-plans/"
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>תוכניות אימון ריצה אונליין</h1>
+      <p class="lead">
+        ארבעה מסלולי ליווי אישי, מהצעד הראשון ועד אולטרה מרתון. כל
+        תוכנית מותאמת אישית לרמה, למטרה ולזמינות שלכם.
+      </p>
+    </div>
+  </section>
+
+  <section class="container section">
+    <div class="plans-grid">
+      {sortedPlans.map((plan) => (
+        <a href={`/training-plans/${plan.slug}/`} class="plan-card">
+          <span class="distance">{plan.distanceLabel}</span>
+          <h2>{plan.title}</h2>
+          <p>{plan.audience}</p>
+          {plan.price && <span class="price">{plan.price}</span>}
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section cta-band">
+    <h2>לא בטוחים איזה מסלול מתאים לכם?</h2>
+    <p>בואו נתחיל עוד היום, השאירו פרטים ונבנה יחד את התוכנית המתאימה לכם.</p>
+    <div class="cta-actions">
+      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .plan-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .plan-card:hover,
+  .plan-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .distance {
+    color: var(--color-brand-hover);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .plan-card h2 {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .plan-card p {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .price {
+    margin-top: auto;
+    font-weight: 700;
+    color: var(--color-navy-950);
+  }
+
+  .cta-band {
+    text-align: center;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding-inline: var(--space-3);
+  }
+
+  .cta-band h2 {
+    color: var(--color-white);
+  }
+
+  .cta-band p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+  }
+
+  .cta-band .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    justify-content: center;
+  }
+
+  .cta-band .btn-outline {
+    color: var(--color-white);
+  }
+</style>

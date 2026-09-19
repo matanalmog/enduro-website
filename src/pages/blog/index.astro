@@ -1,0 +1,348 @@
+---
+// עמוד הבלוג — רשימת מאמרים (סעיף 2 באפיון: "התוכן מיושן, דרושה אסטרטגיית תוכן מחודשת").
+// רק 3 מתוך 5 הפוסטים המקוריים שסומנו "שמר" עברו לכאן: השאר היו טיוטות ריקות/לורם איפסום
+// שלא פורסמו מעולם בפועל (ראו scripts/update-races.mjs לרעיון דומה של "לא לפרסם תוכן לא אמין").
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SocialIcon from "../../components/SocialIcon.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+);
+
+function formatHebrewDate(date: Date) {
+  return new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(date);
+}
+
+const socialCards = [
+  {
+    name: "instagram",
+    label: "אינסטגרם",
+    href: "https://www.instagram.com/tomer_almog_enduro_runners/",
+    teaser: "תמונות מהאימונים, הקבוצות והתחרויות, ורגעים מהשטח בזמן אמת.",
+  },
+  {
+    name: "facebook",
+    label: "פייסבוק",
+    href: "https://www.facebook.com/tomeral/",
+    teaser: "עדכונים, אירועים קרובים ותוכן מהקהילה של Enduro.",
+  },
+  {
+    name: "tiktok",
+    label: "טיקטוק",
+    href: "https://www.tiktok.com/@tomeralmog_coach",
+    teaser: "קליפים קצרים מהאימונים וטיפים מהירים לריצה נכונה.",
+  },
+] as const;
+---
+
+<BaseLayout
+  title="בלוג"
+  description="טיפים מקצועיים לריצה, כושר ותזונה, ממאמן ריצה וכושר תומר אלמוג."
+  canonicalPath="/blog/"
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>הבלוג שלי</h1>
+      <p class="lead">טיפים מקצועיים לריצה, כושר ותזונה, מהניסיון שלי בשטח.</p>
+      <div class="hero-jump">
+        <a href="#articles" class="hero-jump-card">
+          <span class="num">01</span>
+          <span>מאמרים כתובים</span>
+        </a>
+        <a href="#social" class="hero-jump-card">
+          <span class="num">02</span>
+          <span>מהסושיאל שלי</span>
+        </a>
+        <a href="#youtube" class="hero-jump-card">
+          <span class="num">03</span>
+          <span>מהערוץ שלי ביוטיוב</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="articles" class="container section">
+    <h2>מאמרים כתובים</h2>
+    <div class="posts-grid">
+      {posts.map((post) => (
+        <a href={`/blog/${post.id}/`} class="post-card">
+          {post.data.ogImage && <img src={post.data.ogImage} alt={post.data.title} class="post-thumb" />}
+          <div class="post-body">
+            <span class="date">{formatHebrewDate(post.data.publishDate)}</span>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="social" class="container section section-muted">
+    <h2>מהסושיאל שלי</h2>
+    <p class="section-lead">קטעים, תמונות ועדכונים שוטפים מהרשתות החברתיות, עקבו כדי לא לפספס.</p>
+    <div class="social-carousel">
+      {socialCards.map((card) => (
+        <a href={card.href} target="_blank" rel="noopener noreferrer" class="social-card">
+          <span class="social-icon">
+            <SocialIcon name={card.name} />
+          </span>
+          <span class="social-label">{card.label}</span>
+          <p class="social-teaser">{card.teaser}</p>
+          <span class="social-cta">עקבו ←</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="youtube" class="container section">
+    <h2>מהערוץ שלי ביוטיוב</h2>
+    <div class="youtube-card">
+      <span class="youtube-icon">
+        <SocialIcon name="youtube" />
+      </span>
+      <div class="youtube-body">
+        <h3>סרטוני אימון, טיפים ותוכן מהשטח</h3>
+        <p>בערוץ היוטיוב שלי תמצאו הדגמות תרגילים, טיפים מקצועיים לריצה נכונה, וקטעים מאימוני הקבוצות והתחרויות.</p>
+        <a href="https://www.youtube.com/@tomeralmog" target="_blank" rel="noopener noreferrer" class="btn btn-primary">צפו בערוץ</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .hero-jump {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .hero-jump-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: var(--space-3) var(--space-2);
+    border: 1px solid var(--color-navy-700);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 0.92rem;
+    transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .hero-jump-card .num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-gold-500);
+  }
+
+  .hero-jump-card:hover,
+  .hero-jump-card:focus-visible {
+    border-color: var(--color-brand);
+    background: var(--color-navy-900);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 560px) {
+    .hero-jump {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .post-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .post-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: var(--space-3);
+  }
+
+  .post-card:hover,
+  .post-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .date {
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+  }
+
+  .post-card h2 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .post-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .section-lead {
+    color: var(--color-text-muted);
+    max-width: 60ch;
+    margin-bottom: var(--space-3);
+  }
+
+  .social-carousel {
+    display: flex;
+    gap: var(--space-3);
+    overflow-x: auto;
+    padding-bottom: var(--space-1);
+    scroll-snap-type: x proximity;
+  }
+
+  .social-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    width: 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .social-card:hover,
+  .social-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .social-label {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+
+  .social-teaser {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    margin: 0;
+  }
+
+  .social-cta {
+    margin-top: auto;
+    color: var(--color-brand-hover);
+    font-weight: 700;
+    font-size: 0.88rem;
+  }
+
+  .youtube-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+
+  .youtube-icon {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-brand);
+    color: var(--color-white);
+  }
+
+  .youtube-icon :global(svg) {
+    width: 28px;
+    height: 28px;
+  }
+
+  .youtube-body h3 {
+    color: var(--color-white);
+    margin-bottom: 0.4rem;
+  }
+
+  .youtube-body p {
+    color: var(--color-gray-300);
+    margin-bottom: var(--space-3);
+    max-width: 60ch;
+  }
+
+  @media (max-width: 600px) {
+    .youtube-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

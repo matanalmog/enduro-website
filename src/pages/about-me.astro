@@ -1,0 +1,458 @@
+---
+// "מי אני" — עמוד ה-About, וגם יעד המיזוג של: צור קשר, כרטיס ביקור/digital card,
+// תקנון פרטיות, וטופס הצהרת בריאות (כל אלה הוחלטו למיזוג לכאן, ראו
+// decisions/enduro-full-page-list.csv). התוכן הביוגרפי והמלצות מבוססים על תוכן אמיתי
+// מ-wordpress_export.xml. תקנון הפרטיות נוקה מסעיפי "חנות אונליין" שאינם רלוונטיים יותר
+// (הוחלט שהחנות יורדת מהאתר, ראו README) ומפלייסהולדר "שם האתר שלכם" שנשאר לא-מלא במקור.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import SectionPhoto from "../components/SectionPhoto.astro";
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "תומר אלמוג",
+    "jobTitle": "מאמן ריצה וכושר",
+    "url": "https://www.sport4you.co.il/about-me/",
+    "telephone": "+972-52-6982993",
+    "email": "tomeral@gmail.com",
+  },
+];
+---
+
+<BaseLayout
+  title="מי אני, תומר אלמוג, מאמן ריצה וכושר"
+  description="תומר אלמוג, מאמן ריצה וכושר מוסמך, בוגר מכון וינגייט ואוניברסיטת תל אביב, עם ניסיון אישי בתחרויות מ-800 מטר ועד אולטרה מרתון. בניית תוכניות ריצה אונליין למתחילים ולמתקדמים."
+  canonicalPath="/about-me/"
+  schema={schema}
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>מאמן ריצה וכושר, בניית תוכניות ריצה אונליין</h1>
+      <p class="lead">תומר אלמוג, מאמן ריצה מומלץ, פארק הנציח, רמת השרון.</p>
+    </div>
+  </section>
+
+  <section class="container section bio-grid">
+    <SectionPhoto
+      src="/images/action/tomer-and-boy-trophy.jpg"
+      alt="תומר אלמוג מעניק גביע למתאמן צעיר אחרי תחרות"
+      eager
+    />
+    <div class="bio">
+    <p>
+      את המסע המרתק עם עולם הספורט, והיותי מאמן ריצה מומלץ, התחלתי
+      בילדותי, דרך החיבור לעולם הריצה שליווה אותי כל חיי, דרך אנשים
+      שהכרתי בתחום, בעבודה, חברים שרכשתי, והתמודדויות באימונים
+      ובתחרויות כרץ מקצועי עוד בשנת 1986, בהיותי ילד בן 7, תחת הדרכתה
+      של זהבה שמואלי באגודת ספורט רמת השרון, ולאחר מכן במועדון רצי
+      רמת השרון.
+    </p>
+    <p>
+      עם השנים ביססתי הבנה רבה בתחום תוך קריאה מרובה, קורסים והכשרות
+      במוסדות מובילים, אוניברסיטת תל אביב ומכון וינגייט. ההתלהבות
+      והתשוקה שגברו בי עם השנים אפשרו לי לוותר על משרה כעורך דין,
+      ולהפוך את הידע שצברתי למקצוע בתחום הספורט.
+    </p>
+    <p>
+      כמאמן ריצה וכושר בקבוצות ריצה ברחבי הארץ, כמאמן ריצה מומלץ
+      וכמומחה בבניית תוכניות ריצה אונליין, הקמתי את מועדוני "רצי 4
+      העונות" ו-JUSTSHAPE, וכן קבוצות ריצה בארגונים ועסקים, בהנהלת
+      בתי המשפט, ארד חברה לביטוח, ו-TCM.
+    </p>
+    <p>
+      ההתמסרות למקצוע העניקה לי הסתכלות והבנה מעמיקה על גוף האדם,
+      וליכולת להוות מדריך לאנשים שרוצים להתאמן, להתמודד, ולשפר את
+      הביטחון העצמי והיכולת שלהם בכל תחומי החיים, כולל תרומה
+      לאוכלוסיות שנוטות להימנע מפעילות גופנית, כמו ילדים וגיל הזהב.
+    </p>
+    <p>
+      כיום: כותב תוכניות אימון ריצה אונליין, מאמן ריצה מומלץ בארגונים,
+      ומאמן כושר אישי.
+    </p>
+    </div>
+  </section>
+
+  <section class="container section section-muted">
+    <h2>הישגים אישיים</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">מקום 1</span>
+        <span class="stat-label">אולטרה מרתון 66 ק"מ</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">2:43</span>
+        <span class="stat-label">מרתון</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">1:17</span>
+        <span class="stat-label">חצי מרתון</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value">34:12</span>
+        <span class="stat-label">10 ק"מ</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section">
+    <h2>מה מתאמנים אומרים</h2>
+    <div class="testimonials-grid">
+      <TestimonialCard
+        image="/images/testimonials/mariana-mali.jpg"
+        name="Mariana Mali"
+        quote="תודה למאמן התותח שלי תומר אלמוג שבחודש מאי קיבל אותי פצועה בגוף ובנפש, ועם תנאים בלתי אפשריים שהצבתי לו מדי שבוע, לימד אותי לעוף על השטח, לאהוב עליות, ובעיקר להנות מהדרך. תודה תומר, שלימדת אותי מהי חדות ריצה אמיתית."
+      />
+      <TestimonialCard
+        image="/images/testimonials/meyan-shirom.jpg"
+        name="מעין שירום"
+        quote="לקחתי את תומר כמאמן אישי לחודשיים לפני נסיעת עבודה לחו״ל. תומר בנה לי תוכנית יסודית ומסודרת שהחזירה לי גמישות ותנועה במקומות שהיו מוגבלים עקב בעיות בגב. אני בת 42 ולא הרגשתי כל כך טוב מזמן, הוא מקצוען שמתאים את עצמו לכל מתאמן."
+      />
+      <TestimonialCard
+        name="נועה משה"
+        quote="אני רוצה להמליץ בחום על קבוצת הריצה של תומר אלמוג. זאת פעם ראשונה בחיים שאני משתתפת בקבוצת ריצה, גיליתי מדריך עם נשמה, מקצוען, אכפתי, מתאים לכל הרמות, גם כאלה שלרוץ 10 ק״מ נשמע להם חלום רחוק."
+      />
+      <TestimonialCard
+        name="אלה קרינברגר"
+        quote="שמחה אני להעלות על הכתב שנפלה בחלקי ההזדמנות המיוחדת לקבל אימון כושר אישי מתומר. תומר מאמן מקצועי במיוחד, ואני מרגישה ביטחון ואתגר במהלך האימון, צר לי שאין באפשרותי ליהנות מיותר מפעם בשבוע!"
+      />
+      <TestimonialCard
+        name="אורנה אלעד"
+        quote="מקצועי ומקסים, מומלץ בחום! גם אימן את אבא שלי בן 80 וגם אותי."
+      />
+      <TestimonialCard
+        name="דנה דניאל"
+        quote="ראיתי הרבה מאמנים. שתדעו שזכינו במאמן ברמה הכי גבוהה ויותר מזה רגיש לילדים. תומר אתה ספר מקצועי ואיזה כיף לראות אותך מאמן אותם ומשפר אותם."
+      />
+      <TestimonialCard
+        name="אלרום"
+        quote="תומר, רוצה להגיד לך באופן אישי תודה ענקית. בזכותך הגשמתי חלום ועמדתי ביעד. נהניתי מהדרך איתך, מהמירוץ עצמו בטירוף למרות הקשיים."
+      />
+      <TestimonialCard
+        name="ערן טל"
+        quote="תודה רבה על 8 החודשים האחרונים. אתה והסגנון אימון שלך זה בדיוק מה שהייתי צריך: מקצועיות שנובעת משנים של ניסיון, עבודה מסודרת, בלי שטויות ובלגן. תודה שעזרת לי לכבוש את הפסגה הזאת."
+      />
+    </div>
+  </section>
+
+  <section class="container section section-muted" id="contact">
+    <h2>יצירת קשר</h2>
+    <div class="contact-grid">
+      <div>
+        <p><strong>כתובת:</strong> רחוב הזית 6, רמת השרון</p>
+        <p><strong>טלפון:</strong> <a href="tel:+972526982993">052-6982993</a></p>
+        <p><strong>אימייל:</strong> <a href="mailto:tomeral@gmail.com">tomeral@gmail.com</a></p>
+      </div>
+      <div class="contact-actions">
+        <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+        <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section" id="health-form">
+    <h2>טופס הצהרת בריאות</h2>
+    <p class="section-note">
+      לפני תחילת אימונים, חשוב לוודא שאין מניעה בריאותית. אנא ענו על
+      ההצהרה הבאה בכנות, המידע חסוי וישמש רק את תומר לצורך התאמת
+      האימון.
+    </p>
+    <form name="health-declaration" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/free-plan/thank-you/" class="health-form">
+      <input type="hidden" name="form-name" value="health-declaration" />
+      <p class="hidden-field">
+        <label>אל תמלאו שדה זה: <input name="bot-field" /></label>
+      </p>
+
+      <div class="field">
+        <label for="hf-name">שם מלא *</label>
+        <input type="text" id="hf-name" name="name" required />
+      </div>
+
+      <div class="field">
+        <label for="hf-phone">טלפון *</label>
+        <input type="tel" id="hf-phone" name="phone" required />
+      </div>
+
+      <fieldset class="checklist">
+        <legend>סמנו אם קיים אצלכם אחד מהבאים:</legend>
+        <label><input type="checkbox" name="condition" value="heart" /> מחלת לב, לחץ דם גבוה, או בעיה בקצב הלב</label>
+        <label><input type="checkbox" name="condition" value="chest-pain" /> כאבים בחזה במהלך מאמץ גופני או במנוחה</label>
+        <label><input type="checkbox" name="condition" value="dizziness" /> סחרחורות, אובדן שיווי משקל, או התעלפות</label>
+        <label><input type="checkbox" name="condition" value="bones-joints" /> בעיה בעצמות או במפרקים שעלולה להחמיר באימון</label>
+        <label><input type="checkbox" name="condition" value="medication" /> נטילת תרופות קבועות</label>
+        <label><input type="checkbox" name="condition" value="pregnancy" /> הריון</label>
+        <label><input type="checkbox" name="condition" value="other" /> מצב רפואי אחר שכדאי שנדע עליו</label>
+      </fieldset>
+
+      <div class="field">
+        <label for="hf-details">פירוט (אם סימנתם סעיף כלשהו למעלה)</label>
+        <textarea id="hf-details" name="details" rows="3"></textarea>
+      </div>
+
+      <label class="confirm">
+        <input type="checkbox" name="confirm" required />
+        מאשר/ת כי הפרטים שמסרתי נכונים, וכי ידוע לי שבמקרה של מצב
+        רפואי מיוחד עליי להתייעץ עם רופא לפני תחילת האימונים.
+      </label>
+
+      <button type="submit" class="btn btn-primary">שליחת ההצהרה</button>
+    </form>
+  </section>
+
+  <section class="container section section-muted legal" id="privacy">
+    <h2>תקנון ומדיניות פרטיות</h2>
+    <p class="legal-note">
+      תקנון השימוש באתר נכתב בלשון זכר מטעמי נוחות בלבד; האמור מתייחס
+      לנשים וגברים כאחד.
+    </p>
+
+    <h3>מבוא</h3>
+    <ul>
+      <li>אתר sport4you.co.il / Enduro (להלן "האתר") משמש כאתר תדמית, בלוג ומידע בתחום הריצה והכושר, והשימוש בו כפוף לתנאים המפורטים להלן.</li>
+      <li>תוכן האתר והשירותים המוצעים בו (מאמרים, מדיה, טפסים) עשויים להשתנות מעת לעת.</li>
+      <li>בעל האתר שומר לעצמו את הזכות לעדכן את תנאי השימוש מעת לעת, ללא הודעה מוקדמת.</li>
+    </ul>
+
+    <h3>קניין רוחני</h3>
+    <ul>
+      <li>האתר וכל תוכנו, עיצוב, קוד, טקסטים, תמונות וסרטונים, שייכים במלואם לתומר אלמוג, ומהווים קניין רוחני בלעדי שלו. אין לעשות בהם שימוש ללא אישור כתוב מראש.</li>
+      <li>אין להפיץ, להעתיק, לשכפל, לפרסם או לעבד תכנים מהאתר ללא אישור כתוב מראש.</li>
+    </ul>
+
+    <h3>תוכן האתר</h3>
+    <ul>
+      <li>אנו שואפים לספק את המידע המוצג באתר ללא הפרעות, אך אין התחייבות לזמינות רציפה של האתר, ולא יינתן פיצוי בשל הפסקת שירות זמנית.</li>
+      <li>קישורים לאתרים חיצוניים אינם מהווים ערובה לאמינותם; השימוש בהם באחריות המשתמש בלבד.</li>
+    </ul>
+
+    <h3>גילוי נאות (עוגיות)</h3>
+    <ul>
+      <li>האתר עשוי להשתמש בקבצי Cookies ובכלי סטטיסטיקה (כגון Google Analytics) לניתוח תנועת גולשים אנונימית, ללא זיהוי אישי.</li>
+      <li>פרטים שנמסרים דרך טפסי יצירת הקשר באתר (שם, טלפון, אימייל) משמשים אך ורק לצורך חזרה אליכם בנוגע לתוכנית אימון, ולא יועברו לצד שלישי למטרות שיווקיות ללא רשותכם.</li>
+    </ul>
+
+    <h3>אזור שיפוט</h3>
+    <ul>
+      <li>השימוש באתר וכל מחלוקת בעניינו כפופים לחוק הישראלי בלבד, בסמכות השיפוט הבלעדית של בתי המשפט במחוז תל אביב.</li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+  }
+
+  .hero-inner {
+    padding-block: var(--space-6) var(--space-5);
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+  }
+
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .section-muted {
+    background: var(--color-gray-50);
+  }
+
+  .bio-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  .bio-grid :global(.section-photo) {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-3));
+  }
+
+  .bio-grid :global(.section-photo img) {
+    aspect-ratio: 3 / 4;
+  }
+
+  .bio p {
+    margin-bottom: var(--space-2);
+  }
+
+  @media (max-width: 780px) {
+    .bio-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bio-grid :global(.section-photo) {
+      position: static;
+    }
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .stat-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-brand-hover);
+  }
+
+  .stat-label {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .contact-grid p {
+    margin-bottom: 0.4rem;
+  }
+
+  .contact-actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+  }
+
+  .section-note {
+    color: var(--color-text-muted);
+    max-width: 70ch;
+    margin-bottom: var(--space-3);
+  }
+
+  .health-form,
+  .form-wrap {
+    max-width: 520px;
+  }
+
+  .hidden-field {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .field {
+    margin-bottom: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-text);
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 3px var(--color-orange-100);
+  }
+
+  .checklist {
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    margin-bottom: var(--space-3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .checklist legend {
+    font-weight: 700;
+    padding-inline: 0.3rem;
+  }
+
+  .checklist label {
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .confirm {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+
+  .legal h3 {
+    margin-top: var(--space-3);
+  }
+
+  .legal ul {
+    padding-inline-start: 1.3em;
+    color: var(--color-text-muted);
+    max-width: 75ch;
+  }
+
+  .legal li {
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-note {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    margin-bottom: var(--space-3);
+  }
+
+  @media (max-width: 720px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
