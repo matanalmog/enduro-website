@@ -1,8 +1,8 @@
 ---
-// דף הבית — עיצוב מחדש מלא (2026-09-20) לפי בריף מפורט של תומר: מיצוב מותג ENDURO
-// חד וברור סביב אימון ריצה אישי, במקום הצגת כל שירותי האתר על אותו עמוד.
-// מבנה: Hero -> מי ENDURO -> יעדי מרחק -> איך זה עובד -> מה מקבלים -> מי אני -> גמישות ->
-// מסלולים ומחירים -> עדויות -> FAQ -> CTA סוגר.
+// דף הבית — גרסה 2 (2026-09-20), לפי wireframe מפורט: Hero פיצול תמונה/טקסט חד וקצר,
+// פס אמון, סקציית "בעיה שהלקוח מכיר", תהליך עבודה, "למי זה מתאים" (כרטיסים מקושרים),
+// "מי אני" אישי, "מה באמת מקבלים" מינימלי, 3 עדויות מצומצמות, מחירון כרטיסי-צ'ק,
+// FAQ מצומצם, CTA כהה דרמטי, וסרגל צף במובייל (WhatsApp + בדיקת התאמה).
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import FaqItem from "../components/FaqItem.astro";
@@ -13,85 +13,35 @@ const halfMarathonPlan = trainingPlans.find((p) => p.slug === "half-marathon")!;
 const marathonPlan = trainingPlans.find((p) => p.slug === "marathon")!;
 const ultraMarathonPlan = trainingPlans.find((p) => p.slug === "ultra-marathon")!;
 
-const distanceGoals = [
-  {
-    label: "מתחילים ו-10K",
-    text: "בונים בסיס נכון, מתקדמים בהדרגה ומגיעים ל-10 ק\"מ בביטחון.",
-  },
-  {
-    label: "חצי מרתון",
-    text: "מתכוננים ל-21.1 ק\"מ בצורה מסודרת — עם בניית נפח, איכות והתאוששות.",
-  },
-  {
-    label: "מרתון",
-    text: "תהליך מלא לקראת 42.2 ק\"מ, מהבסיס ועד ליום המרוץ.",
-  },
-  {
-    label: "אולטרה",
-    text: "מרחקים ארוכים דורשים גישה אחרת. נפח, סבולת, קצב, תזונה וניהול עומס — הכל מתחבר לתמונה אחת.",
-  },
+const audienceCards = [
+  { slug: beginnersPlan.slug, title: "מתחילים", text: "מאפס → 10K" },
+  { slug: halfMarathonPlan.slug, title: "חצי מרתון", text: "21.1 ק\"מ" },
+  { slug: marathonPlan.slug, title: "מרתון", text: "42.2 ק\"מ" },
+  { slug: ultraMarathonPlan.slug, title: "אולטרה", text: "מעבר למרתון" },
 ];
 
 const howItWorks = [
-  {
-    title: "מכירים אותך",
-    text: "מתחילים בשאלון ובשיחה אישית. אני רוצה להבין מי אתה כרץ — הניסיון שלך, המטרה, שגרת החיים, הזמן שעומד לרשותך והאתגרים שצריך לקחת בחשבון.",
-  },
-  {
-    title: "בונים את התוכנית",
-    text: "התוכנית נבנית סביב החיים שלך ולא להפך. הימים, המרחקים, העצימות וסוגי האימונים מותאמים למטרה ולרמה שלך.",
-  },
-  {
-    title: "מתאמנים",
-    text: "האימונים נמצאים באפליקציה, עם הנחיות ברורות לכל אימון. אתה יודע מה לעשות, למה אתה עושה את זה ומה המטרה של האימון.",
-  },
-  {
-    title: "עוקבים ומתאימים",
-    text: "אני עובר על האימונים שביצעת ובוחן את ההתקדמות. התגובה שלך לאימונים משפיעה על מה שנעשה בהמשך.",
-  },
-  {
-    title: "מתקדמים למטרה",
-    text: "לא רצים רק כדי לסמן וי על אימון. בונים תהליך שמוביל אותך למטרה — בצורה חכמה, עקבית ובריאה ככל האפשר.",
-  },
+  { title: "מכירים", text: "שאלון + שיחה אישית." },
+  { title: "מתכננים", text: "בונים את השבוע בהתאם למטרה ולחיים שלך." },
+  { title: "מתאמנים", text: "האימונים מגיעים ישירות לאפליקציה." },
+  { title: "עוקבים", text: "אני עובר על האימונים וההתקדמות שלך." },
+  { title: "מתאימים", text: "התוכנית משתנה בהתאם למה שקורה." },
 ];
 
 const included = [
-  "תוכנית אימונים אישית",
-  "התאמה למטרה ולרמת הרץ",
-  "מעקב אחר ביצועי האימונים",
-  "התאמות שוטפות לתוכנית",
-  "הנחיות ברורות לכל אימון",
-  "תרגילי כוח משלימים",
-  "דגש על התאוששות וניהול עומסים",
-  "ליווי אישי וזמינות לשאלות",
-  "הכנה למרוצים ויעדים ספציפיים",
+  { title: "התאמה אישית", text: "התוכנית נבנית סביב המטרה והמציאות שלך." },
+  { title: "מעקב", text: "האימונים שביצעת הם חלק מקבלת ההחלטות." },
+  { title: "כוח", text: "תרגילים משלימים כדי לתמוך בריצה." },
+  { title: "התאוששות", text: "ניהול עומסים הוא חלק מהאימון." },
+  { title: "קשר אישי", text: "יש לך מאמן שאפשר לדבר איתו." },
+  { title: "הכנה למרוץ", text: "הדרך מתוכננת עד לקו הזינוק." },
 ];
 
 const homepagePlans = [
-  {
-    slug: beginnersPlan.slug,
-    title: "10K / מתחילים",
-    text: "למי שרוצה להתחיל לרוץ, לחזור לשגרה או להגיע ל-10 ק\"מ.",
-    price: beginnersPlan.price,
-  },
-  {
-    slug: halfMarathonPlan.slug,
-    title: "חצי מרתון",
-    text: "תהליך הכנה מסודר ל-21.1 ק\"מ ולשיפור ביצועים.",
-    price: halfMarathonPlan.price,
-  },
-  {
-    slug: marathonPlan.slug,
-    title: "מרתון",
-    text: "תוכנית מלאה לקראת 42.2 ק\"מ, כולל בניית עומס והכנה ליום המרוץ.",
-    price: marathonPlan.price,
-  },
-  {
-    slug: ultraMarathonPlan.slug,
-    title: "אולטרה",
-    text: "לרצים שרוצים לצאת מעבר למרתון ולהתמודד עם מרחקים ארוכים.",
-    price: ultraMarathonPlan.price,
-  },
+  { slug: beginnersPlan.slug, title: "10K / מתחילים", price: beginnersPlan.price },
+  { slug: halfMarathonPlan.slug, title: "חצי מרתון", price: halfMarathonPlan.price },
+  { slug: marathonPlan.slug, title: "מרתון", price: marathonPlan.price },
+  { slug: ultraMarathonPlan.slug, title: "אולטרה", price: ultraMarathonPlan.price },
 ];
 
 const faqs = [
@@ -118,10 +68,6 @@ const faqs = [
   {
     q: "מה אם פספסתי אימון?",
     a: "לא צריך \"להשלים\" אוטומטית כל אימון שפספסת. בוחנים את השבוע כולו ומחליטים מה נכון לעשות הלאה.",
-  },
-  {
-    q: "האם יש קשר ישיר עם המאמן?",
-    a: "כן. הליווי כולל אפשרות להתייעץ ולשאול שאלות לאורך הדרך.",
   },
 ];
 
@@ -167,62 +113,56 @@ const schema = [
   schema={schema}
 >
   <section class="hero">
-    <svg class="hero-route" viewBox="0 0 1000 500" preserveAspectRatio="none" fill="none" aria-hidden="true">
-      <path class="hero-route-path" d="M -20 420 C 140 460, 240 300, 380 340 S 560 180, 680 210 S 880 100, 1020 130"
-        stroke="var(--color-orange-500)" stroke-width="2.5" stroke-opacity="0.5" />
-      <circle cx="680" cy="210" r="4" fill="var(--color-gold-500)" />
-    </svg>
     <div class="container hero-inner">
+      <div class="hero-photo">
+        <img
+          src="/images/action/tomer-elite-race-pack.jpg"
+          alt="תומר אלמוג רץ בקבוצה מובילה במרוץ תחרותי"
+          width="700"
+          height="875"
+        />
+      </div>
       <div class="hero-text">
         <span class="hero-eyebrow num">ENDURO</span>
         <h1>ריצה. אימון. דרך.</h1>
         <p class="hero-strong">תוכנית אימונים אישית שנבנית סביבך — ולא סביב תבנית מוכנה.</p>
-        <p class="lead">
-          בין אם המטרה שלך היא לרוץ 10 ק"מ בפעם הראשונה, לשבור שיא אישי
-          במרתון או להתמודד עם האתגר הבא באולטרה — אני בונה איתך את הדרך,
-          עוקב אחרי ההתקדמות ומתאים את האימונים למה שקורה בפועל.
-        </p>
+        <p class="lead">למתחילים, לרצים תחרותיים ולרצי מרחקים ארוכים.</p>
         <div class="hero-actions">
-          <a href="/free-plan/" class="btn btn-primary">בדקו התאמה לאימון אישי</a>
-          <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">דברו איתי בוואטסאפ</a>
+          <a href="/free-plan/" class="btn btn-primary">בדקו התאמה לאימון אישי &larr;</a>
         </div>
+        <p class="hero-distances">10K &middot; חצי מרתון &middot; מרתון &middot; אולטרה</p>
       </div>
     </div>
-    <a href="#why" class="hero-scroll" aria-label="גללו למטה">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-    </a>
   </section>
 
-  <section id="why" class="container section why-band">
-    <h2>לא עוד תוכנית אימונים. מאמן שמכיר את הדרך שלך.</h2>
-    <p>
-      תוכנית טובה לא אמורה להישאר זהה מהרגע שקיבלת אותה. היא צריכה להשתנות
-      כשאתה מתקדם, כשיש עומס בעבודה, כשפספסת אימון, כשאתה עייף, כשמשהו כואב
-      או כשהגוף פשוט אומר שצריך לשנות כיוון.
-    </p>
-    <p>ב-ENDURO אני לא רק בונה את השבוע הבא. אני עוקב אחרי הדרך שאתה עושה ומתאים אותה אליך.</p>
-    <p class="why-tagline">היעד שלך. הקצב שלך. הדרך שלך.</p>
+  <div class="container trust-strip">
+    <span>100+ רצים</span>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <span>מתחילים ועד אולטרה</span>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <span>ישראל + חו"ל</span>
+    <span class="dot" aria-hidden="true">&middot;</span>
+    <span>ליווי אישי</span>
+  </div>
+
+  <section class="container section problem-band">
+    <h2>אתה לא צריך עוד תוכנית מהאינטרנט.</h2>
+    <p class="problem-lead">יש לך כבר תוכנית. אבל מה קורה כש:</p>
+    <ul class="problem-list">
+      <li>העבודה מתארכת?</li>
+      <li>פספסת אימון?</li>
+      <li>הקצב לא מסתדר?</li>
+      <li>העומס עולה?</li>
+      <li>יש כאב?</li>
+      <li>הכושר משתפר?</li>
+    </ul>
+    <p class="problem-turn">התוכנית צריכה להשתנות איתך.</p>
+    <p class="problem-resolve">ב-ENDURO האימונים נבנים, נבדקים ומתעדכנים בהתאם למה שקורה בפועל.</p>
   </section>
 
   <section class="container section section-muted">
-    <h2>לאן אתה רוצה להגיע?</h2>
-    <div class="goals-grid">
-      {distanceGoals.map((g, i) => (
-        <div class="goal-card pop-in" style={`--goal-i: ${i}`}>
-          <span class="goal-dot" aria-hidden="true"></span>
-          <h3>{g.label}</h3>
-          <p>{g.text}</p>
-        </div>
-      ))}
-    </div>
-    <p class="goals-footer">לא משנה מאיפה אתה מתחיל. חשוב לדעת לאן אתה רוצה להגיע.</p>
-  </section>
-
-  <section class="container section">
     <h2>איך זה עובד?</h2>
-    <div class="two-col how-grid">
+    <div class="how-grid">
       {howItWorks.map((step, i) => (
         <div class="feature-card included-card pop-in">
           <span class="included-index num">{String(i + 1).padStart(2, "0")}</span>
@@ -233,16 +173,19 @@ const schema = [
     </div>
   </section>
 
-  <section class="container section section-muted">
-    <h2>מה מקבלים ב-ENDURO?</h2>
-    <ul class="included-checklist">
-      {included.map((item) => <li>{item}</li>)}
-    </ul>
-    <p class="included-footer">והכי חשוב — יש בן אדם אמיתי מאחורי התוכנית.</p>
+  <section class="container section">
+    <h2>למי זה מתאים?</h2>
+    <div class="audience-grid">
+      {audienceCards.map((a) => (
+        <a href={`/training-plans/${a.slug}/`} class="audience-card pop-in">
+          <h3>{a.title}</h3>
+          <p class="num">{a.text}</p>
+        </a>
+      ))}
+    </div>
   </section>
 
-  <section class="container section" id="about-me">
-    <h2>מי אני</h2>
+  <section class="container section section-muted" id="about-me">
     <div class="about-grid">
       <img
         src="/images/action/tomer-portrait-sunglasses.jpg"
@@ -250,68 +193,38 @@ const schema = [
         class="about-photo"
       />
       <div class="about-text">
-        <p class="about-name">תומר אלמוג</p>
+        <p class="about-belief">אני מאמין בריצה לטווח ארוך. לא רק בתוצאה של המרוץ הבא.</p>
         <p>
-          מאמן ריצה וכושר, מנטור ומלווה רצים מתחילים, תחרותיים ורצי מרחקים
-          ארוכים. אני מאמין שאימון טוב צריך לחבר בין ביצועים לבין החיים
-          עצמם. לא כל שבוע מושלם, לא כל אימון מצליח, ולא כל תוכנית צריכה
-          להיראות אותו דבר.
+          תומר אלמוג, מאמן ריצה וכושר, מלווה רצים מתחילים, תחרותיים ורצי
+          מרחקים ארוכים. גם אני רץ את הדרך הזו בעצמי, לא רק מלווה אותה.
         </p>
-        <p>
-          המטרה שלי היא לעזור לך להתקדם לאורך זמן — עם עבודה קשה כשצריך,
-          גמישות כשצריך, ובעיקר עם תהליך שאפשר להתמיד בו.
-        </p>
-        <p class="about-runner-line">גם אני רץ את הדרך.</p>
+        <p class="stats-label">המספרים שלי</p>
         <div class="stat-strip">
           <div><span class="num">2:43</span><span>מרתון</span></div>
           <div><span class="num">1:17</span><span>חצי מרתון</span></div>
-          <div><span class="num">34:12</span><span>10 ק"מ</span></div>
-          <div><span class="num">#1</span><span>אולטרה 66 ק"מ</span></div>
+          <div><span class="num">34:12</span><span>10K</span></div>
+          <div><span class="num">66 KM</span><span>אולטרה</span></div>
         </div>
-        <a href="/about-me/" class="about-more">עוד עליי, ההסמכות והניסיון &larr;</a>
+        <a href="/about-me/" class="about-more">קצת יותר עליי &larr;</a>
       </div>
     </div>
   </section>
 
-  <section class="container section section-muted life-band">
-    <h2>אימון שמתאים לחיים שלך</h2>
-    <p>יש לך עבודה. משפחה. חופשות. נסיעות. ימים עמוסים. ולפעמים פשוט אין כוח.</p>
-    <p>לכן התוכנית שלך לא צריכה להיות מושלמת על הנייר. היא צריכה להיות <strong>אפשרית לביצוע במציאות</strong>.</p>
-    <p class="life-tagline">כשצריך — משנים. כשאפשר — דוחפים. וכשצריך לעצור — יודעים גם לעצור.</p>
-  </section>
-
-  <section class="container section" id="pricing">
-    <h2>המסלולים</h2>
-    <div class="plans-grid">
-      {homepagePlans.map((plan) => (
-        <a href={`/training-plans/${plan.slug}/`} class="plan-card">
-          <h3>{plan.title}</h3>
-          <p>{plan.text}</p>
-          <span class="price num">{plan.price} לחודש</span>
-        </a>
+  <section class="container section">
+    <h2>מה באמת מקבלים</h2>
+    <div class="included-grid">
+      {included.map((item) => (
+        <div class="included-item pop-in">
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </div>
       ))}
-    </div>
-    <p class="plans-footer">
-      בכל המסלולים: <strong>תוכנית אישית | מעקב | התאמות | ליווי אישי</strong>
-    </p>
-    <div class="plans-cta">
-      <a href="/free-plan/" class="btn btn-primary">אני רוצה להתחיל</a>
     </div>
   </section>
 
   <section class="container section section-muted">
-    <h2>מה אומרים המתאמנים?</h2>
-    <div class="testimonials-grid">
-      <TestimonialCard
-        image="/images/testimonials/mariana-mali.jpg"
-        name="Mariana Mali"
-        role="ריצת שטח"
-        quote="תודה למאמן התותח שלי תומר אלמוג שבחודש מאי קיבל אותי פצועה בגוף ובנפש, ועם תנאים בלתי אפשריים שהצבתי לו מדי שבוע, לימד אותי לעוף על השטח, לאהוב עליות, ובעיקר להנות מהדרך. תודה תומר, שלימדת אותי מהי חדות ריצה אמיתית."
-      />
-      <TestimonialCard
-        name="ערן טל"
-        quote="תודה רבה על 8 החודשים האחרונים. אתה והסגנון אימון שלך זה בדיוק מה שהייתי צריך: מקצועיות שנובעת משנים של ניסיון, עבודה מסודרת, בלי שטויות ובלגן. תודה שעזרת לי לכבוש את הפסגה הזאת."
-      />
+    <h2>רצים שמתקדמים</h2>
+    <div class="results-grid">
       <TestimonialCard
         image="/images/testimonials/oshr-zelig.jpg"
         name="אושר זליג"
@@ -319,24 +232,44 @@ const schema = [
         quote="3 חודשים של אימון אונליין הספיקו לי כדי לנפץ את שיאי בחצי מרתון לאחר 3 שנים של ניסיונות. תומר מסור עד הרגע האחרון."
       />
       <TestimonialCard
-        image="/images/testimonials/udi-birkan.jpg"
-        name="אודי בירקאן"
-        role="מנכ״ל GPS"
-        quote="תומר מנחה אותי ומכוון אותי ברגישות והבנה מקצועית, מייעץ לי לתזונה נכונה ואימונים משלימים, וזו הפעם הראשונה יותר משנה וחצי בלי פציעות."
-      />
-      <TestimonialCard
-        name="אורנה אלעד"
-        quote="תומר מקצועי ומקסים, מומלץ בחום! גם אימן את אבא שלי בן 80 וגם אותי."
-      />
-      <TestimonialCard
         name="איתן יאיר"
         role="ירידה של 10 ק״ג"
-        quote="10 קילו זה מה שירדתי תוך כמה חודשים בעזרת תומר, והיד עוד נטויה. המון אימוני כושר, ריצות, תרגילים, אבל הסיבה העיקרית: תומר היה מסור לאימונים, עבד ועקב אחריי כאילו אני זה הוא."
+        quote="המון אימוני כושר, ריצות, תרגילים, אבל הסיבה העיקרית: תומר היה מסור לאימונים, עבד ועקב אחריי כאילו אני זה הוא."
       />
       <TestimonialCard
-        name="אלרום"
-        quote="תומר, רוצה להגיד לך באופן אישי תודה ענקית. בזכותך הגשמתי חלום ועמדתי ביעד. נהניתי מהדרך איתך, מהמירוץ עצמו בטירוף למרות הקשיים."
+        image="/images/testimonials/udi-birkan.jpg"
+        name="אודי בירקאן"
+        role="בלי פציעות משנה וחצי"
+        quote="תומר מנחה אותי ומכוון אותי ברגישות והבנה מקצועית, וזו הפעם הראשונה יותר משנה וחצי בלי פציעות."
       />
+    </div>
+    <div class="results-footer">
+      <a href="/about-me/#testimonials" class="results-link">לכל הסיפורים &larr;</a>
+    </div>
+  </section>
+
+  <section class="container section" id="pricing">
+    <h2>בוחרים את המסלול שמתאים למטרה שלך</h2>
+    <div class="plans-grid">
+      {homepagePlans.map((plan) => (
+        <a href={`/training-plans/${plan.slug}/`} class="plan-card">
+          <h3>{plan.title}</h3>
+          <span class="price num">{plan.price} / חודש</span>
+        </a>
+      ))}
+    </div>
+    <div class="plans-included">
+      <p class="plans-included-label">כל המסלולים כוללים:</p>
+      <ul class="plans-checklist">
+        <li>תוכנית אישית</li>
+        <li>מעקב</li>
+        <li>התאמות</li>
+        <li>ליווי אישי</li>
+        <li>אפליקציה</li>
+      </ul>
+    </div>
+    <div class="plans-cta">
+      <a href="/free-plan/" class="btn btn-primary">בדקו איזה מסלול מתאים לכם &larr;</a>
     </div>
   </section>
 
@@ -352,64 +285,64 @@ const schema = [
   </section>
 
   <section class="container section cta-band">
-    <h2>לא מחפשים תוכנית. מחפשים דרך.</h2>
-    <p>אם יש לך מטרה ברורה — או רק תחושה שהגיע הזמן להתחיל — בוא נדבר. ספר לי איפה אתה נמצא היום ולאן אתה רוצה להגיע.</p>
+    <h2>הגיע הזמן לצאת לדרך.</h2>
+    <p>ספר לי לאן אתה רוצה להגיע. אני אעזור לך לבנות את הדרך לשם.</p>
     <div class="cta-actions">
-      <a href="/free-plan/" class="btn btn-primary">בדקו התאמה לאימון אישי</a>
-      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">דברו איתי בוואטסאפ</a>
+      <a href="/free-plan/" class="btn btn-primary">בדקו התאמה לאימון אישי &larr;</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">או דברו איתי בוואטסאפ</a>
     </div>
   </section>
+
+  <div class="mobile-bar" aria-label="פעולות מהירות">
+    <a href="https://wa.me/972526982993" target="_blank" rel="noopener noreferrer" class="mobile-bar-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.87 9.87 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.94 2.46a8.3 8.3 0 0 1 2.45 5.92c0 4.61-3.75 8.36-8.36 8.36a8.36 8.36 0 0 1-4.25-1.16l-.3-.18-3.12.82.83-3.04-.2-.31a8.3 8.3 0 0 1-1.28-4.45c0-4.61 3.76-8.37 8.29-8.37m-4.58 4.6c-.16 0-.42.06-.65.31-.22.24-.85.83-.85 2.02 0 1.19.87 2.34.99 2.5.12.16 1.7 2.72 4.2 3.71 2.08.83 2.5.66 2.95.62.45-.04 1.46-.6 1.66-1.18.2-.58.2-1.07.14-1.18-.06-.1-.22-.16-.46-.28-.24-.12-1.46-.72-1.68-.8-.23-.08-.4-.12-.56.12-.16.24-.64.8-.78.97-.14.16-.29.18-.53.06-.24-.12-1.03-.38-1.96-1.2-.72-.65-1.21-1.44-1.35-1.68-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.42h-.47Z"/></svg>
+      וואטסאפ
+    </a>
+    <a href="/free-plan/" class="mobile-bar-btn mobile-bar-btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M13 5l7 7-7 7M5 12h15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      בדיקת התאמה
+    </a>
+  </div>
 </BaseLayout>
 
 <style>
   .hero {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
     background: var(--color-navy-950);
     color: var(--color-white);
   }
 
-  .hero-route {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .hero-route-path {
-    stroke-dasharray: 900;
-    stroke-dashoffset: 900;
-    animation: hero-route-draw 3.5s ease-out forwards;
-  }
-
-  @keyframes hero-route-draw {
-    to { stroke-dashoffset: 0; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-route-path {
-      animation: none;
-      stroke-dashoffset: 0;
-    }
-  }
-
   .hero-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    padding-block: var(--space-6) var(--space-5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-5);
+    padding-block: var(--space-5);
+    min-height: 70vh;
+  }
+
+  .hero-photo {
+    order: 2;
+  }
+
+  .hero-photo img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  [dir="rtl"] .hero-photo {
+    order: 2;
   }
 
   .hero-text {
+    order: 1;
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    max-width: 680px;
-    margin-inline: auto;
-    text-align: center;
-    align-items: center;
+    align-items: flex-start;
+    text-align: right;
   }
 
   .hero-eyebrow {
@@ -421,8 +354,8 @@ const schema = [
 
   .hero h1 {
     color: var(--color-white);
-    font-size: clamp(2.1rem, 5vw, 3.2rem);
-    line-height: 1.15;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.1;
     text-wrap: balance;
     margin: 0;
   }
@@ -430,8 +363,8 @@ const schema = [
   .hero-strong {
     color: var(--color-white);
     font-weight: 700;
-    font-size: 1.15rem;
-    max-width: 46ch;
+    font-size: 1.2rem;
+    max-width: 32ch;
     text-wrap: balance;
     margin: 0;
   }
@@ -439,74 +372,63 @@ const schema = [
   .hero .lead {
     color: var(--color-gray-300);
     font-size: 1.05rem;
-    max-width: 52ch;
-    text-wrap: pretty;
-  }
-
-  @media (max-width: 420px) {
-    .hero h1 {
-      font-size: 1.9rem;
-    }
-
-    .hero-strong {
-      font-size: 1.02rem;
-    }
-
-    .hero .lead {
-      font-size: 0.95rem;
-    }
+    margin: 0;
   }
 
   .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
     margin-top: var(--space-2);
-    justify-content: center;
   }
 
-  .hero .btn-outline {
-    color: var(--color-white);
+  .hero-distances {
+    margin-top: var(--space-2);
+    font-size: 0.85rem;
+    color: var(--color-gray-300);
+    letter-spacing: 0.02em;
   }
 
-  @media (max-width: 560px) {
-    .hero-actions {
-      flex-direction: column;
-      align-items: stretch;
+  @media (max-width: 780px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding-block: var(--space-4);
+    }
+
+    .hero-photo {
+      order: 1;
+      max-width: 320px;
+      margin-inline: auto;
+    }
+
+    .hero-text {
+      order: 2;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-strong {
+      max-width: none;
+    }
+
+    .hero-actions .btn {
       width: 100%;
     }
   }
 
-  .hero-scroll {
-    position: relative;
-    z-index: 1;
+  .trust-strip {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin: 0 auto var(--space-3);
-    border-radius: 50%;
-    border: 1px solid var(--color-navy-700);
+    gap: var(--space-2);
+    padding-block: var(--space-2);
+    background: var(--color-gray-50);
+    border-bottom: 1px solid var(--color-gray-100);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .trust-strip .dot {
     color: var(--color-gray-300);
-    animation: hero-scroll-bounce 2s ease-in-out infinite;
-  }
-
-  .hero-scroll:hover,
-  .hero-scroll:focus-visible {
-    color: var(--color-gold-500);
-    border-color: var(--color-gold-500);
-  }
-
-  @keyframes hero-scroll-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(6px); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-scroll {
-      animation: none;
-    }
   }
 
   .pop-in {
@@ -532,73 +454,50 @@ const schema = [
     margin-bottom: var(--space-3);
   }
 
-  .why-band {
-    max-width: 720px;
+  .problem-band {
+    max-width: 640px;
     margin-inline: auto;
     text-align: center;
   }
 
-  .why-band p {
+  .problem-lead {
     color: var(--color-text-muted);
-    text-wrap: pretty;
+    font-weight: 600;
   }
 
-  .why-tagline {
+  .problem-list {
+    list-style: none;
+    margin: var(--space-2) 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .problem-list li {
+    background: var(--color-gray-50);
+    border-radius: 999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  .problem-turn {
     margin-top: var(--space-3);
     font-weight: 800;
     font-size: 1.15rem;
     color: var(--color-navy-950);
   }
 
-  .goals-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-3);
-  }
-
-  .goal-card {
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-100);
-    border-radius: var(--radius-md);
-    padding: var(--space-3);
-  }
-
-  .goal-dot {
-    display: block;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-bottom: var(--space-2);
-    background: var(--color-brand);
-    opacity: calc(0.55 + 0.15 * var(--goal-i));
-  }
-
-  .goal-card h3 {
-    font-size: 1.05rem;
-    margin: 0 0 0.4rem;
-  }
-
-  .goal-card p {
+  .problem-resolve {
     color: var(--color-text-muted);
-    font-size: 0.9rem;
-    margin: 0;
-  }
-
-  .goals-footer {
-    margin-top: var(--space-3);
-    text-align: center;
-    font-weight: 600;
-    color: var(--color-text-muted);
-  }
-
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
   }
 
   .how-grid {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-3);
   }
 
   .feature-card {
@@ -614,18 +513,19 @@ const schema = [
   }
 
   .included-card h3 {
-    margin: 0 0 var(--space-2);
+    margin: 0 0 0.3rem;
+    font-size: 1rem;
   }
 
   .included-card p {
     color: var(--color-text-muted);
-    font-size: 0.92rem;
+    font-size: 0.85rem;
     margin: 0;
   }
 
   .included-index {
     display: block;
-    font-size: 2.4rem;
+    font-size: 1.9rem;
     font-weight: 800;
     color: var(--color-orange-100);
     -webkit-text-stroke: 1.5px var(--color-brand);
@@ -633,37 +533,42 @@ const schema = [
     margin-bottom: var(--space-2);
   }
 
-  .included-checklist {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .audience-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-2) var(--space-3);
-    max-width: 900px;
-    margin-inline: auto;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
   }
 
-  .included-checklist li {
-    position: relative;
-    padding-inline-start: 1.6rem;
-    font-weight: 600;
-  }
-
-  .included-checklist li::before {
-    content: "✓";
-    position: absolute;
-    inset-inline-start: 0;
-    color: var(--color-moss-500);
-    font-weight: 800;
-  }
-
-  .included-footer {
-    margin-top: var(--space-3);
+  .audience-card {
+    display: block;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-top: 3px solid transparent;
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
     text-align: center;
-    font-weight: 800;
-    font-size: 1.1rem;
-    color: var(--color-navy-950);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .audience-card:hover,
+  .audience-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    border-top-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .audience-card h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+  }
+
+  .audience-card .num {
+    color: var(--color-brand-hover);
+    font-weight: 700;
+    font-size: 1rem;
   }
 
   .about-grid {
@@ -685,50 +590,35 @@ const schema = [
     box-shadow: var(--shadow-md);
   }
 
-  .about-name {
+  .about-belief {
     font-family: var(--font-heading);
     font-weight: 800;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: var(--color-navy-950);
     margin: 0 0 var(--space-2);
+    text-wrap: balance;
   }
 
   .about-text p {
     color: var(--color-text-muted);
   }
 
-  .about-runner-line {
-    font-weight: 800;
-    color: var(--color-navy-950);
-  }
-
-  .about-text .stat-strip {
-    margin-inline: 0;
-    max-width: none;
-  }
-
-  .about-more {
-    display: inline-block;
-    margin-top: var(--space-2);
+  .stats-label {
     font-weight: 700;
-    color: var(--color-brand-hover);
-    text-decoration: none;
-  }
-
-  .about-more:hover,
-  .about-more:focus-visible {
-    text-decoration: underline;
+    color: var(--color-navy-950);
+    margin-top: var(--space-3);
+    margin-bottom: 0;
   }
 
   .stat-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-3);
-    max-width: 640px;
-    margin: var(--space-3) auto;
+    max-width: 560px;
+    margin: var(--space-2) 0 var(--space-3);
     padding: var(--space-3) 0;
-    border-top: 1px solid var(--color-gray-100);
-    border-bottom: 1px solid var(--color-gray-100);
+    border-top: 1px solid var(--color-gray-200);
+    border-bottom: 1px solid var(--color-gray-200);
     text-align: center;
   }
 
@@ -739,43 +629,83 @@ const schema = [
   }
 
   .stat-strip .num {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.4rem, 3vw, 1.8rem);
     font-weight: 800;
     color: var(--color-navy-950);
     line-height: 1;
   }
 
   .stat-strip span:last-child {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     color: var(--color-text-muted);
   }
 
-  .life-band {
-    max-width: 640px;
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .life-band p {
-    color: var(--color-text-muted);
-  }
-
-  .life-tagline {
-    margin-top: var(--space-2);
+  .about-more {
+    display: inline-block;
     font-weight: 700;
-    color: var(--color-navy-950);
+    color: var(--color-brand-hover);
+    text-decoration: none;
+  }
+
+  .about-more:hover,
+  .about-more:focus-visible {
+    text-decoration: underline;
+  }
+
+  .included-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .included-item {
+    padding: var(--space-2) 0;
+    border-top: 2px solid var(--color-brand);
+  }
+
+  .included-item h3 {
+    font-size: 1rem;
+    margin: 0 0 0.3rem;
+  }
+
+  .included-item p {
+    color: var(--color-text-muted);
+    font-size: 0.88rem;
+    margin: 0;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .results-footer {
+    text-align: center;
+    margin-top: var(--space-3);
+  }
+
+  .results-link {
+    font-weight: 700;
+    color: var(--color-brand-hover);
+    text-decoration: none;
+  }
+
+  .results-link:hover,
+  .results-link:focus-visible {
+    text-decoration: underline;
   }
 
   .plans-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-3);
   }
 
   .plan-card {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.5rem;
     background: var(--color-white);
     border: 1px solid var(--color-gray-100);
     border-top: 3px solid transparent;
@@ -783,6 +713,7 @@ const schema = [
     padding: var(--space-3);
     text-decoration: none;
     color: var(--color-text);
+    text-align: center;
     transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
   }
 
@@ -795,39 +726,52 @@ const schema = [
   }
 
   .plan-card h3 {
-    font-size: 1.15rem;
-    margin: 0;
-  }
-
-  .plan-card p {
-    color: var(--color-text-muted);
-    font-size: 0.92rem;
+    font-size: 1.1rem;
     margin: 0;
   }
 
   .plan-card .price {
-    margin-top: auto;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--color-brand-hover);
   }
 
-  .plans-footer {
-    margin-top: var(--space-3);
+  .plans-included {
     text-align: center;
+    margin-top: var(--space-4);
+  }
+
+  .plans-included-label {
+    font-weight: 700;
+    color: var(--color-navy-950);
+    margin-bottom: var(--space-2);
+  }
+
+  .plans-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2) var(--space-3);
+  }
+
+  .plans-checklist li {
     color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .plans-checklist li::before {
+    content: "✓ ";
+    color: var(--color-moss-500);
+    font-weight: 800;
   }
 
   .plans-cta {
     display: flex;
     justify-content: center;
     margin-top: var(--space-3);
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-3);
   }
 
   .faq-list {
@@ -858,19 +802,22 @@ const schema = [
     flex-wrap: wrap;
     gap: var(--space-2);
     justify-content: center;
-    margin-top: var(--space-3);
   }
 
   .cta-band .btn-outline {
     color: var(--color-white);
   }
 
-  @media (max-width: 900px) {
-    .goals-grid {
+  .mobile-bar {
+    display: none;
+  }
+
+  @media (max-width: 780px) {
+    .how-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    .how-grid {
+    .audience-grid {
       grid-template-columns: repeat(2, 1fr);
     }
 
@@ -879,33 +826,55 @@ const schema = [
     }
 
     .about-photo {
-      max-width: 280px;
+      max-width: 260px;
       margin-inline: auto;
     }
 
-    .included-checklist {
+    .included-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .plans-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
 
-  @media (max-width: 780px) {
-    .two-col {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .goals-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .included-checklist {
-      grid-template-columns: 1fr;
+    .mobile-bar {
+      display: flex;
+      position: fixed;
+      inset-inline: 0;
+      bottom: 0;
+      z-index: 90;
+      gap: 1px;
+      background: var(--color-gray-100);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+      padding-bottom: env(safe-area-inset-bottom);
     }
 
-    .stat-strip {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-3) var(--space-2);
+    .mobile-bar-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.9rem;
+      background: var(--color-white);
+      color: var(--color-navy-950);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    .mobile-bar-btn-primary {
+      background: var(--color-brand);
+      color: var(--color-white);
+    }
+
+    body {
+      padding-bottom: 56px;
     }
   }
 </style>
