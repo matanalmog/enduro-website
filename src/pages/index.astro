@@ -124,7 +124,7 @@ const schema = [
       </div>
       <div class="hero-text">
         <span class="hero-eyebrow num">ENDURO</span>
-        <h1>התמדה. נחישות.<br />קהילה.</h1>
+        <h1>התמדה. נחישות. קהילה.</h1>
         <p class="hero-strong">תוכנית אימונים אישית שנבנית סביבך — ולא סביב תבנית מוכנה.</p>
         <p class="lead">למתחילים, לרצים תחרותיים ולרצי מרחקים ארוכים.</p>
         <div class="hero-actions">
@@ -355,10 +355,18 @@ const schema = [
 
   .hero h1 {
     color: var(--color-white);
-    font-size: clamp(2.2rem, 5vw, 3.4rem);
-    line-height: 1.1;
-    text-wrap: balance;
+    font-size: clamp(1.7rem, 2.6vw, 2.5rem);
+    line-height: 1.15;
+    white-space: nowrap;
     margin: 0;
+  }
+
+  @media (max-width: 780px) {
+    .hero h1 {
+      white-space: normal;
+      text-wrap: balance;
+      font-size: clamp(1.8rem, 6vw, 2.6rem);
+    }
   }
 
   .hero-strong {

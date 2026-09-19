@@ -4,6 +4,7 @@
 export interface NavChild {
   label: string;
   href: string;
+  groupLabel?: string;
 }
 
 export interface NavItem {
@@ -13,7 +14,7 @@ export interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { label: "ENDURO", href: "/" },
+  { label: "לוח תחרויות", href: "/races/" },
   {
     label: "תוכניות אימון אונליין",
     href: "/training-plans/",
@@ -23,6 +24,21 @@ const navItems: NavItem[] = [
       { label: "מרתון", href: "/training-plans/marathon/" },
       { label: "אולטרה מרתון", href: "/training-plans/ultra-marathon/" },
       { label: "שאלון קליטת מתאמן", href: "/questionnaire/" },
+    ],
+  },
+  {
+    label: "מאמן כושר אישי",
+    href: "/personal-coaching/",
+    children: [
+      { label: "מאמן כושר אישי לילדים", href: "/kids-coaching/ramat-hasharon/", groupLabel: "ילדים" },
+      { label: "מאמן כושר אישי לילדים בהרצליה", href: "/kids-coaching/herzliya/" },
+      { label: "מאמן כושר אישי לילדים בתל אביב", href: "/kids-coaching/tel-aviv/" },
+      { label: "הכנה לכיתות ספורט", href: "/kids-coaching/ramat-hasharon/" },
+      { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
+      { label: "מאמן כושר אישי למבוגרים", href: "/personal-coaching/ramat-hasharon/", groupLabel: "מבוגרים" },
+      { label: "מאמן כושר אישי בהרצליה", href: "/personal-coaching/herzliya/" },
+      { label: "מאמן כושר אישי בתל אביב", href: "/personal-coaching/tel-aviv/" },
+      { label: "מאמן כושר אישי לגיל השלישי", href: "/personal-coaching/seniors/" },
     ],
   },
   {
@@ -36,30 +52,9 @@ const navItems: NavItem[] = [
       { label: "תל אביב", href: "/groups/tel-aviv/" },
     ],
   },
-  {
-    label: "מאמן כושר ילדים",
-    href: "/kids-coaching/",
-    children: [
-      { label: "רמת השרון", href: "/kids-coaching/ramat-hasharon/" },
-      { label: "הרצליה", href: "/kids-coaching/herzliya/" },
-      { label: "תל אביב", href: "/kids-coaching/tel-aviv/" },
-      { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
-      { label: "חיזוק אתלטי לכדורגלנים", href: "/kids-coaching/football-conditioning/" },
-    ],
-  },
-  {
-    label: "מאמן כושר אישי",
-    href: "/personal-coaching/",
-    children: [
-      { label: "רמת השרון", href: "/personal-coaching/ramat-hasharon/" },
-      { label: "הרצליה", href: "/personal-coaching/herzliya/" },
-      { label: "תל אביב", href: "/personal-coaching/tel-aviv/" },
-      { label: "גיל שלישי", href: "/personal-coaching/seniors/" },
-    ],
-  },
-  { label: "לוח תחרויות", href: "/races/" },
   { label: "בלוג", href: "/blog/" },
-  { label: "מי אני", href: "/about-me/" },
+  { label: "אודות", href: "/about-me/" },
+  { label: "צור קשר", href: "/about-me/#contact" },
 ];
 ---
 
@@ -100,9 +95,14 @@ const navItems: NavItem[] = [
             {item.children && (
               <ul class="submenu">
                 {item.children.map((child) => (
-                  <li>
-                    <a href={child.href}>{child.label}</a>
-                  </li>
+                  <>
+                    {child.groupLabel && (
+                      <li class="submenu-group-label" aria-hidden="true">{child.groupLabel}</li>
+                    )}
+                    <li>
+                      <a href={child.href}>{child.label}</a>
+                    </li>
+                  </>
                 ))}
               </ul>
             )}
@@ -271,7 +271,7 @@ const navItems: NavItem[] = [
     top: 100%;
     background: var(--color-navy-800);
     border-radius: var(--radius-sm);
-    min-width: 200px;
+    min-width: 240px;
     box-shadow: var(--shadow-md);
     opacity: 0;
     visibility: hidden;
@@ -299,6 +299,21 @@ const navItems: NavItem[] = [
   .submenu a:focus-visible {
     color: var(--color-white);
     background: var(--color-navy-700);
+  }
+
+  .submenu-group-label {
+    padding: 0.5rem var(--space-2) 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-gold-500);
+    border-top: 1px solid var(--color-navy-700);
+    margin-top: 0.25rem;
+  }
+
+  .submenu li:first-child.submenu-group-label {
+    border-top: none;
+    margin-top: 0;
   }
 
   .nav-cta {
