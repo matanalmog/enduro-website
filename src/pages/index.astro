@@ -1,11 +1,11 @@
 ---
-// דף הבית — נבנה מתוך התוכן האמיתי של "תוכניות אימון ריצה ONLINE" (URL הבית, wordpress_export.xml),
-// עם תיקון מבנה כותרות (H1 יחיד) לפי סעיף 4 באפיון. מילות המפתח המדורגות בגוגל
-// ("מאמן ריצה אונליין" - מיקום 1.12, "מרוצים בעולם" - מיקום 1.0) נשמרות בכוונה ב-H1/lead.
+// דף הבית — עיצוב מחדש מלא (2026-09-20) לפי בריף מפורט של תומר: מיצוב מותג ENDURO
+// חד וברור סביב אימון ריצה אישי, במקום הצגת כל שירותי האתר על אותו עמוד.
+// מבנה: Hero -> מי ENDURO -> יעדי מרחק -> איך זה עובד -> מה מקבלים -> מי אני -> גמישות ->
+// מסלולים ומחירים -> עדויות -> FAQ -> CTA סוגר.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import FaqItem from "../components/FaqItem.astro";
-import SectionPhoto from "../components/SectionPhoto.astro";
 import { trainingPlans } from "../data/training-plans";
 
 const beginnersPlan = trainingPlans.find((p) => p.slug === "beginners")!;
@@ -13,49 +13,115 @@ const halfMarathonPlan = trainingPlans.find((p) => p.slug === "half-marathon")!;
 const marathonPlan = trainingPlans.find((p) => p.slug === "marathon")!;
 const ultraMarathonPlan = trainingPlans.find((p) => p.slug === "ultra-marathon")!;
 
+const distanceGoals = [
+  {
+    label: "מתחילים ו-10K",
+    text: "בונים בסיס נכון, מתקדמים בהדרגה ומגיעים ל-10 ק\"מ בביטחון.",
+  },
+  {
+    label: "חצי מרתון",
+    text: "מתכוננים ל-21.1 ק\"מ בצורה מסודרת — עם בניית נפח, איכות והתאוששות.",
+  },
+  {
+    label: "מרתון",
+    text: "תהליך מלא לקראת 42.2 ק\"מ, מהבסיס ועד ליום המרוץ.",
+  },
+  {
+    label: "אולטרה",
+    text: "מרחקים ארוכים דורשים גישה אחרת. נפח, סבולת, קצב, תזונה וניהול עומס — הכל מתחבר לתמונה אחת.",
+  },
+];
+
+const howItWorks = [
+  {
+    title: "מכירים אותך",
+    text: "מתחילים בשאלון ובשיחה אישית. אני רוצה להבין מי אתה כרץ — הניסיון שלך, המטרה, שגרת החיים, הזמן שעומד לרשותך והאתגרים שצריך לקחת בחשבון.",
+  },
+  {
+    title: "בונים את התוכנית",
+    text: "התוכנית נבנית סביב החיים שלך ולא להפך. הימים, המרחקים, העצימות וסוגי האימונים מותאמים למטרה ולרמה שלך.",
+  },
+  {
+    title: "מתאמנים",
+    text: "האימונים נמצאים באפליקציה, עם הנחיות ברורות לכל אימון. אתה יודע מה לעשות, למה אתה עושה את זה ומה המטרה של האימון.",
+  },
+  {
+    title: "עוקבים ומתאימים",
+    text: "אני עובר על האימונים שביצעת ובוחן את ההתקדמות. התגובה שלך לאימונים משפיעה על מה שנעשה בהמשך.",
+  },
+  {
+    title: "מתקדמים למטרה",
+    text: "לא רצים רק כדי לסמן וי על אימון. בונים תהליך שמוביל אותך למטרה — בצורה חכמה, עקבית ובריאה ככל האפשר.",
+  },
+];
+
+const included = [
+  "תוכנית אימונים אישית",
+  "התאמה למטרה ולרמת הרץ",
+  "מעקב אחר ביצועי האימונים",
+  "התאמות שוטפות לתוכנית",
+  "הנחיות ברורות לכל אימון",
+  "תרגילי כוח משלימים",
+  "דגש על התאוששות וניהול עומסים",
+  "ליווי אישי וזמינות לשאלות",
+  "הכנה למרוצים ויעדים ספציפיים",
+];
+
 const homepagePlans = [
   {
     slug: beginnersPlan.slug,
-    distanceLabel: "מתחילים עד 10 ק\"מ",
-    title: "תוכנית אימונים מתחילים עד 10 ק\"מ",
-    audience: beginnersPlan.audience,
+    title: "10K / מתחילים",
+    text: "למי שרוצה להתחיל לרוץ, לחזור לשגרה או להגיע ל-10 ק\"מ.",
     price: beginnersPlan.price,
   },
   {
     slug: halfMarathonPlan.slug,
-    distanceLabel: halfMarathonPlan.distanceLabel,
-    title: halfMarathonPlan.title,
-    audience: halfMarathonPlan.audience,
+    title: "חצי מרתון",
+    text: "תהליך הכנה מסודר ל-21.1 ק\"מ ולשיפור ביצועים.",
     price: halfMarathonPlan.price,
   },
   {
     slug: marathonPlan.slug,
-    distanceLabel: marathonPlan.distanceLabel,
-    title: marathonPlan.title,
-    audience: marathonPlan.audience,
+    title: "מרתון",
+    text: "תוכנית מלאה לקראת 42.2 ק\"מ, כולל בניית עומס והכנה ליום המרוץ.",
     price: marathonPlan.price,
   },
   {
     slug: ultraMarathonPlan.slug,
-    distanceLabel: ultraMarathonPlan.distanceLabel,
-    title: ultraMarathonPlan.title,
-    audience: ultraMarathonPlan.audience,
+    title: "אולטרה",
+    text: "לרצים שרוצים לצאת מעבר למרתון ולהתמודד עם מרחקים ארוכים.",
     price: ultraMarathonPlan.price,
   },
 ];
 
 const faqs = [
   {
-    q: "מה זה תוכנית אימון ריצה אונליין?",
-    a: "תוכנית אימון ריצה אונליין מאפשרת לכל מי שרוצה לרוץ לבד, בלי מגבלת מיקום, להגיע להישגים באופן עצמאי. התוכנית מועברת באמצעות אפליקציה מתקדמת וייעודית, כוללת תכנון שבועי ויומי עם מעקב ובקרה שוטפת, והדרכה להכנה לאימונים, לתחרויות ולתנאי מזג אוויר ושטח משתנים.",
+    q: "האם האימון מתאים גם למתחילים?",
+    a: "בהחלט. התוכנית נבנית בהתאם לנקודת הפתיחה שלך ולא בהתאם לרמה של רצים אחרים.",
   },
   {
-    q: "למי תוכנית אימון ריצה אונליין מתאימה?",
-    a: "התוכנית מקיפה וכוללת הנחיות תזונתיות ומנטליות מניסיון של מאמן מוסמך ומנוסה, מרצים שרק מתחילים ועד רצים מנוסים המבקשים לשפר תוצאות במרתון. השאירו פרטים ותקבלו איפיון מתאים עבורכם.",
+    q: "האם חייבים להתאמן למרוץ?",
+    a: "לא. אפשר לעבוד על שיפור הכושר, בניית בסיס, ירידה בזמני ריצה או פשוט להפוך את הריצה לחלק קבוע מהחיים.",
   },
   {
-    q: "כמה עולה תוכנית אימון ריצה אונליין?",
-    a: "מחיר תוכנית אימון ריצה אישית אונליין נע בין 350 ל-500 ש\"ח לחודש, בהתאם למסלול, לרמה ולאינטנסיביות המבוקשת. פירוט מלא של כל המסלולים והמחירים מופיע בטבלת המחירון בעמוד זה.",
+    q: "האם התוכנית משתנה במהלך הדרך?",
+    a: "כן. התוכנית היא דינמית ומתעדכנת בהתאם לביצוע האימונים, להתקדמות ולמצב שלך.",
+  },
+  {
+    q: "האם אפשר להתכונן למרוץ ספציפי?",
+    a: "כן. אפשר לבנות את התהליך סביב מרוץ, תאריך ויעד מוגדרים.",
+  },
+  {
+    q: "האם חייבים לרוץ בקבוצה?",
+    a: "לא. האימון האישי מתקיים אונליין ומאפשר לך להתאמן במקום ובזמן שמתאימים לך.",
+  },
+  {
+    q: "מה אם פספסתי אימון?",
+    a: "לא צריך \"להשלים\" אוטומטית כל אימון שפספסת. בוחנים את השבוע כולו ומחליטים מה נכון לעשות הלאה.",
+  },
+  {
+    q: "האם יש קשר ישיר עם המאמן?",
+    a: "כן. הליווי כולל אפשרות להתייעץ ולשאול שאלות לאורך הדרך.",
   },
 ];
 
@@ -108,187 +174,138 @@ const schema = [
     </svg>
     <div class="container hero-inner">
       <div class="hero-text">
-        <div class="hero-brand">
-          <span class="num">ENDURO</span>
-          <span class="hero-brand-line"></span>
-          <span>תומר אלמוג, מאמן ריצה וכושר</span>
-        </div>
-        <h1>מאמן ריצה אונליין | תוכנית אימון ריצה אישית</h1>
+        <span class="hero-eyebrow num">ENDURO</span>
+        <h1>ריצה. אימון. דרך.</h1>
+        <p class="hero-strong">תוכנית אימונים אישית שנבנית סביבך — ולא סביב תבנית מוכנה.</p>
         <p class="lead">
-          תוכנית אימון ריצה אונליין במסגרת אישית, מותאמת לרמת המתאמן/ת,
-          מ-10 ק"מ ועד אולטרה מרתון, בגמישות מלאה: מתאמנים בכל מקום ובכל
-          זמן, עם ליווי צמוד של מאמן ריצה וכושר מוסמך.
+          בין אם המטרה שלך היא לרוץ 10 ק"מ בפעם הראשונה, לשבור שיא אישי
+          במרתון או להתמודד עם האתגר הבא באולטרה — אני בונה איתך את הדרך,
+          עוקב אחרי ההתקדמות ומתאים את האימונים למה שקורה בפועל.
         </p>
         <div class="hero-actions">
-          <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
-          <div class="hero-actions-secondary">
-            <a href="tel:+972526982993" class="btn btn-outline">צלצלו אליי</a>
-            <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
-          </div>
+          <a href="/free-plan/" class="btn btn-primary">בדקו התאמה לאימון אישי</a>
+          <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">דברו איתי בוואטסאפ</a>
         </div>
       </div>
     </div>
-    <a href="#photo-strip" class="hero-scroll" aria-label="גללו למטה">
+    <a href="#why" class="hero-scroll" aria-label="גללו למטה">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
     </a>
   </section>
 
-  <section id="photo-strip" class="container section photo-strip pop-in">
-    <SectionPhoto
-      src="/images/action/tomer-elite-race-pack.jpg"
-      alt="תומר אלמוג רץ בקבוצה מובילה במרוץ תחרותי"
-      eager
-    />
-    <SectionPhoto
-      src="/images/action/club-team-track-lineup.jpg"
-      alt="קבוצת רצים באיצטדיון אתלטיקה לפני תחרות"
-      eager
-    />
-    <SectionPhoto
-      src="/images/action/training-plan-dashboard.webp"
-      alt="תוכנית אימון ריצה אישית במעקב דיגיטלי"
-      eager
-    />
-  </section>
-
-  <section class="container section">
-    <h2>מה מקבלים בתוכנית?</h2>
-    <div class="two-col included-grid">
-      <div class="feature-card included-card pop-in">
-        <span class="included-index num">01</span>
-        <h3>למה דווקא התוכנית שלנו?</h3>
-        <ul>
-          <li>תוכנית אימון ריצה אונליין במסגרת אישית, מותאמת לרמת המתאמן/ת</li>
-          <li>תוכניות אימון מ-10 ק"מ ועד אולטרה מרתון בהתאמה אישית מלאה</li>
-          <li>גמישות מלאה, מתאמנים בכל מקום ובכל זמן</li>
-        </ul>
-      </div>
-      <div class="feature-card included-card pop-in">
-        <span class="included-index num">02</span>
-        <h3>למי התוכנית מתאימה?</h3>
-        <ul>
-          <li>רצים המעוניינים להגיע להישגים אישיים</li>
-          <li>מתאמנים המחפשים תוכנית מותאמת אישית</li>
-          <li>ספורטאים הזקוקים לפתרון גמיש ומקצועי</li>
-          <li>מי שרוצה לבצע קפיצה משמעותית בתחום הריצה</li>
-        </ul>
-      </div>
-    </div>
+  <section id="why" class="container section why-band">
+    <h2>לא עוד תוכנית אימונים. מאמן שמכיר את הדרך שלך.</h2>
+    <p>
+      תוכנית טובה לא אמורה להישאר זהה מהרגע שקיבלת אותה. היא צריכה להשתנות
+      כשאתה מתקדם, כשיש עומס בעבודה, כשפספסת אימון, כשאתה עייף, כשמשהו כואב
+      או כשהגוף פשוט אומר שצריך לשנות כיוון.
+    </p>
+    <p>ב-ENDURO אני לא רק בונה את השבוע הבא. אני עוקב אחרי הדרך שאתה עושה ומתאים אותה אליך.</p>
+    <p class="why-tagline">היעד שלך. הקצב שלך. הדרך שלך.</p>
   </section>
 
   <section class="container section section-muted">
-    <h2>מה כלול בליווי</h2>
-    <div class="three-col included-grid">
-      <div class="feature-card included-card pop-in">
-        <span class="included-index num">01</span>
-        <h3>אימון מקצועי מלא</h3>
-        <ul>
-          <li>תוכנית אימונים דיגיטלית מתקדמת</li>
-          <li>אימוני ריצה, תרגילי כוח ותרגולי גמישות</li>
-          <li>זמינות מלאה באפליקציה מתקדמת</li>
-          <li>התאמה אישית מלאה ליכולות המתאמן/ת</li>
-        </ul>
-      </div>
-      <div class="feature-card included-card pop-in">
-        <span class="included-index num">02</span>
-        <h3>ליווי מקצועי מלא</h3>
-        <ul>
-          <li>ייעוץ רציף עם מאמן מוסמך, זמין 24/7</li>
-          <li>תמיכה באמצעות וואטסאפ, מייל ובאפליקציה</li>
-          <li>המלצות תזונה מותאמות אישית</li>
-          <li>זמינות מלאה לקבלת מענה מהיר</li>
-        </ul>
-      </div>
-      <div class="feature-card included-card pop-in">
-        <span class="included-index num">03</span>
-        <h3>בונוסים והטבות</h3>
-        <ul>
-          <li>מפגשים קבוצתיים חצי שנתיים</li>
-          <li>השתתפות בתחרויות</li>
-          <li>הנחות לאביזרי ספורט</li>
-          <li>הטבות למירוצים בארץ ובעולם</li>
-        </ul>
-      </div>
+    <h2>לאן אתה רוצה להגיע?</h2>
+    <div class="goals-grid">
+      {distanceGoals.map((g, i) => (
+        <div class="goal-card pop-in" style={`--goal-i: ${i}`}>
+          <span class="goal-dot" aria-hidden="true"></span>
+          <h3>{g.label}</h3>
+          <p>{g.text}</p>
+        </div>
+      ))}
     </div>
+    <p class="goals-footer">לא משנה מאיפה אתה מתחיל. חשוב לדעת לאן אתה רוצה להגיע.</p>
   </section>
 
-  <section class="container section section-muted" id="pricing">
-    <h2>מסלולי אימון אונליין</h2>
-    <div class="plans-grid">
-      {homepagePlans.map((plan) => (
-        <a href={`/training-plans/${plan.slug}/`} class="plan-card">
-          <span class="distance num">{plan.distanceLabel}</span>
-          <h3>{plan.title}</h3>
-          <p>{plan.audience}</p>
-          {plan.price && <span class="price num">{plan.price}</span>}
-        </a>
+  <section class="container section">
+    <h2>איך זה עובד?</h2>
+    <div class="two-col how-grid">
+      {howItWorks.map((step, i) => (
+        <div class="feature-card included-card pop-in">
+          <span class="included-index num">{String(i + 1).padStart(2, "0")}</span>
+          <h3>{step.title}</h3>
+          <p>{step.text}</p>
+        </div>
       ))}
     </div>
   </section>
 
+  <section class="container section section-muted">
+    <h2>מה מקבלים ב-ENDURO?</h2>
+    <ul class="included-checklist">
+      {included.map((item) => <li>{item}</li>)}
+    </ul>
+    <p class="included-footer">והכי חשוב — יש בן אדם אמיתי מאחורי התוכנית.</p>
+  </section>
+
   <section class="container section" id="about-me">
-    <img
-      src="/images/action/tomer-portrait-sunglasses.jpg"
-      alt="תומר אלמוג, מאמן ריצה וכושר"
-      class="about-photo"
-    />
-    <h2>קצת עליי</h2>
-    <p class="about-intro">
-      <strong>תומר אלמוג בן 47, מאמן ריצה וכושר מקצועי, אב לשלושה.</strong> ניסיון עשיר בריצות מסלול ועד אולטרה מרתון.
-    </p>
-    <div class="stat-strip">
-      <div><span class="num">2:43</span><span>מרתון</span></div>
-      <div><span class="num">1:17</span><span>חצי מרתון</span></div>
-      <div><span class="num">34:12</span><span>10 ק"מ</span></div>
-      <div><span class="num">#1</span><span>אולטרה 66 ק"מ</span></div>
-    </div>
-    <div class="about-cards">
-      <div class="feature-card pop-in">
-        <h3>הסמכות</h3>
-        <ul>
-          <li>בוגר מכון וינגייט</li>
-          <li>הסמכות אוניברסיטת תל אביב</li>
-          <li>מאמן מנטלי מוסמך</li>
-        </ul>
-      </div>
-      <div class="feature-card pop-in">
-        <h3>מומחיות</h3>
-        <ul>
-          <li>ליווי מקצועי למתאמנים מכל הרמות</li>
-          <li>תוכניות אימון מותאמות אישית</li>
-          <li>הכנה לתחרות וראיית תהליך כולל</li>
-          <li>הכנה למבחני כיתות ספורט</li>
-          <li>מומחה בפיתוח יכולות גופניות</li>
-        </ul>
-      </div>
-      <div class="feature-card pop-in">
-        <h3>התמחויות ייחודיות</h3>
-        <ul>
-          <li>אימון קבוצות ריצה, כולל קבוצות בארגונים ועסקים</li>
-          <li>עבודה עם ילדים וגיל שלישי</li>
-          <li>תוכניות אימון אונליין מקצועיות</li>
-          <li>ניסיון רב שנים בליווי מתאמנים בכל הרמות</li>
-          <li>הכנה למבחני הסמכה לשופטים</li>
-        </ul>
-      </div>
-      <div class="feature-card pop-in">
-        <h3>הישגים מקצועיים</h3>
-        <ul>
-          <li>ליווה מאות מתאמנים</li>
-          <li>ניסיון בתחרויות מ-800 מ׳ ועד אולטרה מרתון</li>
-        </ul>
+    <h2>מי אני</h2>
+    <div class="about-grid">
+      <img
+        src="/images/action/tomer-portrait-sunglasses.jpg"
+        alt="תומר אלמוג, מאמן ריצה וכושר"
+        class="about-photo"
+      />
+      <div class="about-text">
+        <p class="about-name">תומר אלמוג</p>
+        <p>
+          מאמן ריצה וכושר, מנטור ומלווה רצים מתחילים, תחרותיים ורצי מרחקים
+          ארוכים. אני מאמין שאימון טוב צריך לחבר בין ביצועים לבין החיים
+          עצמם. לא כל שבוע מושלם, לא כל אימון מצליח, ולא כל תוכנית צריכה
+          להיראות אותו דבר.
+        </p>
+        <p>
+          המטרה שלי היא לעזור לך להתקדם לאורך זמן — עם עבודה קשה כשצריך,
+          גמישות כשצריך, ובעיקר עם תהליך שאפשר להתמיד בו.
+        </p>
+        <p class="about-runner-line">גם אני רץ את הדרך.</p>
+        <div class="stat-strip">
+          <div><span class="num">2:43</span><span>מרתון</span></div>
+          <div><span class="num">1:17</span><span>חצי מרתון</span></div>
+          <div><span class="num">34:12</span><span>10 ק"מ</span></div>
+          <div><span class="num">#1</span><span>אולטרה 66 ק"מ</span></div>
+        </div>
+        <a href="/about-me/" class="about-more">עוד עליי, ההסמכות והניסיון &larr;</a>
       </div>
     </div>
   </section>
 
+  <section class="container section section-muted life-band">
+    <h2>אימון שמתאים לחיים שלך</h2>
+    <p>יש לך עבודה. משפחה. חופשות. נסיעות. ימים עמוסים. ולפעמים פשוט אין כוח.</p>
+    <p>לכן התוכנית שלך לא צריכה להיות מושלמת על הנייר. היא צריכה להיות <strong>אפשרית לביצוע במציאות</strong>.</p>
+    <p class="life-tagline">כשצריך — משנים. כשאפשר — דוחפים. וכשצריך לעצור — יודעים גם לעצור.</p>
+  </section>
+
+  <section class="container section" id="pricing">
+    <h2>המסלולים</h2>
+    <div class="plans-grid">
+      {homepagePlans.map((plan) => (
+        <a href={`/training-plans/${plan.slug}/`} class="plan-card">
+          <h3>{plan.title}</h3>
+          <p>{plan.text}</p>
+          <span class="price num">{plan.price} לחודש</span>
+        </a>
+      ))}
+    </div>
+    <p class="plans-footer">
+      בכל המסלולים: <strong>תוכנית אישית | מעקב | התאמות | ליווי אישי</strong>
+    </p>
+    <div class="plans-cta">
+      <a href="/free-plan/" class="btn btn-primary">אני רוצה להתחיל</a>
+    </div>
+  </section>
+
   <section class="container section section-muted">
-    <h2>מה מתאמנים אומרים</h2>
+    <h2>מה אומרים המתאמנים?</h2>
     <div class="testimonials-grid">
       <TestimonialCard
         image="/images/testimonials/mariana-mali.jpg"
         name="Mariana Mali"
+        role="ריצת שטח"
         quote="תודה למאמן התותח שלי תומר אלמוג שבחודש מאי קיבל אותי פצועה בגוף ובנפש, ועם תנאים בלתי אפשריים שהצבתי לו מדי שבוע, לימד אותי לעוף על השטח, לאהוב עליות, ובעיקר להנות מהדרך. תודה תומר, שלימדת אותי מהי חדות ריצה אמיתית."
       />
       <TestimonialCard
@@ -298,6 +315,7 @@ const schema = [
       <TestimonialCard
         image="/images/testimonials/oshr-zelig.jpg"
         name="אושר זליג"
+        role="חצי מרתון"
         quote="3 חודשים של אימון אונליין הספיקו לי כדי לנפץ את שיאי בחצי מרתון לאחר 3 שנים של ניסיונות. תומר מסור עד הרגע האחרון."
       />
       <TestimonialCard
@@ -312,11 +330,8 @@ const schema = [
       />
       <TestimonialCard
         name="איתן יאיר"
+        role="ירידה של 10 ק״ג"
         quote="10 קילו זה מה שירדתי תוך כמה חודשים בעזרת תומר, והיד עוד נטויה. המון אימוני כושר, ריצות, תרגילים, אבל הסיבה העיקרית: תומר היה מסור לאימונים, עבד ועקב אחריי כאילו אני זה הוא."
-      />
-      <TestimonialCard
-        name="דנה דניאל"
-        quote="ראיתי הרבה מאמנים. שתדעו שזכינו במאמן ברמה הכי גבוהה ויותר מזה רגיש לילדים. תומר אתה ספר מקצועי ואיזה כיף לראות אותך מאמן אותם ומשפר אותם."
       />
       <TestimonialCard
         name="אלרום"
@@ -337,11 +352,11 @@ const schema = [
   </section>
 
   <section class="container section cta-band">
-    <h2>בואו נתחיל עוד היום!</h2>
-    <p>השאירו פרטים ונתחיל יחד את הדרך להצלחה.</p>
+    <h2>לא מחפשים תוכנית. מחפשים דרך.</h2>
+    <p>אם יש לך מטרה ברורה — או רק תחושה שהגיע הזמן להתחיל — בוא נדבר. ספר לי איפה אתה נמצא היום ולאן אתה רוצה להגיע.</p>
     <div class="cta-actions">
-      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
-      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
+      <a href="/free-plan/" class="btn btn-primary">בדקו התאמה לאימון אישי</a>
+      <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">דברו איתי בוואטסאפ</a>
     </div>
   </section>
 </BaseLayout>
@@ -391,39 +406,34 @@ const schema = [
     display: flex;
     flex-direction: column;
     gap: var(--space-2);
-    max-width: 700px;
+    max-width: 680px;
     margin-inline: auto;
     text-align: center;
     align-items: center;
   }
 
-  .hero-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.85rem;
-    color: var(--color-gray-300);
-  }
-
-  .hero-brand .num {
-    font-size: 0.9rem;
+  .hero-eyebrow {
+    font-size: 1.1rem;
     font-weight: 800;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
     color: var(--color-gold-500);
-  }
-
-  .hero-brand-line {
-    width: 26px;
-    height: 1px;
-    background: var(--color-gold-500);
-    opacity: 0.6;
   }
 
   .hero h1 {
     color: var(--color-white);
-    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
-    line-height: 1.3;
+    font-size: clamp(2.1rem, 5vw, 3.2rem);
+    line-height: 1.15;
     text-wrap: balance;
+    margin: 0;
+  }
+
+  .hero-strong {
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 1.15rem;
+    max-width: 46ch;
+    text-wrap: balance;
+    margin: 0;
   }
 
   .hero .lead {
@@ -435,7 +445,11 @@ const schema = [
 
   @media (max-width: 420px) {
     .hero h1 {
-      font-size: 1.4rem;
+      font-size: 1.9rem;
+    }
+
+    .hero-strong {
+      font-size: 1.02rem;
     }
 
     .hero .lead {
@@ -448,35 +462,18 @@ const schema = [
     flex-wrap: wrap;
     gap: var(--space-2);
     margin-top: var(--space-2);
+    justify-content: center;
   }
 
   .hero .btn-outline {
     color: var(--color-white);
   }
 
-  .hero-actions-secondary {
-    display: contents;
-  }
-
   @media (max-width: 560px) {
     .hero-actions {
       flex-direction: column;
       align-items: stretch;
-    }
-
-    .hero-actions > .btn {
       width: 100%;
-    }
-
-    .hero-actions-secondary {
-      display: flex;
-      gap: var(--space-2);
-      width: 100%;
-    }
-
-    .hero-actions-secondary .btn {
-      flex: 1;
-      width: auto;
     }
   }
 
@@ -527,27 +524,6 @@ const schema = [
     padding-block: var(--space-5);
   }
 
-  .photo-strip {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3);
-    padding-block: var(--space-4);
-  }
-
-  .photo-strip :global(.section-photo img) {
-    aspect-ratio: 4 / 3;
-  }
-
-  @media (max-width: 780px) {
-    .photo-strip {
-      grid-template-columns: 1fr;
-    }
-
-    .photo-strip > :global(*:not(:first-child)) {
-      display: none;
-    }
-  }
-
   .section-muted {
     background: var(--color-gray-50);
   }
@@ -556,16 +532,73 @@ const schema = [
     margin-bottom: var(--space-3);
   }
 
+  .why-band {
+    max-width: 720px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .why-band p {
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .why-tagline {
+    margin-top: var(--space-3);
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--color-navy-950);
+  }
+
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3);
+  }
+
+  .goal-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+
+  .goal-dot {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-bottom: var(--space-2);
+    background: var(--color-brand);
+    opacity: calc(0.55 + 0.15 * var(--goal-i));
+  }
+
+  .goal-card h3 {
+    font-size: 1.05rem;
+    margin: 0 0 0.4rem;
+  }
+
+  .goal-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .goals-footer {
+    margin-top: var(--space-3);
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
   .two-col {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--space-4);
   }
 
-  .three-col {
-    display: grid;
+  .how-grid {
     grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-3);
   }
 
   .feature-card {
@@ -573,75 +606,6 @@ const schema = [
     border: 1px solid var(--color-gray-100);
     border-radius: var(--radius-md);
     padding: var(--space-3);
-  }
-
-  .section-muted .feature-card {
-    background: var(--color-white);
-  }
-
-  .unique-benefits {
-    margin-top: var(--space-3);
-    color: var(--color-text-muted);
-  }
-
-  .plans-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: var(--space-3);
-  }
-
-  .plan-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-100);
-    border-radius: var(--radius-md);
-    padding: var(--space-3);
-    text-decoration: none;
-    color: var(--color-text);
-    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
-  }
-
-  .plan-card {
-    border-top: 3px solid transparent;
-  }
-
-  .plan-card:hover,
-  .plan-card:focus-visible {
-    box-shadow: var(--shadow-md);
-    border-color: var(--color-brand);
-    border-top-color: var(--color-brand);
-    transform: translateY(-3px);
-  }
-
-  .plan-card .distance {
-    color: var(--color-brand-hover);
-    font-weight: 800;
-    font-size: 1.4rem;
-  }
-
-  .plan-card h3 {
-    font-size: 1.1rem;
-    margin: 0;
-  }
-
-  .plan-card p {
-    color: var(--color-text-muted);
-    font-size: 0.92rem;
-    margin: 0;
-  }
-
-  .plan-card .price {
-    margin-top: auto;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--color-navy-950);
-  }
-
-  .included-card {
-    display: flex;
-    flex-direction: column;
   }
 
   .included-card {
@@ -653,8 +617,10 @@ const schema = [
     margin: 0 0 var(--space-2);
   }
 
-  .feature-card ul {
-    margin-top: var(--space-2);
+  .included-card p {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    margin: 0;
   }
 
   .included-index {
@@ -667,12 +633,99 @@ const schema = [
     margin-bottom: var(--space-2);
   }
 
+  .included-checklist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2) var(--space-3);
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .included-checklist li {
+    position: relative;
+    padding-inline-start: 1.6rem;
+    font-weight: 600;
+  }
+
+  .included-checklist li::before {
+    content: "✓";
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--color-moss-500);
+    font-weight: 800;
+  }
+
+  .included-footer {
+    margin-top: var(--space-3);
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--color-navy-950);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: var(--space-4);
+    align-items: center;
+    max-width: 900px;
+    margin-inline: auto;
+  }
+
+  .about-photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    object-position: 50% 25%;
+    box-shadow: var(--shadow-md);
+  }
+
+  .about-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--color-navy-950);
+    margin: 0 0 var(--space-2);
+  }
+
+  .about-text p {
+    color: var(--color-text-muted);
+  }
+
+  .about-runner-line {
+    font-weight: 800;
+    color: var(--color-navy-950);
+  }
+
+  .about-text .stat-strip {
+    margin-inline: 0;
+    max-width: none;
+  }
+
+  .about-more {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-weight: 700;
+    color: var(--color-brand-hover);
+    text-decoration: none;
+  }
+
+  .about-more:hover,
+  .about-more:focus-visible {
+    text-decoration: underline;
+  }
+
   .stat-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-3);
     max-width: 640px;
-    margin: 0 auto var(--space-5);
+    margin: var(--space-3) auto;
     padding: var(--space-3) 0;
     border-top: 1px solid var(--color-gray-100);
     border-bottom: 1px solid var(--color-gray-100);
@@ -686,67 +739,89 @@ const schema = [
   }
 
   .stat-strip .num {
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-size: clamp(1.5rem, 3vw, 2rem);
     font-weight: 800;
     color: var(--color-navy-950);
     line-height: 1;
   }
 
   .stat-strip span:last-child {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--color-text-muted);
   }
 
-  @media (max-width: 560px) {
-    .stat-strip {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-3) var(--space-2);
-    }
-  }
-
-  .about-photo {
-    display: block;
-    width: 140px;
-    height: 140px;
-    margin: 0 auto var(--space-3);
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: 50% 30%;
-    border: 4px solid var(--color-orange-500);
-    box-shadow: var(--shadow-md);
-  }
-
-  #about-me h2 {
+  .life-band {
+    max-width: 640px;
+    margin-inline: auto;
     text-align: center;
   }
 
-  .about-intro {
-    max-width: 55ch;
-    margin: 0 auto var(--space-4);
-    text-align: center;
-    font-size: 1.05rem;
-    text-wrap: balance;
+  .life-band p {
+    color: var(--color-text-muted);
   }
 
-  .about-cards {
+  .life-tagline {
+    margin-top: var(--space-2);
+    font-weight: 700;
+    color: var(--color-navy-950);
+  }
+
+  .plans-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-3);
-    text-align: center;
   }
 
-  .about-cards h3 {
-    font-size: 1.05rem;
-  }
-
-  .about-cards ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  .plan-card {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-top: 3px solid transparent;
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .plan-card:hover,
+  .plan-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    border-top-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .plan-card h3 {
+    font-size: 1.15rem;
+    margin: 0;
+  }
+
+  .plan-card p {
     color: var(--color-text-muted);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .plan-card .price {
+    margin-top: auto;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-brand-hover);
+  }
+
+  .plans-footer {
+    margin-top: var(--space-3);
+    text-align: center;
+    color: var(--color-text-muted);
+  }
+
+  .plans-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-3);
   }
 
   .testimonials-grid {
@@ -774,6 +849,8 @@ const schema = [
   .cta-band p {
     color: var(--color-gray-300);
     margin-bottom: var(--space-3);
+    max-width: 60ch;
+    margin-inline: auto;
   }
 
   .cta-band .cta-actions {
@@ -781,16 +858,54 @@ const schema = [
     flex-wrap: wrap;
     gap: var(--space-2);
     justify-content: center;
+    margin-top: var(--space-3);
   }
 
   .cta-band .btn-outline {
     color: var(--color-white);
   }
 
-  @media (max-width: 780px) {
-    .two-col,
-    .three-col {
+  @media (max-width: 900px) {
+    .goals-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .how-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-grid {
       grid-template-columns: 1fr;
+    }
+
+    .about-photo {
+      max-width: 280px;
+      margin-inline: auto;
+    }
+
+    .included-checklist {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 780px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .goals-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .included-checklist {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-strip {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3) var(--space-2);
     }
   }
 </style>
@@ -813,11 +928,6 @@ const schema = [
   } else {
     popEls.forEach((el) => el.classList.add("is-visible"));
   }
-
-  document.querySelector(".hero-scroll")?.addEventListener("click", (e) => {
-    e.preventDefault();
-    document.getElementById("photo-strip")?.scrollIntoView({ behavior: "smooth" });
-  });
 
   const statStrip = document.querySelector(".stat-strip");
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
