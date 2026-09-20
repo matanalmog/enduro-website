@@ -11,7 +11,14 @@ const quickLinks = [
   { label: "קבוצות ריצה", href: "/groups/" },
   { label: "לוח תחרויות", href: "/races/" },
   { label: "בלוג", href: "/blog/" },
-  { label: "אודות", href: "/about-me/" },
+];
+
+const aboutLinks = [
+  { label: "תומר אלמוג", href: "/about-me/#bio" },
+  { label: "ENDURO", href: "/" },
+  { label: "הגישה שלנו", href: "/#why" },
+  { label: "המלצות", href: "/about-me/#testimonials" },
+  { label: "צור קשר", href: "/about-me/#contact" },
 ];
 
 const socialLinks = [
@@ -51,6 +58,16 @@ const socialLinks = [
       </ul>
     </nav>
 
+    <nav class="footer-col" aria-label="אודות">
+      <h2 class="footer-heading">אודות</h2>
+      <ul class="footer-links">
+        {aboutLinks.map((l) => (
+          <li><a href={l.href}>{l.label}</a></li>
+        ))}
+      </ul>
+      <a href="/free-plan/" class="btn btn-primary footer-cta">השאירו פרטים</a>
+    </nav>
+
     <div class="footer-col">
       <h2 class="footer-heading">יצירת קשר</h2>
       <ul class="footer-links">
@@ -83,9 +100,16 @@ const socialLinks = [
 
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
     gap: var(--space-4);
     padding-block: var(--space-5);
+  }
+
+  .footer-cta {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-size: 0.9rem;
+    padding: 0.55rem 1.1rem;
   }
 
   .footer-logo {
