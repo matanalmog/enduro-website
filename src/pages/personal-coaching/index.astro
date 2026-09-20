@@ -4,6 +4,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { personalCoachingPages } from "../../data/personal-coaching";
 
 const sortedPages = [...personalCoachingPages].sort((a, b) => a.order - b.order);
+
+// "למי מתאים" לכל כרטיס נשאב מתוך שאלת ה-FAQ הקיימת של כל עמוד (לא טקסט חדש) —
+// כל 4 העמודים כוללים שאלת FAQ שמתחילה ב"למי מתאים", ראו src/data/personal-coaching.ts.
+function getAudience(page: (typeof sortedPages)[number]) {
+  return page.faq.find((f) => f.q.includes("למי מתאים"))?.a ?? "";
+}
 ---
 
 <BaseLayout
@@ -15,8 +21,10 @@ const sortedPages = [...personalCoachingPages].sort((a, b) => a.order - b.order)
     <div class="container hero-inner">
       <h1>מאמן כושר אישי</h1>
       <p class="lead">
-        תוכנית אימונים ותזונה מותאמת אישית, בליווי צמוד עד להשגת המטרה
-        שלכם. בחרו את העיר שלכם, או את ההתמחות המתאימה:
+        ל-ENDURO כמה אפשרויות שונות לאימון כושר אישי, כל אחת בהתאמה
+        לעיר ולקהל שלה — לא תוכנית ריצה אחת אלא ליווי אישי מלא: תוכנית
+        אימונים ותזונה מותאמת, עד להשגת המטרה שלכם. בחרו את העיר
+        שלכם, או את ההתמחות המתאימה:
       </p>
     </div>
   </section>
@@ -26,7 +34,9 @@ const sortedPages = [...personalCoachingPages].sort((a, b) => a.order - b.order)
       {sortedPages.map((page) => (
         <a href={`/personal-coaching/${page.slug}/`} class="city-card">
           <h2>{page.title}</h2>
-          <p>{page.intro[0]}</p>
+          <p class="city-card-audience">{getAudience(page)}</p>
+          <p class="city-card-desc">{page.intro[0]}</p>
+          <span class="btn btn-primary city-card-cta">לפרטי האימון &larr;</span>
         </a>
       ))}
     </div>
@@ -36,7 +46,7 @@ const sortedPages = [...personalCoachingPages].sort((a, b) => a.order - b.order)
     <h2>לא בטוחים מה מתאים לכם?</h2>
     <p>בואו נתחיל עוד היום, השאירו פרטים ונבנה יחד את התוכנית הנכונה.</p>
     <div class="cta-actions">
-      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="/#lead-form" class="btn btn-primary">השאירו פרטים</a>
       <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
     </div>
   </section>
@@ -70,16 +80,17 @@ const sortedPages = [...personalCoachingPages].sort((a, b) => a.order - b.order)
 
   .cities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-3);
   }
 
   .city-card {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.6rem;
     background: var(--color-white);
     border: 1px solid var(--color-gray-100);
+    border-top: 4px solid transparent;
     border-radius: var(--radius-md);
     padding: var(--space-3);
     text-decoration: none;
@@ -91,18 +102,43 @@ const sortedPages = [...personalCoachingPages].sort((a, b) => a.order - b.order)
   .city-card:focus-visible {
     box-shadow: var(--shadow-md);
     border-color: var(--color-brand);
+    border-top-color: var(--color-brand);
     transform: translateY(-3px);
   }
 
   .city-card h2 {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     margin: 0;
   }
 
-  .city-card p {
-    color: var(--color-text-muted);
-    font-size: 0.9rem;
+  .city-card-audience {
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 0.88rem;
     margin: 0;
+  }
+
+  .city-card-desc {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .city-card-cta {
+    pointer-events: none;
+    align-self: flex-start;
+    margin-top: auto;
+    white-space: nowrap;
+    padding-inline: 0.9rem;
+    padding-block: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 860px) {
+    .cities-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .cta-band {

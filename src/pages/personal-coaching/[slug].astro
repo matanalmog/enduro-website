@@ -50,7 +50,7 @@ const schema = page.faq.length
       <h1>{page.title}</h1>
       {page.intro.map((p) => <p class="lead">{p}</p>)}
       <div class="hero-actions">
-        <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+        <a href="/#lead-form" class="btn btn-primary">השאירו פרטים</a>
         <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
       </div>
     </div>
@@ -65,7 +65,7 @@ const schema = page.faq.length
   {page.locations && (
     <section class="container section section-muted">
       <h2>מיקומי האימונים</h2>
-      <ul class="plain-list">
+      <ul class="location-chips">
         {page.locations.map((l) => <li>{l}</li>)}
       </ul>
     </section>
@@ -127,7 +127,7 @@ const schema = page.faq.length
     <h2>בואו נתחיל עוד היום!</h2>
     <p>השאירו פרטים ונחזור אליכם עם התוכנית המתאימה.</p>
     <div class="cta-actions">
-      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="/#lead-form" class="btn btn-primary">השאירו פרטים</a>
       <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
     </div>
   </section>
@@ -141,7 +141,7 @@ const schema = page.faq.length
 
   .hero-inner {
     padding-block: var(--space-6) var(--space-5);
-    max-width: 760px;
+    max-width: 700px;
     margin-inline: auto;
     text-align: right;
   }
@@ -155,6 +155,12 @@ const schema = page.faq.length
   .hero .lead {
     color: var(--color-gray-300);
     font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 62ch;
+  }
+
+  .hero .lead + .lead {
+    margin-top: var(--space-2);
   }
 
   .hero-actions {
@@ -186,11 +192,24 @@ const schema = page.faq.length
     background: var(--color-gray-50);
   }
 
-  .plain-list {
-    max-width: 70ch;
+  .location-chips {
+    max-width: 720px;
     display: flex;
-    flex-direction: column;
-    gap: var(--space-1);
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .location-chips li {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-navy-950);
   }
 
   .two-col {
@@ -221,30 +240,58 @@ const schema = page.faq.length
     gap: var(--space-3);
   }
 
+  .testimonials-grid :global(.testimonial-card) {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .testimonials-grid :global(.testimonial-card:not(:has(img))) {
+    padding-top: calc(var(--space-4) + 56px + var(--space-2));
+  }
+
+  .testimonials-grid :global(.testimonial-card blockquote p) {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   .faq-list {
     max-width: 760px;
   }
 
   .cities-grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: var(--space-2);
   }
 
   .city-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
     background: var(--color-white);
     border: 1px solid var(--color-gray-100);
+    border-top: 3px solid transparent;
     border-radius: var(--radius-md);
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-3);
     text-decoration: none;
     color: var(--color-text);
-    font-weight: 600;
-    transition: border-color 0.15s ease, transform 0.15s ease;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .city-card::after {
+    content: "\2190";
+    color: var(--color-brand);
+    font-weight: 800;
+    flex: none;
   }
 
   .city-card:hover,
   .city-card:focus-visible {
+    box-shadow: var(--shadow-md);
     border-color: var(--color-brand);
+    border-top-color: var(--color-brand);
     transform: translateY(-2px);
   }
 
