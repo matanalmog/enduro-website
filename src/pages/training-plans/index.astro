@@ -110,18 +110,18 @@ const sortedPlans = [
   .plans-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-4);
+    gap: var(--space-3);
   }
 
   .plan-card {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: 0.6rem;
     background: var(--color-white);
     border: 1px solid var(--color-gray-100);
     border-top: 4px solid transparent;
-    border-radius: var(--radius-lg);
-    padding: var(--space-4);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
     text-decoration: none;
     color: var(--color-text);
     transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
@@ -138,24 +138,24 @@ const sortedPlans = [
   .distance {
     color: var(--color-brand-hover);
     font-weight: 800;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 
   .plan-card h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: 0;
   }
 
   .plan-card .audience {
     color: var(--color-text-muted);
-    font-size: 1rem;
-    line-height: 1.6;
+    font-size: 0.92rem;
+    line-height: 1.5;
     margin: 0;
   }
 
   .plan-card-footer {
     margin-top: auto;
-    padding-top: var(--space-3);
+    padding-top: var(--space-2);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -165,21 +165,21 @@ const sortedPlans = [
 
   .price {
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     color: var(--color-navy-950);
   }
 
   .price-unit {
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.78rem;
     color: var(--color-text-muted);
   }
 
   .plan-card-cta {
     pointer-events: none;
     white-space: nowrap;
-    padding: 0.6rem 1.1rem;
-    font-size: 0.9rem;
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
   }
 
   .cta-band {
