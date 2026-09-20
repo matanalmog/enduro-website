@@ -70,6 +70,19 @@ function distanceBucketsFor(race: RaceRow): string[] {
   return [...buckets];
 }
 
+// חיבור "מתכוננים למרוץ? → תוכנית אימון מתאימה" — מפנה לתוכנית האימון הרלוונטית
+// למרחק הארוך ביותר שמוצע במרוץ (סעיף אסטרטגיית תוכן: לוח תחרויות -> תוכניות אימון).
+function trainingPlanFor(race: RaceRow): { slug: string; label: string } | null {
+  const label = race.distanceLabel ?? (race.distanceKm ? String(race.distanceKm) : "");
+  const nums = [...label.matchAll(/\d+(\.\d+)?/g)].map((m) => Number(m[0]));
+  if (!nums.length) return null;
+  const max = Math.max(...nums);
+  if (max <= 12) return { slug: "beginners", label: "תוכנית אימון עד 10 ק\"מ" };
+  if (max <= 25) return { slug: "half-marathon", label: "תוכנית אימון לחצי מרתון" };
+  if (max <= 45) return { slug: "marathon", label: "תוכנית אימון למרתון" };
+  return { slug: "ultra-marathon", label: "תוכנית אימון לאולטרה מרתון" };
+}
+
 const raceFilterData = races.map((race) => ({
   region: race.region || "",
   month: race.date.slice(0, 7),
@@ -121,6 +134,7 @@ const distanceOptionsPresent = filterable
   {rowsWithMonthMarkers.map(({ race, isNewMonth }, i) => {
     const { day, month } = dayAndMonth(race.date);
     const distance = race.distanceLabel ?? (race.distanceKm ? `${race.distanceKm} ק"מ` : null);
+    const plan = showDistance ? trainingPlanFor(race) : null;
     return (
       <>
         {isNewMonth && (
@@ -149,6 +163,11 @@ const distanceOptionsPresent = filterable
               {showDistance && distance && <span class="race-tag race-tag-distance num">{distance}</span>}
               {race.discountCode && <span class="code-badge">קוד: {race.discountCode}</span>}
             </div>
+            {plan && (
+              <a href={`/training-plans/${plan.slug}/`} class="race-plan-link">
+                מתכוננים? {plan.label} &larr;
+              </a>
+            )}
           </div>
           {race.link && (
             <a href={race.link} target="_blank" rel="noopener noreferrer" class="race-cta">להרשמה</a>
@@ -344,6 +363,20 @@ const distanceOptionsPresent = filterable
     color: var(--color-brand-hover);
     background: var(--color-orange-100);
     font-weight: 700;
+  }
+
+  .race-plan-link {
+    display: inline-block;
+    margin-top: 0.3rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-brand-hover);
+    text-decoration: none;
+  }
+
+  .race-plan-link:hover,
+  .race-plan-link:focus-visible {
+    text-decoration: underline;
   }
 
   .race-cta {
