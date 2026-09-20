@@ -61,8 +61,11 @@ const sortedPlans = [
         <a href={`/training-plans/${plan.slug}/`} class="plan-card">
           <span class="distance">{plan.distanceLabel}</span>
           <h2>{plan.title}</h2>
-          <p>{plan.audience}</p>
-          {plan.price && <span class="price">{plan.price}</span>}
+          <p class="audience">{plan.audience}</p>
+          <div class="plan-card-footer">
+            {plan.price && <span class="price">{plan.price} <span class="price-unit">לחודש</span></span>}
+            <span class="btn btn-primary plan-card-cta">לפרטי המסלול &larr;</span>
+          </div>
         </a>
       ))}
     </div>
@@ -72,7 +75,7 @@ const sortedPlans = [
     <h2>לא בטוחים איזה מסלול מתאים לכם?</h2>
     <p>בואו נתחיל עוד היום, השאירו פרטים ונבנה יחד את התוכנית המתאימה לכם.</p>
     <div class="cta-actions">
-      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="/#lead-form" class="btn btn-primary">השאירו פרטים</a>
       <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
     </div>
   </section>
@@ -106,18 +109,19 @@ const sortedPlans = [
 
   .plans-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: var(--space-3);
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
   }
 
   .plan-card {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: var(--space-2);
     background: var(--color-white);
     border: 1px solid var(--color-gray-100);
-    border-radius: var(--radius-md);
-    padding: var(--space-3);
+    border-top: 4px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
     text-decoration: none;
     color: var(--color-text);
     transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
@@ -127,30 +131,55 @@ const sortedPlans = [
   .plan-card:focus-visible {
     box-shadow: var(--shadow-md);
     border-color: var(--color-brand);
+    border-top-color: var(--color-brand);
     transform: translateY(-3px);
   }
 
   .distance {
     color: var(--color-brand-hover);
-    font-weight: 700;
-    font-size: 0.85rem;
+    font-weight: 800;
+    font-size: 0.95rem;
   }
 
   .plan-card h2 {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     margin: 0;
   }
 
-  .plan-card p {
+  .plan-card .audience {
     color: var(--color-text-muted);
-    font-size: 0.92rem;
+    font-size: 1rem;
+    line-height: 1.6;
     margin: 0;
+  }
+
+  .plan-card-footer {
+    margin-top: auto;
+    padding-top: var(--space-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    border-top: 1px solid var(--color-gray-100);
   }
 
   .price {
-    margin-top: auto;
-    font-weight: 700;
+    font-weight: 800;
+    font-size: 1.3rem;
     color: var(--color-navy-950);
+  }
+
+  .price-unit {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .plan-card-cta {
+    pointer-events: none;
+    white-space: nowrap;
+    padding: 0.6rem 1.1rem;
+    font-size: 0.9rem;
   }
 
   .cta-band {
@@ -179,5 +208,22 @@ const sortedPlans = [
 
   .cta-band .btn-outline {
     color: var(--color-white);
+  }
+
+  @media (max-width: 860px) {
+    .plans-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .plan-card-footer {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .plan-card-cta {
+      text-align: center;
+    }
   }
 </style>
