@@ -53,7 +53,7 @@ const schema = group.faq.length
         {group.planned ? (
           <a href="#interest-form" class="btn btn-primary">עדכנו אותי כשהקבוצה תיפתח</a>
         ) : (
-          <a href="/free-plan/" class="btn btn-primary">אימון ניסיון / השאירו פרטים</a>
+          <a href="/#lead-form" class="btn btn-primary">אימון ניסיון / השאירו פרטים</a>
         )}
         <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
       </div>
@@ -78,7 +78,7 @@ const schema = group.faq.length
   {group.locations && (
     <section class="container section section-muted">
       <h2>מיקומי האימונים</h2>
-      <ul class="plain-list">
+      <ul class="location-chips">
         {group.locations.map((l) => <li>{l}</li>)}
       </ul>
     </section>
@@ -206,7 +206,7 @@ const schema = group.faq.length
         <h2>בואו נתחיל עוד היום!</h2>
         <p>אימון ניסיון ראשון, ללא התחייבות.</p>
         <div class="cta-actions">
-          <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+          <a href="/#lead-form" class="btn btn-primary">השאירו פרטים</a>
           <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
         </div>
       </>
@@ -280,10 +280,46 @@ const schema = group.faq.length
   }
 
   .plain-list {
-    max-width: 70ch;
+    max-width: 640px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-1);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .plain-list li {
+    padding: var(--space-2) var(--space-3);
+    border-bottom: 1px solid var(--color-gray-100);
+    font-size: 0.95rem;
+  }
+
+  .plain-list li:last-child {
+    border-bottom: none;
+  }
+
+  .location-chips {
+    max-width: 720px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .location-chips li {
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-navy-950);
   }
 
   .three-col {
@@ -414,6 +450,19 @@ const schema = group.faq.length
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: var(--space-3);
+  }
+
+  .testimonials-grid :global(.testimonial-card) {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .testimonials-grid :global(.testimonial-card:not(:has(img))) {
+    padding-top: calc(var(--space-4) + 56px + var(--space-2));
+  }
+
+  .testimonials-grid :global(.testimonial-card blockquote p) {
+    font-size: 1rem;
+    line-height: 1.6;
   }
 
   .faq-list {
