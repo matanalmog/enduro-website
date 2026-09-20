@@ -1,0 +1,38 @@
+name: Update race calendar
+
+# מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) לפי לו"ז קבוע, ומתעד (מ-commit) את
+# src/data/races.json אם השתנה. בלי זה, הקובץ נשאר תמונת-מצב חד-פעמית שדורשת הרצה ידנית -
+# ראו ההערה בראש update-races.mjs שתיארה תזמון כזה כבר מתוכנן אך מעולם לא הוגדר בפועל.
+on:
+  schedule:
+    # 04:00 UTC = 06:00/07:00 שעון ישראל (בהתאם לשעון קיץ/חורף) — לפני שעות הבוקר בישראל.
+    - cron: "0 4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-races:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Run race calendar agent
+        run: node scripts/update-races.mjs
+
+      - name: Commit updated race data if changed
+        run: |
+          if git diff --quiet -- src/data/races.json; then
+            echo "No changes to src/data/races.json — nothing to commit."
+            exit 0
+          fi
+          git config user.name "enduro-races-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/data/races.json
+          git commit -m "chore: update race calendar data [automated]"
+          git push

@@ -128,7 +128,10 @@ const distanceOptionsPresent = filterable
   </div>
 )}
 
-<p class="filter-empty" hidden>לא נמצאו מרוצים התואמים לסינון שבחרתם.</p>
+<div class="filter-empty" hidden>
+  <p>לא נמצאו מרוצים התואמים לסינון שבחרתם.</p>
+  <button type="button" class="filter-empty-reset">נקו את הסינון וחזרו לכל המרוצים</button>
+</div>
 
 <div class="race-list">
   {rowsWithMonthMarkers.map(({ race, isNewMonth }, i) => {
@@ -278,6 +281,27 @@ const distanceOptionsPresent = filterable
     background: var(--color-gray-50);
     border-radius: var(--radius-md);
     margin-bottom: var(--space-2);
+  }
+
+  .filter-empty p {
+    margin: 0 0 var(--space-2);
+  }
+
+  .filter-empty-reset {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background: var(--color-brand);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+
+  .filter-empty-reset:hover,
+  .filter-empty-reset:focus-visible {
+    background: var(--color-brand-hover);
   }
 
   .race-list {
@@ -441,6 +465,7 @@ const distanceOptionsPresent = filterable
     const monthRows = [...instance.querySelectorAll("[data-month-row]")];
     const emptyMsg = instance.querySelector(".filter-empty");
     const resetBtn = instance.querySelector(".filter-reset");
+    const emptyResetBtn = instance.querySelector(".filter-empty-reset");
 
     const active = { distance: new Set(), month: new Set() };
 
@@ -492,11 +517,14 @@ const distanceOptionsPresent = filterable
       });
     });
 
-    resetBtn?.addEventListener("click", () => {
+    function resetFilters() {
       active.distance.clear();
       active.month.clear();
       bar.querySelectorAll(".filter-chip.is-active").forEach((c) => c.classList.remove("is-active"));
       apply();
-    });
+    }
+
+    resetBtn?.addEventListener("click", resetFilters);
+    emptyResetBtn?.addEventListener("click", resetFilters);
   });
 </script>
