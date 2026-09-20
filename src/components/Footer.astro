@@ -4,6 +4,8 @@
 import SocialIcon from "./SocialIcon.astro";
 
 const year = new Date().getFullYear();
+const isHome = Astro.url.pathname === "/";
+const ctaHref = isHome ? "#lead-form" : "/#lead-form";
 
 const quickLinks = [
   { label: "דף בית", href: "/" },
@@ -65,7 +67,7 @@ const socialLinks = [
           <li><a href={l.href}>{l.label}</a></li>
         ))}
       </ul>
-      <a href="/free-plan/" class="btn btn-primary footer-cta">השאירו פרטים</a>
+      <a href={ctaHref} class="btn btn-primary footer-cta">בדקו התאמה לתוכנית אישית</a>
     </nav>
 
     <div class="footer-col">

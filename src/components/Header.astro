@@ -23,22 +23,22 @@ const navItems: NavItem[] = [
       { label: "חצי מרתון", href: "/training-plans/half-marathon/" },
       { label: "מרתון", href: "/training-plans/marathon/" },
       { label: "אולטרה מרתון", href: "/training-plans/ultra-marathon/" },
-      { label: "שאלון קליטת מתאמן", href: "/questionnaire/" },
     ],
   },
   {
     label: "מאמן כושר אישי",
     href: "/personal-coaching/",
     children: [
+      { label: "שיפור יכולות אתלטיות לכדורגלנים", href: "/kids-coaching/football-conditioning/", groupLabel: "יכולות אתלטיות" },
       { label: "מאמן כושר אישי לילדים", href: "/kids-coaching/ramat-hasharon/", groupLabel: "ילדים" },
       { label: "מאמן כושר אישי לילדים בהרצליה", href: "/kids-coaching/herzliya/" },
       { label: "מאמן כושר אישי לילדים בתל אביב", href: "/kids-coaching/tel-aviv/" },
       { label: "הכנה לכיתות ספורט", href: "/kids-coaching/ramat-hasharon/" },
       { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
-      { label: "מאמן כושר אישי למבוגרים", href: "/personal-coaching/ramat-hasharon/", groupLabel: "מבוגרים" },
+      { label: "מאמן כושר אישי לגיל השלישי", href: "/personal-coaching/seniors/", groupLabel: "גיל שלישי" },
+      { label: "מאמן כושר אישי למבוגרים", href: "/personal-coaching/ramat-hasharon/", groupLabel: "אימון למבוגרים" },
       { label: "מאמן כושר אישי בהרצליה", href: "/personal-coaching/herzliya/" },
       { label: "מאמן כושר אישי בתל אביב", href: "/personal-coaching/tel-aviv/" },
-      { label: "מאמן כושר אישי לגיל השלישי", href: "/personal-coaching/seniors/" },
     ],
   },
   {
@@ -55,6 +55,11 @@ const navItems: NavItem[] = [
   { label: "בלוג", href: "/blog/" },
   { label: "אודות", href: "/about-me/" },
 ];
+
+// CTA ראשי תמיד מצביע לטופס בדף הבית (#lead-form): עוגן בדף הבית עצמו,
+// קישור מלא לדף הבית עם העוגן משאר הדפים (ראו סעיף 1 באפיון).
+const isHome = Astro.url.pathname === "/";
+const ctaHref = isHome ? "#lead-form" : "/#lead-form";
 ---
 
 <header class="site-header">
@@ -108,7 +113,7 @@ const navItems: NavItem[] = [
           </li>
         ))}
       </ul>
-      <a href="/free-plan/" class="btn btn-primary nav-cta">בדקו התאמה לאימון &larr;</a>
+      <a href={ctaHref} class="btn btn-primary nav-cta">בדקו התאמה לתוכנית אישית &larr;</a>
     </nav>
   </div>
 </header>
