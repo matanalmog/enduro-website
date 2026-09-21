@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-19T16:57:49.971Z",
+  "generatedAt": "2026-09-21T09:45:35.334Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -27,11 +27,11 @@
       "discountOrganizer": "Shvoong"
     },
     {
-      "name": "מרוץ נחל שורק 2026",
-      "region": "דרום",
+      "name": "מרוץ נחל שורק",
+      "region": "",
       "date": "2026-09-25",
       "link": "https://www.realtiming.co.il/events/1305",
-      "source": "realtiming.co.il",
+      "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
       "discountCode": null,
@@ -60,43 +60,23 @@
       "discountOrganizer": null
     },
     {
-      "name": "חצי מרתון פארק הירקון 2026",
-      "region": "תל אביב והסביבה",
-      "date": "2026-10-09",
-      "link": "https://www.realtiming.co.il/events/1255",
-      "source": "realtiming.co.il",
-      "distanceLabel": "5, 10, 21 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ הסרגל ה- 4",
-      "region": "צפון",
-      "date": "2026-10-09",
-      "link": "https://www.realtiming.co.il/events/1277",
-      "source": "realtiming.co.il",
-      "isNew": false,
-      "discountCode": "enduro26",
-      "discountOrganizer": "3plus"
-    },
-    {
-      "name": "בדרכו של עלים 2",
-      "region": "הגליל",
-      "date": "2026-10-09",
-      "link": "https://www.realtiming.co.il/events/1304",
-      "source": "realtiming.co.il",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "מרוץ סביון",
       "region": "בקעת אונו",
       "date": "2026-10-09",
       "link": "https://savyon.shvoong.co.il/",
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "חצי מרתון פארק הירקון",
+      "region": "",
+      "date": "2026-10-09",
+      "link": "https://runwithmoshe.co.il/%d7%97%d7%a6%d7%99-%d7%9e%d7%a8%d7%aa%d7%95%d7%9f-%d7%a4%d7%90%d7%a8%d7%a7-%d7%94%d7%99%d7%a8%d7%a7%d7%95%d7%9f-2023/",
+      "source": "runpanel.co.il",
+      "distanceLabel": "5, 10, 21 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -113,23 +93,23 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ הילדים ה- 1 בפרדס חנה - כרכור",
-      "region": "חיפה והסביבה",
-      "date": "2026-10-15",
-      "link": "https://www.realtiming.co.il/events/1308",
-      "source": "realtiming.co.il",
-      "distanceLabel": "0.3, 0.6, 1.2 ק\"מ",
+      "name": "מרוץ הסרגל Winner ה-4 \"חרבות ברזל\"",
+      "region": "",
+      "date": "2026-10-09",
+      "link": "https://www.3plus.co.il/sargelrace",
+      "source": "3plus.co.il",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "enduro26",
+      "discountOrganizer": "3plus"
     },
     {
-      "name": "מרוץ האחים לזכר חללי מע'אר 2026",
-      "region": "הגליל",
-      "date": "2026-10-16",
-      "link": "https://www.realtiming.co.il/events/1285",
-      "source": "realtiming.co.il",
-      "isNew": false,
+      "name": "מרוץ הילדים בפרדס חנה – כרכור",
+      "region": "",
+      "date": "2026-10-15",
+      "link": "https://www.realtiming.co.il/events/1308",
+      "source": "runpanel.co.il",
+      "distanceLabel": "0.3, 0.6, 1.2 ק\"מ",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -156,45 +136,23 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ הילדים בהרצליה 2026",
-      "region": "השרון",
+      "name": "מרוץ הילדים בהרצליה",
+      "region": "",
       "date": "2026-10-19",
       "link": "https://www.realtiming.co.il/events/1256",
-      "source": "realtiming.co.il",
+      "source": "runpanel.co.il",
       "distanceLabel": "1, 2, 3 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ הלילה של נהריה 2026",
-      "region": "הגליל",
+      "name": "מרוץ הלילה של נהריה",
+      "region": "",
       "date": "2026-10-22",
       "link": "https://www.realtiming.co.il/events/1306",
-      "source": "realtiming.co.il",
+      "source": "runpanel.co.il",
       "distanceLabel": "0.8, 3, 5, 10 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ Winner דאלית אל כרמל 2026",
-      "region": "חיפה והסביבה",
-      "date": "2026-10-23",
-      "link": "https://www.realtiming.co.il/events/1272",
-      "source": "realtiming.co.il",
-      "distanceLabel": "2, 5, 10 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ אל האופק - גן יבנה 2026",
-      "region": "דרום",
-      "date": "2026-10-23",
-      "link": "https://www.realtiming.co.il/events/1290",
-      "source": "realtiming.co.il",
-      "distanceLabel": "3, 5, 10, 15 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -206,6 +164,17 @@
       "link": "https://www.marathonisrael.co.il/event/%D7%9E%D7%A8%D7%95%D7%A5-%D7%94%D7%91%D7%95%D7%96%D7%95%D7%9C%D7%94-%D7%99%D7%A9%D7%A8%D7%90%D7%9C/",
       "source": "runpanel.co.il",
       "distanceLabel": "5, 8, 12 ק\"מ",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "מרוץ אל האופק – גן יבנה",
+      "region": "",
+      "date": "2026-10-23",
+      "link": "https://elhaofek.co.il/",
+      "source": "runpanel.co.il",
+      "distanceLabel": "3, 5, 10, 15 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -229,6 +198,17 @@
       "source": "runpanel.co.il",
       "distanceLabel": "10, 21.1 ק\"מ",
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "מרוץ דאלית אל כרמל",
+      "region": "",
+      "date": "2026-10-23",
+      "link": "https://www.realtiming.co.il/events/1272",
+      "source": "runpanel.co.il",
+      "distanceLabel": "2, 5, 10 ק\"מ",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -320,13 +300,13 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ רצים ביחד במזרעה 2026",
-      "region": "הגליל",
+      "name": "מרוץ רצים ביחד",
+      "region": "",
       "date": "2026-11-07",
       "link": "https://www.realtiming.co.il/events/1263",
-      "source": "realtiming.co.il",
+      "source": "runpanel.co.il",
       "distanceLabel": "0.5, 2, 5, 10 ק\"מ",
-      "isNew": false,
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -362,11 +342,12 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ אייל 2026 ברמת השרון",
+      "name": "מרוץ אייל (רמה\"ש)",
       "region": "השרון",
       "date": "2026-11-14",
-      "link": "https://www.realtiming.co.il/events/1271",
-      "source": "realtiming.co.il",
+      "link": "https://www.eyalrun.co.il/",
+      "source": "runpanel.co.il",
+      "distanceLabel": null,
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -381,16 +362,6 @@
       "isNew": false,
       "discountCode": "HMRTN26",
       "discountOrganizer": "Shvoong"
-    },
-    {
-      "name": "מרוץ להבים 2026",
-      "region": "דרום",
-      "date": "2026-11-27",
-      "link": "https://www.realtiming.co.il/events/1307",
-      "source": "realtiming.co.il",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
     },
     {
       "name": "המרתון המדברי באילת",
@@ -479,16 +450,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ יוני בערבה 2027",
-      "region": "הנגב והערבה",
-      "date": "2027-01-15",
-      "link": "https://www.realtiming.co.il/events/1309",
-      "source": "realtiming.co.il",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "ספרטניון",
       "region": "",
       "date": "2027-01-21",
@@ -500,22 +461,12 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרתון ים המלח 2027",
-      "region": "דרום",
+      "name": "מרתון ים המלח",
+      "region": "",
       "date": "2027-02-05",
-      "link": "https://www.realtiming.co.il/events/1303",
-      "source": "realtiming.co.il",
+      "link": "https://deadsea.run/",
+      "source": "runpanel.co.il",
       "distanceLabel": "5, 10, 21.1, 42.2 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ אור יהודה 2027",
-      "region": "בקעת אונו",
-      "date": "2027-02-12",
-      "link": "https://www.realtiming.co.il/events/1298",
-      "source": "realtiming.co.il",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -543,16 +494,6 @@
       "discountOrganizer": "Kapaim Active"
     },
     {
-      "name": "מרוץ ראש העין 2027",
-      "region": "מרכז",
-      "date": "2027-03-05",
-      "link": "https://www.realtiming.co.il/events/1295",
-      "source": "realtiming.co.il",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "מרתון ירושלים",
       "region": "ירושלים והסביבה",
       "date": "2027-03-19",
@@ -575,31 +516,11 @@
       "discountOrganizer": null
     },
     {
-      "name": "מרוץ שביל כרמל-כנרת",
-      "region": "צפון",
-      "date": "2027-04-02",
-      "link": "https://www.realtiming.co.il/events/1302",
-      "source": "realtiming.co.il",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "מרוץ הרי הגעש",
       "region": "",
       "date": "2027-04-16",
       "link": "https://www.marathonisrael.co.il/event/%d7%9e%d7%a8%d7%95%d7%a5-%d7%94%d7%a8%d7%99-%d7%94%d7%92%d7%a2%d7%a9/",
       "source": "marathonisrael.co.il",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ הרצליה 2027",
-      "region": "השרון",
-      "date": "2027-05-08",
-      "link": "https://www.realtiming.co.il/events/1299",
-      "source": "realtiming.co.il",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -616,46 +537,6 @@
     }
   ],
   "international": [
-    {
-      "name": "Thimphu Marathon – Run for Global Peace",
-      "region": "Bhutan",
-      "date": "2026-09-19",
-      "link": "https://www.bhutanmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Halfmarathon Altötting",
-      "region": "Altötting, Germany",
-      "date": "2026-09-20",
-      "link": "https://www.halbmarathon.de",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Panama City Marathon",
-      "region": "Panama",
-      "date": "2026-09-20",
-      "link": "https://panamamarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Buenos Aires International Marathon",
-      "region": "Argentina",
-      "date": "2026-09-20",
-      "link": "https://www.maratondebuenosaires.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
     {
       "name": "Moscow Marathon",
       "region": "Russia",
