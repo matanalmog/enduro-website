@@ -169,6 +169,8 @@ export const runningGroups: RunningGroup[] = [
       "עתיד בית השקעות",
       "תיכון היובל",
       "GPS לעסקים",
+      "Palo Alto Networks",
+      "CyberArk",
     ],
     locations: ["בסמוך למקום העבודה", "פארקים, חוף ים וטיילת, לפי בחירת הארגון"],
     price: "לפי הצעת מחיר",
