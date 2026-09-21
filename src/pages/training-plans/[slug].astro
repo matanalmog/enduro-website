@@ -20,6 +20,13 @@ interface Props {
 
 const { plan } = Astro.props;
 
+const freePlanHeadings: Record<string, string> = {
+  beginners: 'תוכנית אימונים חינם לריצת 10 ק"מ',
+  "half-marathon": "תוכנית אימונים חינם לריצת חצי מרתון",
+  marathon: "תוכנית אימונים חינם לריצת מרתון",
+};
+const freePlanHeading = freePlanHeadings[plan.slug] ?? "תוכנית בסיסית חינמית";
+
 const otherPlans = trainingPlans
   .filter((p) => p.slug !== plan.slug)
   .sort((a, b) => a.order - b.order);
@@ -138,7 +145,7 @@ const schema = plan.faq.length
 
   {plan.freePlanImages && plan.freePlanImages.length > 0 && (
     <section class="container section" id="free-plan">
-      <h2>תוכנית בסיסית חינמית</h2>
+      <h2>{freePlanHeading}</h2>
       <p class="section-note">
         תוכנית גנרית ללא עלות, לפי חודשים. חשוב לציין: התוכנית הזו כוללנית
         ואינה מותאמת אישית ליכולת, לרקע הרפואי או לקצב ההתקדמות שלכם.
