@@ -60,7 +60,8 @@ const schema = [
 >
   <section class="hero">
     <div class="container hero-inner">
-      <h1>הכנה למרתון תל אביב 2027 — כל המקצים, בליווי אישי</h1>
+      <h1>הכנה למרתון תל אביב 2027</h1>
+      <h2 class="hero-subtitle">כל המקצים, בליווי אישי</h2>
       <p class="lead">
         מרתון תל אביב הבא הוא ב-26.2.2027. בין אם המטרה שלכם היא 5 ק"מ, 10
         ק"מ, חצי מרתון או המרתון המלא — כאן תמצאו מידע מאומת על האירוע, לוח
@@ -317,6 +318,13 @@ const schema = [
     color: var(--color-white);
     font-size: clamp(1.5rem, 3.2vw, 2.1rem);
     text-wrap: pretty;
+  }
+
+  .hero-subtitle {
+    color: var(--color-gray-300);
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    font-weight: 700;
+    margin-top: 0.3rem;
   }
 
   .hero .lead {
