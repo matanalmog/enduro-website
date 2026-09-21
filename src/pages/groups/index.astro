@@ -36,7 +36,7 @@ const sortedGroups = [...runningGroups].sort((a, b) => a.order - b.order);
     <h2>לא בטוחים איזו קבוצה מתאימה לכם?</h2>
     <p>בואו נתחיל עוד היום, השאירו פרטים ונמליץ על הקבוצה הנכונה לכם.</p>
     <div class="cta-actions">
-      <a href="/free-plan/" class="btn btn-primary">השאירו פרטים</a>
+      <a href="/#lead-form" class="btn btn-primary">השאירו פרטים</a>
       <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
     </div>
   </section>
@@ -70,8 +70,20 @@ const sortedGroups = [...runningGroups].sort((a, b) => a.order - b.order);
 
   .groups-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-3);
+  }
+
+  @media (max-width: 860px) {
+    .groups-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .groups-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .group-card {
