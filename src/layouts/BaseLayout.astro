@@ -37,6 +37,8 @@ const siteUrl = "https://www.sport4you.co.il";
 const canonicalUrl = new URL(canonicalPath, siteUrl).toString();
 const ogImageUrl = new URL(ogImage, siteUrl).toString();
 const schemaList = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
+
+const gaMeasurementId = "G-GFM3NPHDKY";
 ---
 
 <!doctype html>
@@ -44,6 +46,16 @@ const schemaList = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Analytics (GA4) -->
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+    <script define:vars={{ gaMeasurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", gaMeasurementId);
+    </script>
+
     <title>{title} | {siteName}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
