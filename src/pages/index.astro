@@ -450,6 +450,7 @@ const schema = [
       class="lead-form"
     >
       <input type="hidden" name="form-name" value="lead-form" />
+      <input type="hidden" name="source_page" id="lf-source-page" value="" />
       <p class="hidden-field">
         <label>אל תמלאו שדה זה: <input name="bot-field" /></label>
       </p>
@@ -1408,6 +1409,14 @@ const schema = [
   // תקין אם JS לא נטען: הדפדפן יבצע POST רגיל וריידיירקט לעמוד התודה כרגיל.
   const leadForm = document.getElementById("lead-form") as HTMLFormElement | null;
   const leadFormStatus = leadForm?.querySelector<HTMLParagraphElement>(".lead-form-status");
+
+  // מזהה מקור פנייה: קישורי CTA מעמודי קמפיין (כמו /tel-aviv-marathon/) מגיעים עם
+  // ?src=... בכתובת. שומרים את זה בשדה מוסתר כדי שההגשה ב-Netlify Forms תזהה מאיפה הגיע הליד.
+  const sourcePageField = document.getElementById("lf-source-page") as HTMLInputElement | null;
+  if (sourcePageField) {
+    const src = new URLSearchParams(window.location.search).get("src");
+    sourcePageField.value = src ?? "";
+  }
 
   function setLeadFormStatus(message: string, isError: boolean) {
     if (!leadFormStatus) return;
