@@ -277,7 +277,7 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
             <label class="q-q">באילו ימים בשבוע נוח לך לבצע אימוני ריצה?</label>
             <div class="choices">
               {days.map((d) => (
-                <label class="choice"><input type="checkbox" name="ימי ריצה[]" value={d} /><span>{d}</span></label>
+                <label class="choice"><input type="checkbox" name="ימי ריצה" value={d} /><span>{d}</span></label>
               ))}
             </div>
           </div>
@@ -285,7 +285,7 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
             <label class="q-q">באילו ימים בשבוע נוח לך לבצע אימוני כוח?</label>
             <div class="choices">
               {days.map((d) => (
-                <label class="choice"><input type="checkbox" name="ימי כוח[]" value={d} /><span>{d}</span></label>
+                <label class="choice"><input type="checkbox" name="ימי כוח" value={d} /><span>{d}</span></label>
               ))}
             </div>
           </div>
