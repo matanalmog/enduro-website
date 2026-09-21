@@ -827,12 +827,23 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     submitBtn.disabled = true;
     submitBtn.textContent = "שולח...";
 
+    // הסקריפט (Google Apps Script) עושה JSON.parse(e.postData.contents) — הוא מצפה
+    // לגוף JSON, לא ל-FormData/multipart. שולחים כ-text/plain (המרומז כברירת מחדל
+    // לגוף מחרוזת) כדי להישאר בקשת "simple request" תואמת ל-no-cors, בלי preflight.
     const formData = new FormData(form);
+    const multiValueFields = ["ימי ריצה", "ימי כוח"];
+    const payload = {};
+    for (const key of new Set(formData.keys())) {
+      payload[key] = multiValueFields.includes(key)
+        ? formData.getAll(key).join(", ")
+        : formData.get(key);
+    }
+
     try {
       await fetch(SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
-        body: formData,
+        body: JSON.stringify(payload),
       });
     } catch {
       // no-cors לא מאפשר לקרוא את התגובה; ממשיכים למסך התודה בכל מקרה.
