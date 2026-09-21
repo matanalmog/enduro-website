@@ -79,7 +79,7 @@ const schema = [
     <div class="stats-grid">
       <div class="stat-card">
         <span class="stat-value">מקום 1</span>
-        <span class="stat-label">אולטרה מרתון 66 ק"מ</span>
+        <span class="stat-label">אולטרה מרתון 66 ק"מ, סובב עמק 2023</span>
       </div>
       <div class="stat-card">
         <span class="stat-value">2:43</span>
@@ -197,6 +197,8 @@ const schema = [
       </label>
 
       <button type="submit" class="btn btn-primary">שליחת ההצהרה</button>
+
+      <p class="form-privacy">בשליחת הטופס אתם מאשרים את <a href="#privacy">תקנון ומדיניות הפרטיות</a>.</p>
     </form>
   </section>
 
@@ -230,6 +232,8 @@ const schema = [
     <ul>
       <li>האתר עשוי להשתמש בקבצי Cookies ובכלי סטטיסטיקה (כגון Google Analytics) לניתוח תנועת גולשים אנונימית, ללא זיהוי אישי.</li>
       <li>פרטים שנמסרים דרך טפסי יצירת הקשר באתר (שם, טלפון, אימייל) משמשים אך ורק לצורך חזרה אליכם בנוגע לתוכנית אימון, ולא יועברו לצד שלישי למטרות שיווקיות ללא רשותכם.</li>
+      <li>טפסי האתר (לרבות טופס יצירת הקשר, טופס הצהרת הבריאות וטופסי ההרשמה לעניין בקבוצות) מופעלים באמצעות שירות הטפסים של Netlify (Netlify Forms), המשמש כמעבד הטכני לקליטת הפניות ואחסונן.</li>
+      <li>טופס הצהרת הבריאות אוסף מידע רפואי כללי (כגון מחלות רקע, תרופות קבועות או מגבלות גופניות) שנמסר מרצונכם, לצורך התאמת תוכנית האימון בלבד. המידע ישמש את תומר אלמוג באופן אישי ולא יועבר לצד שלישי למטרות שיווקיות.</li>
     </ul>
 
     <h3>אזור שיפוט</h3>
@@ -428,6 +432,13 @@ const schema = [
     font-size: 0.9rem;
     color: var(--color-text-muted);
     margin-bottom: var(--space-3);
+  }
+
+  .form-privacy {
+    margin-top: var(--space-2);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-align: center;
   }
 
   .legal h3 {
