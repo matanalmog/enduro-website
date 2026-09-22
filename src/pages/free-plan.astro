@@ -32,6 +32,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <form name="free-plan" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/free-plan/thank-you/">
           <input type="hidden" name="form-name" value="free-plan" />
+          <input type="hidden" name="source_page" id="fp-source-page" value="" />
           <p class="hidden-field">
             <label>אל תמלאו שדה זה: <input name="bot-field" /></label>
           </p>
@@ -85,6 +86,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 </BaseLayout>
+
+<script>
+  // מקור פנייה: אותו מנגנון כמו בעמוד הבית - קודם ?src= בעמוד הנוכחי, אחרת הערך
+  // שנשמר ב-localStorage על ידי BaseLayout.astro (בתוקף 30 יום).
+  function getStoredLeadSource(): string {
+    try {
+      const raw = localStorage.getItem("enduro_lead_source");
+      if (!raw) return "";
+      const parsed = JSON.parse(raw) as { value?: string; ts?: number };
+      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+      if (!parsed.ts || Date.now() - parsed.ts > THIRTY_DAYS_MS) return "";
+      return parsed.value ?? "";
+    } catch {
+      return "";
+    }
+  }
+
+  const sourcePageField = document.getElementById("fp-source-page") as HTMLInputElement | null;
+  if (sourcePageField) {
+    const urlSrc = new URLSearchParams(window.location.search).get("src");
+    sourcePageField.value = urlSrc || getStoredLeadSource();
+  }
+</script>
 
 <style>
   .split {

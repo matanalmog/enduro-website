@@ -115,6 +115,7 @@ const schema = group.faq.length
         אימון ומיקום סופיים.
       </p>
       <form
+        id="group-interest-form"
         name="group-interest"
         method="POST"
         data-netlify="true"
@@ -124,6 +125,7 @@ const schema = group.faq.length
       >
         <input type="hidden" name="form-name" value="group-interest" />
         <input type="hidden" name="group" value={group.slug} />
+        <input type="hidden" name="source_page" id="gi-source-page" value="" />
         <p class="hidden-field">
           <label>אל תמלאו שדה זה: <input name="bot-field" /></label>
         </p>
@@ -220,6 +222,29 @@ const schema = group.faq.length
     )}
   </section>
 </BaseLayout>
+
+<script>
+  // מקור פנייה: אותו מנגנון כמו בעמוד הבית - קודם ?src= בעמוד הנוכחי, אחרת הערך
+  // שנשמר ב-localStorage על ידי BaseLayout.astro (בתוקף 30 יום).
+  function getStoredLeadSource(): string {
+    try {
+      const raw = localStorage.getItem("enduro_lead_source");
+      if (!raw) return "";
+      const parsed = JSON.parse(raw) as { value?: string; ts?: number };
+      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+      if (!parsed.ts || Date.now() - parsed.ts > THIRTY_DAYS_MS) return "";
+      return parsed.value ?? "";
+    } catch {
+      return "";
+    }
+  }
+
+  const sourcePageField = document.getElementById("gi-source-page") as HTMLInputElement | null;
+  if (sourcePageField) {
+    const urlSrc = new URLSearchParams(window.location.search).get("src");
+    sourcePageField.value = urlSrc || getStoredLeadSource();
+  }
+</script>
 
 <style>
   .hero {

@@ -57,6 +57,21 @@ const gaMeasurementId = "G-GFM3NPHDKY";
       gtag("config", gaMeasurementId);
     </script>
 
+    <!-- מקור פנייה: שומר ?src=... מכל עמוד ל-localStorage (30 יום), כדי שטפסי
+         הלידים ידעו מאיפה הגיע המבקר גם אם הוא עבר בין עמודים לפני שמילא טופס. -->
+    <script>
+      (function () {
+        try {
+          const src = new URLSearchParams(window.location.search).get("src");
+          if (src) {
+            localStorage.setItem("enduro_lead_source", JSON.stringify({ value: src, ts: Date.now() }));
+          }
+        } catch {
+          // localStorage לא זמין (למשל דפדפן פרטי) - ממשיכים בלי מעקב מקור
+        }
+      })();
+    </script>
+
     <title>{title} | {siteName}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />

@@ -1343,6 +1343,20 @@ const schema = [
 </style>
 
 <script>
+  // קורא את מקור הפנייה השמור ב-localStorage על ידי BaseLayout.astro, בתוקף 30 יום.
+  function getStoredLeadSource(): string {
+    try {
+      const raw = localStorage.getItem("enduro_lead_source");
+      if (!raw) return "";
+      const parsed = JSON.parse(raw) as { value?: string; ts?: number };
+      const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
+      if (!parsed.ts || Date.now() - parsed.ts > THIRTY_DAYS_MS) return "";
+      return parsed.value ?? "";
+    } catch {
+      return "";
+    }
+  }
+
   const popEls = document.querySelectorAll(".pop-in");
   if ("IntersectionObserver" in window && popEls.length) {
     const observer = new IntersectionObserver(
@@ -1412,10 +1426,12 @@ const schema = [
 
   // מזהה מקור פנייה: קישורי CTA מעמודי קמפיין (כמו /tel-aviv-marathon/) מגיעים עם
   // ?src=... בכתובת. שומרים את זה בשדה מוסתר כדי שההגשה ב-Netlify Forms תזהה מאיפה הגיע הליד.
+  // אם אין ?src= בעמוד הנוכחי (המבקר עבר דרך עמוד תוכן קודם), נופלים לערך שנשמר
+  // ב-localStorage על ידי BaseLayout.astro בעת הנחיתה המקורית (בתוקף 30 יום).
   const sourcePageField = document.getElementById("lf-source-page") as HTMLInputElement | null;
   if (sourcePageField) {
-    const src = new URLSearchParams(window.location.search).get("src");
-    sourcePageField.value = src ?? "";
+    const urlSrc = new URLSearchParams(window.location.search).get("src");
+    sourcePageField.value = urlSrc || getStoredLeadSource();
   }
 
   function setLeadFormStatus(message: string, isError: boolean) {
