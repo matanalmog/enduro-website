@@ -138,8 +138,17 @@ const schema = group.faq.length
           <input type="tel" id="gi-phone" name="phone" required pattern="[0-9\-\+\s()]{7,}" title="הזינו מספר טלפון תקין" />
         </div>
 
+        <label class="consent-field">
+          <input type="checkbox" name="privacy_consent" required />
+          <span>קראתי ואני מאשר/ת את <a href="/about-me/#privacy">תקנון ומדיניות הפרטיות</a> *</span>
+        </label>
+
+        <label class="consent-field">
+          <input type="checkbox" name="marketing_consent" />
+          <span>אשמח לקבל עדכונים ותוכן שיווקי מ-ENDURO (רשות)</span>
+        </label>
+
         <button type="submit" class="btn btn-primary">עדכנו אותי</button>
-        <p class="form-privacy">בשליחת הטופס אתם מאשרים את <a href="/about-me/#privacy">תקנון ומדיניות הפרטיות</a>.</p>
       </form>
     </section>
   )}
@@ -390,7 +399,9 @@ const schema = group.faq.length
     font-size: 0.92rem;
   }
 
-  .interest-form input {
+  .interest-form input[type="text"],
+  .interest-form input[type="tel"],
+  .interest-form input[type="email"] {
     font: inherit;
     padding: 0.7rem 0.9rem;
     border: 1.5px solid var(--color-gray-100);
@@ -399,7 +410,9 @@ const schema = group.faq.length
     color: var(--color-text);
   }
 
-  .interest-form input:focus {
+  .interest-form input[type="text"]:focus,
+  .interest-form input[type="tel"]:focus,
+  .interest-form input[type="email"]:focus {
     outline: none;
     border-color: var(--color-brand);
     background: var(--color-white);
@@ -410,11 +423,25 @@ const schema = group.faq.length
     width: 100%;
   }
 
-  .form-privacy {
-    margin-top: var(--space-2);
-    font-size: 0.8rem;
+  .consent-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: var(--space-2);
+    font-size: 0.82rem;
     color: var(--color-text-muted);
-    text-align: center;
+    cursor: pointer;
+  }
+
+  .consent-field input {
+    margin-top: 0.2rem;
+    flex: none;
+    width: 16px;
+    height: 16px;
+  }
+
+  .consent-field a {
+    color: var(--color-brand-hover);
   }
 
   .clients-row {

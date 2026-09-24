@@ -517,13 +517,19 @@ const schema = [
         <textarea id="lf-message" name="message" rows="3"></textarea>
       </div>
 
+      <label class="consent-field">
+        <input type="checkbox" name="privacy_consent" required />
+        <span>קראתי ואני מאשר/ת את <a href="/about-me/#privacy">תקנון ומדיניות הפרטיות</a> *</span>
+      </label>
+
+      <label class="consent-field">
+        <input type="checkbox" name="marketing_consent" />
+        <span>אשמח לקבל עדכונים ותוכן שיווקי מ-ENDURO (רשות)</span>
+      </label>
+
       <button type="submit" class="btn btn-primary lead-form-submit">שליחת פרטים</button>
 
       <p class="lead-form-status" role="alert" aria-live="polite"></p>
-
-      <p class="lead-form-privacy">
-        בשליחת הטופס אתם מאשרים את <a href="/about-me/#privacy">תקנון ומדיניות הפרטיות</a>.
-      </p>
     </form>
   </section>
 
@@ -1314,7 +1320,7 @@ const schema = [
     color: var(--color-white);
   }
 
-  .lead-form input,
+  .lead-form input:not([type="checkbox"]),
   .lead-form select,
   .lead-form textarea {
     font: inherit;
@@ -1326,7 +1332,7 @@ const schema = [
     transition: border-color 0.15s ease;
   }
 
-  .lead-form input:focus,
+  .lead-form input:not([type="checkbox"]):focus,
   .lead-form select:focus,
   .lead-form textarea:focus {
     outline: none;
@@ -1362,14 +1368,26 @@ const schema = [
     border: 1px solid var(--color-orange-500);
   }
 
-  .lead-form-privacy {
+  .consent-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
     margin-top: var(--space-2);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--color-gray-300) !important;
+    cursor: pointer;
   }
 
-  .lead-form-privacy a {
+  .consent-field input {
+    margin-top: 0.2rem;
+    flex: none;
+    width: 16px;
+    height: 16px;
+  }
+
+  .consent-field a {
     color: var(--color-gray-300);
+    text-decoration: underline;
   }
 
   .mobile-bar {

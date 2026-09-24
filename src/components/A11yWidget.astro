@@ -1,0 +1,198 @@
+---
+// רכיב נגישות: הגדלת/הקטנת טקסט, ניגודיות גבוהה, עצירת אנימציות.
+// המחלקות (a11y-large-text / a11y-xl-text / a11y-high-contrast / a11y-no-motion)
+// מוגדרות ב-global.css ומופעלות על ה-html כבר לפני הרנדור (ראו inline script ב-BaseLayout)
+// כדי למנוע הבהוב. הרכיב הזה רק מספק את הממשק ומעדכן localStorage.
+---
+
+<div class="a11y-widget" id="a11y-widget">
+  <button type="button" class="a11y-toggle" id="a11y-toggle" aria-expanded="false" aria-controls="a11y-panel" aria-label="פתיחת תפריט נגישות">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true">
+      <circle cx="12" cy="4.5" r="2.2" />
+      <path d="M4 8.2c-.5.15-.8.68-.65 1.18.15.5.68.8 1.18.65L10 8.3v3.4l-2.7 7.9a1 1 0 0 0 1.9.65L11.5 14h1l2.3 6.25a1 1 0 0 0 1.9-.65L14 11.7V8.3l5.47 1.73c.5.15 1.03-.15 1.18-.65.15-.5-.15-1.03-.65-1.18L14 6.3a5 5 0 0 0-4 0L4 8.2Z" />
+    </svg>
+  </button>
+
+  <div class="a11y-panel" id="a11y-panel" hidden>
+    <div class="a11y-panel-header">
+      <strong>נגישות</strong>
+      <button type="button" class="a11y-close" id="a11y-close" aria-label="סגירת תפריט נגישות">&times;</button>
+    </div>
+    <button type="button" class="a11y-option" data-a11y-action="text-larger">א+ הגדלת טקסט</button>
+    <button type="button" class="a11y-option" data-a11y-action="text-smaller">א- הקטנת טקסט</button>
+    <button type="button" class="a11y-option" data-a11y-action="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+    <button type="button" class="a11y-option" data-a11y-action="motion" aria-pressed="false">עצירת אנימציות</button>
+    <button type="button" class="a11y-option a11y-reset" data-a11y-action="reset">איפוס הגדרות</button>
+    <a href="/accessibility/" class="a11y-statement-link">הצהרת נגישות מלאה</a>
+  </div>
+</div>
+
+<style>
+  .a11y-widget {
+    position: fixed;
+    inset-inline-start: var(--space-3);
+    bottom: var(--space-3);
+    z-index: 200;
+  }
+
+  .a11y-toggle {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-md);
+    transition: background-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .a11y-toggle:hover,
+  .a11y-toggle:focus-visible {
+    background: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .a11y-panel {
+    position: absolute;
+    bottom: 64px;
+    inset-inline-start: 0;
+    width: 240px;
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-2);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .a11y-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem 0.4rem 0.5rem;
+    border-bottom: 1px solid var(--color-gray-100);
+    margin-bottom: 0.2rem;
+  }
+
+  .a11y-close {
+    background: transparent;
+    border: none;
+    font-size: 1.3rem;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--color-text-muted);
+  }
+
+  .a11y-option {
+    text-align: start;
+    padding: 0.6rem 0.7rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-gray-100);
+    background: var(--color-white);
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .a11y-option:hover,
+  .a11y-option:focus-visible {
+    border-color: var(--color-brand);
+  }
+
+  .a11y-option[aria-pressed="true"] {
+    background: var(--color-brand-hover);
+    border-color: var(--color-brand-hover);
+    color: var(--color-white);
+  }
+
+  .a11y-reset {
+    color: var(--color-text-muted);
+    font-weight: 600;
+  }
+
+  .a11y-statement-link {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-brand-hover);
+    text-decoration: underline;
+    margin-top: 0.2rem;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = "enduro_a11y_prefs";
+  type Prefs = { textStep: number; contrast: boolean; noMotion: boolean };
+
+  function loadPrefs(): Prefs {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { textStep: 0, contrast: false, noMotion: false };
+      return { textStep: 0, contrast: false, noMotion: false, ...JSON.parse(raw) };
+    } catch {
+      return { textStep: 0, contrast: false, noMotion: false };
+    }
+  }
+
+  function savePrefs(prefs: Prefs) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(prefs));
+    } catch {
+      // localStorage חסום - ההעדפה תיושם רק להצגה הנוכחית, בלי שמירה
+    }
+  }
+
+  function applyPrefs(prefs: Prefs) {
+    const html = document.documentElement;
+    html.classList.remove("a11y-large-text", "a11y-xl-text");
+    if (prefs.textStep === 1) html.classList.add("a11y-large-text");
+    if (prefs.textStep >= 2) html.classList.add("a11y-xl-text");
+    html.classList.toggle("a11y-high-contrast", prefs.contrast);
+    html.classList.toggle("a11y-no-motion", prefs.noMotion);
+
+    document.querySelectorAll<HTMLButtonElement>('[data-a11y-action="contrast"]').forEach((b) => b.setAttribute("aria-pressed", String(prefs.contrast)));
+    document.querySelectorAll<HTMLButtonElement>('[data-a11y-action="motion"]').forEach((b) => b.setAttribute("aria-pressed", String(prefs.noMotion)));
+  }
+
+  let prefs = loadPrefs();
+  applyPrefs(prefs);
+
+  const toggleBtn = document.getElementById("a11y-toggle");
+  const panel = document.getElementById("a11y-panel");
+  const closeBtn = document.getElementById("a11y-close");
+
+  function setPanelOpen(open: boolean) {
+    if (!panel || !toggleBtn) return;
+    panel.hidden = !open;
+    toggleBtn.setAttribute("aria-expanded", String(open));
+  }
+
+  toggleBtn?.addEventListener("click", () => setPanelOpen(panel?.hidden ?? true));
+  closeBtn?.addEventListener("click", () => setPanelOpen(false));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") setPanelOpen(false);
+  });
+  document.addEventListener("click", (e) => {
+    const widget = document.getElementById("a11y-widget");
+    if (widget && !widget.contains(e.target as Node)) setPanelOpen(false);
+  });
+
+  document.querySelectorAll<HTMLButtonElement>("[data-a11y-action]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const action = btn.dataset.a11yAction;
+      if (action === "text-larger") prefs = { ...prefs, textStep: Math.min(2, prefs.textStep + 1) };
+      else if (action === "text-smaller") prefs = { ...prefs, textStep: Math.max(0, prefs.textStep - 1) };
+      else if (action === "contrast") prefs = { ...prefs, contrast: !prefs.contrast };
+      else if (action === "motion") prefs = { ...prefs, noMotion: !prefs.noMotion };
+      else if (action === "reset") prefs = { textStep: 0, contrast: false, noMotion: false };
+      savePrefs(prefs);
+      applyPrefs(prefs);
+    });
+  });
+</script>

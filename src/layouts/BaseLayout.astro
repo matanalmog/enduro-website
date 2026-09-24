@@ -4,6 +4,8 @@
 // canonical, Open Graph, JSON-LD (Schema.org), ו-favicon. ראו סעיף 4 באפיון (SEO).
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+import A11yWidget from "../components/A11yWidget.astro";
 import "../styles/global.css";
 
 export interface Props {
@@ -48,13 +50,25 @@ const gaMeasurementId = "G-GFM3NPHDKY";
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="google-site-verification" content="M_3Eod6ik9sd-mthA_EJvez_aVlb3Ztr0zFrTrel9MI" />
 
-    <!-- Google Analytics (GA4) -->
-    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-    <script define:vars={{ gaMeasurementId }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag("js", new Date());
-      gtag("config", gaMeasurementId);
+    <!-- Google Analytics (GA4) נטען רק אחרי הסכמת עוגיות, ראו CookieConsent.astro בסוף ה-body -->
+
+    <!-- העדפות נגישות (הגדלת טקסט/ניגודיות/עצירת אנימציות) מיושמות כאן, לפני הרנדור,
+         כדי למנוע הבהוב של תצוגה לא-מותאמת ואז קפיצה. ראו A11yWidget.astro. -->
+    <script is:inline>
+      (function () {
+        try {
+          var raw = localStorage.getItem("enduro_a11y_prefs");
+          if (!raw) return;
+          var prefs = JSON.parse(raw);
+          var html = document.documentElement;
+          if (prefs.textStep === 1) html.classList.add("a11y-large-text");
+          if (prefs.textStep >= 2) html.classList.add("a11y-xl-text");
+          if (prefs.contrast) html.classList.add("a11y-high-contrast");
+          if (prefs.noMotion) html.classList.add("a11y-no-motion");
+        } catch (e) {
+          // localStorage חסום או נתונים פגומים - ממשיכים עם ברירת המחדל
+        }
+      })();
     </script>
 
     <title>{title} | {siteName}</title>
@@ -100,5 +114,7 @@ const gaMeasurementId = "G-GFM3NPHDKY";
       <slot />
     </main>
     <Footer />
+    <A11yWidget />
+    <CookieConsent gaMeasurementId={gaMeasurementId} />
   </body>
 </html>

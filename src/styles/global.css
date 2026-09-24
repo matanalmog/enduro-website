@@ -200,3 +200,38 @@ main {
 .skip-link:focus {
   top: var(--space-2);
 }
+
+/* רכיב נגישות (ת"י 5568) - הגדלת טקסט / ניגודיות גבוהה / עצירת אנימציות.
+   מופעל דרך מחלקות על ה-html, ראו A11yWidget.astro. */
+html.a11y-large-text {
+  font-size: 112.5%;
+}
+
+html.a11y-xl-text {
+  font-size: 125%;
+}
+
+html.a11y-high-contrast {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-text-muted: #1a1a1a;
+  --color-brand: #b34700;
+  --color-brand-hover: #7a3000;
+  --color-header-bg: #000000;
+  --color-header-text: #ffffff;
+  --color-footer-bg: #000000;
+  --color-footer-text: #ffffff;
+}
+
+html.a11y-high-contrast img {
+  filter: saturate(1.15) contrast(1.05);
+}
+
+html.a11y-no-motion *,
+html.a11y-no-motion *::before,
+html.a11y-no-motion *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

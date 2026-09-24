@@ -71,6 +71,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             <textarea id="message" name="message" rows="3"></textarea>
           </div>
 
+          <label class="consent-field">
+            <input type="checkbox" name="privacy_consent" required />
+            <span>קראתי ואני מאשר/ת את <a href="/about-me/#privacy">תקנון ומדיניות הפרטיות</a> *</span>
+          </label>
+
+          <label class="consent-field">
+            <input type="checkbox" name="marketing_consent" />
+            <span>אשמח לקבל עדכונים ותוכן שיווקי מ-ENDURO (רשות)</span>
+          </label>
+
           <button type="submit" class="btn btn-primary">שלחו וקבלו תוכנית</button>
         </form>
 
@@ -195,12 +205,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     gap: 0.4rem;
   }
 
+  .consent-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: var(--space-2);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+  }
+
+  .consent-field input {
+    margin-top: 0.2rem;
+    flex: none;
+    width: 16px;
+    height: 16px;
+  }
+
+  .consent-field a {
+    color: var(--color-brand-hover);
+  }
+
   label {
     font-weight: 600;
     font-size: 0.92rem;
   }
 
-  input,
+  input:not([type="checkbox"]),
   select,
   textarea {
     font: inherit;
@@ -212,7 +243,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     transition: border-color 0.15s ease, background-color 0.15s ease;
   }
 
-  input:focus,
+  input:not([type="checkbox"]):focus,
   select:focus,
   textarea:focus {
     outline: none;

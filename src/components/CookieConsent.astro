@@ -1,0 +1,127 @@
+---
+// באנר הסכמת עוגיות: GA4 לא נטען כלל עד שהמבקר לוחץ "מאשר/ת". הבחירה (מאשר/דוחה)
+// נשמרת ב-localStorage כדי שהבאנר לא יחזור בכל טעינת עמוד. ה-gaMeasurementId מגיע
+// מ-BaseLayout (לא כתוב כאן פעמיים).
+export interface Props {
+  gaMeasurementId: string;
+}
+const { gaMeasurementId } = Astro.props;
+---
+
+<div class="cookie-banner" id="cookie-banner" hidden role="dialog" aria-label="הסכמת עוגיות" aria-describedby="cookie-banner-text">
+  <p id="cookie-banner-text">
+    האתר משתמש בעוגיות (כולל Google Analytics) כדי להבין איך משתמשים באתר, באופן אנונימי.
+    <a href="/about-me/#privacy">פרטים במדיניות הפרטיות</a>.
+  </p>
+  <div class="cookie-banner-actions">
+    <button type="button" class="btn btn-outline cookie-reject" id="cookie-reject">רק חיוני</button>
+    <button type="button" class="btn btn-primary cookie-accept" id="cookie-accept">מאשר/ת</button>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 300;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    padding: var(--space-3) var(--space-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  .cookie-banner p {
+    margin: 0;
+    color: var(--color-gray-300);
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .cookie-banner a {
+    color: var(--color-brand);
+    text-decoration: underline;
+  }
+
+  .cookie-banner-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex: none;
+  }
+
+  .cookie-reject {
+    color: var(--color-white);
+  }
+
+  @media (max-width: 560px) {
+    .cookie-banner {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .cookie-banner-actions {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script define:vars={{ gaMeasurementId }}>
+  const CONSENT_KEY = "enduro_cookie_consent"; // "accepted" | "rejected"
+
+  function loadGA() {
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      window.dataLayer.push(arguments);
+    }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", gaMeasurementId);
+  }
+
+  let consent = null;
+  try {
+    consent = localStorage.getItem(CONSENT_KEY);
+  } catch {
+    // localStorage חסום - מתייחסים כאילו אין עדיין החלטה, הבאנר יוצג בכל טעינה
+  }
+
+  if (consent === "accepted") {
+    loadGA();
+  } else if (consent !== "rejected") {
+    const banner = document.getElementById("cookie-banner");
+    if (banner) banner.hidden = false;
+  }
+
+  document.getElementById("cookie-accept")?.addEventListener("click", () => {
+    try {
+      localStorage.setItem(CONSENT_KEY, "accepted");
+    } catch {
+      // אם השמירה נכשלת, ה-GA עדיין ייטען להיום, פשוט הבאנר יחזור בטעינה הבאה
+    }
+    loadGA();
+    const banner = document.getElementById("cookie-banner");
+    if (banner) banner.hidden = true;
+  });
+
+  document.getElementById("cookie-reject")?.addEventListener("click", () => {
+    try {
+      localStorage.setItem(CONSENT_KEY, "rejected");
+    } catch {
+      // ראו הערה למעלה
+    }
+    const banner = document.getElementById("cookie-banner");
+    if (banner) banner.hidden = true;
+  });
+</script>
