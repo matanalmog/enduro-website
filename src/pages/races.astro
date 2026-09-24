@@ -98,25 +98,24 @@ const schema = [
   <section class="hero">
     <div class="container hero-inner">
       <h1>לוח תחרויות ריצה בארץ ובעולם</h1>
-      <p class="lead">
-        מידע מקיף ומעודכן על מירוצי כביש ושטח, עזרה בתכנון עונת המירוצים
-        וגילוי אתגרים חדשים, וקודי הנחה בלעדיים לחברי Enduro.
-      </p>
-      <div class="hero-actions">
-        <a href="tel:+972526982993" class="btn btn-primary">צלצלו אליי</a>
-        <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ, עזרה בבחירת מרוץ</a>
+      <div class="hero-lead-row">
+        <p class="lead">
+          מידע מקיף ומעודכן על מירוצי כביש ושטח, עזרה בתכנון עונת המירוצים
+          וגילוי אתגרים חדשים, וקודי הנחה בלעדיים לחברי Enduro.
+        </p>
+        <a href="https://wa.me/972526982993" class="btn hero-whatsapp-btn" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.26A9.5 9.5 0 1 0 12 2.5Zm0 1.7a7.8 7.8 0 0 1 6.6 11.95l-.24.38.7 2.56-2.62-.69-.37.22A7.8 7.8 0 1 1 12 4.2Zm-3.1 3.62c-.17 0-.45.06-.68.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.65c.13.17 1.8 2.87 4.44 3.9 2.2.87 2.64.7 3.12.65.47-.04 1.52-.62 1.73-1.22.22-.6.22-1.11.15-1.22-.06-.1-.24-.16-.5-.29-.26-.13-1.53-.75-1.77-.84-.24-.09-.4-.13-.58.13-.17.26-.66.84-.81 1.01-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.51-1.43-1.77-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.45-.8-1.98-.2-.5-.42-.44-.58-.45Z" />
+          </svg>
+          <span>שלחו וואטסאפ<br />עזרה בבחירת מרוץ</span>
+        </a>
+      </div>
+      <div class="hero-logo">
+        <img src="/images/logo/enduro-icon-96.png" alt="" width="40" height="40" />
+        <span>ENDURO</span>
       </div>
     </div>
   </section>
-
-  <div class="container calc-promo">
-    <span class="calc-promo-icon" aria-hidden="true">&#128202;</span>
-    <span class="calc-promo-text">
-      <strong>מתכננים קצב למרוץ הבא?</strong>
-      זוני דופק, זוני קצב אימון, מנבא תוצאות ועוד - כל מחשבוני הריצה במקום אחד
-    </span>
-    <a href="/calculators/" class="btn calc-promo-btn">לכל המחשבונים &larr;</a>
-  </div>
 
   <div class="container promo-banner">
     <img src="/images/action/tomer-portrait-sunglasses.jpg" alt="תומר אלמוג" class="promo-photo" />
@@ -125,6 +124,15 @@ const schema = [
       תוכנית שנבנית סביבך, עם ליווי צמוד עד קו הסיום
     </span>
     <a href="https://wa.me/972526982993" class="btn promo-btn" target="_blank" rel="noopener noreferrer">צור קשר עוד היום</a>
+  </div>
+
+  <div class="container calc-promo">
+    <span class="calc-promo-icon" aria-hidden="true">&#128202;</span>
+    <span class="calc-promo-text">
+      <strong>מתכננים קצב למרוץ הבא?</strong>
+      זוני דופק, זוני קצב אימון, מנבא תוצאות ועוד - כל מחשבוני הריצה במקום אחד
+    </span>
+    <a href="/calculators/" class="btn calc-promo-btn">בדקו עכשיו את המחשבונים &larr;</a>
   </div>
 
   <section class="container section featured-codes">
@@ -273,6 +281,27 @@ const schema = [
     text-align: center;
   }
 
+  .hero-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-navy-700);
+  }
+
+  .hero-logo img {
+    border-radius: 50%;
+  }
+
+  .hero-logo span {
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+    color: var(--color-brand);
+  }
+
   .calc-promo {
     display: flex;
     align-items: center;
@@ -314,15 +343,30 @@ const schema = [
   .calc-promo-btn {
     flex: none;
     background: var(--color-brand);
-    color: var(--color-navy-950);
+    color: var(--color-white);
     white-space: nowrap;
     border: none;
+    font-size: 1.05rem;
+    font-weight: 800;
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 14px rgba(193, 80, 46, 0.45);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
   }
 
   .calc-promo-btn:hover,
   .calc-promo-btn:focus-visible {
     background: var(--color-brand-hover);
     color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(193, 80, 46, 0.6);
+  }
+
+  @media (max-width: 560px) {
+    .calc-promo-btn {
+      width: 100%;
+      text-align: center;
+    }
   }
 
   .promo-banner {
@@ -459,16 +503,53 @@ const schema = [
     font-size: 1.1rem;
   }
 
-  .hero-actions {
+  .hero-lead-row {
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    justify-content: center;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: start;
     margin-top: var(--space-3);
   }
 
-  .hero .btn-outline {
-    color: var(--color-white);
+  .hero-lead-row .lead {
+    flex: 1;
+    margin: 0;
+  }
+
+  .hero-whatsapp-btn {
+    flex: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25d366;
+    color: var(--color-navy-950);
+    border: none;
+    padding: 0.7rem 1.2rem;
+    line-height: 1.3;
+    text-align: start;
+    white-space: nowrap;
+  }
+
+  .hero-whatsapp-btn:hover,
+  .hero-whatsapp-btn:focus-visible {
+    background: #1ebe5a;
+  }
+
+  @media (max-width: 720px) {
+    .hero-lead-row {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+
+    .hero-lead-row .lead {
+      text-align: center;
+    }
+
+    .hero-whatsapp-btn {
+      justify-content: center;
+      white-space: normal;
+    }
   }
 
   .section {
