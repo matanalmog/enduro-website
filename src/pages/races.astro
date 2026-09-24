@@ -33,29 +33,6 @@ const featuredDiscountCodes = [
   { race: "מרתון ירושלים", code: "f3a48", note: "10% הנחה, לא כולל מקצה משפחות" },
 ];
 
-// רשימה שטוחה: שורה אחת לכל מרוץ (לא מקובצת לפי מארגן/חברת תזמון, ששם חסר משמעות
-// למבקר באתר שמחפש קוד למרוץ ספציפי).
-const discountCodes = [
-  { race: "מרוץ הסרגל", code: "enduro26" },
-  { race: "אולטרה יישובי העוטף", code: "enduro26" },
-  { race: "מרתון תל אביב", code: "785859" },
-  { race: "מרוץ הלילה של תל אביב", code: "348200" },
-  { race: "בשביל הבנים", code: "480944" },
-  { race: "מרתון ירושלים", code: "f3a48", note: "10% הנחה, לא כולל מקצה משפחות" },
-  { race: "מרתון חיפה", code: "HMRTN26" },
-  { race: "מרוץ כפר סבא", code: "KFRSB26" },
-  { race: "מרוץ מדבר (מצפה רמון)", code: "DRMR26" },
-  { race: "מרוץ עיר ועמק (עמק המעיינות)", code: "EMEK26" },
-  { race: "שאר מקצי Shvoong", code: "ENDURO" },
-  { race: "מרוץ דימונה (DMR)", code: "dmr27_enduro" },
-  { race: "מרוץ ים המלח", code: "ENDURO10" },
-  { race: "מרוץ התקווה", code: "TIKGRU" },
-  { race: "מרוץ הבוז׳ולה", code: "BWR" },
-  { race: "מרוץ העגור", code: "CRRG26" },
-  { race: "מרתון המדבר אילת", code: "DES26" },
-  { race: "סובב עמק, כל המקצים", code: "SOVEVGROUP" },
-  { race: "מרוץ אייל (רמת השרון)", code: "ER26RG" },
-];
 
 const faqs = [
   {
@@ -110,21 +87,16 @@ const schema = [
           <span>שלחו וואטסאפ<br />עזרה בבחירת מרוץ</span>
         </a>
       </div>
-      <div class="hero-logo">
-        <img src="/images/logo/enduro-icon-96.png" alt="" width="40" height="40" />
-        <span>ENDURO</span>
+      <div class="promo-banner">
+        <img src="/images/action/tomer-portrait-sunglasses.jpg" alt="תומר אלמוג" class="promo-photo" />
+        <span class="promo-text">
+          <strong>תומר אלמוג - תוכניות אימון ריצה אונליין</strong>
+          תוכנית שנבנית סביבך, עם ליווי צמוד עד קו הסיום
+        </span>
+        <a href="https://wa.me/972526982993" class="btn promo-btn" target="_blank" rel="noopener noreferrer">צור קשר עוד היום</a>
       </div>
     </div>
   </section>
-
-  <div class="container promo-banner">
-    <img src="/images/action/tomer-portrait-sunglasses.jpg" alt="תומר אלמוג" class="promo-photo" />
-    <span class="promo-text">
-      <strong>תומר אלמוג - תוכניות אימון ריצה אונליין</strong>
-      תוכנית שנבנית סביבך, עם ליווי צמוד עד קו הסיום
-    </span>
-    <a href="https://wa.me/972526982993" class="btn promo-btn" target="_blank" rel="noopener noreferrer">צור קשר עוד היום</a>
-  </div>
 
   <div class="container calc-promo">
     <span class="calc-promo-icon" aria-hidden="true">&#128202;</span>
@@ -165,41 +137,12 @@ const schema = [
     <a href="#calendar-utmb" class="quick-jump-card">מרוצי שטח</a>
   </div>
 
-  <section class="container section" id="discounts">
-    <details class="discount-accordion">
-      <summary>
-        <h2>קודי ההנחה</h2>
-        <span class="discount-hint">לחצו לפתיחה</span>
-        <span class="feature-toggle" aria-hidden="true">+</span>
-      </summary>
-      <p class="section-note">
-        לקוד הנחה עדכני או למרוץ שלא ברשימה, כתבו לנו בוואטסאפ.
-      </p>
-      <div class="discount-list">
-        {discountCodes.map((row) => (
-          <div class="discount-row">
-            <span class="discount-race">
-              {row.race}
-              {row.note && <span class="discount-note">{row.note}</span>}
-            </span>
-            <code class="discount-code">{row.code}</code>
-          </div>
-        ))}
-      </div>
-    </details>
-  </section>
-
-  {hasAnyRaces && (
-    <p class="container section-note update-note">
-      מתעדכן אוטומטית ממקורות חיים,
-      עודכן לאחרונה ב-{formatHebrewDate(racesData.generatedAt.slice(0, 10))}.
-      לא מצאתם את המרוץ שחיפשתם? כתבו לנו בוואטסאפ.
-    </p>
-  )}
-
   {israelRaces.length > 0 && (
     <section class="container section section-muted" id="calendar-il">
-      <h2>מירוצים קרובים בישראל</h2>
+      <h2>לוח מרוצים בישראל</h2>
+      <p class="section-note update-note">
+        מתעדכן אוטומטית ממקורות חיים, עודכן לאחרונה ב-{formatHebrewDate(racesData.generatedAt.slice(0, 10))}. לא מצאתם את המרוץ שחיפשתם? כתבו לנו בוואטסאפ.
+      </p>
       <RaceTable races={israelRaces} showDistance filterable />
     </section>
   )}
@@ -279,27 +222,6 @@ const schema = [
     max-width: 800px;
     margin-inline: auto;
     text-align: center;
-  }
-
-  .hero-logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    margin-top: var(--space-4);
-    padding-top: var(--space-4);
-    border-top: 1px solid var(--color-navy-700);
-  }
-
-  .hero-logo img {
-    border-radius: 50%;
-  }
-
-  .hero-logo span {
-    font-weight: 800;
-    font-size: 1.3rem;
-    letter-spacing: 0.02em;
-    color: var(--color-brand);
   }
 
   .calc-promo {
@@ -663,111 +585,10 @@ const schema = [
     font-size: 0.8rem;
   }
 
-  .discount-accordion summary {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: var(--space-2);
-    list-style: none;
-    cursor: pointer;
-  }
-
-  .discount-accordion summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .discount-accordion summary h2 {
-    margin: 0;
-  }
-
-  .discount-hint {
-    color: var(--color-brand);
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  .discount-accordion[open] .discount-hint {
-    display: none;
-  }
-
-  .discount-accordion .feature-toggle {
-    flex-shrink: 0;
-    font-size: 1.6rem;
-    line-height: 1;
-    color: var(--color-brand);
-    transition: transform 0.25s ease;
-  }
-
-  .discount-accordion[open] .feature-toggle {
-    transform: rotate(45deg);
-  }
-
-  .discount-accordion .section-note {
-    margin-top: var(--space-2);
-  }
-
-  .discount-accordion[open] .discount-list {
-    animation: discount-open 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .discount-accordion[open] .discount-list {
-      animation: none;
-    }
-  }
-
-  .discount-list {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--color-gray-100);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    background: var(--color-white);
-    margin-top: var(--space-2);
-  }
-
-  .discount-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2);
-    padding: var(--space-2) var(--space-3);
-    border-bottom: 1px solid var(--color-gray-100);
-  }
-
-  .discount-list .discount-row:last-child {
-    border-bottom: none;
-  }
-
-  .discount-race {
-    font-weight: 700;
-  }
-
-  .discount-note {
-    display: block;
-    font-weight: 400;
-    font-size: 0.78rem;
-    color: var(--color-text-muted);
-    margin-top: 0.15rem;
-  }
-
-  .discount-code {
-    flex: none;
-    background: var(--color-navy-950);
-    color: var(--color-gold-500);
-    font-weight: 700;
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.85em;
-  }
-
-  @keyframes discount-open {
-    from { opacity: 0; transform: scaleY(0.85); }
-    to { opacity: 1; transform: scaleY(1); }
-  }
-
   .update-note {
-    padding-block: var(--space-4);
+    margin-top: -0.5rem;
+    margin-bottom: var(--space-3);
+    font-size: 0.85rem;
   }
 
   .coming-soon-card {
