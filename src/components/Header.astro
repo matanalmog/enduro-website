@@ -15,7 +15,6 @@ export interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "לוח תחרויות", href: "/races/" },
-  { label: "מחשבוני ריצה", href: "/calculators/" },
   {
     label: "תוכניות אימון אונליין",
     href: "/training-plans/",
@@ -55,7 +54,11 @@ const navItems: NavItem[] = [
     ],
   },
   { label: "בלוג", href: "/blog/" },
-  { label: "אודות", href: "/about-me/" },
+  {
+    label: "אודות",
+    href: "/about-me/",
+    children: [{ label: "מחשבוני ריצה", href: "/calculators/" }],
+  },
 ];
 
 // CTA ראשי תמיד מצביע לטופס בדף הבית (#lead-form): עוגן בדף הבית עצמו,
