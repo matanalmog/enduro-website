@@ -110,6 +110,15 @@ const schema = [
     </div>
   </section>
 
+  <div class="container calc-promo">
+    <span class="calc-promo-icon" aria-hidden="true">&#128202;</span>
+    <span class="calc-promo-text">
+      <strong>מתכננים קצב למרוץ הבא?</strong>
+      זוני דופק, זוני קצב אימון, מנבא תוצאות ועוד - כל מחשבוני הריצה במקום אחד
+    </span>
+    <a href="/calculators/" class="btn calc-promo-btn">לכל המחשבונים &larr;</a>
+  </div>
+
   <div class="container promo-banner">
     <img src="/images/action/tomer-portrait-sunglasses.jpg" alt="תומר אלמוג" class="promo-photo" />
     <span class="promo-text">
@@ -263,6 +272,58 @@ const schema = [
     max-width: 800px;
     margin-inline: auto;
     text-align: center;
+  }
+
+  .calc-promo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-navy-950);
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+  }
+
+  .calc-promo-icon {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    border-radius: 50%;
+    background: var(--color-brand);
+  }
+
+  .calc-promo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    color: var(--color-gray-300);
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .calc-promo-text strong {
+    color: var(--color-white);
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+
+  .calc-promo-btn {
+    flex: none;
+    background: var(--color-brand);
+    color: var(--color-navy-950);
+    white-space: nowrap;
+    border: none;
+  }
+
+  .calc-promo-btn:hover,
+  .calc-promo-btn:focus-visible {
+    background: var(--color-brand-hover);
+    color: var(--color-white);
   }
 
   .promo-banner {

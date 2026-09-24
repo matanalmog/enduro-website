@@ -15,6 +15,7 @@ export interface NavItem {
 
 const navItems: NavItem[] = [
   { label: "לוח תחרויות", href: "/races/" },
+  { label: "מחשבוני ריצה", href: "/calculators/" },
   {
     label: "תוכניות אימון אונליין",
     href: "/training-plans/",
@@ -27,22 +28,6 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: "מאמן כושר אישי",
-    href: "/personal-coaching/",
-    children: [
-      { label: "שיפור יכולות אתלטיות לכדורגלנים", href: "/kids-coaching/football-conditioning/", groupLabel: "יכולות אתלטיות" },
-      { label: "מאמן כושר אישי לילדים", href: "/kids-coaching/ramat-hasharon/", groupLabel: "ילדים" },
-      { label: "מאמן כושר אישי לילדים בהרצליה", href: "/kids-coaching/herzliya/" },
-      { label: "מאמן כושר אישי לילדים בתל אביב", href: "/kids-coaching/tel-aviv/" },
-      { label: "הכנה לכיתות ספורט", href: "/kids-coaching/ramat-hasharon/" },
-      { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
-      { label: "מאמן כושר אישי לגיל השלישי", href: "/personal-coaching/seniors/", groupLabel: "גיל שלישי" },
-      { label: "מאמן כושר אישי למבוגרים", href: "/personal-coaching/ramat-hasharon/", groupLabel: "אימון למבוגרים" },
-      { label: "מאמן כושר אישי בהרצליה", href: "/personal-coaching/herzliya/" },
-      { label: "מאמן כושר אישי בתל אביב", href: "/personal-coaching/tel-aviv/" },
-    ],
-  },
-  {
     label: "קבוצות ריצה",
     href: "/groups/",
     children: [
@@ -51,6 +36,22 @@ const navItems: NavItem[] = [
       { label: "עסקים וארגונים", href: "/groups/business/" },
       { label: "שטח והרים", href: "/groups/trail/" },
       { label: "תל אביב", href: "/groups/tel-aviv/" },
+    ],
+  },
+  {
+    label: "מאמן כושר אישי",
+    href: "/personal-coaching/",
+    children: [
+      { label: "שיפור יכולות אתלטיות לכדורגלנים", href: "/kids-coaching/football-conditioning/", groupLabel: "יכולות אתלטיות" },
+      { label: "הכנה לכיתות ספורט", href: "/kids-coaching/ramat-hasharon/" },
+      { label: "מאמן כושר אישי לילדים", href: "/kids-coaching/ramat-hasharon/", groupLabel: "ילדים" },
+      { label: "מאמן כושר אישי לילדים בהרצליה", href: "/kids-coaching/herzliya/" },
+      { label: "מאמן כושר אישי לילדים בתל אביב", href: "/kids-coaching/tel-aviv/" },
+      { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
+      { label: "מאמן כושר אישי לגיל השלישי", href: "/personal-coaching/seniors/", groupLabel: "גיל שלישי" },
+      { label: "מאמן כושר אישי למבוגרים", href: "/personal-coaching/ramat-hasharon/", groupLabel: "אימון למבוגרים" },
+      { label: "מאמן כושר אישי בהרצליה", href: "/personal-coaching/herzliya/" },
+      { label: "מאמן כושר אישי בתל אביב", href: "/personal-coaching/tel-aviv/" },
     ],
   },
   { label: "בלוג", href: "/blog/" },

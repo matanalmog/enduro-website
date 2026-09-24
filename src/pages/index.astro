@@ -304,34 +304,57 @@ const schema = [
   </section>
 
   <section class="container section section-muted case-study">
-    <h2>1,088 ק״מ. 17 ימים. שביל ישראל אחד.</h2>
-    <h3>הדרך של ניצן פרידמן, מאילת ועד החרמון</h3>
-    <div class="case-stats">
-      <div class="case-stat"><span class="num" dir="ltr">1,088</span><span>ק״מ</span></div>
-      <div class="case-stat"><span class="num" dir="ltr">17</span><span>ימים</span></div>
-    </div>
-    <p>
-      במשך שנה שלמה ניצן פרידמן התכונן לאתגר יוצא דופן: לרוץ את שביל
-      ישראל מאילת ועד החרמון.
-    </p>
-    <p>
-      שנה של אימונים, תכנון, היכרות עם המסלול והיערכות לימים ארוכים של
-      ריצה. לאורך הדרך ליוויתי את ניצן כמאמן הריצה שלו, כחלק מצוות של
-      אנשים שסייעו לו להפוך את החלום למציאות.
-    </p>
-    <p>
-      הסיפור שלו ממחיש את מה שאני מאמין בו ב-ENDURO: מטרה גדולה
-      מתחילה בתוכנית, אבל הדרך אליה נבנית מאימון לאימון, עם התמדה,
-      התאמות ואנשים שמאמינים בך.
-    </p>
-    <a
-      href="https://www.shvoong.co.il/%D7%94%D7%AA%D7%A4%D7%A8%D7%A7%D7%AA%D7%99-%D7%91%D7%A1%D7%99%D7%95%D7%9D-%D7%91%D7%97%D7%A8%D7%9E%D7%95%D7%9F-%D7%A0%D7%99%D7%A6%D7%9F-%D7%A4%D7%A8%D7%99%D7%93%D7%9E%D7%9F-%D7%94%D7%A9%D7%9C/196699/"
-      class="btn btn-outline case-study-cta"
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      class="case-study-card"
+      role="button"
+      tabindex="0"
+      aria-haspopup="dialog"
+      data-lightbox-trigger="nitzan-story-lightbox"
     >
-      קראו את הסיפור של ניצן בשוונג &larr;
-    </a>
+      <span class="case-study-badge">סיפור מתאמן</span>
+      <h2>1,088 ק״מ. 17 ימים. שביל ישראל אחד.</h2>
+      <h3>הדרך של ניצן פרידמן, מאילת ועד החרמון</h3>
+      <div class="case-stats">
+        <div class="case-stat"><span class="num" dir="ltr">1,088</span><span>ק״מ</span></div>
+        <div class="case-stat"><span class="num" dir="ltr">17</span><span>ימים</span></div>
+      </div>
+      <span class="case-study-open">קראו את הסיפור המלא &larr;</span>
+    </div>
+
+    <dialog class="lightbox story-lightbox" id="nitzan-story-lightbox" aria-label="הסיפור של ניצן פרידמן">
+      <button type="button" class="lightbox-close" aria-label="סגירת הסיפור">&times;</button>
+      <div class="story-lightbox-content">
+        <span class="case-study-badge">סיפור מתאמן</span>
+        <h2>1,088 ק״מ. 17 ימים. שביל ישראל אחד.</h2>
+        <h3>הדרך של ניצן פרידמן, מאילת ועד החרמון</h3>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num" dir="ltr">1,088</span><span>ק״מ</span></div>
+          <div class="case-stat"><span class="num" dir="ltr">17</span><span>ימים</span></div>
+        </div>
+        <p>
+          במשך שנה שלמה ניצן פרידמן התכונן לאתגר יוצא דופן: לרוץ את שביל
+          ישראל מאילת ועד החרמון.
+        </p>
+        <p>
+          שנה של אימונים, תכנון, היכרות עם המסלול והיערכות לימים ארוכים של
+          ריצה. לאורך הדרך ליוויתי את ניצן כמאמן הריצה שלו, כחלק מצוות של
+          אנשים שסייעו לו להפוך את החלום למציאות.
+        </p>
+        <p>
+          הסיפור שלו ממחיש את מה שאני מאמין בו ב-ENDURO: מטרה גדולה
+          מתחילה בתוכנית, אבל הדרך אליה נבנית מאימון לאימון, עם התמדה,
+          התאמות ואנשים שמאמינים בך.
+        </p>
+        <a
+          href="https://www.shvoong.co.il/%D7%94%D7%AA%D7%A4%D7%A8%D7%A7%D7%AA%D7%99-%D7%91%D7%A1%D7%99%D7%95%D7%9D-%D7%91%D7%97%D7%A8%D7%9E%D7%95%D7%9F-%D7%A0%D7%99%D7%A6%D7%9F-%D7%A4%D7%A8%D7%99%D7%93%D7%9E%D7%9F-%D7%94%D7%A9%D7%9C/196699/"
+          class="btn btn-outline case-study-cta"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          קראו את הסיפור של ניצן בשוונג &larr;
+        </a>
+      </div>
+    </dialog>
   </section>
 
   <section class="container section" id="testimonials">
@@ -931,6 +954,109 @@ const schema = [
     margin-top: var(--space-2);
   }
 
+  /* כרטיס טיזר לחיץ שפותח פופ-אפ עם הסיפור המלא - יותר בולט ומזמין מבלוק טקסט רגיל */
+  .case-study-card {
+    cursor: pointer;
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-4);
+    background: linear-gradient(155deg, var(--color-navy-950), var(--color-navy-800));
+    color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .case-study-card:hover,
+  .case-study-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, var(--shadow-md));
+    outline: none;
+  }
+
+  .case-study-card h2,
+  .case-study-card h3 {
+    color: var(--color-white);
+  }
+
+  .case-study-card .case-stat .num {
+    color: var(--color-brand);
+  }
+
+  .case-study-card .case-stat span:last-child {
+    color: var(--color-gray-300);
+  }
+
+  .case-study-badge {
+    display: inline-block;
+    background: var(--color-brand);
+    color: var(--color-navy-950);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    margin-bottom: var(--space-2);
+  }
+
+  .case-study-open {
+    display: inline-block;
+    margin-top: var(--space-2);
+    font-weight: 700;
+    color: var(--color-brand);
+  }
+
+  .story-lightbox {
+    position: relative;
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: 0;
+    max-width: min(92vw, 640px);
+    max-height: 90vh;
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    overflow-y: auto;
+  }
+
+  .story-lightbox::backdrop {
+    background: rgba(11, 18, 32, 0.8);
+  }
+
+  .story-lightbox-content {
+    padding: var(--space-5) var(--space-4);
+    text-align: center;
+  }
+
+  .story-lightbox-content p {
+    color: var(--color-text-muted);
+    text-align: right;
+  }
+
+  .lightbox-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-close:focus-visible {
+    background: var(--color-brand);
+  }
+
+  .story-lightbox .lightbox-close {
+    position: sticky;
+    float: inline-end;
+    top: var(--space-2);
+    margin-inline-end: var(--space-2);
+  }
+
   .results-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1465,5 +1591,25 @@ const schema = [
         submitBtn.textContent = "שליחת פרטים";
       }
     }
+  });
+
+  // פתיחת פופ-אפ סיפור המתאמן (ניצן פרידמן) - כרטיס טיזר לחיץ עם תמיכת מקלדת (Enter/Space)
+  document.querySelectorAll<HTMLElement>("[data-lightbox-trigger]").forEach((trigger) => {
+    const dialogId = trigger.getAttribute("data-lightbox-trigger");
+    const dialog = dialogId ? document.getElementById(dialogId) : null;
+    if (!(dialog instanceof HTMLDialogElement)) return;
+
+    trigger.addEventListener("click", () => dialog.showModal());
+    trigger.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        dialog.showModal();
+      }
+    });
+
+    dialog.querySelector(".lightbox-close")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
   });
 </script>

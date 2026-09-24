@@ -1,0 +1,959 @@
+---
+// עמוד "מחשבונים" — ריכוז מחשבוני ריצה נוספים (לצד מחשבון הקצבים/זמן הסיום הקיים
+// בעמוד מרתון תל אביב, שנשאר שם ולא משוכפל כאן). כל מחשבון הוא JS וניל בסיסי,
+// באותה גישה כמו מחשבון מרתון ת"א - בלי framework, בלי שרת.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const ctaHref = "/?src=calculators#lead-form";
+
+const calcNav = [
+  { href: "#hr-zones", label: "זוני דופק" },
+  { href: "#pace-zones", label: "זוני קצב אימון" },
+  { href: "#interval-track", label: "מסלול-כביש" },
+  { href: "#treadmill", label: "המרת הליכון" },
+  { href: "#predictor", label: "מנבא תוצאות" },
+  { href: "/tel-aviv-marathon/#pace-calculator", label: "קצב וזמן סיום" },
+];
+---
+
+<BaseLayout
+  title="מחשבוני ריצה"
+  description="מחשבוני ריצה מבית ENDURO: זוני דופק, זוני קצב אימון, המרת קצב מסלול-כביש, המרת הליכון, ומנבא תוצאות מרוץ. כלים חינמיים למאמנים ורצים."
+  canonicalPath="/calculators/"
+>
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>מחשבוני ריצה</h1>
+      <p class="lead">
+        כלים מהירים לתכנון האימונים שלכם: זוני דופק, זוני קצב, המרות בין
+        מסלול, כביש והליכון, ומנבא תוצאות. כל המחשבונים כאן הם כלי עזר כללי,
+        לא תחליף לתוכנית אימונים מותאמת אישית.
+      </p>
+      <div class="hero-actions">
+        <a href={ctaHref} class="btn btn-primary">בדקו התאמה לתוכנית אישית &larr;</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="calc-nav container" aria-label="ניווט בין מחשבונים">
+    {calcNav.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+  </nav>
+
+  <!-- ===================== זוני דופק ===================== -->
+  <section class="container section section-muted" id="hr-zones">
+    <h2>מחשבון זוני דופק</h2>
+    <p class="section-note">
+      חשבו את זוני האימון שלכם לפי דופק, בשתי שיטות נפוצות: אחוז מהדופק
+      המקסימלי, או שיטת Karvonen (מתחשבת גם בדופק המנוחה).
+    </p>
+
+    <div class="calculator">
+      <div class="calc-mode-toggle" role="tablist" aria-label="שיטת חישוב דופק מקסימלי">
+        <button type="button" class="calc-mode-btn is-active" data-hrmax-mode="known" role="tab" aria-selected="true">אני יודע/ת דופק מקס'</button>
+        <button type="button" class="calc-mode-btn" data-hrmax-mode="age" role="tab" aria-selected="false">הערכה לפי גיל</button>
+      </div>
+
+      <div class="calc-panel" data-hrmax-panel="known">
+        <label for="hr-max-known">דופק מקסימלי (פעימות לדקה)</label>
+        <input type="number" id="hr-max-known" min="100" max="230" placeholder="לדוגמה 190" inputmode="numeric" />
+      </div>
+
+      <div class="calc-panel" data-hrmax-panel="age" hidden>
+        <label for="hr-age">גיל</label>
+        <input type="number" id="hr-age" min="10" max="100" placeholder="לדוגמה 35" inputmode="numeric" />
+        <p class="calc-hint">הערכה גסה לפי הנוסחה 220 פחות גיל. דופק מקסימלי אמיתי משתנה מאדם לאדם ועשוי לסטות מזה משמעותית.</p>
+      </div>
+
+      <div class="calc-row">
+        <label for="hr-method">שיטת חישוב הזוֹנים</label>
+        <select id="hr-method">
+          <option value="percent" selected>אחוז מהדופק המקסימלי (פשוטה)</option>
+          <option value="karvonen">Karvonen / HRR (לפי דופק מנוחה)</option>
+        </select>
+      </div>
+
+      <div class="calc-panel" id="hr-rest-panel" hidden>
+        <label for="hr-rest">דופק מנוחה (נמדד בבוקר, במנוחה)</label>
+        <input type="number" id="hr-rest" min="30" max="100" placeholder="לדוגמה 55" inputmode="numeric" />
+      </div>
+
+      <button type="button" id="hr-submit" class="btn btn-primary">חשבו זוֹנים</button>
+
+      <p id="hr-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="hr-results" class="calc-results" hidden>
+        <div class="table-wrap">
+          <table class="calc-splits">
+            <thead><tr><th>אזור</th><th>% </th><th>טווח דופק</th></tr></thead>
+            <tbody id="hr-zones-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">
+        הערכה כללית בלבד. דופק מקסימלי אמיתי (נמדד במבחן מאמץ) מדויק יותר
+        מהערכה לפי גיל. אם יש לכם מצב רפואי המשפיע על הדופק, התייעצו עם רופא.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== זוני קצב אימון ===================== -->
+  <section class="container section" id="pace-zones">
+    <h2>מחשבון זוני קצב אימון</h2>
+    <p class="section-note">
+      הזינו תוצאה ממרוץ אחרון, ובחרו שיטה לחישוב קצבי האימון: Daniels (VDOT),
+      שיטה מקצועית מבוססת מחקר, או אחוז פשוט מקצב המרוץ.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-row">
+        <label for="pz-distance">מרחק המרוץ האחרון</label>
+        <select id="pz-distance">
+          <option value="5">5 ק"מ</option>
+          <option value="10" selected>10 ק"מ</option>
+          <option value="21.0975">חצי מרתון</option>
+          <option value="42.195">מרתון מלא</option>
+        </select>
+      </div>
+
+      <div class="calc-panel">
+        <label id="pz-time-label">זמן הסיום (שעות : דקות : שניות)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="pz-time-label">
+          <input type="number" id="pz-time-h" min="0" max="9" placeholder="שע" inputmode="numeric" aria-label="שעות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="pz-time-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="pz-time-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות" />
+        </div>
+      </div>
+
+      <div class="calc-row">
+        <label for="pz-method">שיטת חישוב</label>
+        <select id="pz-method">
+          <option value="daniels" selected>Daniels (VDOT)</option>
+          <option value="percent">אחוז מקצב המרוץ (פשוטה)</option>
+        </select>
+      </div>
+
+      <button type="button" id="pz-submit" class="btn btn-primary">חשבו קצבי אימון</button>
+
+      <p id="pz-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="pz-results" class="calc-results" hidden>
+        <p id="pz-vdot-line" class="calc-result-line"></p>
+        <div class="table-wrap">
+          <table class="calc-splits">
+            <thead><tr><th>אזור</th><th>קצב לק"מ</th></tr></thead>
+            <tbody id="pz-zones-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">
+        חישוב קירוב לפי נוסחאות Daniels &amp; Gilbert הידועות (לא טבלת הספר
+        המדויקת) או לפי הפרשי קצב גסים. שני החישובים הם כלי עזר להכוונה
+        כללית, לא מרשם מדויק - התאמה אישית תלויה בבסיס האימונים והמטרה שלכם.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== מסלול-כביש (אינטרוולים) ===================== -->
+  <section class="container section section-muted" id="interval-track">
+    <h2>מחשבון קצב אינטרוולים: מסלול &harr; כביש</h2>
+    <p class="section-note">
+      המרה בין קצב ריצה בכביש (דקות לק"מ) לזמני הקפה במסלול אתלטיקה, לתכנון
+      אימוני אינטרוולים.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-mode-toggle" role="tablist" aria-label="כיוון ההמרה">
+        <button type="button" class="calc-mode-btn is-active" data-ivl-mode="pace" role="tab" aria-selected="true">יש לי קצב לק"מ</button>
+        <button type="button" class="calc-mode-btn" data-ivl-mode="rep" role="tab" aria-selected="false">יש לי זמן להקפה</button>
+      </div>
+
+      <div class="calc-panel" data-ivl-panel="pace">
+        <label id="ivl-pace-label">קצב (דקות : שניות לק"מ)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="ivl-pace-label">
+          <input type="number" id="ivl-pace-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות לק&quot;מ" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="ivl-pace-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות לק&quot;מ" />
+        </div>
+      </div>
+
+      <div class="calc-panel" data-ivl-panel="rep" hidden>
+        <div class="calc-row">
+          <label for="ivl-rep-distance">מרחק ההקפה</label>
+          <select id="ivl-rep-distance">
+            <option value="200">200 מ'</option>
+            <option value="400" selected>400 מ'</option>
+            <option value="800">800 מ'</option>
+            <option value="1000">1000 מ'</option>
+          </select>
+        </div>
+        <label id="ivl-rep-label">זמן להקפה (דקות : שניות)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="ivl-rep-label">
+          <input type="number" id="ivl-rep-m" min="0" max="9" placeholder="דק" inputmode="numeric" aria-label="דקות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="ivl-rep-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות" />
+        </div>
+      </div>
+
+      <button type="button" id="ivl-submit" class="btn btn-primary">חשבו</button>
+
+      <p id="ivl-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="ivl-results" class="calc-results" hidden>
+        <p id="ivl-result-line" class="calc-result-line"></p>
+        <div class="table-wrap">
+          <table class="calc-splits">
+            <thead><tr><th>מרחק הקפה</th><th>זמן</th></tr></thead>
+            <tbody id="ivl-splits-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">
+        החישוב מניח קצב אחיד ומסלול תקני של 400 מ'. בפועל תנאי המסלול, פניות
+        ורוח עשויים להשפיע על הזמן בפועל.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== המרת הליכון ===================== -->
+  <section class="container section" id="treadmill">
+    <h2>מחשבון המרת הליכון</h2>
+    <p class="section-note">
+      המרה בין קצב ריצה בכביש (דקות לק"מ) למהירות הליכון (קמ"ש), ולהפך.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-mode-toggle" role="tablist" aria-label="כיוון ההמרה">
+        <button type="button" class="calc-mode-btn is-active" data-tm-mode="pace" role="tab" aria-selected="true">קצב &larr; קמ"ש</button>
+        <button type="button" class="calc-mode-btn" data-tm-mode="speed" role="tab" aria-selected="false">קמ"ש &larr; קצב</button>
+      </div>
+
+      <div class="calc-panel" data-tm-panel="pace">
+        <label id="tm-pace-label">קצב (דקות : שניות לק"מ)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="tm-pace-label">
+          <input type="number" id="tm-pace-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות לק&quot;מ" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="tm-pace-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות לק&quot;מ" />
+        </div>
+      </div>
+
+      <div class="calc-panel" data-tm-panel="speed" hidden>
+        <label for="tm-speed">מהירות (קמ"ש)</label>
+        <input type="number" id="tm-speed" min="1" max="30" step="0.1" placeholder="לדוגמה 10.5" inputmode="decimal" />
+      </div>
+
+      <button type="button" id="tm-submit" class="btn btn-primary">המירו</button>
+
+      <p id="tm-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="tm-results" class="calc-results" hidden>
+        <p id="tm-result-line" class="calc-result-line"></p>
+      </div>
+
+      <p class="calc-disclaimer">
+        טיפ מקצועי נפוץ: ריצה על הליכון בשיפוע 0% קלה יותר מריצה בכביש
+        (אין התנגדות רוח), לכן רבים מוסיפים כ-1% שיפוע כדי לדמות מאמץ דומה
+        לחוץ.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== מנבא תוצאות ===================== -->
+  <section class="container section section-muted" id="predictor">
+    <h2>מחשבון מנבא תוצאות</h2>
+    <p class="section-note">
+      לפי נוסחת Riegel המוכרת: הזינו תוצאה ממרוץ אחד, וקבלו הערכה לזמן צפוי
+      במרחקים אחרים.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-row">
+        <label for="pred-distance">מרחק המרוץ שהזמן שלו ידוע</label>
+        <select id="pred-distance">
+          <option value="5">5 ק"מ</option>
+          <option value="10" selected>10 ק"מ</option>
+          <option value="21.0975">חצי מרתון</option>
+          <option value="42.195">מרתון מלא</option>
+        </select>
+      </div>
+
+      <div class="calc-panel">
+        <label id="pred-time-label">זמן (שעות : דקות : שניות)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="pred-time-label">
+          <input type="number" id="pred-time-h" min="0" max="9" placeholder="שע" inputmode="numeric" aria-label="שעות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="pred-time-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="pred-time-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות" />
+        </div>
+      </div>
+
+      <button type="button" id="pred-submit" class="btn btn-primary">חשבו תחזית</button>
+
+      <p id="pred-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="pred-results" class="calc-results" hidden>
+        <div class="table-wrap">
+          <table class="calc-splits">
+            <thead><tr><th>מרחק</th><th>זמן צפוי</th></tr></thead>
+            <tbody id="pred-splits-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">
+        תחזית מתמטית בלבד (נוסחת Riegel, חזקה 1.06), לא מביאה בחשבון תנאי
+        מסלול, מזג אוויר או רמת אימון ספציפית למרחק. שימושית כאומדן כיוון,
+        לא כהבטחת תוצאה.
+      </p>
+    </div>
+  </section>
+
+  <div class="container cta-band">
+    <p>רוצים תוכנית אימונים שבנויה סביב הקצבים והזוֹנים שלכם, לא טבלה כללית?</p>
+    <a href={ctaHref} class="btn btn-primary">בדקו התאמה לתוכנית אישית &larr;</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    padding-block: var(--space-6);
+  }
+
+  .hero-inner {
+    max-width: 720px;
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    margin-bottom: var(--space-2);
+  }
+
+  .lead {
+    color: var(--color-gray-300);
+    font-size: 1.05rem;
+    margin-bottom: var(--space-4);
+  }
+
+  .calc-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-block: var(--space-4);
+    position: sticky;
+    top: var(--header-height);
+    background: var(--color-white);
+    z-index: 10;
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .calc-nav a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-text);
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-100);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .calc-nav a:hover,
+  .calc-nav a:focus-visible {
+    border-color: var(--color-brand);
+    color: var(--color-brand-hover);
+  }
+
+  .section-note {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+    max-width: 640px;
+  }
+
+  .cta-band {
+    text-align: center;
+    padding-block: var(--space-5);
+  }
+
+  .cta-band p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  /* מחשבונים - סגנון משותף, אותה שפה עיצובית כמו מחשבון מרתון ת"א */
+  .calculator {
+    max-width: 520px;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-lg);
+    padding: var(--space-4);
+  }
+
+  .calc-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .calc-row label {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  .calc-row select,
+  .calc-panel input[type="number"] {
+    font: inherit;
+    padding: 0.65rem 0.85rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .calc-mode-toggle {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .calc-mode-btn {
+    flex: 1;
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.6rem 0.5rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-text);
+    cursor: pointer;
+    min-height: 44px;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .calc-mode-btn.is-active {
+    background: var(--color-navy-950);
+    border-color: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .calc-panel {
+    margin-bottom: var(--space-3);
+  }
+
+  .calc-panel label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .calc-hint {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+  }
+
+  .calc-time-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .calc-time-inputs input {
+    flex: 1;
+    min-width: 0;
+    font: inherit;
+    text-align: center;
+    padding: 0.65rem 0.4rem;
+    border: 1px solid var(--color-gray-300);
+    border-radius: var(--radius-sm);
+    min-height: 44px;
+  }
+
+  .calc-time-inputs span {
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .calculator .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .calc-error {
+    color: var(--color-orange-600, #a5411f);
+    background: var(--color-orange-100, #f7e2da);
+    border-radius: var(--radius-sm);
+    padding: 0.6rem 0.8rem;
+    font-size: 0.88rem;
+    margin-top: var(--space-2);
+  }
+
+  .calc-results {
+    margin-top: var(--space-3);
+  }
+
+  .calc-result-line {
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--color-navy-950);
+    margin-bottom: var(--space-2);
+  }
+
+  .calc-splits {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  .calc-splits th,
+  .calc-splits td {
+    text-align: right;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--color-gray-100);
+  }
+
+  .calc-disclaimer {
+    color: var(--color-text-muted);
+    font-size: 0.8rem;
+    font-style: italic;
+    margin-top: var(--space-3);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 600px) {
+    .calc-nav {
+      overflow-x: auto;
+      flex-wrap: nowrap;
+    }
+  }
+</style>
+
+<script>
+  // ---------- עזרים משותפים ----------
+  function formatTime(totalSecondsExact: number): string {
+    const totalSeconds = Math.round(totalSecondsExact);
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    const s = totalSeconds % 60;
+    const pad = (n: number) => String(n).padStart(2, "0");
+    return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`;
+  }
+
+  function formatPace(secondsPerKmExact: number): string {
+    const rounded = Math.round(secondsPerKmExact);
+    const m = Math.floor(rounded / 60);
+    const s = rounded % 60;
+    return `${m}:${String(s).padStart(2, "0")} לק"מ`;
+  }
+
+  function numOrNull(value: string): number | null {
+    if (value.trim() === "") return null;
+    const n = Number(value);
+    return Number.isFinite(n) ? n : null;
+  }
+
+  // ---------- זוני דופק ----------
+  (function hrZones() {
+    const hrMaxModeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-hrmax-mode]"));
+    const hrMaxKnownPanel = document.querySelector<HTMLElement>('[data-hrmax-panel="known"]');
+    const hrMaxAgePanel = document.querySelector<HTMLElement>('[data-hrmax-panel="age"]');
+    const hrMaxKnown = document.getElementById("hr-max-known") as HTMLInputElement | null;
+    const hrAge = document.getElementById("hr-age") as HTMLInputElement | null;
+    const hrMethod = document.getElementById("hr-method") as HTMLSelectElement | null;
+    const hrRestPanel = document.getElementById("hr-rest-panel");
+    const hrRest = document.getElementById("hr-rest") as HTMLInputElement | null;
+    const hrSubmit = document.getElementById("hr-submit");
+    const hrError = document.getElementById("hr-error");
+    const hrResults = document.getElementById("hr-results");
+    const hrZonesBody = document.getElementById("hr-zones-body");
+
+    let hrMaxMode: "known" | "age" = "known";
+
+    hrMaxModeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        hrMaxMode = btn.dataset.hrmaxMode === "age" ? "age" : "known";
+        hrMaxModeButtons.forEach((b) => {
+          b.classList.toggle("is-active", b === btn);
+          b.setAttribute("aria-selected", String(b === btn));
+        });
+        if (hrMaxKnownPanel) hrMaxKnownPanel.hidden = hrMaxMode !== "known";
+        if (hrMaxAgePanel) hrMaxAgePanel.hidden = hrMaxMode !== "age";
+      });
+    });
+
+    hrMethod?.addEventListener("change", () => {
+      if (hrRestPanel) hrRestPanel.hidden = hrMethod.value !== "karvonen";
+    });
+
+    function showHrError(message: string) {
+      if (hrError) {
+        hrError.textContent = message;
+        hrError.hidden = false;
+      }
+      if (hrResults) hrResults.hidden = true;
+    }
+
+    const ZONES = [
+      { name: "אזור 1 - התאוששות", lo: 0.5, hi: 0.6 },
+      { name: "אזור 2 - קל / אירובי", lo: 0.6, hi: 0.7 },
+      { name: "אזור 3 - בינוני", lo: 0.7, hi: 0.8 },
+      { name: "אזור 4 - סף", lo: 0.8, hi: 0.9 },
+      { name: "אזור 5 - מקסימלי", lo: 0.9, hi: 1.0 },
+    ];
+
+    hrSubmit?.addEventListener("click", () => {
+      if (hrError) hrError.hidden = true;
+
+      let maxHr: number | null;
+      if (hrMaxMode === "known") {
+        maxHr = numOrNull(hrMaxKnown?.value ?? "");
+      } else {
+        const age = numOrNull(hrAge?.value ?? "");
+        maxHr = age !== null ? 220 - age : null;
+      }
+      if (!maxHr || maxHr < 100 || maxHr > 230) {
+        showHrError("נא להזין דופק מקסימלי תקין, או גיל תקין.");
+        return;
+      }
+
+      const method = hrMethod?.value === "karvonen" ? "karvonen" : "percent";
+      let restHr = 0;
+      if (method === "karvonen") {
+        const rest = numOrNull(hrRest?.value ?? "");
+        if (!rest || rest < 30 || rest > 100 || rest >= maxHr) {
+          showHrError('נא להזין דופק מנוחה תקין (נמוך מהדופק המקסימלי).');
+          return;
+        }
+        restHr = rest;
+      }
+
+      if (hrZonesBody) {
+        hrZonesBody.innerHTML = ZONES.map((z) => {
+          const lo = method === "karvonen" ? (maxHr! - restHr) * z.lo + restHr : maxHr! * z.lo;
+          const hi = method === "karvonen" ? (maxHr! - restHr) * z.hi + restHr : maxHr! * z.hi;
+          return `<tr><td>${z.name}</td><td>${Math.round(z.lo * 100)}-${Math.round(z.hi * 100)}%</td><td>${Math.round(lo)}-${Math.round(hi)}</td></tr>`;
+        }).join("");
+      }
+      if (hrResults) hrResults.hidden = false;
+    });
+  })();
+
+  // ---------- זוני קצב אימון ----------
+  (function paceZones() {
+    const distanceSelect = document.getElementById("pz-distance") as HTMLSelectElement | null;
+    const timeH = document.getElementById("pz-time-h") as HTMLInputElement | null;
+    const timeM = document.getElementById("pz-time-m") as HTMLInputElement | null;
+    const timeS = document.getElementById("pz-time-s") as HTMLInputElement | null;
+    const methodSelect = document.getElementById("pz-method") as HTMLSelectElement | null;
+    const submitBtn = document.getElementById("pz-submit");
+    const errorEl = document.getElementById("pz-error");
+    const resultsEl = document.getElementById("pz-results");
+    const vdotLineEl = document.getElementById("pz-vdot-line");
+    const zonesBody = document.getElementById("pz-zones-body");
+
+    function showError(message: string) {
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      if (resultsEl) resultsEl.hidden = true;
+    }
+
+    // נוסחאות Daniels & Gilbert הפומביות (Running Formula) - קירוב לפי המהירות
+    // והזמן של תוצאת המרוץ, לא טבלת הזוֹנים המדויקת מהספר.
+    function vo2AtVelocity(vMeterPerMin: number): number {
+      return -4.6 + 0.182258 * vMeterPerMin + 0.000104 * vMeterPerMin ** 2;
+    }
+
+    function percentVo2Max(tMinutes: number): number {
+      return 0.8 + 0.1894393 * Math.exp(-0.012778 * tMinutes) + 0.2989558 * Math.exp(-0.1932605 * tMinutes);
+    }
+
+    function velocityForVo2(vo2Target: number): number {
+      // היפוך הריבועית של vo2AtVelocity: a*v^2 + b*v + c = 0
+      const a = 0.000104;
+      const b = 0.182258;
+      const c = -4.6 - vo2Target;
+      return (-b + Math.sqrt(b * b - 4 * a * c)) / (2 * a);
+    }
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+
+      const distanceKm = parseFloat(distanceSelect?.value ?? "10");
+      const h = parseInt(timeH?.value || "0", 10);
+      const m = parseInt(timeM?.value || "0", 10);
+      const s = parseInt(timeS?.value || "0", 10);
+      if (Number.isNaN(h) || Number.isNaN(m) || Number.isNaN(s) || h < 0 || m < 0 || m > 59 || s < 0 || s > 59) {
+        showError("פורמט זמן לא תקין (שעות:דקות:שניות).");
+        return;
+      }
+      const totalSeconds = h * 3600 + m * 60 + s;
+      if (totalSeconds <= 0) {
+        showError("נא להזין זמן גדול מאפס.");
+        return;
+      }
+      const totalMinutes = totalSeconds / 60;
+      const basePaceSecPerKm = totalSeconds / distanceKm;
+
+      const method = methodSelect?.value === "percent" ? "percent" : "daniels";
+
+      let zones: { name: string; paceSecPerKm: number }[];
+      if (method === "percent") {
+        if (vdotLineEl) vdotLineEl.textContent = "";
+        zones = [
+          { name: "קל (Easy)", paceSecPerKm: basePaceSecPerKm * 1.25 },
+          { name: "מרתון (Marathon)", paceSecPerKm: basePaceSecPerKm * 1.1 },
+          { name: "סף (Threshold)", paceSecPerKm: basePaceSecPerKm * 1.05 },
+          { name: "אינטרוולים (VO2max)", paceSecPerKm: basePaceSecPerKm * 0.98 },
+          { name: "חזרות מהירות (Repetition)", paceSecPerKm: basePaceSecPerKm * 0.92 },
+        ];
+      } else {
+        const raceVelocity = (distanceKm * 1000) / totalMinutes; // מטר לדקה
+        const vo2 = vo2AtVelocity(raceVelocity);
+        const pctMax = percentVo2Max(totalMinutes);
+        const vdot = vo2 / pctMax;
+        if (vdotLineEl) vdotLineEl.textContent = `VDOT משוער: ${vdot.toFixed(1)}`;
+
+        const zoneDefs = [
+          { name: "קל (Easy)", pct: 0.68 },
+          { name: "מרתון (Marathon)", pct: 0.8 },
+          { name: "סף (Threshold)", pct: 0.87 },
+          { name: "אינטרוולים (VO2max)", pct: 0.98 },
+          { name: "חזרות מהירות (Repetition)", pct: 1.08 },
+        ];
+        zones = zoneDefs.map((z) => {
+          const v = velocityForVo2(vdot * z.pct); // מטר לדקה
+          const paceSecPerKm = 1000 / (v / 60);
+          return { name: z.name, paceSecPerKm };
+        });
+      }
+
+      if (zonesBody) {
+        zonesBody.innerHTML = zones.map((z) => `<tr><td>${z.name}</td><td>${formatPace(z.paceSecPerKm)}</td></tr>`).join("");
+      }
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
+
+  // ---------- מסלול-כביש (אינטרוולים) ----------
+  (function intervalTrack() {
+    const modeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-ivl-mode]"));
+    const pacePanel = document.querySelector<HTMLElement>('[data-ivl-panel="pace"]');
+    const repPanel = document.querySelector<HTMLElement>('[data-ivl-panel="rep"]');
+    const paceM = document.getElementById("ivl-pace-m") as HTMLInputElement | null;
+    const paceS = document.getElementById("ivl-pace-s") as HTMLInputElement | null;
+    const repDistance = document.getElementById("ivl-rep-distance") as HTMLSelectElement | null;
+    const repM = document.getElementById("ivl-rep-m") as HTMLInputElement | null;
+    const repS = document.getElementById("ivl-rep-s") as HTMLInputElement | null;
+    const submitBtn = document.getElementById("ivl-submit");
+    const errorEl = document.getElementById("ivl-error");
+    const resultsEl = document.getElementById("ivl-results");
+    const resultLineEl = document.getElementById("ivl-result-line");
+    const splitsBody = document.getElementById("ivl-splits-body");
+
+    let mode: "pace" | "rep" = "pace";
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        mode = btn.dataset.ivlMode === "rep" ? "rep" : "pace";
+        modeButtons.forEach((b) => {
+          b.classList.toggle("is-active", b === btn);
+          b.setAttribute("aria-selected", String(b === btn));
+        });
+        if (pacePanel) pacePanel.hidden = mode !== "pace";
+        if (repPanel) repPanel.hidden = mode !== "rep";
+      });
+    });
+
+    function showError(message: string) {
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      if (resultsEl) resultsEl.hidden = true;
+    }
+
+    const REP_DISTANCES = [200, 400, 800, 1000, 1200, 1600];
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+
+      let paceSecPerKm: number;
+
+      if (mode === "pace") {
+        const m = parseInt(paceM?.value || "0", 10);
+        const s = parseInt(paceS?.value || "0", 10);
+        if (Number.isNaN(m) || Number.isNaN(s) || m < 0 || s < 0 || s > 59) {
+          showError('פורמט קצב לא תקין (דקות:שניות לק"מ).');
+          return;
+        }
+        paceSecPerKm = m * 60 + s;
+        if (paceSecPerKm <= 0) {
+          showError("קצב חייב להיות גדול מאפס.");
+          return;
+        }
+        if (resultLineEl) resultLineEl.textContent = `קצב: ${formatPace(paceSecPerKm)}`;
+      } else {
+        const dist = parseFloat(repDistance?.value ?? "400");
+        const m = parseInt(repM?.value || "0", 10);
+        const s = parseInt(repS?.value || "0", 10);
+        if (Number.isNaN(m) || Number.isNaN(s) || m < 0 || s < 0 || s > 59) {
+          showError("פורמט זמן להקפה לא תקין.");
+          return;
+        }
+        const repSeconds = m * 60 + s;
+        if (repSeconds <= 0) {
+          showError("זמן ההקפה חייב להיות גדול מאפס.");
+          return;
+        }
+        paceSecPerKm = (repSeconds / dist) * 1000;
+        if (resultLineEl) resultLineEl.textContent = `קצב מקביל: ${formatPace(paceSecPerKm)}`;
+      }
+
+      if (splitsBody) {
+        splitsBody.innerHTML = REP_DISTANCES.map((d) => {
+          const repSeconds = paceSecPerKm * (d / 1000);
+          const label = d >= 1000 ? `${(d / 1000).toFixed(1)} ק"מ` : `${d} מ'`;
+          return `<tr><td>${label}</td><td>${formatTime(repSeconds)}</td></tr>`;
+        }).join("");
+      }
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
+
+  // ---------- המרת הליכון ----------
+  (function treadmill() {
+    const modeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tm-mode]"));
+    const pacePanel = document.querySelector<HTMLElement>('[data-tm-panel="pace"]');
+    const speedPanel = document.querySelector<HTMLElement>('[data-tm-panel="speed"]');
+    const paceM = document.getElementById("tm-pace-m") as HTMLInputElement | null;
+    const paceS = document.getElementById("tm-pace-s") as HTMLInputElement | null;
+    const speedInput = document.getElementById("tm-speed") as HTMLInputElement | null;
+    const submitBtn = document.getElementById("tm-submit");
+    const errorEl = document.getElementById("tm-error");
+    const resultsEl = document.getElementById("tm-results");
+    const resultLineEl = document.getElementById("tm-result-line");
+
+    let mode: "pace" | "speed" = "pace";
+
+    modeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        mode = btn.dataset.tmMode === "speed" ? "speed" : "pace";
+        modeButtons.forEach((b) => {
+          b.classList.toggle("is-active", b === btn);
+          b.setAttribute("aria-selected", String(b === btn));
+        });
+        if (pacePanel) pacePanel.hidden = mode !== "pace";
+        if (speedPanel) speedPanel.hidden = mode !== "speed";
+      });
+    });
+
+    function showError(message: string) {
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      if (resultsEl) resultsEl.hidden = true;
+    }
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+
+      if (mode === "pace") {
+        const m = parseInt(paceM?.value || "0", 10);
+        const s = parseInt(paceS?.value || "0", 10);
+        if (Number.isNaN(m) || Number.isNaN(s) || m < 0 || s < 0 || s > 59) {
+          showError('פורמט קצב לא תקין (דקות:שניות לק"מ).');
+          return;
+        }
+        const paceSecPerKm = m * 60 + s;
+        if (paceSecPerKm <= 0) {
+          showError("קצב חייב להיות גדול מאפס.");
+          return;
+        }
+        const kmh = 3600 / paceSecPerKm;
+        if (resultLineEl) resultLineEl.textContent = `מהירות הליכון: ${kmh.toFixed(1)} קמ"ש`;
+      } else {
+        const kmh = numOrNull(speedInput?.value ?? "");
+        if (!kmh || kmh <= 0) {
+          showError('נא להזין מהירות תקינה (קמ"ש).');
+          return;
+        }
+        const paceSecPerKm = 3600 / kmh;
+        if (resultLineEl) resultLineEl.textContent = `קצב מקביל: ${formatPace(paceSecPerKm)}`;
+      }
+
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
+
+  // ---------- מנבא תוצאות (Riegel) ----------
+  (function predictor() {
+    const distanceSelect = document.getElementById("pred-distance") as HTMLSelectElement | null;
+    const timeH = document.getElementById("pred-time-h") as HTMLInputElement | null;
+    const timeM = document.getElementById("pred-time-m") as HTMLInputElement | null;
+    const timeS = document.getElementById("pred-time-s") as HTMLInputElement | null;
+    const submitBtn = document.getElementById("pred-submit");
+    const errorEl = document.getElementById("pred-error");
+    const resultsEl = document.getElementById("pred-results");
+    const splitsBody = document.getElementById("pred-splits-body");
+
+    const DISTANCES: { km: number; label: string }[] = [
+      { km: 5, label: '5 ק"מ' },
+      { km: 10, label: '10 ק"מ' },
+      { km: 21.0975, label: "חצי מרתון" },
+      { km: 42.195, label: "מרתון מלא" },
+    ];
+
+    function showError(message: string) {
+      if (errorEl) {
+        errorEl.textContent = message;
+        errorEl.hidden = false;
+      }
+      if (resultsEl) resultsEl.hidden = true;
+    }
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+
+      const knownKm = parseFloat(distanceSelect?.value ?? "10");
+      const h = parseInt(timeH?.value || "0", 10);
+      const m = parseInt(timeM?.value || "0", 10);
+      const s = parseInt(timeS?.value || "0", 10);
+      if (Number.isNaN(h) || Number.isNaN(m) || Number.isNaN(s) || h < 0 || m < 0 || m > 59 || s < 0 || s > 59) {
+        showError("פורמט זמן לא תקין (שעות:דקות:שניות).");
+        return;
+      }
+      const knownSeconds = h * 3600 + m * 60 + s;
+      if (knownSeconds <= 0) {
+        showError("נא להזין זמן גדול מאפס.");
+        return;
+      }
+
+      if (splitsBody) {
+        splitsBody.innerHTML = DISTANCES.filter((d) => Math.abs(d.km - knownKm) > 0.01)
+          .map((d) => {
+            const predictedSeconds = knownSeconds * (d.km / knownKm) ** 1.06;
+            return `<tr><td>${d.label}</td><td>${formatTime(predictedSeconds)}</td></tr>`;
+          })
+          .join("");
+      }
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
+</script>

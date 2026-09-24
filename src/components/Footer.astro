@@ -4,14 +4,13 @@
 import SocialIcon from "./SocialIcon.astro";
 
 const year = new Date().getFullYear();
-const isHome = Astro.url.pathname === "/";
-const ctaHref = isHome ? "#lead-form" : "/#lead-form";
 
 const quickLinks = [
   { label: "דף בית", href: "/" },
   { label: "תוכניות אימון אונליין", href: "/training-plans/" },
   { label: "קבוצות ריצה", href: "/groups/" },
   { label: "לוח תחרויות", href: "/races/" },
+  { label: "מחשבוני ריצה", href: "/calculators/" },
   { label: "בלוג", href: "/blog/" },
 ];
 
@@ -67,7 +66,6 @@ const socialLinks = [
           <li><a href={l.href}>{l.label}</a></li>
         ))}
       </ul>
-      <a href={ctaHref} class="btn btn-primary footer-cta">בדקו התאמה לתוכנית אישית</a>
     </nav>
 
     <div class="footer-col">
@@ -105,13 +103,6 @@ const socialLinks = [
     grid-template-columns: 1.6fr 1fr 1fr 1fr;
     gap: var(--space-4);
     padding-block: var(--space-5);
-  }
-
-  .footer-cta {
-    display: inline-block;
-    margin-top: var(--space-2);
-    font-size: 0.9rem;
-    padding: 0.55rem 1.1rem;
   }
 
   .footer-logo {
