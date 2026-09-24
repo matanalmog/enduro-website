@@ -36,6 +36,12 @@ const { gaMeasurementId } = Astro.props;
     box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.25);
   }
 
+  /* חובה יותר ספציפי מ-.cookie-banner כדי ש-hidden באמת יסתיר את הבאנר -
+     ראו הערה זהה ב-A11yWidget.astro. */
+  .cookie-banner[hidden] {
+    display: none;
+  }
+
   .cookie-banner p {
     margin: 0;
     color: var(--color-gray-300);

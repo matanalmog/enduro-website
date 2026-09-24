@@ -70,6 +70,13 @@
     gap: 0.4rem;
   }
 
+  /* חובה יותר ספציפי מ-.a11y-panel כדי שה-attribute hidden באמת יסתיר את הפאנל -
+     בלי זה, display:flex למעלה גובר על [hidden] ברירת המחדל של הדפדפן, והפאנל
+     נשאר פתוח לכל מבקר בטעינת העמוד. */
+  .a11y-panel[hidden] {
+    display: none;
+  }
+
   .a11y-panel-header {
     display: flex;
     align-items: center;
