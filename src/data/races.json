@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-24T09:06:55.414Z",
+  "generatedAt": "2026-09-25T09:28:33.209Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -15,17 +15,6 @@
     ]
   },
   "israel": [
-    {
-      "name": "מרוץ מדבר מצפה רמון",
-      "region": "הנגב והערבה",
-      "date": "2026-09-24",
-      "link": "https://starsrun.shvoong.co.il/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "5, 10, 21 ק\"מ",
-      "isNew": false,
-      "discountCode": "DRMR26",
-      "discountOrganizer": "Shvoong"
-    },
     {
       "name": "מרוץ נחל שורק",
       "region": "",
@@ -284,7 +273,7 @@
       "date": "2026-11-05",
       "link": "https://www.3plus.co.il/yavnerun",
       "source": "3plus.co.il",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3886,6 +3875,16 @@
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
+    },
+    {
+      "name": "Chisinau International Marathon",
+      "region": "Chisinau, Moldova",
+      "date": "2027-09-25",
+      "link": "https://www.marathon.md",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
     }
   ],
   "utmbSeries": [
@@ -4071,8 +4070,8 @@
       "date": "2026-10-10",
       "link": "https://kodiak.utmb.world/races/100K",
       "source": "utmb.world",
-      "distanceKm": 99.5,
-      "isNew": true,
+      "distanceKm": 99.7,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -4083,7 +4082,7 @@
       "link": "https://kodiak.utmb.world/races/50K",
       "source": "utmb.world",
       "distanceKm": 49,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -4094,7 +4093,7 @@
       "link": "https://kodiak.utmb.world/races/21K",
       "source": "utmb.world",
       "distanceKm": 13.5,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -4105,7 +4104,7 @@
       "link": "https://kodiak.utmb.world/races/10K",
       "source": "utmb.world",
       "distanceKm": 10,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     }
