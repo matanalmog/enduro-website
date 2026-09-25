@@ -1,0 +1,282 @@
+---
+// Palo Alto Runners - תוכנית מתקדמים, 5 שבועות. תוכן הטבלה מבוסס על הקובץ שסופק
+// (advanced_v2.html) - נתונים מדויקים, לא מומצאים.
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+const ctaHref = "/?src=palo-alto-advanced#lead-form";
+---
+
+<BaseLayout
+  title="Palo Alto Runners - תוכנית מתקדמים"
+  description="תוכנית אימונים של 5 שבועות לרמת מתקדמים בקבוצת Palo Alto Runners, בליווי תומר אלמוג, ENDURO."
+  canonicalPath="/groups/palo-alto-runners/advanced/"
+>
+  <section class="pa-hero pa-hero-advanced">
+    <div class="container">
+      <div class="pa-eyebrow">PALO ALTO RUNNERS &middot; תוכנית 5 שבועות</div>
+      <h1>מתקדמים - כל האימונים לפי שבוע</h1>
+      <p>אימון עליות באימון 1 בשבוע 4, ובאימון 2 בשבוע 3 (150 מ' x10). אימון 3 הוא ריצת רצף גדלה.</p>
+    </div>
+  </section>
+
+  <section class="container pa-main">
+    <div class="pa-legend">
+      <span><b>ר</b> = ריצה</span><span><b>ר.ק</b> = ריצה קלה</span><span><b>ה</b> = הליכה</span><span><b>—</b> אימון לא מתקיים</span>
+    </div>
+
+    <div class="pa-table-wrap">
+      <table class="pa-table">
+        <thead>
+          <tr class="g1">
+            <th class="week-col" rowspan="2">שבוע</th>
+            <th colspan="4">אימון 1</th>
+            <th colspan="4">אימון 2</th>
+            <th colspan="2">אימון 3</th>
+            <th rowspan="2">סה&quot;כ ריצה שבועי</th>
+          </tr>
+          <tr class="g2">
+            <th>חימום</th><th>עיקרי</th><th>זמן</th><th>זמן ריצה</th>
+            <th>חימום</th><th>עיקרי</th><th>זמן</th><th>זמן ריצה</th>
+            <th>עיקרי</th><th>זמן</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="week-cell">שבוע 1</th>
+            <td>5' ריצה+טכניקה</td><td><span dir="ltr">3-4</span>' ר / <span dir="ltr">1-2</span>' ר.ק</td><td class="total">30</td><td class="run">30</td>
+            <td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td>
+            <td>ריצת רצף קלה<br /><span class="sub-note">5' אחרונות בקצב מתפתח</span></td><td class="total">40</td>
+            <td class="total total-strong">70</td>
+          </tr>
+          <tr>
+            <th class="week-cell">שבוע 2</th>
+            <td>6' ריצה+טכניקה</td><td>4' ר / 2' ר.ק + מהירות</td><td class="total">33</td><td class="run">33</td>
+            <td>10' חימום קל + 5' שחרור קל</td><td>2' ר / 2' ר.ק</td><td class="total">35</td><td class="run">35</td>
+            <td>ריצת רצף קלה<br /><span class="sub-note">7' אחרונות בקצב מתפתח</span></td><td class="total">45</td>
+            <td class="total total-strong">113</td>
+          </tr>
+          <tr>
+            <th class="week-cell">שבוע 3</th>
+            <td>7' ריצה+טכניקה</td><td>5' ר / 2' ה + מהירות</td><td class="total">34</td><td class="run">~26</td>
+            <td colspan="3" class="hills-cell">אימון עליות</td><td class="run">30</td>
+            <td>ריצת רצף קלה<br /><span class="sub-note">9' אחרונות בקצב מתפתח</span></td><td class="total">50</td>
+            <td class="total total-strong">106</td>
+          </tr>
+          <tr>
+            <th class="week-cell">שבוע 4</th>
+            <td colspan="3" class="hills-cell">אימון עליות</td><td class="run">30</td>
+            <td>10' חימום קל + 5' שחרור קל</td><td>8' ר / 2' ה</td><td class="total total-onlight">45</td><td class="run">~39</td>
+            <td>ריצת רצף קלה<br /><span class="sub-note">11' אחרונות בקצב מתפתח</span></td><td class="total">55</td>
+            <td class="total total-strong">124</td>
+          </tr>
+          <tr>
+            <th class="week-cell">שבוע 5</th>
+            <td>9' ריצה+טכניקה</td><td>6' ר / 2' ה + מהירות</td><td class="total">40</td><td class="run">~32</td>
+            <td>10' חימום קל + 5' שחרור קל</td><td>3' ר / 2' ה</td><td class="total">40</td><td class="run">~30</td>
+            <td>ריצת רצף קלה<br /><span class="sub-note">13' אחרונות בקצב מתפתח</span></td><td class="total">45</td>
+            <td class="total total-strong">107</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="pa-disclaimer">
+      הקצב המוצג הוא מתווה כללי בלבד - קצב ההתקדמות בפועל משתנה בהתאם לרמת
+      הכושר וההתאוששות האישית של כל מתאמן/ת. מומלץ להתייעץ עם המאמן לפני
+      העלאת העומס בכל מעבר משבוע לשבוע.
+    </p>
+
+    <div class="pa-cta">
+      <p>רוצים תוכנית שמותאמת בדיוק לרמה ולקצב שלכם?</p>
+      <a href={ctaHref} class="btn btn-primary">בדקו התאמה לתוכנית אישית &larr;</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  :root {
+    --pa-accent: #ff4d6d;
+    --pa-accent-deep: #d81e4e;
+  }
+
+  .pa-hero {
+    background: linear-gradient(160deg, var(--color-navy-950) 0%, #251319 60%, var(--pa-accent-deep) 170%);
+    color: var(--color-white);
+    padding: var(--space-6) 0 var(--space-5);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pa-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 85% 20%, rgba(255, 77, 109, 0.35), transparent 55%);
+    pointer-events: none;
+  }
+
+  .pa-hero > .container {
+    position: relative;
+  }
+
+  .pa-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    color: var(--pa-accent);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .pa-hero h1 {
+    color: var(--color-white);
+    margin-bottom: var(--space-1);
+  }
+
+  .pa-hero p {
+    max-width: 560px;
+    margin: 0;
+    color: rgba(246, 243, 236, 0.8);
+  }
+
+  .pa-main {
+    padding-block: var(--space-5);
+  }
+
+  .pa-legend {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-3);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .pa-legend b {
+    color: var(--color-text);
+  }
+
+  .pa-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-gray-100);
+  }
+
+  .pa-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    background: var(--color-white);
+  }
+
+  .pa-table thead tr.g1 th {
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    font-size: 0.8rem;
+    padding: 0.65rem 0.5rem;
+    text-align: center;
+    border-inline-start: 2px solid var(--color-gray-50);
+  }
+
+  .pa-table thead tr.g2 th {
+    background: #2c1b20;
+    color: rgba(246, 243, 236, 0.85);
+    font-weight: 700;
+    font-size: 0.72rem;
+    padding: 0.5rem;
+    text-align: center;
+    border-inline-start: 1px solid rgba(246, 243, 236, 0.15);
+  }
+
+  .pa-table thead th.week-col {
+    position: sticky;
+    right: 0;
+    z-index: 4;
+    background: var(--color-navy-950);
+    text-align: right;
+    padding-inline-end: 0.9rem;
+  }
+
+  .pa-table tbody th.week-cell {
+    position: sticky;
+    right: 0;
+    background: var(--color-white);
+    text-align: right;
+    padding: 0.65rem 0.9rem;
+    font-weight: 800;
+    font-size: 0.88rem;
+    border-inline-end: 1px solid var(--color-gray-100);
+    white-space: nowrap;
+  }
+
+  .pa-table tbody td {
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    border-bottom: 1px solid var(--color-gray-100);
+    border-inline-start: 1px solid var(--color-gray-100);
+    vertical-align: middle;
+  }
+
+  .pa-table tbody tr:nth-child(even) td,
+  .pa-table tbody tr:nth-child(even) th.week-cell {
+    background: rgba(20, 24, 28, 0.03);
+  }
+
+  .pa-table td.total {
+    font-weight: 800;
+    color: var(--pa-accent-deep);
+    font-size: 0.85rem;
+  }
+
+  .pa-table td.total-strong {
+    font-weight: 900;
+  }
+
+  .pa-table td.total-onlight {
+    color: var(--color-text);
+  }
+
+  .pa-table td.run {
+    color: var(--color-text-muted);
+    font-size: 0.72rem;
+  }
+
+  .pa-table td.dash {
+    color: var(--color-text-muted);
+    opacity: 0.45;
+  }
+
+  .pa-table .hills-cell {
+    font-weight: 800;
+    color: var(--pa-accent-deep);
+    font-size: 0.8rem;
+    background: rgba(255, 77, 109, 0.16);
+  }
+
+  .pa-table .sub-note {
+    font-size: 0.68rem;
+    color: var(--color-text-muted);
+  }
+
+  .pa-disclaimer {
+    max-width: 760px;
+    margin: var(--space-4) auto 0;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+
+  .pa-cta {
+    text-align: center;
+    margin-top: var(--space-5);
+  }
+
+  .pa-cta p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+</style>
