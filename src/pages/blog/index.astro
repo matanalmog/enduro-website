@@ -113,7 +113,10 @@ const socialCards = [
       <div class="youtube-body">
         <h3>סרטוני אימון, טיפים ותוכן מהשטח</h3>
         <p>בערוץ היוטיוב שלי תמצאו הדגמות תרגילים, טכניקת ריצה נכונה, וקטעים מאימוני הקבוצות והתחרויות.</p>
-        <a href="https://www.youtube.com/@tomeralmog" target="_blank" rel="noopener noreferrer" class="btn btn-primary">צפו בערוץ</a>
+        <div class="youtube-actions">
+          <a href="/youtube-gallery/" class="btn btn-primary">כל הסרטונים לפי נושא</a>
+          <a href="https://www.youtube.com/@tomeralmog" target="_blank" rel="noopener noreferrer" class="btn btn-outline">צפו בערוץ</a>
+        </div>
       </div>
     </div>
   </section>
@@ -393,6 +396,17 @@ const socialCards = [
     color: var(--color-gray-300);
     margin-bottom: var(--space-3);
     max-width: 60ch;
+  }
+
+  .youtube-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .youtube-actions .btn-outline {
+    color: var(--color-white);
+    border-color: var(--color-gray-300);
   }
 
   @media (max-width: 600px) {
