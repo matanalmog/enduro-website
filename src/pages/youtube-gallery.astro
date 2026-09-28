@@ -1,18 +1,8 @@
 ---
-// עמוד טיוטה לסקירת כל סרטוני היוטיוב - לא מקושר מהניווט, noindex.
-// מחולק לנושאים לפי בחירת תומר.
+// עמוד גלריית סרטוני יוטיוב מחולקים לנושאים, מקושר מדף הבלוג.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
-import { youtubeVideos, categoryOrder, type YouTubeCategory } from "../data/youtube-videos";
-
-const categorySlugs: Record<YouTubeCategory, string> = {
-  "הכנה לריצה": "cat-warmup",
-  "טכניקת ריצה": "cat-technique",
-  "פליאומטרי": "cat-plyo",
-  "המלצות": "cat-testimonials",
-  "פציעות": "cat-injuries",
-  "תרגילי כח": "cat-strength",
-};
+import { youtubeVideos, categoryOrder, categorySlugs } from "../data/youtube-videos";
 
 const groups = categoryOrder
   .map((category) => ({
@@ -24,14 +14,13 @@ const groups = categoryOrder
 ---
 
 <BaseLayout
-  title="גלריית יוטיוב - טיוטה"
-  description="טיוטה פנימית לסקירת כל סרטוני ערוץ היוטיוב, מחולקים לנושאים"
+  title="סרטוני יוטיוב לפי נושא"
+  description="כל סרטוני ערוץ היוטיוב של תומר אלמוג, מחולקים לפי נושא: טכניקת ריצה, פליאומטרי, תרגילי כח ועוד."
   canonicalPath="/youtube-gallery/"
-  noindex={true}
 >
   <section class="container section">
-    <h1>גלריית יוטיוב (טיוטה) - {youtubeVideos.length} סרטונים</h1>
-    <p class="lead">עמוד פנימי לסקירה בלבד. לא מקושר מהניווט ולא מאונדקס.</p>
+    <h1>סרטוני יוטיוב לפי נושא</h1>
+    <p class="lead">כל הסרטונים מהערוץ שלי, מסודרים לפי נושא.</p>
 
     <nav class="category-nav" aria-label="קפיצה לקטגוריה">
       {groups.map((group) => (

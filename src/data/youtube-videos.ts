@@ -1,5 +1,5 @@
 // רשימת כל הסרטונים מערוץ היוטיוב של תומר אלמוג (ENDURO RUNNING TEAM)
-// נשלף מ-youtube.com/@tomeralmog/videos לצורך גלריית טיוטה (עמוד draft, לא מקושר, noindex).
+// נשלף מ-youtube.com/@tomeralmog/videos.
 export type YouTubeCategory =
   | "הכנה לריצה"
   | "טכניקת ריצה"
@@ -23,6 +23,16 @@ export const categoryOrder: YouTubeCategory[] = [
   "פציעות",
   "תרגילי כח",
 ];
+
+// עוגנים לקפיצה ישירה לכל קטגוריה
+export const categorySlugs: Record<YouTubeCategory, string> = {
+  "הכנה לריצה": "cat-warmup",
+  "טכניקת ריצה": "cat-technique",
+  "פליאומטרי": "cat-plyo",
+  "המלצות": "cat-testimonials",
+  "פציעות": "cat-injuries",
+  "תרגילי כח": "cat-strength",
+};
 
 export const youtubeVideos: YouTubeVideo[] = [
   // תרגילי כח
