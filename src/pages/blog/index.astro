@@ -130,6 +130,14 @@ const socialCards = [
       </div>
     </div>
 
+    <nav class="yt-category-nav" aria-label="קפיצה לקטגוריה">
+      {youtubeGroups.map((group) => (
+        <a href={`#${group.slug}`} class="yt-category-pill">
+          {group.category} <span class="count">({group.videos.length})</span>
+        </a>
+      ))}
+    </nav>
+
     <div class="youtube-groups">
       {youtubeGroups.map((group) => (
         <div class="yt-category-group" id={group.slug}>
@@ -433,6 +441,36 @@ const socialCards = [
   .youtube-actions .btn-outline {
     color: var(--color-white);
     border-color: var(--color-gray-300);
+  }
+
+  .yt-category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+
+  .yt-category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.15s ease;
+  }
+
+  .yt-category-pill:hover,
+  .yt-category-pill:focus-visible {
+    background: var(--color-brand);
+  }
+
+  .yt-category-pill .count {
+    color: var(--color-gray-300);
+    font-weight: 400;
   }
 
   .youtube-groups {
