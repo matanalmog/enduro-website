@@ -1,6 +1,7 @@
 // רשימת כל הסרטונים מערוץ היוטיוב של תומר אלמוג (ENDURO RUNNING TEAM)
 // נשלף מ-youtube.com/@tomeralmog/videos לצורך גלריית טיוטה (עמוד draft, לא מקושר, noindex).
 export type YouTubeCategory =
+  | "הכנה לריצה"
   | "טכניקת ריצה"
   | "פליאומטרי"
   | "המלצות"
@@ -15,6 +16,7 @@ export interface YouTubeVideo {
 
 // סדר הצגת הקטגוריות בגלריה
 export const categoryOrder: YouTubeCategory[] = [
+  "הכנה לריצה",
   "טכניקת ריצה",
   "פליאומטרי",
   "המלצות",
@@ -66,7 +68,7 @@ export const youtubeVideos: YouTubeVideo[] = [
   { videoId: "cnkxzX_-MYI", title: "עקבים לישבן (Butt Kicks) - ביצוע נכון, מנח גבוה", category: "טכניקת ריצה" },
   { videoId: "fWRd2Z1Hd_Y", title: "סקיפינג גבוה - איך לבצע הרמות ברכיים גבוהות", category: "טכניקת ריצה" },
   { videoId: "0A8x6tMi5cE", title: "סקיפינג - איך נכון לבצע הרמות ברכיים גבוהות", category: "טכניקת ריצה" },
-  { videoId: "SM0v_8yO-7A", title: "חימום דינמי מלא לאימון ריצה", category: "טכניקת ריצה" },
+  { videoId: "SM0v_8yO-7A", title: "חימום דינמי מלא לאימון ריצה", category: "הכנה לריצה" },
 
   // המלצות
   { videoId: "G_DLQ_eLkpE", title: "תומר אלמוג - מאמן כושר אישי, מאמן ריצה", category: "המלצות" },
