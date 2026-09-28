@@ -3,11 +3,20 @@
 // מחולק לנושאים לפי בחירת תומר.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
-import { youtubeVideos, categoryOrder } from "../data/youtube-videos";
+import { youtubeVideos, categoryOrder, type YouTubeCategory } from "../data/youtube-videos";
+
+const categorySlugs: Record<YouTubeCategory, string> = {
+  "טכניקת ריצה": "cat-technique",
+  "פליאומטרי": "cat-plyo",
+  "המלצות": "cat-testimonials",
+  "פציעות": "cat-injuries",
+  "תרגילי כח": "cat-strength",
+};
 
 const groups = categoryOrder
   .map((category) => ({
     category,
+    slug: categorySlugs[category],
     videos: youtubeVideos.filter((v) => v.category === category),
   }))
   .filter((group) => group.videos.length > 0);
@@ -23,8 +32,16 @@ const groups = categoryOrder
     <h1>גלריית יוטיוב (טיוטה) - {youtubeVideos.length} סרטונים</h1>
     <p class="lead">עמוד פנימי לסקירה בלבד. לא מקושר מהניווט ולא מאונדקס.</p>
 
+    <nav class="category-nav" aria-label="קפיצה לקטגוריה">
+      {groups.map((group) => (
+        <a href={`#${group.slug}`} class="category-pill">
+          {group.category} <span class="count">({group.videos.length})</span>
+        </a>
+      ))}
+    </nav>
+
     {groups.map((group) => (
-      <div class="category-group">
+      <div class="category-group" id={group.slug}>
         <h2>{group.category} <span class="count">({group.videos.length})</span></h2>
         <div class="video-grid">
           {group.videos.map((video) => (
@@ -46,11 +63,42 @@ const groups = categoryOrder
 
   .lead {
     color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .category-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
     margin-bottom: var(--space-5);
+  }
+
+  .category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.15s ease;
+  }
+
+  .category-pill:hover,
+  .category-pill:focus-visible {
+    background: var(--color-brand);
+  }
+
+  .category-pill .count {
+    color: var(--color-gray-300);
+    font-weight: 400;
   }
 
   .category-group {
     margin-bottom: var(--space-6);
+    scroll-margin-top: var(--space-4);
   }
 
   .category-group h2 {
