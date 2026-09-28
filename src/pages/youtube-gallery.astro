@@ -1,14 +1,21 @@
 ---
 // עמוד טיוטה לסקירת כל סרטוני היוטיוב - לא מקושר מהניווט, noindex.
-// אחרי סקירה נחלק את הסרטונים לנושאים (יחד עם תומר).
+// מחולק לנושאים לפי בחירת תומר.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
-import { youtubeVideos } from "../data/youtube-videos";
+import { youtubeVideos, categoryOrder } from "../data/youtube-videos";
+
+const groups = categoryOrder
+  .map((category) => ({
+    category,
+    videos: youtubeVideos.filter((v) => v.category === category),
+  }))
+  .filter((group) => group.videos.length > 0);
 ---
 
 <BaseLayout
   title="גלריית יוטיוב - טיוטה"
-  description="טיוטה פנימית לסקירת כל סרטוני ערוץ היוטיוב"
+  description="טיוטה פנימית לסקירת כל סרטוני ערוץ היוטיוב, מחולקים לנושאים"
   canonicalPath="/youtube-gallery/"
   noindex={true}
 >
@@ -16,14 +23,19 @@ import { youtubeVideos } from "../data/youtube-videos";
     <h1>גלריית יוטיוב (טיוטה) - {youtubeVideos.length} סרטונים</h1>
     <p class="lead">עמוד פנימי לסקירה בלבד. לא מקושר מהניווט ולא מאונדקס.</p>
 
-    <div class="video-grid">
-      {youtubeVideos.map((video) => (
-        <div class="video-card">
-          <YouTubeEmbed videoId={video.videoId} title={video.title} />
-          <p class="video-title">{video.title}</p>
+    {groups.map((group) => (
+      <div class="category-group">
+        <h2>{group.category} <span class="count">({group.videos.length})</span></h2>
+        <div class="video-grid">
+          {group.videos.map((video) => (
+            <div class="video-card">
+              <YouTubeEmbed videoId={video.videoId} title={video.title} />
+              <p class="video-title">{video.title}</p>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </section>
 </BaseLayout>
 
@@ -34,7 +46,23 @@ import { youtubeVideos } from "../data/youtube-videos";
 
   .lead {
     color: var(--color-text-muted);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .category-group {
+    margin-bottom: var(--space-6);
+  }
+
+  .category-group h2 {
+    border-bottom: 2px solid var(--color-brand);
+    padding-bottom: var(--space-2);
+    margin-bottom: var(--space-3);
+  }
+
+  .count {
+    color: var(--color-text-muted);
+    font-weight: 400;
+    font-size: 1rem;
   }
 
   .video-grid {
