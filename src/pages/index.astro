@@ -5,6 +5,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TestimonialCard from "../components/TestimonialCard.astro";
 import FaqItem from "../components/FaqItem.astro";
+import YouTubeEmbed from "../components/YouTubeEmbed.astro";
 import { trainingPlans } from "../data/training-plans";
 
 const beginnersPlan = trainingPlans.find((p) => p.slug === "beginners")!;
@@ -359,6 +360,9 @@ const schema = [
 
   <section class="container section" id="testimonials">
     <h2>מה אומרים המתאמנים?</h2>
+    <div class="testimonial-video-wrap">
+      <YouTubeEmbed videoId="qnZj0NIhzd4" title="ממליץ על תומר אלמוג" start={2} />
+    </div>
     <div class="results-grid">
       <TestimonialCard
         image="/images/testimonials/oshr-zelig.jpg"
@@ -1061,6 +1065,11 @@ const schema = [
     float: inline-end;
     top: var(--space-2);
     margin-inline-end: var(--space-2);
+  }
+
+  .testimonial-video-wrap {
+    max-width: 640px;
+    margin: 0 auto var(--space-4);
   }
 
   .results-grid {

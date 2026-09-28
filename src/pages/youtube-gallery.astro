@@ -1,0 +1,57 @@
+---
+// עמוד טיוטה לסקירת כל סרטוני היוטיוב - לא מקושר מהניווט, noindex.
+// אחרי סקירה נחלק את הסרטונים לנושאים (יחד עם תומר).
+import BaseLayout from "../layouts/BaseLayout.astro";
+import YouTubeEmbed from "../components/YouTubeEmbed.astro";
+import { youtubeVideos } from "../data/youtube-videos";
+---
+
+<BaseLayout
+  title="גלריית יוטיוב - טיוטה"
+  description="טיוטה פנימית לסקירת כל סרטוני ערוץ היוטיוב"
+  canonicalPath="/youtube-gallery/"
+  noindex={true}
+>
+  <section class="container section">
+    <h1>גלריית יוטיוב (טיוטה) - {youtubeVideos.length} סרטונים</h1>
+    <p class="lead">עמוד פנימי לסקירה בלבד. לא מקושר מהניווט ולא מאונדקס.</p>
+
+    <div class="video-grid">
+      {youtubeVideos.map((video) => (
+        <div class="video-card">
+          <YouTubeEmbed videoId={video.videoId} title={video.title} />
+          <p class="video-title">{video.title}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    padding-block: var(--space-5);
+  }
+
+  .lead {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-4);
+  }
+
+  .video-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .video-title {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    margin: 0;
+  }
+</style>

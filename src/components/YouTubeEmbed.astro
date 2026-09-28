@@ -1,0 +1,107 @@
+---
+// הטמעת יוטיוב "לחיצה לטעינה" - טוען רק תמונה ממוזערת עד שלוחצים על play,
+// כדי לא לטעון סקריפטים/עוגיות של יוטיוב לכל מבקר בעמוד ללא צורך.
+export interface Props {
+  videoId: string;
+  title: string;
+  start?: number;
+}
+
+const { videoId, title, start } = Astro.props;
+const startParam = start ? `&start=${start}` : "";
+---
+
+<div class="yt-embed" data-video-id={videoId} data-start-param={startParam}>
+  <button type="button" class="yt-play" aria-label={`הפעלת הסרטון: ${title}`}>
+    <img
+      src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
+      alt={title}
+      loading="lazy"
+      width="480"
+      height="270"
+    />
+    <span class="yt-play-icon" aria-hidden="true">
+      <svg viewBox="0 0 68 48" width="68" height="48">
+        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.41 6.19C.13 13.05 0 24 0 24s.13 10.95 1.49 16.26c.78 2.93 2.48 5.41 5.41 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.87 34.95 68 24 68 24s-.13-10.95-1.48-16.26z" fill="#f00" />
+        <path d="M45 24 27 14v20" fill="#fff" />
+      </svg>
+    </span>
+  </button>
+</div>
+
+<style>
+  .yt-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-navy-950);
+  }
+
+  .yt-play {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .yt-play img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .yt-play-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .yt-play-icon svg {
+    width: 64px;
+    height: auto;
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+    transition: transform 0.15s ease;
+  }
+
+  .yt-play:hover .yt-play-icon svg,
+  .yt-play:focus-visible .yt-play-icon svg {
+    transform: scale(1.08);
+  }
+
+  .yt-embed iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".yt-embed").forEach((wrap) => {
+    const btn = wrap.querySelector(".yt-play");
+    btn?.addEventListener(
+      "click",
+      () => {
+        const videoId = wrap.dataset.videoId;
+        const startParam = wrap.dataset.startParam || "";
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1${startParam}`;
+        iframe.title = "YouTube video player";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        wrap.innerHTML = "";
+        wrap.appendChild(iframe);
+      },
+      { once: true }
+    );
+  });
+</script>

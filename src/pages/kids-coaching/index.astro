@@ -1,6 +1,7 @@
 ---
 // עמוד-שער ל"מאמן כושר ילדים" — מפנה ל-3 עמודי הערים (סעיף 2 באפיון).
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import { kidsCoachingPages } from "../../data/kids-coaching";
 
 const sortedPages = [...kidsCoachingPages].sort((a, b) => a.order - b.order);
@@ -29,6 +30,13 @@ const sortedPages = [...kidsCoachingPages].sort((a, b) => a.order - b.order);
           <p>{page.intro[0]}</p>
         </a>
       ))}
+    </div>
+  </section>
+
+  <section class="container section video-section">
+    <h2>קשב וריכוז אצל ילדים</h2>
+    <div class="video-wrap">
+      <YouTubeEmbed videoId="ONClvEF4CHw" title="קשב וריכוז אצל ילדים - תומר אלמוג" />
     </div>
   </section>
 
@@ -103,6 +111,16 @@ const sortedPages = [...kidsCoachingPages].sort((a, b) => a.order - b.order);
     color: var(--color-text-muted);
     font-size: 0.9rem;
     margin: 0;
+  }
+
+  .video-section h2 {
+    text-align: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .video-wrap {
+    max-width: 640px;
+    margin-inline: auto;
   }
 
   .cta-band {
