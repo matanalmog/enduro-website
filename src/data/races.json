@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T09:53:15.109Z",
+  "generatedAt": "2026-09-28T10:41:45.593Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -525,106 +525,6 @@
     }
   ],
   "international": [
-    {
-      "name": "BMW Berlin-Marathon",
-      "region": "Paul-Lobe-Allee, Berlin, Germany",
-      "date": "2026-09-27",
-      "link": "https://www.bmw-berlin-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "48th Warsaw Marathon",
-      "region": "Poland",
-      "date": "2026-09-27",
-      "link": "https://maratonwarszawski.com/en/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Wipro Bengaluru Marathon",
-      "region": "Bengaluru, India",
-      "date": "2026-09-27",
-      "link": "https://www.bengalurumarathon.in",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Hengshui Lake International Marathon",
-      "region": "Hengshui, China",
-      "date": "2026-09-27",
-      "link": "https://www.hengshuilakemarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "H.C. Andersen Marathon",
-      "region": "Denmark",
-      "date": "2026-09-27",
-      "link": "https://www.hcamarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Hunnewell Cement - TbilisiMarathon",
-      "region": "Tbilisi, Georgia",
-      "date": "2026-09-27",
-      "link": "https://www.tbilisimarathon.ge",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Kuching Marathon",
-      "region": "Kuching, Malaysia",
-      "date": "2026-09-27",
-      "link": "https://www.marathonkuching.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Almaty Marathon",
-      "region": "Kazakhstan",
-      "date": "2026-09-27",
-      "link": "https://almaty-marathon.kz/en/events",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Baxters Loch Ness Marathon & Festival of Running",
-      "region": "Loch Ness",
-      "date": "2026-09-27",
-      "link": "https://www.lochnessmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Trento Half Marathon",
-      "region": "Trento, Italy",
-      "date": "2026-09-27",
-      "link": "https://www.trentorunningfestival.it",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
     {
       "name": "Amman International Marathon",
       "region": "Jordan",
