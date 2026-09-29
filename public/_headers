@@ -1,0 +1,10 @@
+# כותרות אבטחה גלובליות (OWASP Top 10:2025 - A02 Security Misconfiguration).
+# הפקד היחיד שדורש 'unsafe-inline' הוא script-src/style-src, כי הרכיבים באתר (ווידג'ט
+# נגישות, באנר עוגיות, מחשבונים, שאלון) משתמשים בתגי <script>/<style> מוטבעים ללא nonce -
+# זו פשרה מודעת, לא פיקוח. אין להוסיף מקורות חדשים בלי לעדכן את הרשימה כאן.
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://i.ytimg.com; font-src 'self' https://fonts.gstatic.com; frame-src https://www.youtube-nocookie.com; connect-src 'self' https://script.google.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'
