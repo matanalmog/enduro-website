@@ -204,9 +204,12 @@ const schema = [
         רפואי מיוחד עליי להתייעץ עם רופא לפני תחילת האימונים.
       </label>
 
-      <button type="submit" class="btn btn-primary">שליחת ההצהרה</button>
+      <label class="consent-field">
+        <input type="checkbox" name="privacy_consent" required />
+        <span>קראתי ואני מאשר/ת את <a href="#privacy">תקנון ומדיניות הפרטיות</a>, כולל השימוש במידע הרפואי שמסרתי כמפורט שם *</span>
+      </label>
 
-      <p class="form-privacy">בשליחת הטופס אתם מאשרים את <a href="#privacy">תקנון ומדיניות הפרטיות</a>.</p>
+      <button type="submit" class="btn btn-primary">שליחת ההצהרה</button>
     </form>
   </section>
 
@@ -421,7 +424,7 @@ const schema = [
     font-size: 0.92rem;
   }
 
-  input,
+  input:not([type="checkbox"]),
   select,
   textarea {
     font: inherit;
@@ -432,12 +435,33 @@ const schema = [
     color: var(--color-text);
   }
 
-  input:focus,
+  input:not([type="checkbox"]):focus,
   select:focus,
   textarea:focus {
     outline: none;
     border-color: var(--color-brand);
     box-shadow: 0 0 0 3px var(--color-orange-100);
+  }
+
+  .consent-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: var(--space-2);
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+  }
+
+  .consent-field input {
+    margin-top: 0.2rem;
+    flex: none;
+    width: 16px;
+    height: 16px;
+  }
+
+  .consent-field a {
+    color: var(--color-brand-hover);
   }
 
   .checklist {
