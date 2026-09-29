@@ -7,6 +7,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 const SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbxN5rBCrPIsKcDsr-HSWXoq0pMLglF5FaT8jwaC89FTAVJoMBE4kjnI7nRWlnAfIlHW/exec";
 
+// "טוקן" קבוע שנשלח עם כל בקשה אמיתית, כדי שהסקריפט ידע לדחות בוטי-ספאם גנריים שמצאו
+// את כתובת ה-URL לבד וזורקים אליה בקשות אקראיות. חייב להיות זהה לערך ב-EXPECTED_TOKEN
+// בקוד ה-Apps Script (Extensions -> Apps Script בגיליון) - שינוי כאן דורש שינוי שם גם.
+// זו לא הגנה נגד תוקף ממוקד שקורא את קוד העמוד (הטוקן גלוי שם, בהכרח), רק נגד ספאם גורף.
+const FORM_TOKEN = "513ade944cd9f7f00058ee0bdf8d32f9";
+
 const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", "שישי", "שבת"];
 ---
 
@@ -37,6 +43,14 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
       </div>
 
       <form id="q-form" novalidate>
+        <!-- מלכודת בוטים: שדה מוסתר מעין אנושית (position off-screen, לא display:none -
+             חלק מהבוטים מדלגים על שדות עם display:none). בן-אדם אמיתי לא יגיע אליו ולא
+             ימלא אותו; בוט שממלא טפסים אוטומטית לרוב כן ימלא כל שדה שהוא מוצא ב-DOM.
+             אם הוא מלא בזמן השליחה - עוצרים בשקט בלי לשלוח כלום. -->
+        <div class="q-hp" aria-hidden="true">
+          <label for="q-hp-field">השאירו שדה זה ריק</label>
+          <input type="text" id="q-hp-field" name="אתר_אינטרנט" tabindex="-1" autocomplete="off" />
+        </div>
         <!-- 1. פרטים אישיים -->
         <div class="q-step" data-step="1">
           <p class="q-kicker">1 · פרטים אישיים</p>
@@ -545,6 +559,14 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     gap: 0.5rem;
   }
 
+  .q-hp {
+    position: absolute;
+    left: -5000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
   .q-field input[type="text"],
   .q-field input[type="number"],
   .q-field input[type="email"],
@@ -789,7 +811,7 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
   }
 </style>
 
-<script define:vars={{ SCRIPT_URL }}>
+<script define:vars={{ SCRIPT_URL, FORM_TOKEN }}>
   const form = document.getElementById("q-form");
   const steps = [...form.querySelectorAll(".q-step")];
   const doneScreen = form.querySelector(".q-done");
@@ -904,12 +926,28 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     form.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  function showThankYou() {
+    steps.forEach((s) => (s.hidden = true));
+    document.querySelector(".q-nav").hidden = true;
+    doneScreen.hidden = false;
+    doneScreen.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (!isStepValid(current)) {
       errorEl.hidden = false;
       return;
     }
+
+    // מלכודת בוטים: אם השדה המוסתר מלא, זה כמעט בוודאות בוט. מציגים "תודה" כרגיל
+    // (כדי לא לחשוף לבוט שזוהה) אבל לא שולחים כלום בפועל.
+    const honeypot = document.getElementById("q-hp-field");
+    if (honeypot && honeypot.value) {
+      showThankYou();
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = "שולח...";
 
@@ -920,10 +958,12 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     const multiValueFields = ["ימי ריצה", "ימי כוח"];
     const payload = {};
     for (const key of new Set(formData.keys())) {
+      if (key === "אתר_אינטרנט") continue; // שדה המלכודת עצמו - לא רלוונטי לגיליון
       payload[key] = multiValueFields.includes(key)
         ? formData.getAll(key).join(", ")
         : formData.get(key);
     }
+    payload._token = FORM_TOKEN;
 
     try {
       await fetch(SCRIPT_URL, {
@@ -932,13 +972,18 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
         body: JSON.stringify(payload),
       });
     } catch {
-      // no-cors לא מאפשר לקרוא את התגובה; ממשיכים למסך התודה בכל מקרה.
+      // no-cors לא מאפשר לקרוא סטטוס הצלחה/כישלון מהשרת - אבל fetch עדיין נכשל (throw)
+      // על תקלת רשת אמיתית (לדוגמה: אין אינטרנט, DNS נכשל, CSP חסם את הבקשה).
+      // במקרה כזה לא מעלימים את זה - מציגים שגיאה אמיתית במקום "תודה" שקרי.
+      submitBtn.disabled = false;
+      submitBtn.textContent = "שליחה";
+      errorEl.textContent = "השליחה נכשלה עקב בעיית תקשורת. בדקו את החיבור לאינטרנט ונסו שוב, או צרו קשר ישירות בטלפון/וואטסאפ.";
+      errorEl.hidden = false;
+      shakeCard();
+      return;
     }
 
-    steps.forEach((s) => (s.hidden = true));
-    document.querySelector(".q-nav").hidden = true;
-    doneScreen.hidden = false;
-    doneScreen.scrollIntoView({ behavior: "smooth", block: "start" });
+    showThankYou();
   });
 
   showStep(current);
