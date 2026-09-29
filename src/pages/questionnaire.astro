@@ -389,8 +389,8 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
         <p class="q-error" id="q-error" hidden>נא למלא את כל השדות המסומנים בשלב זה.</p>
 
         <div class="q-nav">
-          <button type="button" class="btn btn-outline" id="q-back">חזרה</button>
-          <button type="button" class="btn btn-primary" id="q-next">המשך</button>
+          <button type="button" class="btn btn-outline" id="q-back">→ חזרה</button>
+          <button type="button" class="btn btn-primary" id="q-next">המשך ←</button>
           <button type="submit" class="btn btn-primary" id="q-submit" hidden>שליחה</button>
         </div>
       </form>
@@ -458,6 +458,16 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     background: linear-gradient(90deg, var(--color-brand) 50%, var(--color-gray-100) 50%);
   }
 
+  .q-lanes span.clickable {
+    cursor: pointer;
+  }
+
+  .q-lanes span.clickable:hover,
+  .q-lanes span.clickable:focus-visible {
+    transform: scaleY(1.6);
+    outline: none;
+  }
+
   .q-track-label {
     margin-top: var(--space-2);
     font-size: 0.85rem;
@@ -488,6 +498,38 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
   .q-step h2 {
     font-size: 1.35rem;
     margin: 0 0 0.4rem;
+  }
+
+  .q-step {
+    animation: q-step-enter 0.35s ease;
+  }
+
+  @keyframes q-step-enter {
+    from { opacity: 0; transform: translateX(-12px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .q-step {
+      animation: none;
+    }
+  }
+
+  .q-card.shake {
+    animation: q-shake 0.4s ease;
+  }
+
+  @keyframes q-shake {
+    10%, 90% { transform: translateX(-2px); }
+    20%, 80% { transform: translateX(3px); }
+    30%, 50%, 70% { transform: translateX(-5px); }
+    40%, 60% { transform: translateX(5px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .q-card.shake {
+      animation: none;
+    }
   }
 
   .q-desc {
@@ -586,13 +628,18 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
   .choice span {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 0.65rem 1.15rem;
     border-radius: 999px;
     border: 1px solid var(--color-gray-100);
     background: var(--color-gray-50);
     font-size: 0.88rem;
     color: var(--color-text-muted);
-    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  }
+
+  .choice:hover span {
+    border-color: var(--color-brand);
+    transform: translateY(-1px);
   }
 
   .choice input:checked + span {
@@ -600,6 +647,7 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     border-color: var(--color-brand);
     color: var(--color-brand-hover);
     font-weight: 700;
+    transform: scale(1.04);
   }
 
   .choice input:focus-visible + span {
@@ -643,6 +691,18 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     padding: 0;
     border: none;
     background: none;
+    height: 28px;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
   }
 
   .range-val {
@@ -745,6 +805,21 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
 
   for (let i = 0; i < total; i++) {
     const lane = document.createElement("span");
+    lane.tabIndex = 0;
+    lane.setAttribute("role", "button");
+    lane.addEventListener("click", () => {
+      if (i + 1 < current) {
+        current = i + 1;
+        showStep(current);
+        form.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    });
+    lane.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        lane.click();
+      }
+    });
     lanesEl.appendChild(lane);
   }
   const lanes = [...lanesEl.children];
@@ -753,6 +828,7 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     lanes.forEach((lane, i) => {
       lane.classList.toggle("done", i < current - 1);
       lane.classList.toggle("current", i === current - 1);
+      lane.classList.toggle("clickable", i + 1 < current);
     });
     stepNumEl.textContent = String(current);
     stepPctEl.textContent = `${Math.round((current / total) * 100)}%`;
@@ -800,11 +876,21 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     fitnessVal.textContent = fitnessRange.value;
   });
 
+  const qCard = document.querySelector(".q-card");
+
+  function shakeCard() {
+    qCard.classList.remove("shake");
+    // force reflow so the animation restarts if it's already mid-run
+    void qCard.offsetWidth;
+    qCard.classList.add("shake");
+  }
+
   nextBtn.addEventListener("click", () => {
     if (!isStepValid(current)) {
       const step = steps.find((s) => Number(s.dataset.step) === current);
       step.querySelector("input:invalid, select:invalid, textarea:invalid")?.reportValidity();
       errorEl.hidden = false;
+      shakeCard();
       return;
     }
     current = Math.min(current + 1, total);
