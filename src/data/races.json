@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-28T10:41:45.593Z",
+  "generatedAt": "2026-09-29T10:29:30.348Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -257,11 +257,12 @@
       "discountOrganizer": "Shvoong"
     },
     {
-      "name": "מרוץ הלילה של יבנה 2026",
+      "name": "מרוץ הלילה של יבנה",
       "region": "",
       "date": "2026-11-05",
-      "link": "https://www.3plus.co.il/yavnerun",
-      "source": "3plus.co.il",
+      "link": "https://www.3plus.co.il/yavnerun/",
+      "source": "runpanel.co.il",
+      "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3778,28 +3779,6 @@
   ],
   "utmbSeries": [
     {
-      "name": "Nice Côte d’Azur by UTMB® - Ultra Trail Métropole Nice Côte d’Azur - 100M ",
-      "region": "Auron, France",
-      "date": "2026-09-25",
-      "link": "https://nice.utmb.world/races/nice-100m",
-      "source": "utmb.world",
-      "distanceKm": 168,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Nice Côte d’Azur by UTMB® - Levens - Nice - 50K",
-      "region": "Levens, France",
-      "date": "2026-09-25",
-      "link": "https://nice.utmb.world/races/Levens-Nice-50k",
-      "source": "utmb.world",
-      "distanceKm": 39,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Nice Côte d’Azur by UTMB® - Roubion - Nice - 100K",
       "region": "Roubion, France",
       "date": "2026-09-26",
@@ -3860,7 +3839,7 @@
       "date": "2026-10-02",
       "link": "https://chihuahua.utmb.world/races/100K",
       "source": "utmb.world",
-      "distanceKm": 93,
+      "distanceKm": 94,
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3994,6 +3973,28 @@
       "source": "utmb.world",
       "distanceKm": 10,
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mount Yun by UTMB - UMY 100M",
+      "region": "Zhonghe Square, China",
+      "date": "2026-10-16",
+      "link": "https://mount-yun.utmb.world/races/100M",
+      "source": "utmb.world",
+      "distanceKm": 166,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mount Yun by UTMB - DMY 100K",
+      "region": "Zhonghe Square, China",
+      "date": "2026-10-16",
+      "link": "https://mount-yun.utmb.world/races/100K",
+      "source": "utmb.world",
+      "distanceKm": 97,
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     }
