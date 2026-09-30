@@ -456,7 +456,7 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     gap: 4px;
   }
 
-  .q-lanes span {
+  .q-lanes :global(span) {
     flex: 1;
     height: 5px;
     border-radius: 3px;
@@ -464,22 +464,26 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     overflow: hidden;
   }
 
-  .q-lanes span.done {
+  .q-lanes :global(span.done) {
     background: var(--color-brand);
   }
 
-  .q-lanes span.current {
+  .q-lanes :global(span.current) {
     background: linear-gradient(90deg, var(--color-brand) 50%, var(--color-gray-100) 50%);
   }
 
-  .q-lanes span.clickable {
+  .q-lanes :global(span.clickable) {
     cursor: pointer;
   }
 
-  .q-lanes span.clickable:hover,
-  .q-lanes span.clickable:focus-visible {
+  .q-lanes :global(span.clickable:hover),
+  .q-lanes :global(span.clickable:focus-visible) {
     transform: scaleY(1.6);
-    outline: none;
+  }
+
+  .q-lanes :global(span.clickable:focus-visible) {
+    outline: 2px solid var(--color-navy-950);
+    outline-offset: 3px;
   }
 
   .q-track-label {
