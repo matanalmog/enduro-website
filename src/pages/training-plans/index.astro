@@ -55,6 +55,50 @@ const sortedPlans = [
     </div>
   </section>
 
+  <section class="container section platform-section">
+    <h2>ככה נראית התוכנית שלכם בפועל</h2>
+    <p class="platform-intro">
+      לא PDF גנרי — תוכנית דיגיטלית חיה באפליקציה, מחוברת לשעון הריצה שלכם.
+      כל אימון מתועד, כל ריצה מנותחת, וההתקדמות שלכם מול התוכנית המקורית
+      גלויה לשנינו בזמן אמת.
+    </p>
+    <div class="platform-grid">
+      {[
+        {
+          src: "/images/training-plans/platform-calendar.jpg",
+          alt: "לוח אימונים שבועי באפליקציה, עם אימונים מתוכננים ומבוצעים",
+          caption: "הלוח השבועי שלך",
+        },
+        {
+          src: "/images/training-plans/platform-workout-detail.jpg",
+          alt: "פירוט אימון בודד: מפת מסלול, זמן, דופק וכוח",
+          caption: "פירוט מלא לכל אימון",
+        },
+        {
+          src: "/images/training-plans/platform-analysis.jpg",
+          alt: "ניתוח ריצה לפי קילומטרים: קצב, דופק וכוח, לצד מפה ופרופיל גובה",
+          caption: "ניתוח מתוכנן מול בפועל",
+        },
+      ].map((img) => (
+        <button
+          type="button"
+          class="platform-item"
+          data-lightbox-src={img.src}
+          data-lightbox-alt={img.alt}
+          aria-haspopup="dialog"
+        >
+          <img src={img.src} alt={img.alt} loading="lazy" />
+          <span>{img.caption}</span>
+        </button>
+      ))}
+    </div>
+
+    <dialog class="lightbox" id="platform-lightbox" aria-label="תצוגה מוגדלת של מסך האפליקציה">
+      <button type="button" class="lightbox-close" aria-label="סגירת התצוגה המוגדלת">&times;</button>
+      <img id="platform-lightbox-img" src="" alt="" />
+    </dialog>
+  </section>
+
   <section class="container section">
     <div class="plans-grid">
       {sortedPlans.map((plan) => (
@@ -105,6 +149,68 @@ const sortedPlans = [
 
   .section {
     padding-block: var(--space-5);
+  }
+
+  .platform-section {
+    text-align: center;
+  }
+
+  .platform-intro {
+    max-width: 62ch;
+    margin-inline: auto;
+    color: var(--color-text-muted);
+  }
+
+  .platform-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    text-align: start;
+  }
+
+  .platform-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--color-text);
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .platform-item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: top;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-gray-100);
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+
+  .platform-item:hover img,
+  .platform-item:focus-visible img {
+    border-color: var(--color-brand);
+    transform: translateY(-2px);
+  }
+
+  .platform-item span {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 780px) {
+    .platform-grid {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin-inline: auto;
+    }
   }
 
   .plans-grid {
@@ -226,4 +332,74 @@ const sortedPlans = [
       text-align: center;
     }
   }
+
+  .lightbox {
+    position: relative;
+    border: none;
+    border-radius: var(--radius-lg);
+    padding: 0;
+    max-width: min(90vw, 900px);
+    max-height: 90vh;
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+  }
+
+  .lightbox::backdrop {
+    background: rgba(11, 18, 32, 0.8);
+  }
+
+  .lightbox img {
+    display: block;
+    width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: var(--space-2);
+    inset-inline-end: var(--space-2);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-navy-950);
+    color: var(--color-white);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .lightbox-close:hover,
+  .lightbox-close:focus-visible {
+    background: var(--color-brand);
+  }
 </style>
+
+<script>
+  const platformLightbox = document.getElementById("platform-lightbox");
+  if (platformLightbox instanceof HTMLDialogElement) {
+    const lightboxImg = document.getElementById("platform-lightbox-img");
+    document.querySelectorAll(".platform-item").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const src = btn.getAttribute("data-lightbox-src");
+        const alt = btn.getAttribute("data-lightbox-alt");
+        if (lightboxImg && src) {
+          lightboxImg.setAttribute("src", src);
+          lightboxImg.setAttribute("alt", alt ?? "");
+        }
+        platformLightbox.showModal();
+      });
+    });
+
+    platformLightbox.querySelector(".lightbox-close")?.addEventListener("click", () => platformLightbox.close());
+
+    platformLightbox.addEventListener("click", (event) => {
+      if (event.target === platformLightbox) platformLightbox.close();
+    });
+  }
+</script>
