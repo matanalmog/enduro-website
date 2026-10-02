@@ -305,21 +305,32 @@ const schema = [
   </section>
 
   <section class="container section section-muted case-study">
-    <div
-      class="case-study-card"
-      role="button"
-      tabindex="0"
-      aria-haspopup="dialog"
-      data-lightbox-trigger="nitzan-story-lightbox"
-    >
-      <span class="case-study-badge">סיפור מתאמן</span>
-      <h2>1,088 ק״מ. 17 ימים. שביל ישראל אחד.</h2>
-      <h3>הדרך של ניצן פרידמן, מאילת ועד החרמון</h3>
-      <div class="case-stats">
-        <div class="case-stat"><span class="num" dir="ltr">1,088</span><span>ק״מ</span></div>
-        <div class="case-stat"><span class="num" dir="ltr">17</span><span>ימים</span></div>
+    <div class="case-study-grid">
+      <img
+        src="/images/testimonials/nitzan-story.jpg"
+        alt="ניצן פרידמן ותומר אלמוג רצים על שביל ישראל"
+        class="case-study-photo"
+        width="1200"
+        height="1600"
+        loading="lazy"
+        decoding="async"
+      />
+      <div
+        class="case-study-card"
+        role="button"
+        tabindex="0"
+        aria-haspopup="dialog"
+        data-lightbox-trigger="nitzan-story-lightbox"
+      >
+        <span class="case-study-badge">סיפור מתאמן</span>
+        <h2>1,088 ק״מ. 17 ימים. שביל ישראל אחד.</h2>
+        <h3>הדרך של ניצן פרידמן, מאילת ועד החרמון</h3>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num" dir="ltr">1,088</span><span>ק״מ</span></div>
+          <div class="case-stat"><span class="num" dir="ltr">17</span><span>ימים</span></div>
+        </div>
+        <span class="case-study-open">קראו את הסיפור המלא &larr;</span>
       </div>
-      <span class="case-study-open">קראו את הסיפור המלא &larr;</span>
     </div>
 
     <dialog class="lightbox story-lightbox" id="nitzan-story-lightbox" aria-label="הסיפור של ניצן פרידמן">
@@ -925,9 +936,39 @@ const schema = [
   }
 
   .case-study {
-    max-width: 720px;
+    max-width: 900px;
     margin-inline: auto;
     text-align: center;
+  }
+
+  .case-study-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+
+  .case-study-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    object-fit: cover;
+    object-position: center 30%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (max-width: 780px) {
+    .case-study-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .case-study-photo {
+      max-width: 320px;
+      aspect-ratio: 4 / 3;
+      min-height: unset;
+      margin-inline: auto;
+    }
   }
 
   .case-study h3 {
