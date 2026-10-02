@@ -1,27 +1,25 @@
-name: Weekly release (Saturday 19:00 Israel)
+name: Update race calendar (Saturday 20:00 Israel)
 
-# שחרור שבועי אחד לפרודקשן, כדי לחסוך בקרדיטים של Netlify (כל דיפלוי לפרודקשן = 15 קרדיטים):
-#   1. מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) ומתעד את src/data/races.json אם השתנה.
-#   2. ממזג את בראנץ' dev (השינויים של תומר מהשבוע) לתוך main.
-#   3. דוחף ל-main פעם אחת בלבד, כך ש-Netlify בונה דיפלוי אחד בשבוע. אם לא השתנה כלום, אין push ואין דיפלוי.
-# שינוי דחוף: דוחפים ישירות ל-main, בלי לחכות לשבת.
+# מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) פעם בשבוע, ומתעד (מ-commit) את
+# src/data/races.json אם השתנה. כל commit כזה ל-main הוא דיפלוי לפרודקשן ב-Netlify (15 קרדיטים),
+# ולכן ההרצה שבועית ולא יומית. השינויים של תומר משתחררים בנפרד ב-19:00 (weekly-release.yml).
 on:
   schedule:
-    # cron של GitHub הוא UTC בלבד. 19:00 שעון ישראל = 16:00 UTC בקיץ (IDT) ו-17:00 UTC בחורף (IST).
+    # cron של GitHub הוא UTC בלבד. 20:00 שעון ישראל = 17:00 UTC בקיץ (IDT) ו-18:00 UTC בחורף (IST).
     # שתי ההרצות מתוזמנות, ושלב ה-gate למטה משאיר רק את זו שמתאימה לשעון הנוכחי בישראל.
-    - cron: "0 16 * * 6"
     - cron: "0 17 * * 6"
+    - cron: "0 18 * * 6"
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: weekly-release
+  group: push-to-main
   cancel-in-progress: false
 
 jobs:
-  release:
+  update-races:
     runs-on: ubuntu-latest
     steps:
       # בודקים לפי איזה cron הופעלנו ומה ההיסט הנוכחי של ישראל מ-UTC, ולא לפי השעה בפועל:
@@ -34,8 +32,8 @@ jobs:
         run: |
           offset=$(TZ=Asia/Jerusalem date +%z)
           if [ "$EVENT" = "workflow_dispatch" ] \
-            || { [ "$FIRED_CRON" = "0 16 * * 6" ] && [ "$offset" = "+0300" ]; } \
-            || { [ "$FIRED_CRON" = "0 17 * * 6" ] && [ "$offset" = "+0200" ]; }; then
+            || { [ "$FIRED_CRON" = "0 17 * * 6" ] && [ "$offset" = "+0300" ]; } \
+            || { [ "$FIRED_CRON" = "0 18 * * 6" ] && [ "$offset" = "+0200" ]; }; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "Israel offset is $offset; the other cron entry handles this week."
@@ -46,8 +44,6 @@ jobs:
       # SHA הוא בלתי-ניתן-לשינוי. זה רץ עם הרשאת contents:write אז שרשרת האספקה חשובה כאן.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         if: steps.gate.outputs.run == 'true'
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         if: steps.gate.outputs.run == 'true'
@@ -58,41 +54,15 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: node scripts/update-races.mjs
 
-      - name: Commit race data, merge dev, push once
+      - name: Commit updated race data if changed
         if: steps.gate.outputs.run == 'true'
         run: |
+          if git diff --quiet -- src/data/races.json; then
+            echo "No changes to src/data/races.json — nothing to commit."
+            exit 0
+          fi
           git config user.name "enduro-races-bot"
           git config user.email "actions@users.noreply.github.com"
-          start=$(git rev-parse HEAD)
-
-          if git diff --quiet -- src/data/races.json; then
-            echo "No changes to src/data/races.json."
-          else
-            git add src/data/races.json
-            git commit -m "chore: update race calendar data [automated]"
-          fi
-
-          merge_failed=0
-          if git ls-remote --exit-code --heads origin dev > /dev/null; then
-            git fetch origin dev
-            if ! git merge --no-edit origin/dev -m "Weekly release: merge dev into main"; then
-              # התנגשות: משחררים לפחות את נתוני התחרויות, ומכשילים את ה-job כדי שתומר יקבל מייל.
-              git merge --abort
-              merge_failed=1
-            fi
-          fi
-
-          if [ "$(git rev-parse HEAD)" != "$start" ]; then
-            git push origin HEAD:main
-            # מיישרים את dev ל-main כדי שבשבוע הבא לא תהיה התנגשות על races.json.
-            if [ "$merge_failed" = "0" ] && git ls-remote --exit-code --heads origin dev > /dev/null; then
-              git push origin HEAD:dev
-            fi
-          else
-            echo "Nothing new this week - no push, no Netlify deploy."
-          fi
-
-          if [ "$merge_failed" = "1" ]; then
-            echo "::error::Merging dev into main hit a conflict. Race data was released; dev needs a manual merge."
-            exit 1
-          fi
+          git add src/data/races.json
+          git commit -m "chore: update race calendar data [automated]"
+          git push

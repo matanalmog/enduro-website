@@ -1,0 +1,70 @@
+name: Weekly release (Saturday 19:00 Israel)
+
+# שחרור שבועי אחד של השינויים באתר, כדי לחסוך בקרדיטים של Netlify (כל דיפלוי לפרודקשן = 15 קרדיטים):
+# ממזג את בראנץ' dev (השינויים של תומר מהשבוע) לתוך main ודוחף פעם אחת. אם אין ב-dev שום דבר חדש, אין push ואין דיפלוי.
+# לוח התחרויות מתעדכן בנפרד, בשעה 20:00 (update-races.yml).
+# שינוי דחוף: דוחפים ישירות ל-main, בלי לחכות לשבת.
+on:
+  schedule:
+    # cron של GitHub הוא UTC בלבד. 19:00 שעון ישראל = 16:00 UTC בקיץ (IDT) ו-17:00 UTC בחורף (IST).
+    # שתי ההרצות מתוזמנות, ושלב ה-gate למטה משאיר רק את זו שמתאימה לשעון הנוכחי בישראל.
+    - cron: "0 16 * * 6"
+    - cron: "0 17 * * 6"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: push-to-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      # בודקים לפי איזה cron הופעלנו ומה ההיסט הנוכחי של ישראל מ-UTC, ולא לפי השעה בפועל:
+      # הרצות מתוזמנות ב-GitHub מתעכבות לפעמים בעשרות דקות, ובדיקת שעה הייתה מפספסת שבוע.
+      - name: Gate on Israel daylight-saving time
+        id: gate
+        env:
+          FIRED_CRON: ${{ github.event.schedule }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          offset=$(TZ=Asia/Jerusalem date +%z)
+          if [ "$EVENT" = "workflow_dispatch" ] \
+            || { [ "$FIRED_CRON" = "0 16 * * 6" ] && [ "$offset" = "+0300" ]; } \
+            || { [ "$FIRED_CRON" = "0 17 * * 6" ] && [ "$offset" = "+0200" ]; }; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Israel offset is $offset; the other cron entry handles this week."
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # מוצמד ל-commit SHA ולא לתגית - ראו ההסבר ב-update-races.yml.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.gate.outputs.run == 'true'
+        with:
+          fetch-depth: 0
+
+      - name: Merge dev into main and push
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          if ! git ls-remote --exit-code --heads origin dev > /dev/null; then
+            echo "No dev branch - nothing to release."
+            exit 0
+          fi
+          git config user.name "enduro-races-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git fetch origin dev
+          start=$(git rev-parse HEAD)
+          if ! git merge --no-edit origin/dev -m "Weekly release: merge dev into main"; then
+            git merge --abort
+            echo "::error::Merging dev into main hit a conflict. Nothing was released; dev needs a manual merge."
+            exit 1
+          fi
+          if [ "$(git rev-parse HEAD)" != "$start" ]; then
+            git push origin HEAD:main
+          else
+            echo "dev has nothing new - no push, no Netlify deploy."
+          fi
