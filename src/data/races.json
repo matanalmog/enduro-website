@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-02T10:22:16.146Z",
+  "generatedAt": "2026-10-03T19:40:36.011Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -15,17 +15,6 @@
     ]
   },
   "israel": [
-    {
-      "name": "מרוץ חדרה",
-      "region": "חיפה והסביבה",
-      "date": "2026-10-02",
-      "link": "https://hadera-run.shvoong.co.il/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "2, 5, 10 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
     {
       "name": "מרוץ סביון",
       "region": "בקעת אונו",
@@ -531,16 +520,6 @@
   ],
   "international": [
     {
-      "name": "Amman International Marathon",
-      "region": "Jordan",
-      "date": "2026-10-02",
-      "link": "https://www.runjordan.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Tartu City Marathon",
       "region": "Estonia",
       "date": "2026-10-03",
@@ -816,7 +795,7 @@
       "date": "2026-10-16",
       "link": "https://activepulsebd.com/product/apcm2026/",
       "source": "aims-worldrunning.org",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3797,6 +3776,16 @@
       "link": "https://www.wachaumarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Sekhon Indian Air Force Marathon (SIM)",
+      "region": "India",
+      "date": "2027-10-03",
+      "link": "https://sekhoniafmarathon.in",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     }
