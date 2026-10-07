@@ -233,3 +233,70 @@ onboardingSteps.push({
   media: [],
   ready: true,
 });
+
+onboardingSteps.push({
+  id: "strava",
+  title: "חיבור Strava ל-Final Surge",
+  intro: "Strava מופיעה ברשימת השירותים ש-Final Surge יודעת לחבר. אימונים שהושלמו ב-Strava יועברו ל-Final Surge.",
+  items: [
+    { text: "ב-Final Surge פותחים Connected Apps: במחשב דרך תפריט המשתמש, ובאפליקציה דרך More." },
+    { text: "ברשימה, בשורה של Strava, לוחצים Connect. השורה נמצאת מתחת ל-Garmin." },
+  ],
+  note: "צילומי מסך ומדריך מלא לחיבור Strava יתווספו.",
+  media: [],
+  ready: true,
+});
+
+// הנושאים בעמוד: בלוק לכל נושא (בעמודה בצד בדסקטופ, ובראש הדף בטלפון).
+// youtubeId: מזהה הסרטון ביוטיוב (11 תווים). כשהוא ריק, מוצג ריבוע מוכן עם ״סרטון בקרוב״.
+export interface OnboardingTopic {
+  id: string;
+  label: string;
+  icon: string;
+  summary: string;
+  steps: string[];
+  video: { youtubeId: string | null; title: string };
+}
+
+export const onboardingTopics: OnboardingTopic[] = [
+  {
+    id: "app",
+    label: "חיבור האפליקציה",
+    icon: "📲",
+    summary: "הרשמה ל-Final Surge וקבלת האימונים שלך.",
+    steps: ["finalsurge"],
+    video: { youtubeId: null, title: "הרשמה והתחברות לאפליקציית Final Surge" },
+  },
+  {
+    id: "garmin",
+    label: "חיבור ל-Garmin",
+    icon: "⌚",
+    summary: "חיבור השעון, הפרטיות, ההצטרפות אליי והסנכרון.",
+    steps: ["devices", "phone", "garmin", "sync"],
+    video: { youtubeId: null, title: "חיבור Garmin ל-Final Surge" },
+  },
+  {
+    id: "apple",
+    label: "חיבור ל-Apple",
+    icon: "🍎",
+    summary: "Apple Watch ו-Apple Health.",
+    steps: ["apple-watch"],
+    video: { youtubeId: null, title: "חיבור Apple Watch ל-Final Surge" },
+  },
+  {
+    id: "strava",
+    label: "חיבור ל-Strava",
+    icon: "🟧",
+    summary: "העברת אימונים מ-Strava.",
+    steps: ["strava"],
+    video: { youtubeId: null, title: "חיבור Strava ל-Final Surge" },
+  },
+  {
+    id: "other",
+    label: "שעונים ואפליקציות אחרים",
+    icon: "🔗",
+    summary: "COROS, Polar, Suunto ועוד.",
+    steps: ["other-devices"],
+    video: { youtubeId: null, title: "חיבור שעון או אפליקציה אחרים" },
+  },
+];

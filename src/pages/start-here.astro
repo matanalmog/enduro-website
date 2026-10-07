@@ -1,79 +1,124 @@
 ---
-// "ההתחלה שלך": מדריך הצטרפות למתאמן חדש. מקושר ממסך הסיום של שאלון הקליטה.
-// הדף לא מיועד לחיפוש (noindex). התוכן נשלט מ-src/data/onboarding.ts.
+// "אפליקציית האימון": מדריך הצטרפות למתאמן חדש. מקושר מתפריט אודות ומסך הסיום של שאלון הקליטה.
+// בלוק לכל נושא (חיבור האפליקציה, Garmin, Apple, Strava, אחרים), ולכל נושא ריבוע לסרטון יוטיוב.
+// התוכן נשלט מ-src/data/onboarding.ts. הדף לא מיועד לחיפוש (noindex).
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { onboardingSteps, GARMIN_PROFILE_URL } from "../data/onboarding";
+import YouTubeEmbed from "../components/YouTubeEmbed.astro";
+import { onboardingSteps, onboardingTopics, GARMIN_PROFILE_URL } from "../data/onboarding";
 
-const steps = onboardingSteps.filter((s) => s.ready);
+const stepById = new Map(onboardingSteps.map((s) => [s.id, s]));
+const topics = onboardingTopics
+  .map((t) => ({ ...t, stepList: t.steps.map((id) => stepById.get(id)).filter((s) => s && s.ready) }))
+  .filter((t) => t.stepList.length > 0);
 ---
 
 <BaseLayout
   title="אפליקציית האימון"
-  description="מדריך הצטרפות למתאמנים של ENDURO: הזמנה ב-Final Surge, חיבור השעון והתחברות ב-Garmin Connect."
+  description="מדריך הצטרפות למתאמנים של ENDURO: הרשמה ל-Final Surge, חיבור Garmin, Apple ו-Strava."
   canonicalPath="/start-here/"
   noindex
 >
-  <section class="container section narrow">
+  <section class="container section guide">
     <h1>אפליקציית האימון</h1>
     <p class="lead">
-      כאן מרוכז מה שצריך כדי להתחיל להתאמן איתי באפליקציית האימון: Final Surge, חיבור השעון והתחברות ב-Garmin Connect. כל שלב מוסבר בקצרה, ואם משהו לא ברור, כתוב לי בוואטסאפ ונעבור על זה יחד.
+      כאן מרוכז מה שצריך כדי להתחיל להתאמן איתי. בוחרים נושא, ובכל נושא יש הסבר בשלבים ותמונות, וסרטון הדרכה.
     </p>
 
-    <ol class="steps">
-      {
-        steps.map((step, i) => (
-          <li class="step" id={step.id}>
-            <div class="step-head">
-              <span class="step-num" aria-hidden="true">{i + 1}</span>
-              <h2>{step.title}</h2>
-            </div>
-            {step.intro && <p>{step.intro}</p>}
-            {step.link && (
-              <p>
-                <a href={step.link.href} target="_blank" rel="noopener">{step.link.label}</a>
-              </p>
-            )}
-            {step.id === "garmin" && GARMIN_PROFILE_URL && (
-              <p>
-                <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
-                  הפרופיל שלי ב-Garmin Connect
-                </a>
-              </p>
-            )}
-            {step.items.length > 0 && (
-              <ol class="items">
-                {step.items.map((item) => (
-                  <li>
-                    {item.text}
-                    {item.image && (
-                      <figure class="media">
-                        <a href={item.image.src} target="_blank" rel="noopener" aria-label="פתיחת התמונה בגודל מלא">
-                          <img src={item.image.src} alt={item.image.alt} loading="lazy" />
-                        </a>
-                      </figure>
-                    )}
-                  </li>
-                ))}
+    <div class="layout">
+      <div class="blocks" role="tablist" aria-label="נושאי המדריך">
+        {
+          topics.map((t, i) => (
+            <button
+              type="button"
+              class="block"
+              data-topic={t.id}
+              aria-controls={`panel-${t.id}`}
+              aria-selected={i === 0 ? "true" : "false"}
+              role="tab"
+            >
+              <span class="block-icon" aria-hidden="true">{t.icon}</span>
+              <span class="block-label">{t.label}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      <div class="panels">
+        {
+          topics.map((t, i) => (
+            <section class="panel" id={`panel-${t.id}`} role="tabpanel" hidden={i !== 0}>
+              <div class="panel-head">
+                <div class="panel-text">
+                  <h2>{t.label}</h2>
+                  <p>{t.summary}</p>
+                </div>
+                <div class="panel-video">
+                  {t.video.youtubeId ? (
+                    <YouTubeEmbed videoId={t.video.youtubeId} title={t.video.title} />
+                  ) : (
+                    <div class="video-slot" role="img" aria-label={`${t.video.title}: הסרטון יעלה בקרוב`}>
+                      <svg viewBox="0 0 68 48" width="64" height="46" aria-hidden="true">
+                        <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.41 6.19C.13 13.05 0 24 0 24s.13 10.95 1.49 16.26c.78 2.93 2.48 5.41 5.41 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.87 34.95 68 24 68 24s-.13-10.95-1.48-16.26z" fill="#6b7280" />
+                        <path d="M45 24 27 14v20" fill="#fff" />
+                      </svg>
+                      <span class="video-slot-title">{t.video.title}</span>
+                      <span class="video-slot-soon">סרטון הדרכה בקרוב</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <ol class="steps">
+                {
+                  t.stepList.map((step, n) => (
+                    <li class="step" id={step.id}>
+                      <div class="step-head">
+                        {t.stepList.length > 1 && <span class="step-num" aria-hidden="true">{n + 1}</span>}
+                        <h3>{step.title}</h3>
+                      </div>
+                      {step.intro && <p>{step.intro}</p>}
+                      {step.link && (
+                        <p>
+                          <a href={step.link.href} target="_blank" rel="noopener">{step.link.label}</a>
+                        </p>
+                      )}
+                      {step.id === "garmin" && GARMIN_PROFILE_URL && (
+                        <p>
+                          <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
+                            הפרופיל שלי ב-Garmin Connect
+                          </a>
+                        </p>
+                      )}
+                      {step.items.length > 0 && (
+                        <ol class="items">
+                          {step.items.map((item) => (
+                            <li>
+                              {item.text}
+                              {item.image && (
+                                <figure class="media">
+                                  <a href={item.image.src} target="_blank" rel="noopener" aria-label="פתיחת התמונה בגודל מלא">
+                                    <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+                                  </a>
+                                </figure>
+                              )}
+                            </li>
+                          ))}
+                        </ol>
+                      )}
+                      {step.note && <p class="step-note">{step.note}</p>}
+                    </li>
+                  ))
+                }
               </ol>
-            )}
-            {step.media.map((m) =>
-              m.type === "image" ? (
-                <figure class="media">
-                  <img src={m.src} alt={m.alt} loading="lazy" />
-                  {m.caption && <figcaption>{m.caption}</figcaption>}
-                </figure>
-              ) : (
-                <figure class="media">
-                  <video src={m.src} controls preload="metadata" playsinline aria-label={m.alt}></video>
-                  {m.caption && <figcaption>{m.caption}</figcaption>}
-                </figure>
-              )
-            )}
-            {step.note && <p class="step-note">{step.note}</p>}
-          </li>
-        ))
-      }
-    </ol>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+
+    <noscript>
+      <p>להחלפת נושאים נדרש JavaScript. בלעדיו מוצג רק הנושא הראשון, וכל השאר זמינים בוואטסאפ.</p>
+    </noscript>
 
     <p class="help">
       צריך עזרה? <a href="https://wa.me/972526982993" rel="noopener">וואטסאפ 052-6982993</a>
@@ -81,20 +126,138 @@ const steps = onboardingSteps.filter((s) => s.ready);
   </section>
 </BaseLayout>
 
+<script>
+  // החלפת נושא בלי טעינת דף. תומך בקישור ישיר (#garmin) ובשמירת הבחירה בכתובת.
+  const blocks = Array.from(document.querySelectorAll<HTMLButtonElement>(".block"));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>(".panel"));
+
+  function show(id: string, updateHash: boolean) {
+    const target = panels.find((p) => p.id === `panel-${id}`);
+    if (!target) return;
+    panels.forEach((p) => {
+      p.hidden = p !== target;
+    });
+    blocks.forEach((b) => b.setAttribute("aria-selected", String(b.dataset.topic === id)));
+    if (updateHash) history.replaceState(null, "", `#${id}`);
+  }
+
+  blocks.forEach((b) => b.addEventListener("click", () => show(b.dataset.topic!, true)));
+
+  const initial = location.hash.replace("#", "");
+  if (initial) {
+    // קישור לשלב בתוך נושא (למשל #sync) פותח את הנושא שמכיל אותו
+    const stepEl = document.getElementById(initial);
+    const panel = stepEl?.closest<HTMLElement>(".panel");
+    if (panel) {
+      show(panel.id.replace("panel-", ""), false);
+      stepEl?.scrollIntoView();
+    } else {
+      show(initial, false);
+    }
+  }
+</script>
+
 <style>
-  .narrow {
-    max-width: 720px;
+  .guide {
+    max-width: 1100px;
   }
   .lead {
     color: var(--color-text-muted);
   }
+  .layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: var(--space-4, 1.5rem);
+    margin-top: var(--space-4, 1.5rem);
+    align-items: start;
+  }
+  .blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: sticky;
+    top: 5.5rem;
+  }
+  .block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 92px;
+    padding: 0.9rem 1rem;
+    border: 2px solid var(--color-border, #e4e7ec);
+    border-radius: 16px;
+    background: var(--color-surface, #fff);
+    color: inherit;
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .block:hover {
+    border-color: #b34700;
+  }
+  .block:focus-visible {
+    outline: 3px solid #b34700;
+    outline-offset: 2px;
+  }
+  .block[aria-selected="true"] {
+    border-color: #b34700;
+    box-shadow: 0 0 0 3px rgba(179, 71, 0, 0.15);
+  }
+  .block-icon {
+    font-size: 1.7rem;
+    line-height: 1;
+  }
+  .block-label {
+    font-weight: 700;
+  }
+
+  .panel-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-4, 1.5rem);
+    align-items: center;
+    margin-bottom: var(--space-4, 1.5rem);
+  }
+  .panel-text h2 {
+    margin: 0 0 0.35rem;
+  }
+  .panel-text p {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+  .video-slot {
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    border: 2px dashed #9ca3af;
+    background: #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    text-align: center;
+    padding: 0.75rem;
+    color: #374151;
+  }
+  .video-slot-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .video-slot-soon {
+    font-size: 0.85rem;
+    color: #4b5563;
+  }
+
   .steps {
     list-style: none;
     padding: 0;
-    margin: var(--space-4) 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-4);
+    gap: var(--space-4, 1.5rem);
   }
   .step {
     border: 1px solid var(--color-border, #e4e7ec);
@@ -108,9 +271,9 @@ const steps = onboardingSteps.filter((s) => s.ready);
     gap: 0.75rem;
     margin-bottom: 0.5rem;
   }
-  .step-head h2 {
+  .step-head h3 {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
   }
   .step-num {
     flex: none;
@@ -144,28 +307,38 @@ const steps = onboardingSteps.filter((s) => s.ready);
   .media {
     margin: var(--space-3, 1rem) 0 0;
   }
-  .media img,
-  .media video {
+  .media img {
     width: 100%;
+    max-width: 640px;
     height: auto;
     border-radius: 12px;
     border: 1px solid var(--color-border, #e4e7ec);
-  }
-  .media figcaption {
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    margin-top: 0.35rem;
   }
   .step-note {
     font-size: 0.9rem;
     color: var(--color-text-muted);
   }
-  @media (max-width: 600px) {
+  .help {
+    margin-top: var(--space-4, 1.5rem);
+  }
+
+  @media (max-width: 860px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+    .blocks {
+      position: static;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .block {
+      min-height: 84px;
+    }
+    .panel-head {
+      grid-template-columns: 1fr;
+    }
     .step {
       padding: 1rem 0.75rem;
     }
-  }
-  .help {
-    margin-top: var(--space-4);
   }
 </style>
