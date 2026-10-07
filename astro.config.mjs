@@ -5,5 +5,5 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.sport4you.co.il',
-  integrations: [sitemap()],
+  integrations: [sitemap({ filter: (page) => !page.includes('/start-here/') })],
 });
