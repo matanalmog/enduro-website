@@ -81,11 +81,53 @@ export const onboardingSteps: OnboardingStep[] = [
   },
   {
     id: "devices",
-    title: "מחברים את השעון והאפליקציות",
-    intro: "כדי שהאימונים שביצעת יגיעו אליי, צריך לחבר את השעון או את האפליקציה שבה אתה מתעד.",
-    items: [],
+    title: "מחברים את שעון ה-Garmin",
+    intro: "כך האימונים שביצעת מגיעים אוטומטית ל-Final Surge, ומשם אליי.",
+    items: [
+      {
+        text: "ב-Final Surge לוחצים על השם שלך בפינה העליונה, ובתפריט שנפתח בוחרים Connected Apps.",
+        image: { src: "/images/onboarding/watch-01.jpg", alt: "תפריט המשתמש ב-Final Surge, האפשרות Connected Apps מסומנת" },
+      },
+      {
+        text: "ברשימה מופיעים Garmin, Strava, COROS, Amazfit, Suunto, Zwift, Polar, Wahoo ו-MapMyRun. ליד השעון או האפליקציה שלך לוחצים Connect. כאן הדוגמה היא Garmin.",
+        image: { src: "/images/onboarding/watch-02.jpg", alt: "רשימת Connected Apps, הכפתור Connect ליד Garmin מסומן" },
+      },
+      {
+        text: "משאירים מסומן Import last 30 days of workouts with initial sync, כדי שהחודש האחרון יועבר. אחר כך לוחצים Sync Accounts. ייבוא החודש האחרון יכול לקחת עד 24 עד 48 שעות.",
+        image: { src: "/images/onboarding/watch-06.jpg", alt: "מסך Garmin Connect, תיבת הסימון של ייבוא 30 הימים וכפתור Sync Accounts מסומנים" },
+      },
+      {
+        text: "יופיע מסך של Garmin בשם Control the information you share. כדי שאוכל לראות את הפעילות שלך, השאר את כל המתגים דולקים (Activities, Daily Health Stats, Historical Data ו-Training), ולחץ Save.",
+        image: { src: "/images/onboarding/watch-07.jpg", alt: "מסך ההרשאות של Garmin, המתגים וכפתור Save מסומנים" },
+      },
+      {
+        text: "במסך Connect with Final Surge לוחצים Agree. אפשר לבטל את החיבור בכל רגע בהגדרות של Garmin Connect.",
+        image: { src: "/images/onboarding/watch-08.jpg", alt: "מסך האישור של Garmin, הכפתור Agree מסומן" },
+      },
+    ],
     media: [],
-    ready: false,
+    ready: true,
+  },
+  {
+    id: "other-devices",
+    title: "שעון או אפליקציה אחרים",
+    intro: "אם אתה לא משתמש ב-Garmin, אפשר לבדוק אם השעון או האפליקציה שלך נתמכים.",
+    items: [
+      {
+        text: "בתחתית רשימת Connected Apps לוחצים View All Connected Apps.",
+        image: { src: "/images/onboarding/watch-03.jpg", alt: "תחתית הרשימה, הקישור View All Connected Apps מסומן" },
+      },
+      {
+        text: "בדף שנפתח אפשר לסנן לפי All, iOS או Android ולראות אילו אפליקציות נתמכות.",
+        image: { src: "/images/onboarding/watch-04.jpg", alt: "הלשוניות iOS ו-Android בדף Connected Apps & Devices" },
+      },
+      {
+        text: "ליד Apple Health ו-Strava מופיע Apple Watch, כלומר הן מתאימות לשעון של אפל.",
+        image: { src: "/images/onboarding/watch-05.jpg", alt: "הרשימה מציגה את Apple Health ו-Strava עם הסימון Apple Watch" },
+      },
+    ],
+    media: [],
+    ready: true,
   },
   {
     id: "garmin",
