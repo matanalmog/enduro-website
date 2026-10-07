@@ -35,8 +35,8 @@ export const onboardingSteps: OnboardingStep[] = [
     intro: "Final Surge היא המערכת שבה תראה את האימונים שלך ותדווח עליהם.",
     items: [
       {
-        text: "מקבלים מייל מ-Final Surge בשם Coaching Invitation, ופותחים אותו.",
-        image: { src: "/images/onboarding/finalsurge-01.jpg", alt: "המייל Coaching Invitation בתיבת הדואר, הנושא מסומן באדום" },
+        text: "מקבלים מייל בשם Coaching Invitation. השולח הוא Final Surge Notification (מסומן בכחול). פותחים אותו.",
+        image: { src: "/images/onboarding/finalsurge-01.jpg", alt: "המייל Coaching Invitation בתיבת הדואר, הנושא מסומן באדום והשולח Final Surge Notification בכחול" },
       },
       {
         text: "לוחצים על הכפתור האדום View Coach Invitation.",
