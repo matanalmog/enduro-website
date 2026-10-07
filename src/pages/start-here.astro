@@ -1,0 +1,141 @@
+---
+// "ההתחלה שלך": מדריך הצטרפות למתאמן חדש. מקושר ממסך הסיום של שאלון הקליטה.
+// הדף לא מיועד לחיפוש (noindex). התוכן נשלט מ-src/data/onboarding.ts.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { onboardingSteps, GARMIN_PROFILE_URL } from "../data/onboarding";
+
+const steps = onboardingSteps.filter((s) => s.ready);
+---
+
+<BaseLayout
+  title="ההתחלה שלך"
+  description="מדריך הצטרפות למתאמנים של ENDURO: הזמנה ב-Final Surge, חיבור השעון והתחברות ב-Garmin Connect."
+  canonicalPath="/start-here/"
+  noindex
+>
+  <section class="container section narrow">
+    <h1>ההתחלה שלך עם ENDURO</h1>
+    <p class="lead">
+      כאן מרוכז מה שצריך כדי להתחיל להתאמן איתי. כל שלב מוסבר בקצרה, ואם משהו לא ברור, כתוב לי בוואטסאפ ונעבור על זה יחד.
+    </p>
+
+    <ol class="steps">
+      {
+        steps.map((step, i) => (
+          <li class="step" id={step.id}>
+            <div class="step-head">
+              <span class="step-num" aria-hidden="true">{i + 1}</span>
+              <h2>{step.title}</h2>
+            </div>
+            {step.intro && <p>{step.intro}</p>}
+            {step.items.length > 0 && (
+              <ol class="items">
+                {step.items.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ol>
+            )}
+            {step.id === "garmin" && GARMIN_PROFILE_URL && (
+              <p>
+                <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
+                  הפרופיל שלי ב-Garmin Connect
+                </a>
+              </p>
+            )}
+            {step.media.map((m) =>
+              m.type === "image" ? (
+                <figure class="media">
+                  <img src={m.src} alt={m.alt} loading="lazy" />
+                  {m.caption && <figcaption>{m.caption}</figcaption>}
+                </figure>
+              ) : (
+                <figure class="media">
+                  <video src={m.src} controls preload="metadata" playsinline aria-label={m.alt}></video>
+                  {m.caption && <figcaption>{m.caption}</figcaption>}
+                </figure>
+              )
+            )}
+            {step.note && <p class="step-note">{step.note}</p>}
+          </li>
+        ))
+      }
+    </ol>
+
+    <p class="help">
+      צריך עזרה? <a href="https://wa.me/972526982993" rel="noopener">וואטסאפ 052-6982993</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow {
+    max-width: 720px;
+  }
+  .lead {
+    color: var(--color-text-muted);
+  }
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .step {
+    border: 1px solid var(--color-border, #e4e7ec);
+    border-radius: 16px;
+    padding: var(--space-3, 1rem) var(--space-4, 1.5rem);
+    background: var(--color-surface, #fff);
+  }
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .step-head h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .step-num {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #b34700;
+    color: #fff;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .items {
+    padding-inline-start: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .media {
+    margin: var(--space-3, 1rem) 0 0;
+  }
+  .media img,
+  .media video {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--color-border, #e4e7ec);
+  }
+  .media figcaption {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: 0.35rem;
+  }
+  .step-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+  .help {
+    margin-top: var(--space-4);
+  }
+</style>
