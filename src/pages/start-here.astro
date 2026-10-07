@@ -28,6 +28,11 @@ const steps = onboardingSteps.filter((s) => s.ready);
               <h2>{step.title}</h2>
             </div>
             {step.intro && <p>{step.intro}</p>}
+            {step.link && (
+              <p>
+                <a href={step.link.href} target="_blank" rel="noopener">{step.link.label}</a>
+              </p>
+            )}
             {step.items.length > 0 && (
               <ol class="items">
                 {step.items.map((item) => (

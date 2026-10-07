@@ -19,6 +19,7 @@ export interface OnboardingStep {
   id: string;
   title: string;
   intro?: string;
+  link?: { href: string; label: string };
   items: OnboardingItem[];
   note?: string;
   media: OnboardingMedia[];
@@ -125,6 +126,46 @@ export const onboardingSteps: OnboardingStep[] = [
         text: "ליד Apple Health ו-Strava מופיע Apple Watch, כלומר הן מתאימות לשעון של אפל.",
         image: { src: "/images/onboarding/watch-05.jpg", alt: "הרשימה מציגה את Apple Health ו-Strava עם הסימון Apple Watch" },
       },
+    ],
+    media: [],
+    ready: true,
+  },
+  {
+    id: "phone",
+    title: "מחברים מהטלפון (אפליקציית Final Surge באנדרואיד)",
+    intro: "אפשר לחבר ולנהל את השעון גם מהאפליקציה, בלי המחשב.",
+    items: [
+      {
+        text: "באפליקציית Final Surge לוחצים על More בתחתית המסך, בצד שמאל.",
+        image: { src: "/images/onboarding/phone-01.jpg", alt: "אפליקציית Final Surge בטלפון, הלשונית More מסומנת" },
+      },
+      {
+        text: "בתפריט שנפתח בוחרים Connected Apps. מתחת לשם מופיע השירות שכבר מחובר, למשל Garmin Connect.",
+        image: { src: "/images/onboarding/phone-02.jpg", alt: "תפריט More, האפשרות Connected Apps מסומנת" },
+      },
+      {
+        text: "ברשימה בוחרים את השעון או השירות שלך: Garmin Connect, Strava, COROS, Amazfit, Suunto, Zwift, Polar Flow, Wahoo Fitness או MapMyRun.",
+        image: { src: "/images/onboarding/phone-03.jpg", alt: "רשימת האפליקציות המחוברות, Garmin Connect מסומן" },
+      },
+      {
+        text: "אחרי שחיברת את Garmin Connect, במסך שלו יש Auto Sync, שמעביר אוטומטית לשעון את האימונים המתוכננים ל-4 הימים הקרובים, וכפתור Manual Workout Push שמעביר אותם מיד. הכפתור האדום בתחתית מנתק את החיבור, אז לא לוחצים עליו בטעות.",
+        image: { src: "/images/onboarding/phone-04.jpg", alt: "מסך Garmin Connect באפליקציה, Auto Sync ו-Manual Workout Push מסומנים" },
+      },
+    ],
+    note: "הצילומים הם מחשבון שכבר מחובר ל-Garmin Connect, לכן מופיע בהם הסטטוס Connected.",
+    media: [],
+    ready: true,
+  },
+  {
+    id: "apple-watch",
+    title: "Apple Watch",
+    intro: "לפי המדריך הרשמי של Final Surge (באנגלית, עם תמונות). נדרשים iPhone עם iOS 17.1 ומעלה, Apple Watch מותאם עם watchOS 10.1 ומעלה, ואפליקציית Final Surge ל-iPhone.",
+    link: { href: "https://blog.finalsurge.com/final-surge-x-apple-watch-integration-guide/", label: "המדריך המלא של Final Surge, עם צילומי המסך" },
+    items: [
+      { text: "באפליקציה פותחים את התפריט, בוחרים Connected Apps ואז Apple Health + Watch." },
+      { text: "באישורי Apple Health לוחצים Turn On All. חשוב להשאיר את ההרשאה Workouts דולקת, כי בלעדיה האימונים לא יסתנכרנו." },
+      { text: "כדי לקבל את האימונים המתוכננים בשעון, לוחצים Yes, Enable Workout Push ומאשרים. לפי המדריך, האימונים המובנים של 7 הימים הקרובים נשלחים אז לשעון." },
+      { text: "שימו לב: רק אימונים שנרשמו באפליקציית Workout של אפל מסתנכרנים ל-Final Surge. אימונים מאפליקציות אחרות בשעון לא." },
     ],
     media: [],
     ready: true,
