@@ -33,6 +33,13 @@ const steps = onboardingSteps.filter((s) => s.ready);
                 <a href={step.link.href} target="_blank" rel="noopener">{step.link.label}</a>
               </p>
             )}
+            {step.id === "garmin" && GARMIN_PROFILE_URL && (
+              <p>
+                <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
+                  הפרופיל שלי ב-Garmin Connect
+                </a>
+              </p>
+            )}
             {step.items.length > 0 && (
               <ol class="items">
                 {step.items.map((item) => (
@@ -48,13 +55,6 @@ const steps = onboardingSteps.filter((s) => s.ready);
                   </li>
                 ))}
               </ol>
-            )}
-            {step.id === "garmin" && GARMIN_PROFILE_URL && (
-              <p>
-                <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
-                  הפרופיל שלי ב-Garmin Connect
-                </a>
-              </p>
             )}
             {step.media.map((m) =>
               m.type === "image" ? (

@@ -26,8 +26,8 @@ export interface OnboardingStep {
   ready: boolean;
 }
 
-// הקישור הציבורי לפרופיל Garmin Connect של תומר. יתווסף כשתומר ישלח אותו.
-export const GARMIN_PROFILE_URL: string | null = null;
+// הקישור להזמנה לפרופיל Garmin Connect של תומר (הקישור ש-Garmin מייצרת בכפתור "שתף").
+export const GARMIN_PROFILE_URL: string | null = "https://connect.garmin.com/modern/profile/Tomer78";
 
 export const onboardingSteps: OnboardingStep[] = [
   {
@@ -173,8 +173,11 @@ export const onboardingSteps: OnboardingStep[] = [
   {
     id: "garmin",
     title: "הגדרות פרטיות ב-Garmin Connect, כדי שאוכל לראות את האימונים",
-    intro: "אם הפעילות שלך מוגדרת כפרטית, אני לא אראה אותה. כך בודקים ומסדרים, באפליקציית Garmin Connect בעברית.",
+    intro: "כדי שנהיה מחוברים ב-Garmin Connect, ואני אראה את האימונים שלך. אם הפעילות שלך מוגדרת כפרטית, אני לא אראה אותה, ואת זה בודקים ומסדרים באפליקציה בעברית.",
     items: [
+      {
+        text: "קודם כל לוחצים על הכפתור למעלה, הקישור לפרופיל שלי ב-Garmin Connect, כדי להצטרף. כך נוכל לעקוב אחרי הפעילויות זה של זה. בפרופיל שנפתח אמור להופיע השם Tomer almog מאמן ריצה.",
+      },
       {
         text: "באפליקציית Garmin Connect לוחצים על עוד, בתחתית המסך.",
         image: { src: "/images/onboarding/garmin-01.jpg", alt: "מסך הבית של Garmin Connect, הלשונית עוד מסומנת" },
@@ -213,3 +216,20 @@ export const onboardingSteps: OnboardingStep[] = [
     ready: true,
   },
 ];
+
+onboardingSteps.push({
+  id: "sync",
+  title: "אימון לא מופיע? בודקים סנכרון של השעון",
+  intro: "לפעמים האימון נגמר, אבל השעון עוד לא העביר אותו לענן של Garmin.",
+  link: {
+    href: "https://www8.garmin.com/manuals/webhelp/GUID-8674F17E-62B2-48DE-927A-251611664658/EN-US/GUID-5B08E695-21AC-45AF-AA49-64F6C80D37FC.html",
+    label: "דוגמה ממדריך רשמי של Garmin לסנכרון (לדגם vívosmart 5)",
+  },
+  items: [
+    { text: "השעון מסתנכרן עם האפליקציה באופן אוטומטי בכל פעם שפותחים את אפליקציית Garmin Connect, וגם מדי פעם ברקע." },
+    { text: "אם אימון שסיימת עוד לא מופיע, מקרבים את השעון לטלפון, פותחים את האפליקציה ומחכים שהסנכרון יסתיים." },
+    { text: "אפשר גם להפעיל סנכרון ידני מהשעון עצמו, דרך תפריט ה-Bluetooth. הדרך המדויקת תלויה בדגם השעון." },
+  ],
+  media: [],
+  ready: true,
+});
