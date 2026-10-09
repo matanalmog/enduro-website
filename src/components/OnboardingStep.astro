@@ -1,0 +1,137 @@
+---
+// כרטיס שלב במדריך חיבור האפליקציות: כותרת, הסבר, שלבים ממוספרים עם תמונות והערה.
+import type { OnboardingStep } from "../data/onboarding";
+import { GARMIN_PROFILE_URL } from "../data/onboarding";
+
+interface Props {
+  step: OnboardingStep;
+  number?: number;
+}
+const { step, number } = Astro.props;
+---
+
+<div class="step" id={step.id}>
+  <div class="step-head">
+    {number && <span class="step-num" aria-hidden="true">{number}</span>}
+    <h3>{step.title}</h3>
+  </div>
+  {step.intro && <p>{step.intro}</p>}
+  {
+    step.link && (
+      <p>
+        <a href={step.link.href} target="_blank" rel="noopener">{step.link.label}</a>
+      </p>
+    )
+  }
+  {
+    step.id === "garmin" && GARMIN_PROFILE_URL && (
+      <p>
+        <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
+          הפרופיל שלי ב-Garmin Connect
+        </a>
+      </p>
+    )
+  }
+  {
+    step.media.filter((m) => m.type === "video").map((m) => (
+      <video class="step-video" controls preload="metadata" playsinline aria-label={m.alt}>
+        <source src={m.src} type="video/mp4" />
+      </video>
+    ))
+  }
+  {
+    step.items.length > 0 && (
+      <ol class="items">
+        {step.items.map((item) => (
+          <li>
+            {item.text}
+            {item.image && (
+              <figure class="media">
+                <a href={item.image.src} target="_blank" rel="noopener" aria-label="פתיחת התמונה בגודל מלא">
+                  <img src={item.image.src} alt={item.image.alt} loading="lazy" />
+                </a>
+              </figure>
+            )}
+          </li>
+        ))}
+      </ol>
+    )
+  }
+  {step.note && <p class="step-note">{step.note}</p>}
+</div>
+
+<style>
+  .step {
+    border: 1px solid var(--color-border, #e4e7ec);
+    border-radius: 16px;
+    padding: var(--space-3, 1rem) var(--space-4, 1.5rem);
+    background: var(--color-surface, #fff);
+  }
+  .step-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .step-head h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .step-num {
+    flex: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #b34700;
+    color: #fff;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-video {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16 / 9;
+    margin-top: 0.75rem;
+    border-radius: 12px;
+    background: #000;
+  }
+  .items {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    counter-reset: it;
+  }
+  .items > li {
+    counter-increment: it;
+  }
+  .items > li::before {
+    content: counter(it) ". ";
+    font-weight: 700;
+    color: #b34700;
+  }
+  .media {
+    margin: var(--space-3, 1rem) 0 0;
+  }
+  .media img {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--color-border, #e4e7ec);
+  }
+  .step-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+  @media (max-width: 860px) {
+    .step {
+      padding: 1rem 0.75rem;
+    }
+  }
+</style>

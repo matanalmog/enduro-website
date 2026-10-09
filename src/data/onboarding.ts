@@ -172,7 +172,7 @@ export const onboardingSteps: OnboardingStep[] = [
   },
   {
     id: "garmin",
-    title: "הגדרות פרטיות ב-Garmin Connect, כדי שאוכל לראות את האימונים",
+    title: "פתיחת Garmin לצפייה: הגדרות פרטיות ב-Garmin Connect",
     intro: "כדי שנהיה מחוברים ב-Garmin Connect, ואני אראה את האימונים שלך. אם הפעילות שלך מוגדרת כפרטית, אני לא אראה אותה, ואת זה בודקים ומסדרים באפליקציה בעברית.",
     items: [
       {
@@ -212,7 +212,7 @@ export const onboardingSteps: OnboardingStep[] = [
       },
     ],
     note: "השמות בצילומים הם מאפליקציית Garmin Connect באנדרואיד, בעברית, באוקטובר 2026. Garmin משנה את הממשק מדי פעם, אז ייתכן שהשמות ישתנו מעט.",
-    media: [],
+    media: [{ type: "video", src: "/videos/onboarding/garmin-privacy.mp4", alt: "סרטון: פתיחת Garmin לצפייה, הגדרות פרטיות ב-Garmin Connect" }],
     ready: true,
   },
 ];
@@ -248,14 +248,19 @@ onboardingSteps.push({
 });
 
 // הנושאים בעמוד: בלוק לכל נושא (בעמודה בצד בדסקטופ, ובראש הדף בטלפון).
-// youtubeId: מזהה הסרטון ביוטיוב (11 תווים). כשהוא ריק, מוצג ריבוע מוכן עם ״סרטון בקרוב״.
+// video.youtubeId: מזהה הסרטון ביוטיוב (11 תווים). video.src: סרטון מאוחסן באתר (public/videos/onboarding).
+// כשאין אף אחד מהם, מוצג ריבוע מוכן עם ״סרטון בקרוב״.
+// official: קישור להסבר הרשמי של Final Surge, מוצג בתחילת הנושא.
+// windows: שלבים שמוצגים בחלון נפרד (נפתח ונסגר) מתחת לשלבי הנושא.
 export interface OnboardingTopic {
   id: string;
   label: string;
   icon: string;
   summary: string;
   steps: string[];
-  video: { youtubeId: string | null; title: string };
+  windows?: { stepId: string; label: string }[];
+  official: { href: string; label: string };
+  video: { youtubeId: string | null; src?: string; title: string };
 }
 
 export const onboardingTopics: OnboardingTopic[] = [
@@ -265,15 +270,24 @@ export const onboardingTopics: OnboardingTopic[] = [
     icon: "📲",
     summary: "הרשמה ל-Final Surge וקבלת האימונים שלך.",
     steps: ["finalsurge"],
-    video: { youtubeId: null, title: "הרשמה והתחברות לאפליקציית Final Surge" },
+    windows: [{ stepId: "garmin", label: "פתיחת Garmin לצפייה" }],
+    official: {
+      href: "https://support.finalsurge.com/hc/en-us/articles/360051996673-Connecting-with-your-Coach",
+      label: "ההסבר הרשמי של Final Surge: חיבור למאמן (באנגלית)",
+    },
+    video: { youtubeId: null, src: "/videos/onboarding/app-signup.mp4", title: "הרשמה והתחברות לאפליקציית Final Surge" },
   },
   {
     id: "garmin",
     label: "חיבור ל-Garmin",
     icon: "⌚",
-    summary: "חיבור השעון, הפרטיות, ההצטרפות אליי והסנכרון.",
-    steps: ["devices", "phone", "garmin", "sync"],
-    video: { youtubeId: null, title: "חיבור Garmin ל-Final Surge" },
+    summary: "חיבור השעון ל-Final Surge, חיבור מהטלפון ובדיקת סנכרון.",
+    steps: ["devices", "phone", "sync"],
+    official: {
+      href: "https://support.finalsurge.com/hc/en-us/articles/360050169314",
+      label: "ההסבר הרשמי של Final Surge: Sync your Garmin Connect Account (באנגלית)",
+    },
+    video: { youtubeId: null, src: "/videos/onboarding/garmin-connect.mp4", title: "חיבור Garmin ל-Final Surge" },
   },
   {
     id: "apple",
@@ -281,6 +295,10 @@ export const onboardingTopics: OnboardingTopic[] = [
     icon: "🍎",
     summary: "Apple Watch ו-Apple Health.",
     steps: ["apple-watch"],
+    official: {
+      href: "https://blog.finalsurge.com/final-surge-x-apple-watch-integration-guide/",
+      label: "ההסבר הרשמי של Final Surge: Apple Watch Integration Guide (באנגלית)",
+    },
     video: { youtubeId: null, title: "חיבור Apple Watch ל-Final Surge" },
   },
   {
@@ -289,6 +307,10 @@ export const onboardingTopics: OnboardingTopic[] = [
     icon: "🟧",
     summary: "העברת אימונים מ-Strava.",
     steps: ["strava"],
+    official: {
+      href: "https://support.finalsurge.com/hc/en-us/articles/360051246234-Sync-Strava-to-Final-Surge",
+      label: "ההסבר הרשמי של Final Surge: Sync Strava to Final Surge (באנגלית)",
+    },
     video: { youtubeId: null, title: "חיבור Strava ל-Final Surge" },
   },
   {
@@ -297,6 +319,10 @@ export const onboardingTopics: OnboardingTopic[] = [
     icon: "🔗",
     summary: "COROS, Polar, Suunto ועוד.",
     steps: ["other-devices"],
-    video: { youtubeId: null, title: "חיבור שעון או אפליקציה אחרים" },
+    official: {
+      href: "https://site.finalsurge.com/ConnectedApps",
+      label: "הרשימה הרשמית של Final Surge: Connected Apps (באנגלית)",
+    },
+    video: { youtubeId: null, src: "/videos/onboarding/other-devices.mp4", title: "חיבור שעון או אפליקציה אחרים" },
   },
 ];

@@ -20,6 +20,10 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 
+// "הפופולרי ביותר": הסרטון שתומר בחר (19 תרגילים לכף הרגל) והמאמר האחרון שפורסם.
+const featuredVideo = youtubeVideos.find((v) => v.videoId === "_nAgyjPzGdg");
+const latestPost = posts[0];
+
 function formatHebrewDate(date: Date) {
   return new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(date);
 }
@@ -78,6 +82,33 @@ const socialCards = [
           <span>מהערוץ שלי ביוטיוב</span>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section id="popular" class="container section">
+    <h2>הפופולרי ביותר</h2>
+    <div class="popular-grid">
+      {featuredVideo && (
+        <div class="popular-card popular-video">
+          <YouTubeEmbed videoId={featuredVideo.videoId} title={featuredVideo.title} />
+          <div class="popular-body">
+            <span class="popular-tag">סרטון</span>
+            <h3>{featuredVideo.title}</h3>
+            <a href={`https://www.youtube.com/watch?v=${featuredVideo.videoId}`} target="_blank" rel="noopener noreferrer">לצפייה ביוטיוב</a>
+          </div>
+        </div>
+      )}
+      {latestPost && (
+        <a href={`/blog/${latestPost.id}/`} class="post-card popular-card">
+          {latestPost.data.ogImage && <img src={latestPost.data.ogImage} alt={latestPost.data.title} class="post-thumb" />}
+          <div class="post-body">
+            <span class="popular-tag">המאמר האחרון</span>
+            <span class="date">{formatHebrewDate(latestPost.data.publishDate)}</span>
+            <h3>{latestPost.data.title}</h3>
+            <p>{latestPost.data.description}</p>
+          </div>
+        </a>
+      )}
     </div>
   </section>
 
@@ -291,6 +322,50 @@ const socialCards = [
     color: var(--color-text-muted);
     font-size: 0.9rem;
     margin: 0;
+  }
+
+  .popular-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+
+  .popular-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .popular-video :global(.yt-embed),
+  .popular-video :global(button) {
+    border-radius: 0;
+  }
+
+  .popular-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: var(--space-3);
+  }
+
+  .popular-body h3,
+  .popular-card h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .popular-tag {
+    width: fit-content;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-brand);
+    background: var(--color-gray-50);
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
   }
 
   .section-muted {

@@ -1,0 +1,142 @@
+---
+// "אפליקציית אימון": הסבר על מערכת האימונים וסוגי האימונים, עם קישור לכניסה למערכת Final Surge.
+// התוכן נשלט מ-src/data/training-app.ts. הדף לא מיועד לחיפוש (noindex) עד שהטקסטים המפורטים יאושרו.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { FINAL_SURGE_LOGIN_URL, systemPoints, trainingTypes } from "../data/training-app";
+---
+
+<BaseLayout
+  title="אפליקציית אימון"
+  description="איך עובדת מערכת האימונים של ENDURO ב-Final Surge, ומה הם סוגי האימונים שתפגשו בה."
+  canonicalPath="/training-app/"
+  noindex
+>
+  <section class="container section app">
+    <h1>אפליקציית אימון</h1>
+    <p class="lead">
+      כאן מוסבר איך עובדת מערכת האימונים, ומה כל סוג אימון אומר.
+    </p>
+
+    <div class="login-box">
+      <div>
+        <strong>כבר יש לך חשבון?</strong>
+        <span>הכניסה ל-Final Surge, שבה רואים את האימונים ומדווחים עליהם.</span>
+      </div>
+      <a class="btn btn-primary" href={FINAL_SURGE_LOGIN_URL} target="_blank" rel="noopener">כניסה למערכת Final Surge</a>
+    </div>
+    <p class="first-time">
+      עוד לא נרשמת או לא חיברת שעון? <a href="/start-here/">חיבור אפליקציות</a>.
+    </p>
+
+    <h2>איך עובדת המערכת</h2>
+    <ul class="points">
+      {
+        systemPoints.map((p) => (
+          <li>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <h2>סוגי האימונים</h2>
+    <p class="lead">מה תראו ביומן, ובקצרה מה המטרה של כל אחד.</p>
+    <ul class="types">
+      {
+        trainingTypes.map((t) => (
+          <li class="type" id={t.id}>
+            <span class="type-icon" aria-hidden="true">{t.icon}</span>
+            <div>
+              <h3>{t.title}</h3>
+              <p>{t.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="help">
+      שאלה על אימון? <a href="https://wa.me/972526982993" rel="noopener">וואטסאפ 052-6982993</a>
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .app {
+    max-width: 900px;
+  }
+  .lead {
+    color: var(--color-text-muted);
+  }
+  .login-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: var(--space-3, 1rem) 0 0.5rem;
+    padding: 1rem 1.25rem;
+    border: 2px solid #b34700;
+    border-radius: 16px;
+    background: var(--color-surface, #fff);
+  }
+  .login-box div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .login-box span {
+    color: var(--color-text-muted);
+  }
+  .first-time {
+    margin-top: 0;
+    font-size: 0.95rem;
+  }
+  h2 {
+    margin-top: var(--space-5, 2.5rem);
+  }
+  .points,
+  .types {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-3, 1rem) 0 0;
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .points li,
+  .type {
+    border: 1px solid var(--color-border, #e4e7ec);
+    border-radius: 14px;
+    padding: 0.9rem 1.1rem;
+    background: var(--color-surface, #fff);
+  }
+  .points h3,
+  .type h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+  }
+  .points p,
+  .type p {
+    margin: 0;
+  }
+  .type {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-start;
+  }
+  .type-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .help {
+    margin-top: var(--space-4, 1.5rem);
+  }
+  @media (max-width: 700px) {
+    .points,
+    .types {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

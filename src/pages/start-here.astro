@@ -1,25 +1,32 @@
 ---
-// "אפליקציית האימון": מדריך הצטרפות למתאמן חדש. מקושר מתפריט אודות ומסך הסיום של שאלון הקליטה.
+// "חיבור אפליקציות": מדריך הצטרפות למתאמן חדש. מקושר מתפריט אודות ומסך הסיום של שאלון הקליטה.
 // בלוק לכל נושא (חיבור האפליקציה, Garmin, Apple, Strava, אחרים), ולכל נושא ריבוע לסרטון יוטיוב.
 // התוכן נשלט מ-src/data/onboarding.ts. הדף לא מיועד לחיפוש (noindex).
 import BaseLayout from "../layouts/BaseLayout.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
-import { onboardingSteps, onboardingTopics, GARMIN_PROFILE_URL } from "../data/onboarding";
+import OnboardingStep from "../components/OnboardingStep.astro";
+import { onboardingSteps, onboardingTopics } from "../data/onboarding";
 
 const stepById = new Map(onboardingSteps.map((s) => [s.id, s]));
 const topics = onboardingTopics
-  .map((t) => ({ ...t, stepList: t.steps.map((id) => stepById.get(id)).filter((s) => s && s.ready) }))
+  .map((t) => ({
+    ...t,
+    stepList: t.steps.map((id) => stepById.get(id)).filter((s) => s && s.ready),
+    windowList: (t.windows ?? [])
+      .map((w) => ({ label: w.label, step: stepById.get(w.stepId) }))
+      .filter((w) => w.step && w.step.ready),
+  }))
   .filter((t) => t.stepList.length > 0);
 ---
 
 <BaseLayout
-  title="אפליקציית האימון"
+  title="חיבור אפליקציות"
   description="מדריך הצטרפות למתאמנים של ENDURO: הרשמה ל-Final Surge, חיבור Garmin, Apple ו-Strava."
   canonicalPath="/start-here/"
   noindex
 >
   <section class="container section guide">
-    <h1>אפליקציית האימון</h1>
+    <h1>חיבור אפליקציות</h1>
     <p class="lead">
       כאן מרוכז מה שצריך כדי להתחיל להתאמן איתי. בוחרים נושא, ובכל נושא יש הסבר בשלבים ותמונות, וסרטון הדרכה.
     </p>
@@ -55,6 +62,10 @@ const topics = onboardingTopics
                 <div class="panel-video">
                   {t.video.youtubeId ? (
                     <YouTubeEmbed videoId={t.video.youtubeId} title={t.video.title} />
+                  ) : t.video.src ? (
+                    <video class="local-video" controls preload="metadata" playsinline aria-label={t.video.title}>
+                      <source src={t.video.src} type="video/mp4" />
+                    </video>
                   ) : (
                     <div class="video-slot" role="img" aria-label={`${t.video.title}: הסרטון יעלה בקרוב`}>
                       <svg viewBox="0 0 68 48" width="64" height="46" aria-hidden="true">
@@ -68,48 +79,35 @@ const topics = onboardingTopics
                 </div>
               </div>
 
+              <p class="official">
+                <span aria-hidden="true">📖</span>
+                <a href={t.official.href} target="_blank" rel="noopener">{t.official.label}</a>
+              </p>
+
               <ol class="steps">
                 {
                   t.stepList.map((step, n) => (
-                    <li class="step" id={step.id}>
-                      <div class="step-head">
-                        {t.stepList.length > 1 && <span class="step-num" aria-hidden="true">{n + 1}</span>}
-                        <h3>{step.title}</h3>
-                      </div>
-                      {step.intro && <p>{step.intro}</p>}
-                      {step.link && (
-                        <p>
-                          <a href={step.link.href} target="_blank" rel="noopener">{step.link.label}</a>
-                        </p>
-                      )}
-                      {step.id === "garmin" && GARMIN_PROFILE_URL && (
-                        <p>
-                          <a class="btn btn-primary" href={GARMIN_PROFILE_URL} rel="noopener" target="_blank">
-                            הפרופיל שלי ב-Garmin Connect
-                          </a>
-                        </p>
-                      )}
-                      {step.items.length > 0 && (
-                        <ol class="items">
-                          {step.items.map((item) => (
-                            <li>
-                              {item.text}
-                              {item.image && (
-                                <figure class="media">
-                                  <a href={item.image.src} target="_blank" rel="noopener" aria-label="פתיחת התמונה בגודל מלא">
-                                    <img src={item.image.src} alt={item.image.alt} loading="lazy" />
-                                  </a>
-                                </figure>
-                              )}
-                            </li>
-                          ))}
-                        </ol>
-                      )}
-                      {step.note && <p class="step-note">{step.note}</p>}
+                    <li>
+                      <OnboardingStep step={step!} number={t.stepList.length > 1 ? n + 1 : undefined} />
                     </li>
                   ))
                 }
               </ol>
+
+              {
+                t.windowList.map((w) => (
+                  <details class="window" id={`window-${w.step!.id}`}>
+                    <summary>
+                      <span class="window-icon" aria-hidden="true">🔓</span>
+                      <span class="window-label">{w.label}</span>
+                      <span class="window-hint">לחץ לפתיחה</span>
+                    </summary>
+                    <div class="window-body">
+                      <OnboardingStep step={w.step!} />
+                    </div>
+                  </details>
+                ))
+              }
             </section>
           ))
         }
@@ -150,6 +148,9 @@ const topics = onboardingTopics
     const panel = stepEl?.closest<HTMLElement>(".panel");
     if (panel) {
       show(panel.id.replace("panel-", ""), false);
+      // שלב שנמצא בחלון נפתח (למשל #garmin) פותח את החלון
+      const win = stepEl?.closest<HTMLDetailsElement>("details.window");
+      if (win) win.open = true;
       stepEl?.scrollIntoView();
     } else {
       show(initial, false);
@@ -259,64 +260,68 @@ const topics = onboardingTopics
     flex-direction: column;
     gap: var(--space-4, 1.5rem);
   }
-  .step {
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4, 1.5rem);
+  }
+  .official {
+    margin: 0 0 var(--space-3, 1rem);
+    padding: 0.75rem 1rem;
     border: 1px solid var(--color-border, #e4e7ec);
-    border-radius: 16px;
-    padding: var(--space-3, 1rem) var(--space-4, 1.5rem);
+    border-inline-start: 4px solid #b34700;
+    border-radius: 10px;
     background: var(--color-surface, #fff);
   }
-  .step-head {
+  .local-video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    background: #000;
+  }
+  .window {
+    margin-top: var(--space-4, 1.5rem);
+    border: 2px solid #b34700;
+    border-radius: 16px;
+    background: var(--color-surface, #fff);
+  }
+  .window > summary {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-  .step-head h3 {
-    margin: 0;
-    font-size: 1.15rem;
-  }
-  .step-num {
-    flex: none;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: #b34700;
-    color: #fff;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .items {
+    padding: 1rem 1.25rem;
+    cursor: pointer;
     list-style: none;
-    padding: 0;
-    margin: 0.75rem 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-    counter-reset: it;
-  }
-  .items > li {
-    counter-increment: it;
-  }
-  .items > li::before {
-    content: counter(it) ". ";
     font-weight: 700;
-    color: #b34700;
   }
-  .media {
-    margin: var(--space-3, 1rem) 0 0;
+  .window > summary::-webkit-details-marker {
+    display: none;
   }
-  .media img {
-    width: 100%;
-    max-width: 640px;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid var(--color-border, #e4e7ec);
+  .window > summary:focus-visible {
+    outline: 3px solid #b34700;
+    outline-offset: 2px;
+    border-radius: 14px;
   }
-  .step-note {
+  .window-icon {
+    font-size: 1.5rem;
+  }
+  .window-label {
+    flex: 1;
+    font-size: 1.1rem;
+  }
+  .window-hint {
+    font-weight: 400;
     font-size: 0.9rem;
     color: var(--color-text-muted);
+  }
+  .window[open] .window-hint {
+    display: none;
+  }
+  .window-body {
+    padding: 0 1.25rem 1.25rem;
   }
   .help {
     margin-top: var(--space-4, 1.5rem);
@@ -336,9 +341,6 @@ const topics = onboardingTopics
     }
     .panel-head {
       grid-template-columns: 1fr;
-    }
-    .step {
-      padding: 1rem 0.75rem;
     }
   }
 </style>
