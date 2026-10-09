@@ -73,6 +73,14 @@ draft: false
 
 שתי תוכניות עם בסיס מחקרי: אלפרדסון (יומית, בלי ציוד) או חיזוק כבד ואיטי (3 פעמים בשבוע, בחדר כושר). בוחרים אחת ומתמידים 12 שבועות.
 
+### סרטון: 19 תרגילים לכף הרגל, לדורבן ולאכילס
+
+בסרטון שלי ביוטיוב אני מדגים 19 תרגילים לחיזוק כף הרגל, לדורבן ולגיד אכילס. כדאי לראות איך מבצעים כל תרגיל לפני שמתחילים.
+
+<div style="position:relative;padding-top:56.25%;margin:12px 0 24px;border-radius:10px;overflow:hidden;background:#000"><iframe src="https://www.youtube-nocookie.com/embed/_nAgyjPzGdg" title="פרוטוקול זהב לכף הרגל: 19 תרגילים לדורבן, אכילס וחיזוק כף הרגל" loading="lazy" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe></div>
+
+[לצפייה ביוטיוב](https://www.youtube.com/watch?v=_nAgyjPzGdg)
+
 ### אפשרות א': פרוטוקול אלפרדסון
 
 | תרגיל | סטים × חזרות | תדירות | איך עושים |
