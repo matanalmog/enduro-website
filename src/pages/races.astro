@@ -13,6 +13,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import FaqItem from "../components/FaqItem.astro";
 import RaceTable from "../components/RaceTable.astro";
 import racesData from "../data/races.json";
+import { mainBenefits, moreBenefits } from "../data/equipment-benefits";
 
 const israelRaces = racesData.israel ?? [];
 const internationalRaces = racesData.international ?? [];
@@ -128,6 +129,46 @@ const schema = [
           </div>
         )
       ))}
+    </div>
+  </section>
+
+  <section class="container section featured-codes equipment-codes" id="equipment">
+    <h2>קודי הנחה לציוד ריצה של ENDURO</h2>
+    <div class="featured-grid equipment-grid">
+      {mainBenefits.map((item) => (
+        <details class="featured-card featured-reveal equipment-card">
+          <summary>
+            <span class="featured-race">{item.hebrew ? `${item.brand} · ${item.hebrew}` : item.brand}</span>
+            <span class="equipment-discount">{item.discount}</span>
+            <span class="featured-hint">לחצו לצפייה בקוד</span>
+          </summary>
+          {item.note && <span class="featured-note">{item.note}</span>}
+          <code class="featured-code">{item.code}</code>
+          {item.details && (
+            <ul class="equipment-details">
+              {item.details.map((line) => (
+                <li>{line}</li>
+              ))}
+            </ul>
+          )}
+        </details>
+      ))}
+      <details class="featured-card featured-reveal equipment-card equipment-more">
+        <summary>
+          <span class="featured-race">קודי הנחה נוספים</span>
+          <span class="equipment-discount">{moreBenefits.map((b) => b.brand).join(", ")}</span>
+          <span class="featured-hint">לחצו לצפייה בקודים</span>
+        </summary>
+        <ul class="equipment-list">
+          {moreBenefits.map((b) => (
+            <li>
+              <span class="equipment-brand">{b.brand}</span>
+              <span class="featured-note">{b.discount}</span>
+              <code class="featured-code">{b.code}</code>
+            </li>
+          ))}
+        </ul>
+      </details>
     </div>
   </section>
 
@@ -583,6 +624,46 @@ const schema = [
   .featured-note {
     color: var(--color-gray-300);
     font-size: 0.8rem;
+  }
+
+  .equipment-codes {
+    padding-top: 0;
+  }
+
+  .equipment-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    align-items: start;
+  }
+
+  .equipment-discount {
+    color: var(--color-gold-500);
+    font-weight: 700;
+  }
+
+  .equipment-details,
+  .equipment-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: start;
+    font-size: 0.82rem;
+    color: var(--color-gray-300);
+  }
+
+  .equipment-list li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    text-align: center;
+  }
+
+  .equipment-brand {
+    font-weight: 700;
+    color: var(--color-white);
   }
 
   .update-note {
