@@ -30,8 +30,27 @@ export const systemItems: AppItem[] = [
     summary: "כאן רואים את כל האימונים לפי ימים.",
     blocks: [
       { kind: "p", text: "האימונים שאני כותב לך מופיעים ביומן ב-Final Surge, לפי ימים." },
-      { kind: "p", text: "לוחצים על האימון ורואים את כל הפירוט שלו, כולל מבנה האימון (Workout Builder)." },
-      { kind: "todo", text: "צילומי מסך: היומן, אימון פתוח עם הפירוט, ה-Workout Builder." },
+      {
+        kind: "image",
+        src: "/images/training-app/app-01-calendar.jpg",
+        alt: "יומן האימונים ב-Final Surge, שני אימונים מסומנים באדום: Run - Long Run ו-Run - Fartlek",
+      },
+      { kind: "p", text: "לוחצים על אימון ביומן (1)." },
+      {
+        kind: "image",
+        src: "/images/training-app/app-02-details.jpg",
+        alt: "הפירוט של האימון נפתח, ומתחת לתיאור רשימת קטעים: Pain & Injury, Post Workout Notes, Workout Builder, Videos & Attachments, Routes ו-Comments",
+      },
+      {
+        kind: "p",
+        text: "נפתח הפירוט: תיאור האימון, ומתחתיו קטעים שנפתחים בלחיצה (1): Pain & Injury, Post Workout Notes, Workout Builder, Videos & Attachments, Routes ו-Comments.",
+      },
+      {
+        kind: "image",
+        src: "/images/training-app/app-03-builder.jpg",
+        alt: "הקטע Workout Builder פתוח, מוצג מבנה האימון עם המרחק וטווח הקצב",
+      },
+      { kind: "p", text: "ב-Workout Builder רואים את מבנה האימון: הצעדים, המרחק וטווח הקצב (1)." },
     ],
   },
   {
@@ -51,7 +70,17 @@ export const systemItems: AppItem[] = [
     summary: "איפה משאירים משוב והודעה, ואיפה קוראים את התגובה שלי.",
     blocks: [
       { kind: "p", text: "אימון שביצעת מגיע אוטומטית מהשעון. אחריו משאירים משוב והודעה, כך אני רואה איך הלך." },
-      { kind: "todo", text: "צילומי מסך: איפה משאירים את המשוב וההודעה, ואיפה קוראים את התגובה." },
+      {
+        kind: "image",
+        src: "/images/training-app/app-04-comments.jpg",
+        alt: "הקטע Comments של האימון עם תיבת כתיבה, מסומנת באדום",
+      },
+      {
+        kind: "p",
+        text: "בקטע Comments כותבים הודעה על האימון (1). לפי ההסבר ב-Final Surge, ההערות נועדו לתקשורת עם המאמן על האימון.",
+      },
+      { kind: "p", text: "בקטע Post Workout Notes אפשר להוסיף הערות אחרי האימון." },
+      { kind: "todo", text: "איפה קוראים את התגובה שלי: לאשר מול תומר ולהוסיף צילום." },
     ],
   },
   {
