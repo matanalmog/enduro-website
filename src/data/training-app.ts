@@ -84,6 +84,49 @@ export const systemItems: AppItem[] = [
     ],
   },
   {
+    id: "edit-labels",
+    title: "עריכת אימון ותוויות",
+    icon: "🏷️",
+    summary: "משנים תאריך של אימון, ומוסיפים תווית ליום או לטווח ימים.",
+    blocks: [
+      { kind: "h", text: "עריכת אימון" },
+      {
+        kind: "image",
+        src: "/images/training-app/app-05-edit.jpg",
+        alt: "חלון Quick Edit של אימון: תאריך, שעה וסדר, שתי לשוניות Planned ו-Completed, וכפתור Save workout",
+      },
+      {
+        kind: "p",
+        text: "לוחצים על העיפרון בפירוט האימון, ונפתח החלון Quick Edit. אפשר לשנות תאריך, שעה וסדר (1). יש בו שתי לשוניות, Planned ו-Completed (2), ושומרים ב-Save workout (3).",
+      },
+      { kind: "h", text: "תווית ליום או לטווח ימים" },
+      {
+        kind: "image",
+        src: "/images/training-app/app-06-day-actions.jpg",
+        alt: "יום מסומן ביומן, ולצידו עמודת כפתורים, ביניהם Add label",
+      },
+      {
+        kind: "p",
+        text: "לוחצים על הכפתור עם החיצים ליד התאריך (Pick date range) ובוחרים יום או כמה ימים. מופיעה עמודת כפתורים (1): Add label, Move/Shift, Copy, Copy To Clipboard ו-Remove.",
+      },
+      {
+        kind: "image",
+        src: "/images/training-app/app-07-label-dialog.jpg",
+        alt: "החלון New Label: תאריך התחלה ותאריך סיום, שם התווית וכפתור Add Label",
+      },
+      {
+        kind: "p",
+        text: "ב-Add label נפתח החלון New Label. בוחרים תאריך התחלה ותאריך סיום (1), כותבים שם לתווית ובוחרים צבע (2), ולוחצים Add Label (3). אם מסמנים Save to label library, התווית נשמרת לשימוש חוזר.",
+      },
+      {
+        kind: "image",
+        src: "/images/training-app/app-08-label-result.jpg",
+        alt: "היומן עם תווית שמוצגת כפס צבעוני על פני הימים שנבחרו",
+      },
+      { kind: "p", text: "התווית מוצגת כפס צבעוני על פני הימים שבחרת (1)." },
+    ],
+  },
+  {
     id: "watch",
     title: "האימונים בשעון",
     icon: "⌚",
