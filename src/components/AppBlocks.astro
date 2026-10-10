@@ -1,0 +1,107 @@
+---
+// מציג את הבלוקים של פריט בדף "אפליקציית אימון" (כותרת, פסקה, רשימות, טבלה, תמונה).
+// בלוקים מסוג todo הם הערות לתומר ולא מוצגים באתר.
+import type { Block } from "../data/training-app";
+
+interface Props {
+  blocks: Block[];
+}
+const { blocks } = Astro.props;
+---
+
+<div class="blocks">
+  {
+    blocks.map((b) => {
+      if (b.kind === "h") return <h4>{b.text}</h4>;
+      if (b.kind === "p") return <p>{b.text}</p>;
+      if (b.kind === "lead")
+        return (
+          <p class="lead-box">
+            <strong>{b.label}:</strong> {b.text}
+          </p>
+        );
+      if (b.kind === "ul") return <ul>{b.items.map((i) => <li>{i}</li>)}</ul>;
+      if (b.kind === "ol") return <ol>{b.items.map((i) => <li>{i}</li>)}</ol>;
+      if (b.kind === "table")
+        return (
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>{b.head.map((h) => <th>{h}</th>)}</tr>
+              </thead>
+              <tbody>
+                {b.rows.map((r) => (
+                  <tr>{r.map((c) => <td>{c}</td>)}</tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        );
+      if (b.kind === "image")
+        return (
+          <figure>
+            <img src={b.src} alt={b.alt} loading="lazy" />
+          </figure>
+        );
+      return null;
+    })
+  }
+</div>
+
+<style>
+  .blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  h4 {
+    margin: 0.6rem 0 0;
+    font-size: 1.02rem;
+  }
+  p,
+  ul,
+  ol {
+    margin: 0;
+  }
+  ul,
+  ol {
+    padding-inline-start: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .lead-box {
+    padding: 0.7rem 0.9rem;
+    border-inline-start: 4px solid #b34700;
+    background: var(--color-gray-50, #f6f7f9);
+    border-radius: 8px;
+  }
+  .table-wrap {
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.92rem;
+  }
+  th,
+  td {
+    border: 1px solid var(--color-gray-100, #e4e7ec);
+    padding: 0.5rem 0.65rem;
+    text-align: start;
+    vertical-align: top;
+  }
+  th {
+    background: var(--color-gray-50, #f6f7f9);
+  }
+  figure {
+    margin: 0;
+  }
+  img {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--color-gray-100, #e4e7ec);
+  }
+</style>

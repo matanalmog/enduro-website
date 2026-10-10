@@ -2,7 +2,8 @@
 // "אפליקציית אימון": הסבר על מערכת האימונים וסוגי האימונים, עם קישור לכניסה למערכת Final Surge.
 // התוכן נשלט מ-src/data/training-app.ts. הדף לא מיועד לחיפוש (noindex) עד שהטקסטים המפורטים יאושרו.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { FINAL_SURGE_LOGIN_URL, systemPoints, trainingTypes } from "../data/training-app";
+import AppBlocks from "../components/AppBlocks.astro";
+import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes } from "../data/training-app";
 ---
 
 <BaseLayout
@@ -29,38 +30,64 @@ import { FINAL_SURGE_LOGIN_URL, systemPoints, trainingTypes } from "../data/trai
     </p>
 
     <h2>איך עובדת המערכת</h2>
-    <ul class="points">
+    <p class="lead">לוחצים על נושא כדי לראות את הפירוט.</p>
+    <div class="acc-list">
       {
-        systemPoints.map((p) => (
-          <li>
-            <h3>{p.title}</h3>
-            <p>{p.text}</p>
-          </li>
+        systemItems.map((item) => (
+          <details class="acc" id={item.id}>
+            <summary>
+              <span class="acc-icon" aria-hidden="true">{item.icon}</span>
+              <span class="acc-text">
+                <strong>{item.title}</strong>
+                <span>{item.summary}</span>
+              </span>
+              <span class="acc-chev" aria-hidden="true">▾</span>
+            </summary>
+            <div class="acc-body">
+              <AppBlocks blocks={item.blocks} />
+            </div>
+          </details>
         ))
       }
-    </ul>
+    </div>
 
     <h2>סוגי האימונים</h2>
-    <p class="lead">מה תראו ביומן, ובקצרה מה המטרה של כל אחד.</p>
-    <ul class="types">
+    <p class="lead">לוחצים על סוג אימון כדי לקרוא על השיטה שלי ועל האימון עצמו.</p>
+    <div class="acc-list">
       {
-        trainingTypes.map((t) => (
-          <li class="type" id={t.id}>
-            <span class="type-icon" aria-hidden="true">{t.icon}</span>
-            <div>
-              <h3>{t.title}</h3>
-              <p>{t.text}</p>
+        trainingTypes.map((item) => (
+          <details class="acc" id={item.id}>
+            <summary>
+              <span class="acc-icon" aria-hidden="true">{item.icon}</span>
+              <span class="acc-text">
+                <strong>{item.title}</strong>
+                <span>{item.summary}</span>
+              </span>
+              <span class="acc-chev" aria-hidden="true">▾</span>
+            </summary>
+            <div class="acc-body">
+              <AppBlocks blocks={item.blocks} />
             </div>
-          </li>
+          </details>
         ))
       }
-    </ul>
+    </div>
 
     <p class="help">
       שאלה על אימון? <a href="https://wa.me/972526982993" rel="noopener">וואטסאפ 052-6982993</a>
     </p>
   </section>
 </BaseLayout>
+
+<script>
+  // קישור ישיר (#hills) פותח את הפריט הרלוונטי
+  const hash = location.hash.replace("#", "");
+  const target = hash ? document.getElementById(hash) : null;
+  if (target instanceof HTMLDetailsElement) {
+    target.open = true;
+    target.scrollIntoView();
+  }
+</script>
 
 <style>
   .app {
@@ -96,47 +123,61 @@ import { FINAL_SURGE_LOGIN_URL, systemPoints, trainingTypes } from "../data/trai
   h2 {
     margin-top: var(--space-5, 2.5rem);
   }
-  .points,
-  .types {
-    list-style: none;
-    padding: 0;
-    margin: var(--space-3, 1rem) 0 0;
-    display: grid;
-    gap: 0.9rem;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .acc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: var(--space-3, 1rem);
   }
-  .points li,
-  .type {
+  .acc {
     border: 1px solid var(--color-border, #e4e7ec);
     border-radius: 14px;
-    padding: 0.9rem 1.1rem;
     background: var(--color-surface, #fff);
   }
-  .points h3,
-  .type h3 {
-    margin: 0 0 0.3rem;
-    font-size: 1.05rem;
+  .acc[open] {
+    border-color: #b34700;
   }
-  .points p,
-  .type p {
-    margin: 0;
-  }
-  .type {
+  .acc > summary {
     display: flex;
-    gap: 0.8rem;
-    align-items: flex-start;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 1.1rem;
+    cursor: pointer;
+    list-style: none;
   }
-  .type-icon {
+  .acc > summary::-webkit-details-marker {
+    display: none;
+  }
+  .acc > summary:focus-visible {
+    outline: 3px solid #b34700;
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+  .acc-icon {
     font-size: 1.6rem;
     line-height: 1;
   }
+  .acc-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .acc-text span {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+  .acc-chev {
+    color: #b34700;
+    transition: transform 0.15s ease;
+  }
+  .acc[open] .acc-chev {
+    transform: rotate(180deg);
+  }
+  .acc-body {
+    padding: 0 1.1rem 1.1rem;
+  }
   .help {
     margin-top: var(--space-4, 1.5rem);
-  }
-  @media (max-width: 700px) {
-    .points,
-    .types {
-      grid-template-columns: 1fr;
-    }
   }
 </style>
