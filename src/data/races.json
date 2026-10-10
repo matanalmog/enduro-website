@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-03T19:40:36.011Z",
+  "generatedAt": "2026-10-10T20:28:18.725Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -15,49 +15,6 @@
     ]
   },
   "israel": [
-    {
-      "name": "מרוץ סביון",
-      "region": "בקעת אונו",
-      "date": "2026-10-09",
-      "link": "https://savyon.shvoong.co.il/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "2, 5, 10 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "חצי מרתון פארק הירקון",
-      "region": "",
-      "date": "2026-10-09",
-      "link": "https://runwithmoshe.co.il/%d7%97%d7%a6%d7%99-%d7%9e%d7%a8%d7%aa%d7%95%d7%9f-%d7%a4%d7%90%d7%a8%d7%a7-%d7%94%d7%99%d7%a8%d7%a7%d7%95%d7%9f-2023/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "5, 10, 21 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "אולטרה דרזט ווטר ראן",
-      "region": "",
-      "date": "2026-10-09",
-      "link": "https://www.ultradesert.com/waterrun/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "12 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ הסרגל Winner ה-4 \"חרבות ברזל\"",
-      "region": "",
-      "date": "2026-10-09",
-      "link": "https://www.3plus.co.il/sargelrace",
-      "source": "3plus.co.il",
-      "isNew": false,
-      "discountCode": "enduro26",
-      "discountOrganizer": "3plus"
-    },
     {
       "name": "מרוץ הילדים בפרדס חנה – כרכור",
       "region": "",
@@ -274,6 +231,17 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "מרוץ רצים ללא גבולות",
+      "region": "",
+      "date": "2026-11-06",
+      "link": "https://giveback.co.il/project/92103?amb=4ddb2f28-b4be-11f1-a602-4201ac1c90e4",
+      "source": "runpanel.co.il",
+      "distanceLabel": "2, 5 ק\"מ",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -520,136 +488,6 @@
   ],
   "international": [
     {
-      "name": "Tartu City Marathon",
-      "region": "Estonia",
-      "date": "2026-10-03",
-      "link": "https://www.tartumaraton.ee",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Kuala Lumpur Standard Chartered Marathon",
-      "region": "Malaysia",
-      "date": "2026-10-03",
-      "link": "https://www.kl-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "XinWu Half Marathon",
-      "region": "Chinese Taipei",
-      "date": "2026-10-04",
-      "link": "https://lohasnet.tw/XinWuMarathon2026/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Wizz Air Skopje Marathon",
-      "region": "Skopje, Macedonia",
-      "date": "2026-10-04",
-      "link": "https://www.skopjemarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Generali Cologne Marathon",
-      "region": "Ottoplatz, Köln-Deutz",
-      "date": "2026-10-04",
-      "link": "https://koeln-marathon.de/en/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Sekhon Indian Air Force Marathon (SIM)",
-      "region": "India",
-      "date": "2026-10-04",
-      "link": "https://sekhoniafmarathon.in",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "25th LOTTO Poznań Marathon",
-      "region": "Poland",
-      "date": "2026-10-04",
-      "link": "https://www.marathon.poznan.pl",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Sarmang Dehradun Marathon",
-      "region": "Dehrahun, India",
-      "date": "2026-10-04",
-      "link": "https://sarmangdehradunmarathon.sarmang.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Košice Peace Marathon",
-      "region": "Slovakia",
-      "date": "2026-10-04",
-      "link": "https://www.kosicemarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "LSR Colombo Marathon",
-      "region": "Sri Lanka",
-      "date": "2026-10-04",
-      "link": "https://www.colombomarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Silesia Marathon",
-      "region": "Poland",
-      "date": "2026-10-04",
-      "link": "https://www.silesiamarathon.pl/en/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Techcombank Hanoi International Marathon",
-      "region": "Vietnam",
-      "date": "2026-10-04",
-      "link": "https://marathonhn.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "41st SPAR Budapest Marathon",
-      "region": "Hungary",
-      "date": "2026-10-10",
-      "link": "https://marathon.runinbudapest.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "EDP Lisbon Marathon",
       "region": "Portugal",
       "date": "2026-10-10",
@@ -670,10 +508,60 @@
       "discountOrganizer": null
     },
     {
+      "name": "41st SPAR Budapest Marathon",
+      "region": "Hungary",
+      "date": "2026-10-10",
+      "link": "https://marathon.runinbudapest.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "3 Country Sparkasse Marathon",
+      "region": "Austria",
+      "date": "2026-10-11",
+      "link": "https://www.sparkasse-3-laender-marathon.at",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Novi Sad Marathon",
       "region": "Serbia",
       "date": "2026-10-11",
       "link": "https://www.marathon.org.rs",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Tlajomulco Half Marathon Skarch Hydrated by Electrolit",
+      "region": "Tlajomulco, Mexico",
+      "date": "2026-10-11",
+      "link": "https://www.facebook.com/mmtlajomulco",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Kazan Half Marathon",
+      "region": "Kazan, Russia",
+      "date": "2026-10-11",
+      "link": "https://timerman.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Royal Victoria Marathon",
+      "region": "Canada",
+      "date": "2026-10-11",
+      "link": "https://www.runvictoriamarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -700,50 +588,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Royal Victoria Marathon",
-      "region": "Canada",
+      "name": "Bank of America Chicago Marathon",
+      "region": "United States of America",
       "date": "2026-10-11",
-      "link": "https://www.runvictoriamarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Zagreb Marathon, Half and 10K",
-      "region": "Croatia",
-      "date": "2026-10-11",
-      "link": "https://www.zagreb-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Nike Melbourne Marathon Festival",
-      "region": "Australia",
-      "date": "2026-10-11",
-      "link": "https://www.melbournemarathon.com.au",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Tlajomulco Half Marathon Skarch Hydrated by Electrolit",
-      "region": "Tlajomulco, Mexico",
-      "date": "2026-10-11",
-      "link": "https://www.facebook.com/mmtlajomulco",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "3 Country Sparkasse Marathon",
-      "region": "Austria",
-      "date": "2026-10-11",
-      "link": "https://www.sparkasse-3-laender-marathon.at",
+      "link": "https://chicagomarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -760,30 +608,30 @@
       "discountOrganizer": null
     },
     {
+      "name": "Nike Melbourne Marathon Festival",
+      "region": "Australia",
+      "date": "2026-10-11",
+      "link": "https://www.melbournemarathon.com.au",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Zagreb Marathon, Half and 10K",
+      "region": "Croatia",
+      "date": "2026-10-11",
+      "link": "https://www.zagreb-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "ASML Marathon Eindhoven",
       "region": "Netherlands",
       "date": "2026-10-11",
       "link": "https://www.asmlmarathoneindhoven.nl",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Bank of America Chicago Marathon",
-      "region": "United States of America",
-      "date": "2026-10-11",
-      "link": "https://chicagomarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Kazan Half Marathon",
-      "region": "Kazan, Russia",
-      "date": "2026-10-11",
-      "link": "https://timerman.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -810,30 +658,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Yerevan Marathon and Half Marathon",
-      "region": "Yerevan, Armenia",
-      "date": "2026-10-17",
-      "link": "https://www.armeniamarathon.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "International Thessaloniki Night Halfmarathon, 10K, 5K & 1 Mile",
       "region": "Greece",
       "date": "2026-10-17",
       "link": "https://www.thesshalfmarathon.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "NLB Ljubljana Marathon",
-      "region": "Slovenia",
-      "date": "2026-10-17",
-      "link": "https://www.ljubljanamarathon.si",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -850,40 +678,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "TCS Toronto Waterfront Marathon",
-      "region": "Canada",
-      "date": "2026-10-18",
-      "link": "http://www.torontowaterfrontmarathon.com/",
+      "name": "NLB Ljubljana Marathon",
+      "region": "Slovenia",
+      "date": "2026-10-17",
+      "link": "https://www.ljubljanamarathon.si",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Yellow River Estuary (Dongying) Marathon",
-      "region": "China",
-      "date": "2026-10-18",
-      "link": "https://www.gusto.cn",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Beijing Marathon",
-      "region": "China",
-      "date": "2026-10-18",
-      "link": "https://www.beijing-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Taichung International Marathon",
-      "region": "Chinese Taipei",
-      "date": "2026-10-18",
-      "link": "https://lohasnet.tw/Taichung-marathon2023",
+      "name": "Yerevan Marathon and Half Marathon",
+      "region": "Yerevan, Armenia",
+      "date": "2026-10-17",
+      "link": "https://www.armeniamarathon.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -900,10 +708,50 @@
       "discountOrganizer": null
     },
     {
+      "name": "Beijing Marathon",
+      "region": "China",
+      "date": "2026-10-18",
+      "link": "https://www.beijing-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Vedanta Delhi Half Marathon",
       "region": "India",
       "date": "2026-10-18",
       "link": "https://vedantadelhihalfmarathon.procam.in",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Taichung International Marathon",
+      "region": "Chinese Taipei",
+      "date": "2026-10-18",
+      "link": "https://lohasnet.tw/Taichung-marathon2023",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Yellow River Estuary (Dongying) Marathon",
+      "region": "China",
+      "date": "2026-10-18",
+      "link": "https://www.gusto.cn",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "TCS Toronto Waterfront Marathon",
+      "region": "Canada",
+      "date": "2026-10-18",
+      "link": "http://www.torontowaterfrontmarathon.com/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -940,6 +788,116 @@
       "discountOrganizer": null
     },
     {
+      "name": "Chuncheon International Marathon",
+      "region": "Korea",
+      "date": "2026-10-25",
+      "link": "https://www.chuncheonmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Lausanne Marathon",
+      "region": "Switzerland",
+      "date": "2026-10-25",
+      "link": "https://www.lausanne-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "SwissCityMarathon – Lucerne",
+      "region": "Switzerland",
+      "date": "2026-10-25",
+      "link": "https://www.swisscitymarathon.ch",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mainova Frankfurt Marathon",
+      "region": "Germany",
+      "date": "2026-10-25",
+      "link": "https://www.frankfurt-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Irish Life Dublin Marathon",
+      "region": "Fitzwilliam Square, Dublin",
+      "date": "2026-10-25",
+      "link": "https://irishlifedublinmarathon.ie",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Half Marathon Valencia Trinidad Alfonso Zurich",
+      "region": "Spain",
+      "date": "2026-10-25",
+      "link": "https://www.valenciaciudaddelrunning.com/medio-maraton",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "hella hamburg half marathon",
+      "region": "Hamburg, Germany",
+      "date": "2026-10-25",
+      "link": "https://www.hamburg-halbmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mae Moh Half Marathon",
+      "region": "Thailand",
+      "date": "2026-10-25",
+      "link": "https://race.thai.run/maemohhalfmarathon2024",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Marathon International de Casablanca",
+      "region": "Morocco",
+      "date": "2026-10-25",
+      "link": "https://www.casablanca-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Chengdu Marathon",
+      "region": "Beijing, China",
+      "date": "2026-10-25",
+      "link": "http://chengdu-marathon.mararun.com/",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Changsha Marathon",
+      "region": "Changsha, China",
+      "date": "2026-10-25",
+      "link": "https://www.marathonchangsha.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "UWI SPEC International Half-Marathon & 5K",
       "region": "Trinidad & Tobago",
       "date": "2026-10-25",
@@ -960,60 +918,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Mainova Frankfurt Marathon",
-      "region": "Germany",
-      "date": "2026-10-25",
-      "link": "https://www.frankfurt-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "hella hamburg half marathon",
-      "region": "Hamburg, Germany",
-      "date": "2026-10-25",
-      "link": "https://www.hamburg-halbmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Lausanne Marathon",
-      "region": "Switzerland",
-      "date": "2026-10-25",
-      "link": "https://www.lausanne-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chuncheon International Marathon",
-      "region": "Korea",
-      "date": "2026-10-25",
-      "link": "https://www.chuncheonmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "EVA Air Marathon",
       "region": "Taipei City, Taiwan",
       "date": "2026-10-25",
       "link": "https://evaairrun.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chengdu Marathon",
-      "region": "Beijing, China",
-      "date": "2026-10-25",
-      "link": "http://chengdu-marathon.mararun.com/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1030,60 +938,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Mae Moh Half Marathon",
-      "region": "Thailand",
-      "date": "2026-10-25",
-      "link": "https://race.thai.run/maemohhalfmarathon2024",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Changsha Marathon",
-      "region": "Changsha, China",
-      "date": "2026-10-25",
-      "link": "https://www.marathonchangsha.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "SwissCityMarathon – Lucerne",
-      "region": "Switzerland",
-      "date": "2026-10-25",
-      "link": "https://www.swisscitymarathon.ch",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Marathon International de Casablanca",
-      "region": "Morocco",
-      "date": "2026-10-25",
-      "link": "https://www.casablanca-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Venicemarathon",
       "region": "Italy",
       "date": "2026-10-25",
       "link": "https://www.venicemarathon.it",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Irish Life Dublin Marathon",
-      "region": "Fitzwilliam Square, Dublin",
-      "date": "2026-10-25",
-      "link": "https://irishlifedublinmarathon.ie",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1100,80 +958,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Half Marathon Valencia Trinidad Alfonso Zurich",
-      "region": "Spain",
-      "date": "2026-10-25",
-      "link": "https://www.valenciaciudaddelrunning.com/medio-maraton",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "China Airlines Marathon – The Starry Night Run",
       "region": "Chinese Taipei",
       "date": "2026-10-31",
       "link": "https://cimarathon.china-airlines.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Taiwan National Parks Marathon Yangmingshan",
-      "region": "Taipei city, Taiwan",
-      "date": "2026-11-01",
-      "link": null,
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Hangzhou Marathon",
-      "region": "China",
-      "date": "2026-11-01",
-      "link": "https://www.hzim.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "İstanbul Marathon",
-      "region": "Türkiye",
-      "date": "2026-11-01",
-      "link": "https://www.maraton.istanbul",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Sun Moon Lake Marathon",
-      "region": "Xiangshan Visitor Center, Sun Moon Lake National Scenic Park, Taiwan",
-      "date": "2026-11-01",
-      "link": "https://www.sunmoonlakemarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "JTBC Seoul Marathon",
-      "region": "Korea",
-      "date": "2026-11-01",
-      "link": "https://marathon.jtbc.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Barfoot & Thompson Runaway Auckland Marathon presented by ASICS",
-      "region": "New Zealand",
-      "date": "2026-11-01",
-      "link": "https://aucklandmarathon.co.nz",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1200,10 +988,90 @@
       "discountOrganizer": null
     },
     {
+      "name": "Hangzhou Marathon",
+      "region": "China",
+      "date": "2026-11-01",
+      "link": "https://www.hzim.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Barfoot & Thompson Runaway Auckland Marathon presented by ASICS",
+      "region": "New Zealand",
+      "date": "2026-11-01",
+      "link": "https://aucklandmarathon.co.nz",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "İstanbul Marathon",
+      "region": "Türkiye",
+      "date": "2026-11-01",
+      "link": "https://www.maraton.istanbul",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Sun Moon Lake Marathon",
+      "region": "Xiangshan Visitor Center, Sun Moon Lake National Scenic Park, Taiwan",
+      "date": "2026-11-01",
+      "link": "https://www.sunmoonlakemarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Taiwan National Parks Marathon Yangmingshan",
+      "region": "Taipei city, Taiwan",
+      "date": "2026-11-01",
+      "link": null,
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "JTBC Seoul Marathon",
+      "region": "Korea",
+      "date": "2026-11-01",
+      "link": "https://marathon.jtbc.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Saquib Rizvi Memorial Cancer Awareness Half Marathon",
       "region": "India",
       "date": "2026-11-02",
       "link": "http://helpyourselffoundation.in",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Monterey Bay Half Marathon",
+      "region": "United States of America",
+      "date": "2026-11-07",
+      "link": "https://www.montereybayhalfmarathon.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Standard Chartered Hanoi Marathon Heritage Race",
+      "region": "Hanoi, Vietnam",
+      "date": "2026-11-07",
+      "link": "https://hanoi-marathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1230,20 +1098,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Monterey Bay Half Marathon",
-      "region": "United States of America",
-      "date": "2026-11-07",
-      "link": "https://www.montereybayhalfmarathon.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Standard Chartered Hanoi Marathon Heritage Race",
-      "region": "Hanoi, Vietnam",
-      "date": "2026-11-07",
-      "link": "https://hanoi-marathon.com",
+      "name": "Guadalajara Marathon Skarch hydrated by Electrolit",
+      "region": "Mexico",
+      "date": "2026-11-08",
+      "link": "https://www.maratonguadalajara.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1274,16 +1132,6 @@
       "region": "Italy",
       "date": "2026-11-08",
       "link": "https://www.maratonadiravenna.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Guadalajara Marathon Skarch hydrated by Electrolit",
-      "region": "Mexico",
-      "date": "2026-11-08",
-      "link": "https://www.maratonguadalajara.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1330,20 +1178,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Panama International Marathon",
-      "region": "Panama City, Panama",
+      "name": "Bangsaen42 Chonburi Marathon",
+      "region": "Bangkok, Thailand",
       "date": "2026-11-15",
-      "link": "https://www.maratoninternacionaldepanama.com/en/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Radisson Blu Larnaka International Marathon",
-      "region": "Nicosia, Cyprus",
-      "date": "2026-11-15",
-      "link": "https://www.larnakamarathon.com",
+      "link": "https://www.bangsaen42.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1360,10 +1198,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Borobudur Marathon",
-      "region": "Borobudur, Indonesia",
+      "name": "Radisson Hotels Larnaka Marathon",
+      "region": "Nicosia, Cyprus",
       "date": "2026-11-15",
-      "link": "https://borobudurmarathon.com",
+      "link": "https://www.larnakamarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Marabana Marathon & Half & 10km",
+      "region": "Cuba",
+      "date": "2026-11-15",
+      "link": "https://www.maratondelahabana.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1390,22 +1238,32 @@
       "discountOrganizer": null
     },
     {
-      "name": "Marabana Marathon & Half & 10km",
-      "region": "Cuba",
+      "name": "Panama International Marathon",
+      "region": "Panama City, Panama",
       "date": "2026-11-15",
-      "link": "https://www.maratondelahabana.com",
+      "link": "https://www.maratoninternacionaldepanama.com/en/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Bangsaen42 Chonburi Marathon",
-      "region": "Bangkok, Thailand",
+      "name": "Borobudur Marathon",
+      "region": "Borobudur, Indonesia",
       "date": "2026-11-15",
-      "link": "https://www.bangsaen42.com",
+      "link": "https://borobudurmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Hong Kong–Zhuhai–Macao Bridge Half Marathon",
+      "region": "Hong Kong, China",
+      "date": "2026-11-15",
+      "link": "https://www.hzmb-halfmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -1424,26 +1282,6 @@
       "region": "Nepal",
       "date": "2026-11-21",
       "link": "https://www.nepalgunjmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Elopura Marathon Sandakan",
-      "region": "Malaysia",
-      "date": "2026-11-22",
-      "link": "https://www.elopuramarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Halong Bay Heritage Marathon",
-      "region": "Vietnam",
-      "date": "2026-11-22",
-      "link": "https://halongmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1470,6 +1308,26 @@
       "discountOrganizer": null
     },
     {
+      "name": "Halong Bay Heritage Marathon",
+      "region": "Vietnam",
+      "date": "2026-11-22",
+      "link": "https://halongmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Elopura Marathon Sandakan",
+      "region": "Malaysia",
+      "date": "2026-11-22",
+      "link": "https://www.elopuramarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Eilat International Desert Marathon",
       "region": "Israel",
       "date": "2026-11-27",
@@ -1490,10 +1348,70 @@
       "discountOrganizer": null
     },
     {
+      "name": "Fire International Marathon",
+      "region": "Bangladesh",
+      "date": "2026-11-28",
+      "link": "https://www.fireservice.gov.bd",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Sharm El Sheikh Half Marathon",
       "region": "Egypt",
       "date": "2026-11-28",
       "link": "https://www.egyptianmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Adani Ahmedabad Marathon",
+      "region": "Ahmedabad, India",
+      "date": "2026-11-29",
+      "link": "https://www.ahmedabadmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Estra Firenze Marathon",
+      "region": "Italy",
+      "date": "2026-11-29",
+      "link": "https://www.firenzemarathon.it",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Serge Vigot La Rochelle International Marathon",
+      "region": "France",
+      "date": "2026-11-29",
+      "link": "https://marathondelarochelle.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Discoveries Half Marathon",
+      "region": "Portugal",
+      "date": "2026-11-29",
+      "link": "https://meiamaratonadosdescobrimentos.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Stop GBV Half Marathon Zanzibar",
+      "region": "Tanzania",
+      "date": "2026-11-29",
+      "link": "https://www.stopgbvmarathonzanzibar.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1510,16 +1428,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "Vedanta Pink City Half Marathon – Jaipur",
-      "region": "Jaipur, India",
-      "date": "2026-11-29",
-      "link": "https://pinkcitymarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "JBG Kolkata Marathon",
       "region": "India",
       "date": "2026-11-29",
@@ -1530,10 +1438,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Estra Firenze Marathon",
-      "region": "Italy",
+      "name": "Vedanta Pink City Half Marathon – Jaipur",
+      "region": "Jaipur, India",
       "date": "2026-11-29",
-      "link": "https://www.firenzemarathon.it",
+      "link": "https://pinkcitymarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1554,46 +1462,6 @@
       "region": "Lebanon",
       "date": "2026-11-29",
       "link": "https://www.beirutmarathon.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Adani Ahmedabad Marathon",
-      "region": "Ahmedabad, India",
-      "date": "2026-11-29",
-      "link": "https://www.ahmedabadmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Serge Vigot La Rochelle International Marathon",
-      "region": "France",
-      "date": "2026-11-29",
-      "link": "https://marathondelarochelle.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Stop GBV Half Marathon Zanzibar",
-      "region": "Tanzania",
-      "date": "2026-11-29",
-      "link": "https://www.stopgbvmarathonzanzibar.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Discoveries Half Marathon",
-      "region": "Portugal",
-      "date": "2026-11-29",
-      "link": "https://meiamaratonadosdescobrimentos.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1630,10 +1498,30 @@
       "discountOrganizer": null
     },
     {
+      "name": "Walkers Cayman Islands Marathon",
+      "region": "Cayman Islands",
+      "date": "2026-12-06",
+      "link": "https://www.caymanislandsmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Fukuoka International Marathon",
       "region": "Japan",
       "date": "2026-12-06",
       "link": "https://www.fukuoka-international-marathon.jp",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Hofu Yomiuri Marathon",
+      "region": "Japan",
+      "date": "2026-12-06",
+      "link": "https://hofu-yomiuri.jp/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1650,60 +1538,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Marathon COMAR Tunis - Carthage",
-      "region": "Tunis, Tunisia",
-      "date": "2026-12-06",
-      "link": "https://www.marathon.comar.tn",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Valencia Trinidad Alfonso Marathon",
       "region": "Spain",
       "date": "2026-12-06",
       "link": "https://www.valenciaciudaddelrunning.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "30º San José CR 10K, Half & Marathon",
-      "region": "Costa Rica",
-      "date": "2026-12-06",
-      "link": "https://www.marathonsanjosecostarica.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "BMW Brunei International Half Marathon",
-      "region": "Brunei",
-      "date": "2026-12-06",
-      "link": "https://www.bruneimarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Walkers Cayman Islands Marathon",
-      "region": "Cayman Islands",
-      "date": "2026-12-06",
-      "link": "https://www.caymanislandsmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Angkor Wat International Half Marathon",
-      "region": "Cambodia",
-      "date": "2026-12-06",
-      "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1730,20 +1568,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Reggae Marathon - the Half Marathon, 10K & 5K",
-      "region": "Jamaica",
+      "name": "Techcombank Ho Chi Minh City International Marathon",
+      "region": "Ho Chi Minh City, Vietnam",
       "date": "2026-12-06",
-      "link": "https://www.reggaemarathon.com",
+      "link": "https://marathonhcmc.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Techcombank Ho Chi Minh City International Marathon",
-      "region": "Ho Chi Minh City, Vietnam",
+      "name": "Reggae Marathon - the Half Marathon, 10K & 5K",
+      "region": "Jamaica",
       "date": "2026-12-06",
-      "link": "https://marathonhcmc.com",
+      "link": "https://www.reggaemarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1760,10 +1598,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Hofu Yomiuri Marathon",
-      "region": "Japan",
+      "name": "30º San José CR 10K, Half & Marathon",
+      "region": "Costa Rica",
       "date": "2026-12-06",
-      "link": "https://hofu-yomiuri.jp/",
+      "link": "https://www.marathonsanjosecostarica.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Marathon COMAR Tunis - Carthage",
+      "region": "Tunis, Tunisia",
+      "date": "2026-12-06",
+      "link": "https://www.marathon.comar.tn",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1780,10 +1628,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Marakez Pyramids Half Marathon",
-      "region": "Egypt",
-      "date": "2026-12-12",
-      "link": "https://www.pyramidshalfmarathon.com",
+      "name": "Angkor Wat International Half Marathon",
+      "region": "Cambodia",
+      "date": "2026-12-06",
+      "link": "https://www.cambodia-events.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "BMW Brunei International Half Marathon",
+      "region": "Brunei",
+      "date": "2026-12-06",
+      "link": "https://www.bruneimarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1800,70 +1658,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Nara Marathon",
-      "region": "Japan",
-      "date": "2026-12-13",
-      "link": "https://www.nara-marathon.jp",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Photak Marathon",
-      "region": "Thailand",
-      "date": "2026-12-13",
-      "link": "https://www.photak42.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Zengwen Reservoir Marathon",
-      "region": "Zengwen Reservoir, Taiwan",
-      "date": "2026-12-13",
-      "link": "https://www.athletics.org.tw",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Mt. Fuji International Marathon",
-      "region": "[35.5720991, 139.1141342]",
-      "date": "2026-12-13",
-      "link": "https://mtfujimarathon.com/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Aspen-Klippa Penang Bridge International Marathon 2025",
-      "region": "Malaysia",
-      "date": "2026-12-13",
-      "link": "https://www.penangmarathon.gov.my",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Scenic Marathon Nakhon Phanom",
-      "region": "Thailand",
-      "date": "2026-12-13",
-      "link": "https://www.scenicmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "SKF Goa River Marathon",
-      "region": "Vasco da Gama, Goa, India",
-      "date": "2026-12-13",
-      "link": "https://www.skfgoarivermarathon.com",
+      "name": "Marakez Pyramids Half Marathon",
+      "region": "Egypt",
+      "date": "2026-12-12",
+      "link": "https://www.pyramidshalfmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1880,20 +1678,70 @@
       "discountOrganizer": null
     },
     {
-      "name": "Chiang Mai Marathon",
+      "name": "Photak Marathon",
       "region": "Thailand",
-      "date": "2026-12-20",
-      "link": "https://www.chiangmaimarathon.com",
+      "date": "2026-12-13",
+      "link": "https://www.photak42.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Guangzhou Marathon",
-      "region": "China",
-      "date": "2026-12-20",
-      "link": "https://www.guangzhou-marathon.com",
+      "name": "Nara Marathon",
+      "region": "Japan",
+      "date": "2026-12-13",
+      "link": "https://www.nara-marathon.jp",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Aspen-Klippa Penang Bridge International Marathon 2025",
+      "region": "Malaysia",
+      "date": "2026-12-13",
+      "link": "https://www.penangmarathon.gov.my",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mt. Fuji International Marathon",
+      "region": "[35.5720991, 139.1141342]",
+      "date": "2026-12-13",
+      "link": "https://mtfujimarathon.com/",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Zengwen Reservoir Marathon",
+      "region": "Zengwen Reservoir, Taiwan",
+      "date": "2026-12-13",
+      "link": "https://www.athletics.org.tw",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "SKF Goa River Marathon",
+      "region": "Vasco da Gama, Goa, India",
+      "date": "2026-12-13",
+      "link": "https://www.skfgoarivermarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Scenic Marathon Nakhon Phanom",
+      "region": "Thailand",
+      "date": "2026-12-13",
+      "link": "https://www.scenicmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1910,10 +1758,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Indore Marathon",
-      "region": "India",
+      "name": "Chiang Mai Marathon",
+      "region": "Thailand",
       "date": "2026-12-20",
-      "link": "https://www.indoremarathon.in",
+      "link": "https://www.chiangmaimarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -1924,6 +1772,26 @@
       "region": "Bangkok, Thailand",
       "date": "2026-12-20",
       "link": "https://www.facebook.com/BKKmidnightmarathon/?locale=th_TH",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Indore Marathon",
+      "region": "India",
+      "date": "2026-12-20",
+      "link": "https://www.indoremarathon.in",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Guangzhou Marathon",
+      "region": "China",
+      "date": "2026-12-20",
+      "link": "https://www.guangzhou-marathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2010,16 +1878,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "PolarNight Marathon",
-      "region": "Tromsoe, Norway",
-      "date": "2027-01-09",
-      "link": "https://www.msm.no",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Khao Yai Marathon",
       "region": "Thailand",
       "date": "2027-01-09",
@@ -2034,6 +1892,36 @@
       "region": "Thailand",
       "date": "2027-01-09",
       "link": "https://www.khonkaenmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "PolarNight Marathon",
+      "region": "Tromsoe, Norway",
+      "date": "2027-01-09",
+      "link": "https://www.msm.no",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Standard Chartered Taipei Charity Marathon",
+      "region": "Chinese Taipei",
+      "date": "2027-01-10",
+      "link": "https://scbmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Bangkok Marathon",
+      "region": "Thailand",
+      "date": "2027-01-10",
+      "link": "https://www.bkkmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2060,40 +1948,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Bangkok Marathon",
-      "region": "Thailand",
-      "date": "2027-01-10",
-      "link": "https://www.bkkmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Standard Chartered Taipei Charity Marathon",
-      "region": "Chinese Taipei",
-      "date": "2027-01-10",
-      "link": "https://scbmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "JBG Durgapur Marathon",
       "region": "India",
       "date": "2027-01-11",
       "link": "https://www.jbgdurgapurmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Doha Marathon by Ooredoo",
-      "region": "Qatar",
-      "date": "2027-01-15",
-      "link": "https://www.dohamarathonooredoo.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2110,10 +1968,40 @@
       "discountOrganizer": null
     },
     {
+      "name": "Doha Marathon by Ooredoo",
+      "region": "Qatar",
+      "date": "2027-01-15",
+      "link": "https://www.dohamarathonooredoo.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Tata Mumbai Marathon",
       "region": "India",
       "date": "2027-01-17",
       "link": "https://tatamumbaimarathon.procam.in",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Chombeung Marathon",
+      "region": "Chombeung, Thailand",
+      "date": "2027-01-17",
+      "link": "https://www.chombuengmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Standard Chartered Hong Kong Marathon",
+      "region": "Hong Kong, China",
+      "date": "2027-01-17",
+      "link": "https://www.hkmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2134,16 +2022,6 @@
       "region": "Chinese Taipei",
       "date": "2027-01-17",
       "link": "https://irunner.biji.co/twnmarathon2026",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Standard Chartered Hong Kong Marathon",
-      "region": "Hong Kong, China",
-      "date": "2027-01-17",
-      "link": "https://www.hkmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2210,6 +2088,26 @@
       "discountOrganizer": null
     },
     {
+      "name": "Ras al Khaimah Half Marathon",
+      "region": "25º47'9.808, 55º57'56.3148",
+      "date": "2027-01-30",
+      "link": "https://www.rakhalfmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Riyadh Marathon",
+      "region": "Saudi Arabia",
+      "date": "2027-01-30",
+      "link": "https://riyadhmarathon.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "World Marathon Challenge",
       "region": "Atlantic Ocean",
       "date": "2027-01-30",
@@ -2220,10 +2118,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Riyadh Marathon",
-      "region": "Saudi Arabia",
-      "date": "2027-01-30",
-      "link": "https://riyadhmarathon.org",
+      "name": "Funchal Marathon",
+      "region": "Funchal, Madeira",
+      "date": "2027-01-31",
+      "link": "https://www.madeiramarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2260,20 +2158,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Funchal Marathon",
-      "region": "Funchal, Madeira",
+      "name": "Osaka Half Marathon",
+      "region": "Japan",
       "date": "2027-01-31",
-      "link": "https://www.madeiramarathon.com",
+      "link": "https://half.osaka-marathon.jp/index.html",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Osaka Half Marathon",
-      "region": "Japan",
-      "date": "2027-01-31",
-      "link": "https://half.osaka-marathon.jp/index.html",
+      "name": "MG Vadodara International Marathon",
+      "region": "India",
+      "date": "2027-02-07",
+      "link": "https://www.vadodaramarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2300,26 +2198,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "Ehime Marathon",
-      "region": "Matsuyama, Japan",
-      "date": "2027-02-07",
-      "link": "https://ehimemarathon.jp",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "MG Vadodara International Marathon",
-      "region": "India",
-      "date": "2027-02-07",
-      "link": "https://www.vadodaramarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Kilimanjaro Marathon, Half Marathon & Fun Run",
       "region": "Moshi Urban, Kilimanjaro, Tanzania",
       "date": "2027-02-07",
@@ -2330,20 +2208,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Pokhara International Marathon",
-      "region": "Nepal",
-      "date": "2027-02-13",
-      "link": "https://www.pokharamarathon.org",
+      "name": "Ehime Marathon",
+      "region": "Matsuyama, Japan",
+      "date": "2027-02-07",
+      "link": "https://ehimemarathon.jp",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Ras al Khaimah Half Marathon",
-      "region": "25º47'9.808, 55º57'56.3148",
+      "name": "Pokhara International Marathon",
+      "region": "Nepal",
       "date": "2027-02-13",
-      "link": "https://www.rakhalfmarathon.com",
+      "link": "https://www.pokharamarathon.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2380,16 +2258,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "AU Jaipur Marathon",
-      "region": "Jaipur, India",
-      "date": "2027-02-14",
-      "link": "https://www.marathonjaipur.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "KIX Senshu International Marathon",
       "region": "Kansai International Airport KIX",
       "date": "2027-02-14",
@@ -2410,10 +2278,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Kyoto Marathon",
-      "region": "Japan",
+      "name": "AU Jaipur Marathon",
+      "region": "Jaipur, India",
+      "date": "2027-02-14",
+      "link": "https://www.marathonjaipur.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "IEM-UEM Kolkata Marathon",
+      "region": "India",
       "date": "2027-02-21",
-      "link": "https://www.kyoto-marathon.com/en/",
+      "link": "https://iemuemkolkatamarathon.org/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2460,10 +2338,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "IEM-UEM Kolkata Marathon",
-      "region": "India",
+      "name": "Kyoto Marathon",
+      "region": "Japan",
       "date": "2027-02-21",
-      "link": "https://iemuemkolkatamarathon.org/",
+      "link": "https://www.kyoto-marathon.com/en/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2500,6 +2378,16 @@
       "discountOrganizer": null
     },
     {
+      "name": "Daegu Marathon",
+      "region": "Daegu, Korea",
+      "date": "2027-02-28",
+      "link": "https://daegu.go.kr/daegumarathon/",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Malta Marathon",
       "region": "Bugibba, Malta",
       "date": "2027-02-28",
@@ -2520,10 +2408,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Daegu Marathon",
-      "region": "Daegu, Korea",
-      "date": "2027-02-28",
-      "link": "https://daegu.go.kr/daegumarathon/",
+      "name": "Vientiane International Half Marathon",
+      "region": "Laos",
+      "date": "2027-03-07",
+      "link": "https://www.efglaos.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2534,16 +2422,6 @@
       "region": "Portugal",
       "date": "2027-03-07",
       "link": "https://www.maratonaclubedeportugal.com/en/corrida-marco-2022/edp-lisbon-half-marathon/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Vientiane International Half Marathon",
-      "region": "Laos",
-      "date": "2027-03-07",
-      "link": "https://www.efglaos.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2564,16 +2442,6 @@
       "region": "Tainan, Taiwan",
       "date": "2027-03-07",
       "link": "https://www.tainanhalfmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Nagoya Women’s Marathon",
-      "region": "Japan",
-      "date": "2027-03-14",
-      "link": "https://womens-marathon.nagoya",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2610,6 +2478,16 @@
       "discountOrganizer": null
     },
     {
+      "name": "Nagoya Women’s Marathon",
+      "region": "Japan",
+      "date": "2027-03-14",
+      "link": "https://womens-marathon.nagoya",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Sahara Marathon",
       "region": "Algeria",
       "date": "2027-03-16",
@@ -2630,10 +2508,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Chongqing International Marathon",
-      "region": "Chongqing, China",
+      "name": "Standard Chartered Stanley Marathon",
+      "region": "Falkland Islands",
       "date": "2027-03-21",
-      "link": "https://www.cqmarathon.com",
+      "link": "https://www.sc.com/fk/marathon",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Miri Marathon",
+      "region": "Malaysia",
+      "date": "2027-03-21",
+      "link": "https://www.marathonmiri.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2650,30 +2538,30 @@
       "discountOrganizer": null
     },
     {
+      "name": "Chongqing International Marathon",
+      "region": "Chongqing, China",
+      "date": "2027-03-21",
+      "link": "https://www.cqmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Swansea Half Marathon",
+      "region": "Swansea, Wales",
+      "date": "2027-03-21",
+      "link": "https://swanseahalfmarathon.co.uk",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Malta’s La Valette Marathon",
       "region": "Malta",
       "date": "2027-03-21",
       "link": "https://www.lavalettemarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Seoul Marathon",
-      "region": "Korea",
-      "date": "2027-03-21",
-      "link": "https://www.seoul-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Miri Marathon",
-      "region": "Malaysia",
-      "date": "2027-03-21",
-      "link": "https://www.marathonmiri.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2690,10 +2578,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Swansea Half Marathon",
-      "region": "Swansea, Wales",
+      "name": "Seoul Marathon",
+      "region": "Korea",
       "date": "2027-03-21",
-      "link": "https://swanseahalfmarathon.co.uk",
+      "link": "https://www.seoul-marathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2730,20 +2618,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Spiritual Marathon of Fez",
-      "region": "Morocco",
+      "name": "Sihanoukville International Half Marathon",
+      "region": "Cambodia",
       "date": "2027-03-28",
-      "link": "https://marathonspiritueldefes.com",
+      "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Sihanoukville International Half Marathon",
-      "region": "Cambodia",
+      "name": "Spiritual Marathon of Fez",
+      "region": "Morocco",
       "date": "2027-03-28",
-      "link": "https://www.cambodia-events.org",
+      "link": "https://marathonspiritueldefes.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2760,16 +2648,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "Generali Prague Half Marathon",
-      "region": "Czech Republic",
-      "date": "2027-04-03",
-      "link": "https://www.runczech.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "XM Limassol Marathon",
       "region": "Cyprus",
       "date": "2027-04-03",
@@ -2780,40 +2658,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "21st Warsaw Half Marathon",
-      "region": "Poland",
-      "date": "2027-04-04",
-      "link": "https://polmaratonwarszawski.com/en/",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "International Marathon Alexander the Great",
-      "region": "Greece",
-      "date": "2027-04-04",
-      "link": "https://atgm.gr/?lang=en",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Generali Berlin Half Marathon",
-      "region": "Germany",
-      "date": "2027-04-04",
-      "link": "https://www.generali-berliner-halbmarathon.de",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Hobart Marathon Festival",
-      "region": "Australia",
-      "date": "2027-04-04",
-      "link": "https://www.hobartmarathon.com.au",
+      "name": "Generali Prague Half Marathon",
+      "region": "Czech Republic",
+      "date": "2027-04-03",
+      "link": "https://www.runczech.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2830,20 +2678,50 @@
       "discountOrganizer": null
     },
     {
-      "name": "Dead Sea Ultra Marathon",
-      "region": "[31.721378,35.589056]",
-      "date": "2027-04-09",
-      "link": "https://www.runjordan.com",
+      "name": "Generali Berlin Half Marathon",
+      "region": "Germany",
+      "date": "2027-04-04",
+      "link": "https://www.generali-berliner-halbmarathon.de",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Canberra Times Marathon Festival",
+      "name": "International Marathon Alexander the Great",
+      "region": "Greece",
+      "date": "2027-04-04",
+      "link": "https://atgm.gr/?lang=en",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "21st Warsaw Half Marathon",
+      "region": "Poland",
+      "date": "2027-04-04",
+      "link": "https://polmaratonwarszawski.com/en/",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Hobart Marathon Festival",
       "region": "Australia",
-      "date": "2027-04-10",
-      "link": "https://solemotive.com/pages/canberra-marathon",
+      "date": "2027-04-04",
+      "link": "https://www.hobartmarathon.com.au",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Dead Sea Ultra Marathon",
+      "region": "[31.721378,35.589056]",
+      "date": "2027-04-09",
+      "link": "https://www.runjordan.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2860,16 +2738,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "42nd Telekom Vivicittá Spring Half Marathon",
-      "region": "Hungary",
-      "date": "2027-04-10",
-      "link": "https://springhalfmarathon.runinbudapest.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "NN Marathon Rotterdam",
       "region": "Netherlands",
       "date": "2027-04-10",
@@ -2880,60 +2748,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Wizz Air Cluj-Napoca Marathon",
-      "region": "Cluj-Napoca, Romania",
-      "date": "2027-04-11",
-      "link": "https://www.maraton-cluj.ro/en",
+      "name": "42nd Telekom Vivicittá Spring Half Marathon",
+      "region": "Hungary",
+      "date": "2027-04-10",
+      "link": "https://springhalfmarathon.runinbudapest.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "ADAC Marathon Hannover",
-      "region": "Germany",
-      "date": "2027-04-11",
-      "link": "https://www.marathon-hannover.de",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Patras Half Marathon",
-      "region": "Greece",
-      "date": "2027-04-11",
-      "link": "https://patrashalfmarathon.gr/en",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Crete Marathon",
-      "region": "Crete, Greece",
-      "date": "2027-04-11",
-      "link": "https://crete-marathon.gr",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Almaty Half Marathon",
-      "region": "Almaty, Kazakhstan",
-      "date": "2027-04-11",
-      "link": "https://almaty-marathon.kz/en/events",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Enschede Marathon",
-      "region": "Netherlands",
-      "date": "2027-04-11",
-      "link": "https://www.enschedemarathon.nl",
+      "name": "Canberra Times Marathon Festival",
+      "region": "Australia",
+      "date": "2027-04-10",
+      "link": "https://solemotive.com/pages/canberra-marathon",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2950,6 +2778,46 @@
       "discountOrganizer": null
     },
     {
+      "name": "Wizz Air Cluj-Napoca Marathon",
+      "region": "Cluj-Napoca, Romania",
+      "date": "2027-04-11",
+      "link": "https://www.maraton-cluj.ro/en",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Crete Marathon",
+      "region": "Crete, Greece",
+      "date": "2027-04-11",
+      "link": "https://crete-marathon.gr",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Patras Half Marathon",
+      "region": "Greece",
+      "date": "2027-04-11",
+      "link": "https://patrashalfmarathon.gr/en",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Almaty Half Marathon",
+      "region": "Almaty, Kazakhstan",
+      "date": "2027-04-11",
+      "link": "https://almaty-marathon.kz/en/events",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "ČSOB Bratislava Marathon",
       "region": "Slovakia",
       "date": "2027-04-11",
@@ -2960,10 +2828,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "40th Powerade Belgrade Marathon",
-      "region": "Serbia",
-      "date": "2027-04-17",
-      "link": "https://www.bgdmarathon.org",
+      "name": "ADAC Marathon Hannover",
+      "region": "Germany",
+      "date": "2027-04-11",
+      "link": "https://www.marathon-hannover.de",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Enschede Marathon",
+      "region": "Netherlands",
+      "date": "2027-04-11",
+      "link": "https://www.enschedemarathon.nl",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -2980,10 +2858,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "19th PKO Poznań Halfmarathon",
-      "region": "Poland",
-      "date": "2027-04-18",
-      "link": "https://www.halfmarathon.poznan.pl",
+      "name": "40th Powerade Belgrade Marathon",
+      "region": "Serbia",
+      "date": "2027-04-17",
+      "link": "https://www.bgdmarathon.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3010,20 +2888,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Vienna City Marathon",
-      "region": "Austria",
+      "name": "19th PKO Poznań Halfmarathon",
+      "region": "Poland",
       "date": "2027-04-18",
-      "link": "https://www.vienna-marathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Padova Marathon",
-      "region": "Padua, Italy",
-      "date": "2027-04-18",
-      "link": "https://www.padovamarathon.com",
+      "link": "https://www.halfmarathon.poznan.pl",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3040,20 +2908,30 @@
       "discountOrganizer": null
     },
     {
-      "name": "Boston Marathon presented by Bank of America",
-      "region": "United States of America",
-      "date": "2027-04-19",
-      "link": "https://www.baa.org",
+      "name": "Padova Marathon",
+      "region": "Padua, Italy",
+      "date": "2027-04-18",
+      "link": "https://www.padovamarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Fjordkraft Bergen City Marathon",
-      "region": "Norway",
-      "date": "2027-04-24",
-      "link": "https://www.bergencitymarathon.no",
+      "name": "Vienna City Marathon",
+      "region": "Austria",
+      "date": "2027-04-18",
+      "link": "https://www.vienna-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Boston Marathon presented by Bank of America",
+      "region": "United States of America",
+      "date": "2027-04-19",
+      "link": "https://www.baa.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3070,70 +2948,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Türkiye İş Bankası İstanbul Half Marathon",
-      "region": "Türkiye",
-      "date": "2027-04-25",
-      "link": "https://www.istanbulyarimaratonu.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Dalian International Marathon",
-      "region": "China",
-      "date": "2027-04-25",
-      "link": "https://www.dlmls.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Poseidon Athens Half Marathon",
-      "region": "Greece",
-      "date": "2027-04-25",
-      "link": "https://poseidon-athenshalfmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Diacore Gaborone Marathon",
-      "region": "Botswana",
-      "date": "2027-04-25",
-      "link": "https://www.diacoregaboronemarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Haspa Marathon Hamburg",
-      "region": "Germany",
-      "date": "2027-04-25",
-      "link": "https://www.haspa-marathon-hamburg.de",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Big Sur International Marathon",
-      "region": "United States of America",
-      "date": "2027-04-25",
-      "link": "https://www.bigsurmarathon.org",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Du Motion-Runners’ Days Dubrovnik (Dubrovnik Half Marathon)",
-      "region": "Dubrovnik, Croatia",
-      "date": "2027-04-25",
-      "link": "https://www.du-motion.com/en/home/",
+      "name": "Fjordkraft Bergen City Marathon",
+      "region": "Norway",
+      "date": "2027-04-24",
+      "link": "https://www.bergencitymarathon.no",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3160,10 +2978,90 @@
       "discountOrganizer": null
     },
     {
+      "name": "Big Sur International Marathon",
+      "region": "United States of America",
+      "date": "2027-04-25",
+      "link": "https://www.bigsurmarathon.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Du Motion-Runners’ Days Dubrovnik (Dubrovnik Half Marathon)",
+      "region": "Dubrovnik, Croatia",
+      "date": "2027-04-25",
+      "link": "https://www.du-motion.com/en/home/",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Poseidon Athens Half Marathon",
+      "region": "Greece",
+      "date": "2027-04-25",
+      "link": "https://poseidon-athenshalfmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Dalian International Marathon",
+      "region": "China",
+      "date": "2027-04-25",
+      "link": "https://www.dlmls.org",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Diacore Gaborone Marathon",
+      "region": "Botswana",
+      "date": "2027-04-25",
+      "link": "https://www.diacoregaboronemarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Haspa Marathon Hamburg",
+      "region": "Germany",
+      "date": "2027-04-25",
+      "link": "https://www.haspa-marathon-hamburg.de",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Türkiye İş Bankası İstanbul Half Marathon",
+      "region": "Türkiye",
+      "date": "2027-04-25",
+      "link": "https://www.istanbulyarimaratonu.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Terengganu Marathon",
       "region": "Malaysia",
       "date": "2027-04-30",
       "link": "https://www.terengganumarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Prague International Marathon",
+      "region": "Czech Republic",
+      "date": "2027-05-02",
+      "link": "https://www.runczech.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3190,12 +3088,12 @@
       "discountOrganizer": null
     },
     {
-      "name": "Prague International Marathon",
-      "region": "Czech Republic",
+      "name": "Brooks Adelaide Marathon Festival",
+      "region": "Australia",
       "date": "2027-05-02",
-      "link": "https://www.runczech.com",
+      "link": "https://www.adelaidemarathon.com.au",
       "source": "aims-worldrunning.org",
-      "isNew": false,
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3214,16 +3112,6 @@
       "region": "Netherlands",
       "date": "2027-05-08",
       "link": "https://www.marathon.nl",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Copenhagen Marathon",
-      "region": "Denmark",
-      "date": "2027-05-09",
-      "link": "https://www.copenhagenmarathon.dk",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3254,6 +3142,16 @@
       "region": "Moscow, Russia",
       "date": "2027-05-09",
       "link": "https://moscowhalf.runc.run",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Copenhagen Marathon",
+      "region": "Denmark",
+      "date": "2027-05-09",
+      "link": "https://www.copenhagenmarathon.dk",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3300,16 +3198,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "WVV Marathon Wuerzburg",
-      "region": "Würzburg, Germany",
-      "date": "2027-05-23",
-      "link": "https://www.wuerzburg-marathon.de",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Salzburg Marathon",
       "region": "Austria",
       "date": "2027-05-23",
@@ -3320,10 +3208,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Tenzing Hillary Everest Marathon",
-      "region": "Nepal",
-      "date": "2027-05-29",
-      "link": "https://www.everestmarathon.com",
+      "name": "Lima 42k Marathon",
+      "region": "Peru",
+      "date": "2027-05-23",
+      "link": "https://www.lima42k.com.pe",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "WVV Marathon Wuerzburg",
+      "region": "Würzburg, Germany",
+      "date": "2027-05-23",
+      "link": "https://www.wuerzburg-marathon.de",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3340,10 +3238,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Tórshavn Marathon",
-      "region": "Faroe Islands",
-      "date": "2027-06-06",
-      "link": "https://www.torshavnmarathon.com",
+      "name": "Tenzing Hillary Everest Marathon",
+      "region": "Nepal",
+      "date": "2027-05-29",
+      "link": "https://www.everestmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3354,6 +3252,26 @@
       "region": "Australia",
       "date": "2027-06-06",
       "link": "https://www.brisbanemarathon.com.au",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "KLM Aruba Marathon (& 21.1K, 10K, 5K)",
+      "region": "Oranjestad, Aruba",
+      "date": "2027-06-06",
+      "link": "https://www.klmarubamarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Tórshavn Marathon",
+      "region": "Faroe Islands",
+      "date": "2027-06-06",
+      "link": "https://www.torshavnmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3380,10 +3298,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "KLM Aruba Marathon (& 21.1K, 10K, 5K)",
-      "region": "Oranjestad, Aruba",
-      "date": "2027-06-06",
-      "link": "https://www.klmarubamarathon.com",
+      "name": "PKO Wroclaw Night Half Marathon",
+      "region": "Wroclaw, Poland",
+      "date": "2027-06-12",
+      "link": "https://mcs.wroc.pl/kontakt-polmaraton",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3400,10 +3318,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "PKO Wroclaw Night Half Marathon",
-      "region": "Wroclaw, Poland",
+      "name": "Laguna Phuket Marathon",
+      "region": "Thailand",
       "date": "2027-06-12",
-      "link": "https://mcs.wroc.pl/kontakt-polmaraton",
+      "link": "https://www.phuketmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3420,20 +3338,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Laguna Phuket Marathon",
-      "region": "Thailand",
-      "date": "2027-06-12",
-      "link": "https://www.phuketmarathon.com",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Comrades Marathon",
-      "region": "Republic of South Africa",
+      "name": "Phnom Penh International Half Marathon",
+      "region": "Cambodia",
       "date": "2027-06-13",
-      "link": "https://www.comrades.com",
+      "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3450,10 +3358,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Phnom Penh International Half Marathon",
-      "region": "Cambodia",
+      "name": "Comrades Marathon",
+      "region": "Republic of South Africa",
       "date": "2027-06-13",
-      "link": "https://www.cambodia-events.org",
+      "link": "https://www.comrades.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3470,20 +3378,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Mandiri Jogja Marathon",
-      "region": "Indonesia",
+      "name": "Waterford Viking Marathon",
+      "region": "Waterford, Ireland",
       "date": "2027-06-20",
-      "link": "https://mandirimarathon.co.id",
+      "link": "https://www.waterfordvikingmarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Waterford Viking Marathon",
-      "region": "Waterford, Ireland",
+      "name": "Mandiri Jogja Marathon",
+      "region": "Indonesia",
       "date": "2027-06-20",
-      "link": "https://www.waterfordvikingmarathon.com",
+      "link": "https://mandirimarathon.co.id",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3496,6 +3404,16 @@
       "link": "https://www.volcanomarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "BMW Tangamanga International Marathon",
+      "region": "[22.1401987,-101.0029256]",
+      "date": "2027-06-27",
+      "link": "https://www.maratontangamanga.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3550,20 +3468,20 @@
       "discountOrganizer": null
     },
     {
-      "name": "Panama City Marathon",
-      "region": "Panama",
+      "name": "Airlie Beach Marathon Festival",
+      "region": "Airlie Beach, Queensland, Australia",
       "date": "2027-07-18",
-      "link": "https://panamamarathon.com",
+      "link": "https://www.runairlie.com.au",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
     {
-      "name": "Airlie Beach Marathon Festival",
-      "region": "Airlie Beach, Queensland, Australia",
+      "name": "Panama City Marathon",
+      "region": "Panama",
       "date": "2027-07-18",
-      "link": "https://www.runairlie.com.au",
+      "link": "https://panamamarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3650,16 +3568,6 @@
       "discountOrganizer": null
     },
     {
-      "name": "adidas Stockholm Half Marathon",
-      "region": "Sweden",
-      "date": "2027-08-21",
-      "link": "https://stockholmhalfmarathon.se",
-      "source": "aims-worldrunning.org",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
       "name": "Islandsbanki Reykjavik Marathon",
       "region": "Iceland",
       "date": "2027-08-21",
@@ -3670,10 +3578,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "Stavanger Marathon",
-      "region": "Stavanger, Norway",
-      "date": "2027-08-28",
-      "link": "https://stavangermarathon.no/en/",
+      "name": "adidas Stockholm Half Marathon",
+      "region": "Sweden",
+      "date": "2027-08-21",
+      "link": "https://stockholmhalfmarathon.se",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3690,10 +3598,10 @@
       "discountOrganizer": null
     },
     {
-      "name": "42nd Wizz Air Budapest Half Marathon",
-      "region": "Hungary",
-      "date": "2027-09-05",
-      "link": "https://halfmarathon.runinbudapest.com",
+      "name": "Stavanger Marathon",
+      "region": "Stavanger, Norway",
+      "date": "2027-08-28",
+      "link": "https://stavangermarathon.no/en/",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3704,6 +3612,16 @@
       "region": "Thailand",
       "date": "2027-09-05",
       "link": "https://www.facebook.com/Watlaharnraihalfmarathon",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "42nd Wizz Air Budapest Half Marathon",
+      "region": "Hungary",
+      "date": "2027-09-05",
+      "link": "https://halfmarathon.runinbudapest.com",
       "source": "aims-worldrunning.org",
       "isNew": false,
       "discountCode": null,
@@ -3770,6 +3688,16 @@
       "discountOrganizer": null
     },
     {
+      "name": "H.C. Andersen Marathon",
+      "region": "Denmark",
+      "date": "2027-09-26",
+      "link": "https://www.hcamarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "27th International WACHAUmarathon",
       "region": "Austria",
       "date": "2027-09-26",
@@ -3780,10 +3708,60 @@
       "discountOrganizer": null
     },
     {
+      "name": "Generali Berlin-Marathon",
+      "region": "Paul-Lobe-Allee, Berlin, Germany",
+      "date": "2027-09-26",
+      "link": "https://www.generali-berlin-marathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "49th Warsaw Marathon",
+      "region": "Poland",
+      "date": "2027-09-26",
+      "link": "https://maratonwarszawski.com/en/",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Baxters Loch Ness Marathon & Festival of Running",
+      "region": "Loch Ness",
+      "date": "2027-09-26",
+      "link": "https://www.lochnessmarathon.com",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "Sekhon Indian Air Force Marathon (SIM)",
       "region": "India",
       "date": "2027-10-03",
       "link": "https://sekhoniafmarathon.in",
+      "source": "aims-worldrunning.org",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "3 Country Sparkasse Marathon",
+      "region": "Austria",
+      "date": "2027-10-10",
+      "link": "https://www.sparkasse-3-laender-marathon.at",
+      "source": "aims-worldrunning.org",
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Royal Victoria Marathon",
+      "region": "Canada",
+      "date": "2027-10-10",
+      "link": "https://www.runvictoriamarathon.com",
       "source": "aims-worldrunning.org",
       "isNew": true,
       "discountCode": null,
@@ -3791,116 +3769,6 @@
     }
   ],
   "utmbSeries": [
-    {
-      "name": "TransJeju by UTMB - Jeju100M",
-      "region": "Jeju World-cup Stadium, South Korea",
-      "date": "2026-10-02",
-      "link": "https://transjeju.utmb.world/races/Jeju100M",
-      "source": "utmb.world",
-      "distanceKm": 148,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chihuahua by UTMB - Rarámuri 100M",
-      "region": "Cerocahui, Mexico",
-      "date": "2026-10-02",
-      "link": "https://chihuahua.utmb.world/races/100M",
-      "source": "utmb.world",
-      "distanceKm": 118,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chihuahua by UTMB - Weriga 93K",
-      "region": "Cerocahui, Mexico",
-      "date": "2026-10-02",
-      "link": "https://chihuahua.utmb.world/races/100K",
-      "source": "utmb.world",
-      "distanceKm": 94,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chihuahua by UTMB - Akáa 58K",
-      "region": "Parque Barrancas, Divisadero, Mexico",
-      "date": "2026-10-02",
-      "link": "https://chihuahua.utmb.world/races/50K",
-      "source": "utmb.world",
-      "distanceKm": 58,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "TransJeju by UTMB - Jeju100K",
-      "region": "Jeju World Cup Stadium, South Korea",
-      "date": "2026-10-03",
-      "link": "https://transjeju.utmb.world/races/Jeju100K",
-      "source": "utmb.world",
-      "distanceKm": 104,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "TransJeju by UTMB - Jeju60K",
-      "region": "Gasiri, South Korea",
-      "date": "2026-10-03",
-      "link": "https://transjeju.utmb.world/races/Jeju70K",
-      "source": "utmb.world",
-      "distanceKm": 60,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chihuahua by UTMB - Komakali 39K",
-      "region": "Parque Barrancas, Divisadero, Mexico",
-      "date": "2026-10-03",
-      "link": "https://chihuahua.utmb.world/races/38K",
-      "source": "utmb.world",
-      "distanceKm": 39,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chihuahua by UTMB - Napurega 21K",
-      "region": "Parque Barrancas, Divisadero, Mexico",
-      "date": "2026-10-03",
-      "link": "https://chihuahua.utmb.world/races/20K",
-      "source": "utmb.world",
-      "distanceKm": 21,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "TransJeju by UTMB - Jeju20K",
-      "region": "Gasiri Horse Park, South Korea",
-      "date": "2026-10-03",
-      "link": "https://transjeju.utmb.world/races/Jeju20K",
-      "source": "utmb.world",
-      "distanceKm": 20,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "Chihuahua by UTMB - Norawa 9K",
-      "region": "Parque Barrancas, Divisadero",
-      "date": "2026-10-03",
-      "link": "https://chihuahua.utmb.world/races/9K",
-      "source": "utmb.world",
-      "distanceKm": 9,
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
     {
       "name": "Kodiak Ultra Marathons by UTMB - 100M",
       "region": "Rim Nordic Ski Area, United States of America",
@@ -3918,7 +3786,7 @@
       "date": "2026-10-10",
       "link": "https://kodiak.utmb.world/races/100K",
       "source": "utmb.world",
-      "distanceKm": 99.7,
+      "distanceKm": 101.1,
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3951,7 +3819,7 @@
       "date": "2026-10-10",
       "link": "https://kodiak.utmb.world/races/10K",
       "source": "utmb.world",
-      "distanceKm": 10,
+      "distanceKm": 5.9,
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -4008,6 +3876,116 @@
       "source": "utmb.world",
       "distanceKm": 22,
       "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "PUGLIA BY UTMB® - I Sassi di Matera",
+      "region": "Matera, Italy",
+      "date": "2026-10-23",
+      "link": "https://puglia.utmb.world/races/SDM",
+      "source": "utmb.world",
+      "distanceKm": 145,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "PUGLIA BY UTMB® - Le Maioliche di Laterza",
+      "region": "Laterza, Italy",
+      "date": "2026-10-24",
+      "link": "https://puglia.utmb.world/races/MLT85",
+      "source": "utmb.world",
+      "distanceKm": 85,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "PUGLIA BY UTMB® - Costa Verde Trail",
+      "region": "Castellaneta Marina, Italy",
+      "date": "2026-10-24",
+      "link": "https://puglia.utmb.world/races/CVT10",
+      "source": "utmb.world",
+      "distanceKm": 10,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "PUGLIA BY UTMB® - Castellaneta Underground Trail  ",
+      "region": "Castellaneta, Italy",
+      "date": "2026-10-25",
+      "link": "https://puglia.utmb.world/races/CUT50",
+      "source": "utmb.world",
+      "distanceKm": 50,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "PUGLIA BY UTMB® - Ginosa Rivolta Trail",
+      "region": "Ginosa, Italy",
+      "date": "2026-10-25",
+      "link": "https://puglia.utmb.world/races/GRT35",
+      "source": "utmb.world",
+      "distanceKm": 35,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Kullamannen by UTMB - Ultra 100 Miles",
+      "region": "Höganäs Church, Sweden",
+      "date": "2026-10-30",
+      "link": "https://kullamannen.utmb.world/races/ultra-100-miles",
+      "source": "utmb.world",
+      "distanceKm": 173,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mallorca by UTMB - Serra de Tramuntana  (SDT)",
+      "region": "CALA ESTELLENCS, Spain",
+      "date": "2026-10-30",
+      "link": "https://mallorca.utmb.world/races/100M",
+      "source": "utmb.world",
+      "distanceKm": 138,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Kullamannen by UTMB - Sprint Ultra 100 km",
+      "region": "Höganäs Church, Sweden",
+      "date": "2026-10-30",
+      "link": "https://kullamannen.utmb.world/races/sprint-ultra-100-km",
+      "source": "utmb.world",
+      "distanceKm": 108,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mallorca by UTMB - Camins de pedra en sec (CPS) ",
+      "region": "CALA ESTELLENCS, Spain",
+      "date": "2026-10-31",
+      "link": "https://mallorca.utmb.world/races/100K",
+      "source": "utmb.world",
+      "distanceKm": 104,
+      "isNew": true,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
+      "name": "Mallorca by UTMB - Els Tres Mils (ETM)",
+      "region": "SELVA, Spain",
+      "date": "2026-10-31",
+      "link": "https://mallorca.utmb.world/races/50K",
+      "source": "utmb.world",
+      "distanceKm": 56,
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     }
