@@ -3,7 +3,7 @@
 // התוכן נשלט מ-src/data/training-app.ts. הדף לא מיועד לחיפוש (noindex) עד שהטקסטים המפורטים יאושרו.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import AppBlocks from "../components/AppBlocks.astro";
-import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes } from "../data/training-app";
+import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes, qualityPrep } from "../data/training-app";
 ---
 
 <BaseLayout
@@ -52,6 +52,10 @@ import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes } from "../data/train
     </div>
 
     <h2>סוגי האימונים</h2>
+    <section class="prep" aria-labelledby="prep-title" id="quality-prep">
+      <h3 id="prep-title">הכנה לאימון איכות</h3>
+      <AppBlocks blocks={qualityPrep} />
+    </section>
     <p class="lead">לוחצים על סוג אימון כדי לקרוא על השיטה שלי ועל האימון עצמו.</p>
     <div class="acc-list">
       {
@@ -122,6 +126,21 @@ import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes } from "../data/train
   }
   h2 {
     margin-top: var(--space-5, 2.5rem);
+  }
+  .prep {
+    margin-top: var(--space-3, 1rem);
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--color-border, #e4e7ec);
+    border-inline-start: 4px solid #b34700;
+    border-radius: 14px;
+    background: var(--color-surface, #fff);
+  }
+  .prep + .lead {
+    margin-top: var(--space-3, 1rem);
+  }
+  .prep h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
   }
   .acc-list {
     display: flex;
