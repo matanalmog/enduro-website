@@ -1,18 +1,16 @@
-name: Weekly release (Saturday always, Thursday 3 of every 4 ISO weeks)
+name: Weekly release (Thursday & Saturday 19:00 Israel)
 
-# שבת 19:00: שחרור שבועי קבוע, בלי תנאי. חמישי 19:00: שחרור נוסף, לפי מחזור של 4 שבועות -
-# ראו ההסבר המלא (ועוגן שבוע ISO 41) ב-update-races.yml, שמריץ את הגאנט באותו מחזור בדיוק:
-#   שבוע 1 (מחזור 0): גאנט + שחרור   שבוע 2 (מחזור 1): שחרור בלבד
-#   שבוע 3 (מחזור 2): גאנט + שחרור   שבוע 4 (מחזור 3): גאנט בלבד (הקובץ הזה לא רץ)
-# כלומר שחרור-חמישי רץ ב-3 מתוך 4 שבועות (לא מחזור 3) - תמונת ראי מדויקת ל-update-races.yml.
+# שני שחרורים קבועים בשבוע (חמישי ושבת, 19:00), בלי תנאים. שבת גם מקבלת את לוח המרוצים
+# שעה אחר כך (update-races.yml, 20:00) - שם היחיד שבו הגאנט רץ.
 # כל הרצה ממזגת את בראנץ' dev לתוך main ודוחפת פעם אחת. אם אין ב-dev שום דבר חדש, אין push ואין דיפלוי.
-# תקציב Netlify (300 קרדיטים/חודש, 15 לדיפלוי): ממוצע 1.5 דיפלויי-חמישי/שבוע + שבת הקבועה
-# = כ-2.5/שבוע, כ-10-11/חודש, כ-160 קרדיטים - נשאר מרווח לתעבורה (סוכם עם תומר 10/2026).
+# תקציב Netlify (300 קרדיטים/חודש, 15 לדיפלוי): שבת = גאנט+שחרור (2), חמישי = שחרור (1) = 3/שבוע
+# קבועים, כ-13/חודש, כ-195 קרדיטים - בתוך התקציב (סוכם עם תומר 10/2026, מחליף את מחזור
+# ה-4-שבועות שהיה כאן קודם - ראו היסטוריית git אם צריך להבין את זה).
 on:
   schedule:
     # cron של GitHub הוא UTC בלבד. 19:00 שעון ישראל = 16:00 UTC בקיץ (IDT) ו-17:00 UTC בחורף (IST).
     # ארבע הרצות מתוזמנות (חמישי+שבת, קיץ+חורף), ושלב ה-gate למטה משאיר רק את זו שמתאימה
-    # ליום ולשעון הנוכחיים בישראל, וגם בודק את מיקום השבוע במחזור עבור חמישי בלבד.
+    # ליום ולשעון הנוכחיים בישראל.
     - cron: "0 16 * * 4"
     - cron: "0 17 * * 4"
     - cron: "0 16 * * 6"
@@ -30,47 +28,23 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-      # בודקים לפי איזה cron הופעלנו, ההיסט הנוכחי של ישראל מ-UTC, ומיקום השבוע במחזור עבור
-      # חמישי - לא לפי השעה/תאריך בפועל: הרצות מתוזמנות ב-GitHub מתעכבות לפעמים, ובדיקת שעה
-      # הייתה מפספסת שבוע.
-      - name: Gate on Israel daylight-saving time and (for Thursday) 4-week cycle position
+      # בודקים לפי איזה cron הופעלנו ומה ההיסט הנוכחי של ישראל מ-UTC, ולא לפי השעה בפועל:
+      # הרצות מתוזמנות ב-GitHub מתעכבות לפעמים בעשרות דקות, ובדיקת שעה הייתה מפספסת שבוע.
+      - name: Gate on Israel daylight-saving time
         id: gate
         env:
           FIRED_CRON: ${{ github.event.schedule }}
           EVENT: ${{ github.event_name }}
         run: |
           offset=$(TZ=Asia/Jerusalem date +%z)
-          iso_week=$(TZ=Asia/Jerusalem date +%V)
-          # אותו מחזור בדיוק כמו ב-update-races.yml, עוגן בשבוע ISO 41 = מחזור 0.
-          cycle=$(( ( (10#$iso_week - 41) % 4 + 4) % 4 ))
-
-          thursday_release_week=false
-          if [ "$cycle" != "3" ]; then
-            thursday_release_week=true
-          fi
-
-          thursday_match=false
-          if [ "$FIRED_CRON" = "0 16 * * 4" ] && [ "$offset" = "+0300" ]; then
-            thursday_match=true
-          fi
-          if [ "$FIRED_CRON" = "0 17 * * 4" ] && [ "$offset" = "+0200" ]; then
-            thursday_match=true
-          fi
-
-          saturday_match=false
-          if [ "$FIRED_CRON" = "0 16 * * 6" ] && [ "$offset" = "+0300" ]; then
-            saturday_match=true
-          fi
-          if [ "$FIRED_CRON" = "0 17 * * 6" ] && [ "$offset" = "+0200" ]; then
-            saturday_match=true
-          fi
-
           if [ "$EVENT" = "workflow_dispatch" ] \
-            || { [ "$thursday_match" = "true" ] && [ "$thursday_release_week" = "true" ]; } \
-            || [ "$saturday_match" = "true" ]; then
+            || { [ "$FIRED_CRON" = "0 16 * * 4" ] && [ "$offset" = "+0300" ]; } \
+            || { [ "$FIRED_CRON" = "0 17 * * 4" ] && [ "$offset" = "+0200" ]; } \
+            || { [ "$FIRED_CRON" = "0 16 * * 6" ] && [ "$offset" = "+0300" ]; } \
+            || { [ "$FIRED_CRON" = "0 17 * * 6" ] && [ "$offset" = "+0200" ]; }; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Israel offset is $offset, ISO week $iso_week (cycle=$cycle); not this job's slot."
+            echo "Israel offset is $offset; the other cron entry handles this slot."
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
 
