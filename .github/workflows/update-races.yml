@@ -1,15 +1,19 @@
-name: Update race calendar (Thursday 20:00 Israel, odd ISO weeks)
+name: Update race calendar (Thursday 20:00 Israel, 3 of every 4 ISO weeks)
 
-# מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) בשבועות אי-זוגיים בלבד, ומתעד (מ-commit) את
-# src/data/races.json אם השתנה. כל commit כזה ל-main הוא דיפלוי לפרודקשן ב-Netlify (15 קרדיטים).
-# עבר מ"כל שבת" ל"חמישי בשבועות אי-זוגיים" (סוכם עם תומר 10/2026) כדי שחמישי יתחלף בין לוח
-# מרוצים לשחרור תוכן נוסף (weekly-release.yml) ולא יצטברו שני דיפלויים נפרדים באותו יום.
-# שבת 19:00 ממשיך להיות שחרור שבועי קבוע ולא השתנה.
+# מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) בחמישי, לפי מחזור של 4 שבועות, ומתעד
+# (מ-commit) את src/data/races.json אם השתנה. כל commit כזה ל-main הוא דיפלוי לפרודקשן ב-Netlify
+# (15 קרדיטים). המחזור (סוכם עם תומר 10/2026, עוגן בשבוע ISO 41 = 11-17/10/2026):
+#   שבוע 1 (מחזור 0): גאנט + שחרור (שניהם רצים)   שבוע 3 (מחזור 2): גאנט + שחרור (שניהם רצים)
+#   שבוע 2 (מחזור 1): שחרור בלבד (הקובץ הזה לא רץ)  שבוע 4 (מחזור 3): גאנט בלבד
+# כלומר גאנט רץ ב-3 מתוך 4 שבועות (לא מחזור 1); שחרור (weekly-release.yml) רץ ב-3 מתוך 4
+# (לא מחזור 3). ממוצע: 1.5 דיפלויי-חמישי/שבוע + שבת הקבועה = כ-2.5/שבוע, כ-160 קרדיטים/חודש.
+# הערה: החישוב מתבסס על הפרש ליניארי משבוע 41 ולא מטפל נכון במעבר שנה (שבוע 52/53 -> 1) -
+# לבדוק/לתקן את העיגון לפני סוף 2026 אם המחזור עדיין בשימוש.
 on:
   schedule:
     # cron של GitHub הוא UTC בלבד. 20:00 שעון ישראל = 17:00 UTC בקיץ (IDT) ו-18:00 UTC בחורף (IST).
     # שתי ההרצות מתוזמנות, ושלב ה-gate למטה משאיר רק את זו שמתאימה לשעון הנוכחי בישראל,
-    # וגם בודק שמדובר בשבוע ISO אי-זוגי - אחרת זה שבוע של weekly-release.yml.
+    # וגם בודק את מיקום השבוע במחזור בן 4 השבועות.
     - cron: "0 17 * * 4"
     - cron: "0 18 * * 4"
   workflow_dispatch: {}
@@ -25,9 +29,9 @@ jobs:
   update-races:
     runs-on: ubuntu-latest
     steps:
-      # בודקים לפי איזה cron הופעלנו, ההיסט הנוכחי של ישראל מ-UTC, ושבוע ISO אי-זוגי -
+      # בודקים לפי איזה cron הופעלנו, ההיסט הנוכחי של ישראל מ-UTC, ומיקום השבוע במחזור בן 4 -
       # לא לפי השעה/תאריך בפועל: הרצות מתוזמנות ב-GitHub מתעכבות לפעמים, ובדיקת שעה הייתה מפספסת שבוע.
-      - name: Gate on Israel daylight-saving time and odd ISO week
+      - name: Gate on Israel daylight-saving time and 4-week cycle position
         id: gate
         env:
           FIRED_CRON: ${{ github.event.schedule }}
@@ -35,10 +39,13 @@ jobs:
         run: |
           offset=$(TZ=Asia/Jerusalem date +%z)
           iso_week=$(TZ=Asia/Jerusalem date +%V)
+          # מחזור 0=שבוע1 (גאנט+שחרור) 1=שבוע2 (שחרור בלבד) 2=שבוע3 (גאנט+שחרור) 3=שבוע4 (גאנט בלבד).
+          # עוגן: שבוע ISO 41 = מחזור 0. ((iso_week-41) מוד 4), מנורמל לחיובי.
+          cycle=$(( ( (10#$iso_week - 41) % 4 + 4) % 4 ))
 
-          is_odd_week=false
-          if [ $(( 10#$iso_week % 2 )) -eq 1 ]; then
-            is_odd_week=true
+          race_week=false
+          if [ "$cycle" != "1" ]; then
+            race_week=true
           fi
 
           time_match=false
@@ -49,10 +56,10 @@ jobs:
             time_match=true
           fi
 
-          if [ "$EVENT" = "workflow_dispatch" ] || { [ "$time_match" = "true" ] && [ "$is_odd_week" = "true" ]; }; then
+          if [ "$EVENT" = "workflow_dispatch" ] || { [ "$time_match" = "true" ] && [ "$race_week" = "true" ]; }; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Israel offset is $offset, ISO week $iso_week (odd=$is_odd_week); not this job's slot."
+            echo "Israel offset is $offset, ISO week $iso_week (cycle=$cycle, race_week=$race_week); not this job's slot."
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
 
