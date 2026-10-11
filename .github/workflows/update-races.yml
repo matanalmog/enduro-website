@@ -1,14 +1,17 @@
-name: Update race calendar (Saturday 20:00 Israel)
+name: Update race calendar (Thursday 20:00 Israel, odd ISO weeks)
 
-# מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) פעם בשבוע, ומתעד (מ-commit) את
-# src/data/races.json אם השתנה. כל commit כזה ל-main הוא דיפלוי לפרודקשן ב-Netlify (15 קרדיטים),
-# ולכן ההרצה שבועית ולא יומית. השינויים של תומר משתחררים בנפרד ב-19:00 (weekly-release.yml).
+# מריץ את סוכן לוח התחרויות (scripts/update-races.mjs) בשבועות אי-זוגיים בלבד, ומתעד (מ-commit) את
+# src/data/races.json אם השתנה. כל commit כזה ל-main הוא דיפלוי לפרודקשן ב-Netlify (15 קרדיטים).
+# עבר מ"כל שבת" ל"חמישי בשבועות אי-זוגיים" (סוכם עם תומר 10/2026) כדי שחמישי יתחלף בין לוח
+# מרוצים לשחרור תוכן נוסף (weekly-release.yml) ולא יצטברו שני דיפלויים נפרדים באותו יום.
+# שבת 19:00 ממשיך להיות שחרור שבועי קבוע ולא השתנה.
 on:
   schedule:
     # cron של GitHub הוא UTC בלבד. 20:00 שעון ישראל = 17:00 UTC בקיץ (IDT) ו-18:00 UTC בחורף (IST).
-    # שתי ההרצות מתוזמנות, ושלב ה-gate למטה משאיר רק את זו שמתאימה לשעון הנוכחי בישראל.
-    - cron: "0 17 * * 6"
-    - cron: "0 18 * * 6"
+    # שתי ההרצות מתוזמנות, ושלב ה-gate למטה משאיר רק את זו שמתאימה לשעון הנוכחי בישראל,
+    # וגם בודק שמדובר בשבוע ISO אי-זוגי - אחרת זה שבוע של weekly-release.yml.
+    - cron: "0 17 * * 4"
+    - cron: "0 18 * * 4"
   workflow_dispatch: {}
 
 permissions:
@@ -22,21 +25,34 @@ jobs:
   update-races:
     runs-on: ubuntu-latest
     steps:
-      # בודקים לפי איזה cron הופעלנו ומה ההיסט הנוכחי של ישראל מ-UTC, ולא לפי השעה בפועל:
-      # הרצות מתוזמנות ב-GitHub מתעכבות לפעמים בעשרות דקות, ובדיקת שעה הייתה מפספסת שבוע.
-      - name: Gate on Israel daylight-saving time
+      # בודקים לפי איזה cron הופעלנו, ההיסט הנוכחי של ישראל מ-UTC, ושבוע ISO אי-זוגי -
+      # לא לפי השעה/תאריך בפועל: הרצות מתוזמנות ב-GitHub מתעכבות לפעמים, ובדיקת שעה הייתה מפספסת שבוע.
+      - name: Gate on Israel daylight-saving time and odd ISO week
         id: gate
         env:
           FIRED_CRON: ${{ github.event.schedule }}
           EVENT: ${{ github.event_name }}
         run: |
           offset=$(TZ=Asia/Jerusalem date +%z)
-          if [ "$EVENT" = "workflow_dispatch" ] \
-            || { [ "$FIRED_CRON" = "0 17 * * 6" ] && [ "$offset" = "+0300" ]; } \
-            || { [ "$FIRED_CRON" = "0 18 * * 6" ] && [ "$offset" = "+0200" ]; }; then
+          iso_week=$(TZ=Asia/Jerusalem date +%V)
+
+          is_odd_week=false
+          if [ $(( 10#$iso_week % 2 )) -eq 1 ]; then
+            is_odd_week=true
+          fi
+
+          time_match=false
+          if [ "$FIRED_CRON" = "0 17 * * 4" ] && [ "$offset" = "+0300" ]; then
+            time_match=true
+          fi
+          if [ "$FIRED_CRON" = "0 18 * * 4" ] && [ "$offset" = "+0200" ]; then
+            time_match=true
+          fi
+
+          if [ "$EVENT" = "workflow_dispatch" ] || { [ "$time_match" = "true" ] && [ "$is_odd_week" = "true" ]; }; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
-            echo "Israel offset is $offset; the other cron entry handles this week."
+            echo "Israel offset is $offset, ISO week $iso_week (odd=$is_odd_week); not this job's slot."
             echo "run=false" >> "$GITHUB_OUTPUT"
           fi
 
