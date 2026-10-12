@@ -14,7 +14,7 @@ export const plans = [
   { label: "מתקדמים", href: "/groups/palo-alto-runners/advanced/" },
 ];
 
-export const stravaGroupUrl: string | null = null;
+export const stravaGroupUrl: string | null = "https://www.strava.com/clubs/2359265";
 
 export interface ChecklistSection {
   title: string;
