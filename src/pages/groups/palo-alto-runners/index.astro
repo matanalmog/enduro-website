@@ -43,6 +43,15 @@ const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", "
     <div class="pa-plans">
       {plans.map((p) => <a class="btn btn-primary pa-plan" href={p.href}>{p.label}</a>)}
     </div>
+    {
+      stravaGroupUrl && (
+        <p class="pa-strava-top">
+          <a class="btn btn-outline pa-strava-btn" href={stravaGroupUrl} target="_blank" rel="noopener">
+            הצטרפות לקבוצת הסטרבה שלנו
+          </a>
+        </p>
+      )
+    }
   </section>
 
   <section class="container pa-section" id="countdown">
@@ -236,6 +245,16 @@ const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", "
     justify-content: center;
     padding-block: 1rem;
     font-size: 1.1rem;
+  }
+  .pa-strava-top {
+    margin: var(--space-2) 0 0;
+  }
+  .pa-strava-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-block: 0.9rem;
+    font-size: 1.05rem;
   }
   .pa-race {
     display: flex;
