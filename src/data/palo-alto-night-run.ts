@@ -6,6 +6,13 @@ export const race = {
   date: "2026-10-28", // מ-src/data/races.json
   distances: "5, 10 ו-15 ק״מ",
   link: "https://www.tlvnightrun.co.il/MenuDefault.aspx?Id=9254",
+  // הזינוק הראשון: 10 ק״מ ב-20:00 (שעון ישראל אחרי מעבר לשעון חורף ב-25.10). שעות הזינוק מהאתר הרשמי, ״הלו״ז נתון לשינויים״.
+  startsAt: "2026-10-28T20:00:00+02:00",
+  starts: [
+    { distance: "10 ק״מ", times: "20:00, 20:15 ו-20:30" },
+    { distance: "5 ק״מ", times: "20:50" },
+    { distance: "15 ק״מ", times: "21:15" },
+  ],
 };
 
 export const plans = [

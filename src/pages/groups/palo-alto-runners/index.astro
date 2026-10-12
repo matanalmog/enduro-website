@@ -16,9 +16,6 @@ import {
 const raceDateHe = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(
   new Date(`${race.date}T12:00:00`)
 );
-const today = new Date();
-today.setHours(0, 0, 0, 0);
-const daysLeft = Math.round((new Date(`${race.date}T00:00:00`).getTime() - today.getTime()) / 86400000);
 const heroParts = ["תוכניות האימון", ...(checklist.length > 0 ? ["צ׳קליסט"] : []), "סרטוני טכניקה", "ומה עושים ביום המרוץ"];
 const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", ")} ${heroParts[heroParts.length - 1]}.`;
 ---
@@ -56,23 +53,22 @@ const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", "
 
   <section class="container pa-section" id="countdown">
     <div class="pa-race">
-      <div class="pa-count" id="pa-count" data-date={race.date} aria-live="polite">
-        {
-          daysLeft > 0 ? (
-            <>
-              <span class="pa-count-num">{daysLeft}</span>
-              <span class="pa-count-label">ימים עד המרוץ</span>
-            </>
-          ) : daysLeft === 0 ? (
-            <span class="pa-count-label">המרוץ היום!</span>
-          ) : (
-            <span class="pa-count-label">המרוץ כבר היה</span>
-          )
-        }
+      <div class="pa-clock-wrap">
+        <div class="pa-clock" id="pa-clock" data-start={race.startsAt} role="timer" aria-label="הזמן שנשאר עד זינוק המרוץ">
+          <div class="pa-unit"><span class="pa-num" data-unit="d">--</span><span class="pa-lbl">ימים</span></div>
+          <div class="pa-unit"><span class="pa-num" data-unit="h">--</span><span class="pa-lbl">שעות</span></div>
+          <div class="pa-unit"><span class="pa-num" data-unit="m">--</span><span class="pa-lbl">דקות</span></div>
+          <div class="pa-unit"><span class="pa-num" data-unit="s">--</span><span class="pa-lbl">שניות</span></div>
+        </div>
+        <p class="pa-clock-note" id="pa-clock-note">עד זינוק המרוץ הראשון</p>
       </div>
       <div class="pa-race-info">
         <h2>{race.name}</h2>
         <p>{raceDateHe}. מרחקים: {race.distances}.</p>
+        <ul class="pa-starts">
+          {race.starts.map((st) => <li><strong>{st.distance}:</strong> {st.times}</li>)}
+        </ul>
+        <p class="pa-starts-note">שעות הזינוק לפי האתר הרשמי של המרוץ. הלו״ז נתון לשינויים.</p>
         <p><a href={race.link} target="_blank" rel="noopener">אתר המרוץ וההרשמה</a></p>
       </div>
     </div>
@@ -192,18 +188,35 @@ const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", "
 </script>
 
 <script>
-  // ספירה לאחור בימים, לפי תאריך המרוץ
-  const el = document.getElementById("pa-count");
-  if (el?.dataset.date) {
-    const t = new Date();
-    t.setHours(0, 0, 0, 0);
-    const days = Math.round((new Date(`${el.dataset.date}T00:00:00`).getTime() - t.getTime()) / 86400000);
-    el.innerHTML =
-      days > 0
-        ? `<span class="pa-count-num">${days}</span><span class="pa-count-label">ימים עד המרוץ</span>`
-        : days === 0
-          ? `<span class="pa-count-label">המרוץ היום!</span>`
-          : `<span class="pa-count-label">המרוץ כבר היה</span>`;
+  // שעון ספירה לאחור חי עד הזינוק הראשון, מתעדכן כל שנייה
+  const clock = document.getElementById("pa-clock");
+  const note = document.getElementById("pa-clock-note");
+  if (clock?.dataset.start) {
+    const target = new Date(clock.dataset.start).getTime();
+    const pad = (n: number) => String(n).padStart(2, "0");
+    const set = (unit: string, text: string) => {
+      const el = clock.querySelector<HTMLElement>(`[data-unit="${unit}"]`);
+      if (el) el.textContent = text;
+    };
+    const tick = () => {
+      const diff = target - Date.now();
+      if (diff <= 0) {
+        clock.hidden = true;
+        if (note) note.textContent = "המרוץ התחיל. בהצלחה לכולם!";
+        return false;
+      }
+      const sec = Math.floor(diff / 1000);
+      set("d", String(Math.floor(sec / 86400)));
+      set("h", pad(Math.floor((sec % 86400) / 3600)));
+      set("m", pad(Math.floor((sec % 3600) / 60)));
+      set("s", pad(sec % 60));
+      return true;
+    };
+    if (tick()) {
+      const timer = setInterval(() => {
+        if (!tick()) clearInterval(timer);
+      }, 1000);
+    }
   }
 </script>
 
@@ -266,20 +279,54 @@ const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", "
     border-radius: var(--radius-lg);
     background: var(--color-gray-50);
   }
-  .pa-count {
+  .pa-clock-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 8rem;
+    gap: 0.4rem;
   }
-  .pa-count-num {
-    font-size: 3.4rem;
+  .pa-clock {
+    display: flex;
+    gap: 0.6rem;
+    direction: ltr;
+  }
+  .pa-clock[hidden] {
+    display: none;
+  }
+  .pa-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 4.2rem;
+    padding: 0.6rem 0.4rem;
+    border-radius: var(--radius-md);
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+  .pa-num {
+    font-size: 2rem;
     font-weight: 800;
     line-height: 1;
-    color: var(--color-brand);
+    font-variant-numeric: tabular-nums;
+    color: var(--color-gold-500);
   }
-  .pa-count-label {
+  .pa-lbl {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    direction: rtl;
+  }
+  .pa-clock-note {
+    margin: 0;
     font-weight: 700;
+    color: var(--color-text-muted);
+  }
+  .pa-starts {
+    margin: 0.3rem 0;
+    padding-inline-start: 1.1rem;
+  }
+  .pa-starts-note {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
   }
   .pa-race-info h2 {
     margin: 0 0 0.3rem;
