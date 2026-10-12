@@ -1,0 +1,257 @@
+---
+// Palo Alto Runners: עמוד הנחיתה להכנה למרוץ הלילה. מקושר מהכותרת "PALO ALTO RUNNERS" בתפריט.
+// התוכן נשלט מ-src/data/palo-alto-night-run.ts.
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import YouTubeEmbed from "../../../components/YouTubeEmbed.astro";
+import { race, plans, stravaGroupUrl, checklist, techniqueVideos } from "../../../data/palo-alto-night-run";
+
+const raceDateHe = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(
+  new Date(`${race.date}T12:00:00`)
+);
+const today = new Date();
+today.setHours(0, 0, 0, 0);
+const daysLeft = Math.round((new Date(`${race.date}T00:00:00`).getTime() - today.getTime()) / 86400000);
+const heroParts = ["תוכניות האימון", ...(checklist.length > 0 ? ["צ׳קליסט"] : []), "סרטוני טכניקה", "ומה עושים ביום המרוץ"];
+const heroText = `הכול במקום אחד: ${heroParts.slice(0, -1).join(", ")} ${heroParts[heroParts.length - 1]}.`;
+---
+
+<BaseLayout
+  title="Palo Alto Runners: הכנה למרוץ הלילה"
+  description="תוכניות האימון, סרטוני טכניקה ומה עושים ביום המרוץ, לקבוצת Palo Alto Runners, בליווי תומר אלמוג, ENDURO."
+  canonicalPath="/groups/palo-alto-runners/"
+  ogImage="/images/action/ramat-hasharon-group-night.jpg"
+>
+  <section class="pa-hero">
+    <div class="container">
+      <div class="pa-eyebrow">PALO ALTO RUNNERS</div>
+      <h1>הכנה למרוץ הלילה</h1>
+      <p>{heroText}</p>
+    </div>
+  </section>
+
+  <section class="container pa-section" id="plans">
+    <h2>תוכניות האימון</h2>
+    <p class="pa-lead">בוחרים את הרמה שלכם. כל תוכנית נמשכת 5 שבועות.</p>
+    <div class="pa-plans">
+      {plans.map((p) => <a class="btn btn-primary pa-plan" href={p.href}>{p.label}</a>)}
+    </div>
+  </section>
+
+  <section class="container pa-section" id="countdown">
+    <div class="pa-race">
+      <div class="pa-count" id="pa-count" data-date={race.date} aria-live="polite">
+        {
+          daysLeft > 0 ? (
+            <>
+              <span class="pa-count-num">{daysLeft}</span>
+              <span class="pa-count-label">ימים עד המרוץ</span>
+            </>
+          ) : daysLeft === 0 ? (
+            <span class="pa-count-label">המרוץ היום!</span>
+          ) : (
+            <span class="pa-count-label">המרוץ כבר היה</span>
+          )
+        }
+      </div>
+      <div class="pa-race-info">
+        <h2>{race.name}</h2>
+        <p>{raceDateHe}. מרחקים: {race.distances}.</p>
+        <p><a href={race.link} target="_blank" rel="noopener">אתר המרוץ וההרשמה</a></p>
+      </div>
+    </div>
+  </section>
+
+  {
+    checklist.length > 0 && (
+      <section class="container pa-section" id="checklist">
+        <h2>צ׳קליסט למרוץ הלילה</h2>
+        <div class="pa-check">
+          {checklist.map((sec) => (
+            <div class="pa-check-card">
+              <h3>{sec.title}</h3>
+              <ul>
+                {sec.items.map((i) => (
+                  <li>{i}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="container pa-section" id="videos">
+    <h2>סרטוני טכניקה</h2>
+    <p class="pa-lead">שלושה סרטונים קצרים שנוספים לעמוד אחד אחרי השני.</p>
+    <div class="pa-videos">
+      {
+        techniqueVideos.map((v) => (
+          <div class="pa-video">
+            {v.youtubeId ? (
+              <YouTubeEmbed videoId={v.youtubeId} title={v.title} />
+            ) : (
+              <div class="pa-video-slot" role="img" aria-label={`${v.title}: הסרטון יעלה בקרוב`}>
+                <span class="pa-video-title">{v.title}</span>
+                <span class="pa-video-soon">יעלה בקרוב</span>
+              </div>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container pa-section pa-join" id="join">
+    <h2>נשארים בקשר</h2>
+    <div class="pa-join-btns">
+      {stravaGroupUrl && <a class="btn btn-primary" href={stravaGroupUrl} target="_blank" rel="noopener">הצטרפות לקבוצת הסטרבה</a>}
+      <a class="btn btn-outline" href="https://wa.me/972526982993" target="_blank" rel="noopener">שאלה? וואטסאפ אליי</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // ספירה לאחור בימים, לפי תאריך המרוץ
+  const el = document.getElementById("pa-count");
+  if (el?.dataset.date) {
+    const t = new Date();
+    t.setHours(0, 0, 0, 0);
+    const days = Math.round((new Date(`${el.dataset.date}T00:00:00`).getTime() - t.getTime()) / 86400000);
+    el.innerHTML =
+      days > 0
+        ? `<span class="pa-count-num">${days}</span><span class="pa-count-label">ימים עד המרוץ</span>`
+        : days === 0
+          ? `<span class="pa-count-label">המרוץ היום!</span>`
+          : `<span class="pa-count-label">המרוץ כבר היה</span>`;
+  }
+</script>
+
+<style is:global>
+  .pa-hero {
+    background: linear-gradient(180deg, var(--color-navy-950), var(--color-navy-900));
+    color: var(--color-white);
+    text-align: center;
+    padding-block: var(--space-6) var(--space-5);
+  }
+  .pa-hero .pa-eyebrow {
+    color: var(--color-gold-500);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-size: 0.85rem;
+  }
+  .pa-hero h1 {
+    color: var(--color-white);
+    margin: 0.4rem 0;
+  }
+  .pa-hero p {
+    color: var(--color-gray-300);
+    max-width: 52ch;
+    margin-inline: auto;
+  }
+  .pa-section {
+    padding-block: var(--space-4);
+  }
+  .pa-lead {
+    color: var(--color-text-muted);
+  }
+  .pa-plans {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+    margin-top: var(--space-3);
+  }
+  .pa-plan {
+    justify-content: center;
+    padding-block: 1rem;
+    font-size: 1.1rem;
+  }
+  .pa-race {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    flex-wrap: wrap;
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-lg);
+    background: var(--color-gray-50);
+  }
+  .pa-count {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 8rem;
+  }
+  .pa-count-num {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--color-brand);
+  }
+  .pa-count-label {
+    font-weight: 700;
+  }
+  .pa-race-info h2 {
+    margin: 0 0 0.3rem;
+  }
+  .pa-race-info p {
+    margin: 0.2rem 0;
+  }
+  .pa-check {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+  .pa-check-card {
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+  }
+  .pa-check-card h3 {
+    margin: 0 0 0.5rem;
+  }
+  .pa-check-card ul {
+    margin: 0;
+    padding-inline-start: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .pa-videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+  }
+  .pa-video-slot {
+    aspect-ratio: 16 / 9;
+    border: 2px dashed #9ca3af;
+    border-radius: 12px;
+    background: #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    color: #374151;
+  }
+  .pa-video-title {
+    font-weight: 700;
+  }
+  .pa-video-soon {
+    font-size: 0.85rem;
+    color: #4b5563;
+  }
+  .pa-join-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-2);
+  }
+  @media (max-width: 560px) {
+    .pa-plans {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
