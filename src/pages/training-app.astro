@@ -29,53 +29,70 @@ import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes, qualityPrep } from "
       עוד לא נרשמת או לא חיברת שעון? <a href="/start-here/">חיבור אפליקציות</a>.
     </p>
 
-    <h2>איך עובדת המערכת</h2>
-    <p class="lead">לוחצים על נושא כדי לראות את הפירוט.</p>
-    <div class="acc-list">
-      {
-        systemItems.map((item) => (
-          <details class="acc" id={item.id}>
-            <summary>
-              <span class="acc-icon" aria-hidden="true">{item.icon}</span>
-              <span class="acc-text">
-                <strong>{item.title}</strong>
-                <span>{item.summary}</span>
-              </span>
-              <span class="acc-chev" aria-hidden="true">▾</span>
-            </summary>
-            <div class="acc-body">
-              <AppBlocks blocks={item.blocks} />
-            </div>
-          </details>
-        ))
-      }
+    <div class="topics" role="tablist" aria-label="נושאי הדף">
+      <button type="button" class="topic" role="tab" data-panel="system" aria-controls="panel-system" aria-selected="true">
+        <span class="topic-icon" aria-hidden="true">🧭</span>
+        <span class="topic-title">איך עובדת המערכת</span>
+        <span class="topic-text">יומן, תוכנית שבועית, דיווח ושעון</span>
+      </button>
+      <button type="button" class="topic" role="tab" data-panel="types" aria-controls="panel-types" aria-selected="false">
+        <span class="topic-icon" aria-hidden="true">🏃</span>
+        <span class="topic-title">סוגי אימונים</span>
+        <span class="topic-text">השיטה שלי והסבר על כל סוג אימון</span>
+      </button>
     </div>
 
-    <h2>סוגי האימונים</h2>
-    <section class="prep" aria-labelledby="prep-title" id="quality-prep">
-      <h3 id="prep-title">הכנה לאימון איכות</h3>
-      <AppBlocks blocks={qualityPrep} />
+    <section class="panel" id="panel-system" role="tabpanel">
+      <h2>איך עובדת המערכת</h2>
+      <p class="lead">לוחצים על נושא כדי לראות את הפירוט.</p>
+      <div class="acc-list">
+        {
+          systemItems.map((item) => (
+            <details class="acc" id={item.id}>
+              <summary>
+                <span class="acc-icon" aria-hidden="true">{item.icon}</span>
+                <span class="acc-text">
+                  <strong>{item.title}</strong>
+                  <span>{item.summary}</span>
+                </span>
+                <span class="acc-chev" aria-hidden="true">▾</span>
+              </summary>
+              <div class="acc-body">
+                <AppBlocks blocks={item.blocks} />
+              </div>
+            </details>
+          ))
+        }
+      </div>
     </section>
-    <p class="lead">לוחצים על סוג אימון כדי לקרוא על השיטה שלי ועל האימון עצמו.</p>
-    <div class="acc-list">
-      {
-        trainingTypes.map((item) => (
-          <details class="acc" id={item.id}>
-            <summary>
-              <span class="acc-icon" aria-hidden="true">{item.icon}</span>
-              <span class="acc-text">
-                <strong>{item.title}</strong>
-                <span>{item.summary}</span>
-              </span>
-              <span class="acc-chev" aria-hidden="true">▾</span>
-            </summary>
-            <div class="acc-body">
-              <AppBlocks blocks={item.blocks} />
-            </div>
-          </details>
-        ))
-      }
-    </div>
+
+    <section class="panel" id="panel-types" role="tabpanel" hidden>
+      <h2>סוגי האימונים</h2>
+      <section class="prep" aria-labelledby="prep-title" id="quality-prep">
+        <h3 id="prep-title">הכנה לאימון איכות</h3>
+        <AppBlocks blocks={qualityPrep} />
+      </section>
+      <p class="lead">לוחצים על סוג אימון כדי לקרוא על השיטה שלי ועל האימון עצמו.</p>
+      <div class="acc-list">
+        {
+          trainingTypes.map((item) => (
+            <details class="acc" id={item.id}>
+              <summary>
+                <span class="acc-icon" aria-hidden="true">{item.icon}</span>
+                <span class="acc-text">
+                  <strong>{item.title}</strong>
+                  <span>{item.summary}</span>
+                </span>
+                <span class="acc-chev" aria-hidden="true">▾</span>
+              </summary>
+              <div class="acc-body">
+                <AppBlocks blocks={item.blocks} />
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </section>
 
     <p class="help">
       שאלה על אימון? <a href="https://wa.me/972526982993" rel="noopener">וואטסאפ 052-6982993</a>
@@ -108,11 +125,30 @@ import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes, qualityPrep } from "
 </script>
 
 <script>
-  // קישור ישיר (#hills) פותח את הפריט הרלוונטי
+  // החלפת לשונית בין שני הריבועים. קישור ישיר (#hills, #calendar) פותח את הלשונית והפריט הרלוונטיים.
+  const tabs = Array.from(document.querySelectorAll<HTMLButtonElement>(".topic"));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>(".panel"));
+
+  function showPanel(name: string) {
+    panels.forEach((p) => {
+      p.hidden = p.id !== `panel-${name}`;
+    });
+    tabs.forEach((t) => t.setAttribute("aria-selected", String(t.dataset.panel === name)));
+  }
+
+  tabs.forEach((t) =>
+    t.addEventListener("click", () => {
+      showPanel(t.dataset.panel ?? "system");
+      document.getElementById(`panel-${t.dataset.panel}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    })
+  );
+
   const hash = location.hash.replace("#", "");
   const target = hash ? document.getElementById(hash) : null;
-  if (target instanceof HTMLDetailsElement) {
-    target.open = true;
+  if (target) {
+    const panel = target.closest<HTMLElement>(".panel");
+    if (panel) showPanel(panel.id.replace("panel-", ""));
+    if (target instanceof HTMLDetailsElement) target.open = true;
     target.scrollIntoView();
   }
 </script>
@@ -203,6 +239,63 @@ import { FINAL_SURGE_LOGIN_URL, systemItems, trainingTypes, qualityPrep } from "
   .prep h3 {
     margin: 0 0 0.5rem;
     font-size: 1.15rem;
+  }
+  .topics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3, 1rem);
+    margin: var(--space-4, 1.5rem) 0;
+  }
+  .topic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 190px;
+    padding: 1.2rem 1rem;
+    border: 2px solid var(--color-border, #e4e7ec);
+    border-radius: 20px;
+    background: var(--color-surface, #fff);
+    color: inherit;
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .topic:hover {
+    border-color: #b34700;
+  }
+  .topic:focus-visible {
+    outline: 3px solid #b34700;
+    outline-offset: 2px;
+  }
+  .topic[aria-selected="true"] {
+    border-color: #b34700;
+    box-shadow: 0 0 0 3px rgba(179, 71, 0, 0.15);
+  }
+  .topic-icon {
+    font-size: 2.6rem;
+    line-height: 1;
+  }
+  .topic-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+  }
+  .topic-text {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+  }
+  .panel[hidden] {
+    display: none;
+  }
+  @media (max-width: 520px) {
+    .topic {
+      min-height: 160px;
+    }
+    .topic-title {
+      font-size: 1.1rem;
+    }
   }
   .acc-list {
     display: flex;
