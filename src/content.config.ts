@@ -40,10 +40,20 @@ const blog = defineCollection({
   schema: z.object({ ...seoFields, publishDate: z.coerce.date() }),
 });
 
+// סדרת הכתבות השבועית למרתון תל אביב — קולקציה נפרדת מהבלוג הכללי, לבקשת תומר (10/2026):
+// "פרויקט" בפני עצמו שחי תחת /tel-aviv-marathon/<slug>/, עם מספור שבועות לניווט קודם/הבא
+// בעמוד הכתבה. עמוד ה-hub עצמו (src/pages/tel-aviv-marathon/index.astro) הוא עדיין
+// העובדות/הכלים המאומתים; הכתבות כאן הן הזוויות השבועיות, לא כפילות של ה-hub.
+const telAvivMarathon = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/tel-aviv-marathon" }),
+  schema: z.object({ ...seoFields, publishDate: z.coerce.date(), weekNumber: z.number() }),
+});
+
 export const collections = {
   pages,
   groups,
   kidsCoaching,
   personalCoaching,
   blog,
+  telAvivMarathon,
 };

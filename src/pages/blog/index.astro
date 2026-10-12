@@ -22,7 +22,14 @@ const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
 
 // "הפופולרי ביותר": הסרטון שתומר בחר (19 תרגילים לכף הרגל) והמאמר האחרון שפורסם.
 const featuredVideo = youtubeVideos.find((v) => v.videoId === "_nAgyjPzGdg");
-const latestPost = posts[0];
+// המאמר האחרון: הכי חדש מבין הבלוג הכללי וסדרת מרתון תל אביב.
+const marathonPosts = (await getCollection("telAvivMarathon", ({ data }) => !data.draft)).map((post) => ({
+  post,
+  href: `/tel-aviv-marathon/${post.id}/`,
+}));
+const latestPost = [...posts.map((post) => ({ post, href: `/blog/${post.id}/` })), ...marathonPosts].sort(
+  (a, b) => b.post.data.publishDate.valueOf() - a.post.data.publishDate.valueOf()
+)[0];
 
 function formatHebrewDate(date: Date) {
   return new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(date);
@@ -85,6 +92,18 @@ const socialCards = [
     </div>
   </section>
 
+  <section class="container section marathon-teaser-section">
+    <a href="/tel-aviv-marathon/" class="marathon-teaser">
+      <img src="/images/action/tel-aviv-marathon-finish.webp" alt="מרתון תל אביב 2027" class="marathon-teaser-img" />
+      <div class="marathon-teaser-body">
+        <span class="marathon-teaser-tag">סדרה שבועית</span>
+        <h2>מרתון תל אביב 2027</h2>
+        <p>כל מה שרצית לדעת (ולא העזת לשאול) על ההכנה למרתון - כתבה חדשה כל שבוע, עד קו הזינוק.</p>
+        <span class="marathon-teaser-cta">לכל הסדרה ←</span>
+      </div>
+    </a>
+  </section>
+
   <section id="popular" class="container section">
     <h2>הפופולרי ביותר</h2>
     <div class="popular-grid">
@@ -99,13 +118,13 @@ const socialCards = [
         </div>
       )}
       {latestPost && (
-        <a href={`/blog/${latestPost.id}/`} class="post-card popular-card">
-          {latestPost.data.ogImage && <img src={latestPost.data.ogImage} alt={latestPost.data.title} class="post-thumb" />}
+        <a href={latestPost.href} class="post-card popular-card">
+          {latestPost.post.data.ogImage && <img src={latestPost.post.data.ogImage} alt={latestPost.post.data.title} class="post-thumb" />}
           <div class="post-body">
             <span class="popular-tag">המאמר האחרון</span>
-            <span class="date">{formatHebrewDate(latestPost.data.publishDate)}</span>
-            <h3>{latestPost.data.title}</h3>
-            <p>{latestPost.data.description}</p>
+            <span class="date">{formatHebrewDate(latestPost.post.data.publishDate)}</span>
+            <h3>{latestPost.post.data.title}</h3>
+            <p>{latestPost.post.data.description}</p>
           </div>
         </a>
       )}
@@ -268,6 +287,86 @@ const socialCards = [
 
   .section {
     padding-block: var(--space-5);
+  }
+
+  .marathon-teaser-section {
+    padding-block: var(--space-4);
+  }
+
+  .marathon-teaser {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 640px;
+    margin-inline: auto;
+    aspect-ratio: 1 / 1;
+    background: var(--color-navy-950);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .marathon-teaser:hover,
+  .marathon-teaser:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg, var(--shadow-md));
+  }
+
+  .marathon-teaser-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .marathon-teaser-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: var(--space-4) var(--space-3);
+    align-self: center;
+  }
+
+  .marathon-teaser-tag {
+    width: fit-content;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-navy-950);
+    background: var(--color-gold-500);
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
+  }
+
+  .marathon-teaser-body h2 {
+    color: var(--color-white);
+    font-size: 1.3rem;
+    margin: 0;
+  }
+
+  .marathon-teaser-body p {
+    color: var(--color-gray-300);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .marathon-teaser-cta {
+    margin-top: 0.3rem;
+    font-weight: 700;
+    color: var(--color-gold-500);
+  }
+
+  @media (max-width: 560px) {
+    .marathon-teaser {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr auto;
+      aspect-ratio: auto;
+    }
+
+    .marathon-teaser-img {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
   }
 
   .posts-grid {

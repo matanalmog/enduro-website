@@ -3,10 +3,21 @@
 // (ראו האפיון שאושר). פרטי האירוע (תאריך/מקצים) מאומתים מול tlvmarathon.co.il — יש
 // לבדוק מחדש לפני כל עדכון עתידי, הם לא קבועים כמו שאר תוכן העמוד. קוד הנחה לא נכלל
 // בכוונה עד שתוקפו יאושר (ראו races.astro לקוד 785859 הקיים, לא מיובא לכאן).
-import BaseLayout from "../layouts/BaseLayout.astro";
-import FaqItem from "../components/FaqItem.astro";
+// הועבר לתיקייה (index.astro) כדי לאפשר תת-נתיבים: /tel-aviv-marathon/<slug>/ הם מאמרי
+// סדרת הבלוג הייעודית למרתון (קולקציית תוכן נפרדת מהבלוג הכללי, ראו [slug].astro לידה).
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import FaqItem from "../../components/FaqItem.astro";
+import { getCollection } from "astro:content";
 
 const ctaHref = "/?src=tlv-marathon#lead-form";
+
+const seriesPosts = (await getCollection("telAvivMarathon", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.weekNumber - b.data.weekNumber
+);
+
+function formatHebrewDate(date: Date) {
+  return new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(date);
+}
 
 const schema = [
   {
@@ -94,6 +105,25 @@ const schema = [
       אירועים עשויים להשתנות, מומלץ לוודא באתר הרשמי סמוך למועד ההרשמה.
     </p>
   </section>
+
+  {seriesPosts.length > 0 && (
+    <section class="container section" id="series">
+      <h2>סדרת ההכנה השבועית</h2>
+      <p class="section-note">כתבה חדשה כל שבוע, עד קו הזינוק. העובדות והכלים (תאריך, לוח הכנה, מחשבון קצבים) נשארים כאן למעלה; כל כתבה בסדרה מתמקדת בשלב הבא בדרך.</p>
+      <div class="posts-grid">
+        {seriesPosts.map((post) => (
+          <a href={`/tel-aviv-marathon/${post.id}/`} class="post-card">
+            {post.data.ogImage && <img src={post.data.ogImage} alt={post.data.title} class="post-thumb" />}
+            <div class="post-body">
+              <span class="date">שבוע {post.data.weekNumber} &middot; {formatHebrewDate(post.data.publishDate)}</span>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <section class="container section section-muted">
     <h2>מקצי הריצה</h2>
@@ -351,6 +381,60 @@ const schema = [
     color: var(--color-text-muted);
     max-width: 70ch;
     margin-bottom: var(--space-3);
+  }
+
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-3);
+  }
+
+  .post-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: box-shadow 0.15s ease, transform 0.15s ease, border-color 0.15s ease;
+  }
+
+  .post-card:hover,
+  .post-card:focus-visible {
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-brand);
+    transform: translateY(-3px);
+  }
+
+  .post-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .post-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: var(--space-3);
+  }
+
+  .post-body h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .post-body .date {
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+  }
+
+  .post-body p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin: 0;
   }
 
   .source-note {
