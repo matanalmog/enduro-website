@@ -4,7 +4,7 @@ description: "חצי מרתון דורש יותר מסיבולת בסיסית. �
 focusKeyword: "הכנה לחצי מרתון"
 ogImage: "/images/action/club-team-track-lineup.jpg"
 publishDate: 2026-10-21
-draft: false
+draft: true
 ---
 
 "כמה זמן לוקח להתכונן לחצי מרתון?" היא אחת השאלות שאני מקבל הכי הרבה, ואין לה תשובה אחת - כי התשובה האמיתית תלויה בשאלה אחרת: מאיפה אתם מתחילים.
