@@ -16,14 +16,14 @@ const youtubeGroups = categoryOrder
   }))
   .filter((group) => group.videos.length > 0);
 
-const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+const posts = (await getCollection("blog", ({ data }) => !data.draft && data.publishDate <= new Date())).sort(
   (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
 );
 
 // "הפופולרי ביותר": הסרטון שתומר בחר (19 תרגילים לכף הרגל) והמאמר האחרון שפורסם.
 const featuredVideo = youtubeVideos.find((v) => v.videoId === "_nAgyjPzGdg");
 // המאמר האחרון: הכי חדש מבין הבלוג הכללי וסדרת מרתון תל אביב.
-const marathonPosts = (await getCollection("telAvivMarathon", ({ data }) => !data.draft)).map((post) => ({
+const marathonPosts = (await getCollection("telAvivMarathon", ({ data }) => !data.draft && data.publishDate <= new Date())).map((post) => ({
   post,
   href: `/tel-aviv-marathon/${post.id}/`,
 }));

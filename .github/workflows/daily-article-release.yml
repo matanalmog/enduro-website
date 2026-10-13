@@ -1,0 +1,88 @@
+name: Daily article release (17:00 Israel)
+
+# שחרור יומי של מאמרים. רץ כל יום ב-17:00 שעון ישראל, ופועל רק אם יש ב-dev מאמר (בלוג או
+# סדרת מרתון ת"א) שה-publishDate שלו הוא היום. אם אין - לא קורה כלום (לא שורף קרדיטים של Netlify).
+# האתר מציג רק מאמרים שה-publishDate שלהם עבר בזמן ה-build, כך שמאמרים עתידיים יכולים לשבת ב-main
+# מוסתרים. לכן השחרור ממזג את dev ל-main, ואם אין שינוי בקוד דוחף commit ריק כדי ש-Netlify יבנה מחדש
+# והמאמר של היום יופיע.
+on:
+  schedule:
+    # 17:00 שעון ישראל = 14:00 UTC בקיץ (IDT) ו-15:00 UTC בחורף (IST). שלב ה-gate בוחר את הנכון.
+    - cron: "0 14 * * *"
+    - cron: "0 15 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: push-to-main
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gate on Israel daylight-saving time
+        id: gate
+        env:
+          FIRED_CRON: ${{ github.event.schedule }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          offset=$(TZ=Asia/Jerusalem date +%z)
+          run=false
+          if [ "$EVENT" = "workflow_dispatch" ]; then run=true; fi
+          if [ "$FIRED_CRON" = "0 14 * * *" ] && [ "$offset" = "+0300" ]; then run=true; fi
+          if [ "$FIRED_CRON" = "0 15 * * *" ] && [ "$offset" = "+0200" ]; then run=true; fi
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+
+      # מוצמד ל-commit SHA ולא לתגית - ראו ההסבר ב-update-races.yml.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: steps.gate.outputs.run == 'true'
+        with:
+          fetch-depth: 0
+
+      - name: Find articles due today
+        id: due
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          if ! git ls-remote --exit-code --heads origin dev > /dev/null; then
+            echo "No dev branch."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git fetch origin dev main
+          today=$(TZ=Asia/Jerusalem date +%F)
+          found=false
+          for f in $(git diff --name-only --diff-filter=A origin/main origin/dev -- src/content/blog src/content/tel-aviv-marathon); do
+            content=$(git show "origin/dev:$f")
+            if printf '%s\n' "$content" | grep -q '^draft:[[:space:]]*true'; then
+              continue
+            fi
+            pd=$(printf '%s\n' "$content" | grep -m1 '^publishDate:' | grep -oE '[0-9]{4}-[0-9]{2}-[0-9]{2}' || true)
+            if [ -n "$pd" ] && [ ! "$pd" \> "$today" ]; then
+              echo "Due: $f ($pd)"
+              found=true
+            fi
+          done
+          if [ "$found" = "false" ]; then
+            echo "No new article due on or before $today - nothing to release."
+          fi
+          echo "found=$found" >> "$GITHUB_OUTPUT"
+
+      - name: Merge dev into main and push
+        if: steps.gate.outputs.run == 'true' && steps.due.outputs.found == 'true'
+        run: |
+          git config user.name "enduro-races-bot"
+          git config user.email "actions@users.noreply.github.com"
+          start=$(git rev-parse HEAD)
+          if ! git merge --no-edit origin/dev -m "Daily article release: merge dev into main"; then
+            git merge --abort
+            echo "::error::Merging dev into main hit a conflict. Nothing was released; dev needs a manual merge."
+            exit 1
+          fi
+          if [ "$(git rev-parse HEAD)" != "$start" ]; then
+            git push origin HEAD:main
+          else
+            echo "dev has nothing new - no push, no Netlify deploy."
+          fi
