@@ -54,6 +54,12 @@ jobs:
           git fetch origin dev main
           today=$(TZ=Asia/Jerusalem date +%F)
           found=false
+          # תומר: שחרורים יומיים מותרים רק עד 21.10.2026. מ-22.10 חוזרים לחמישי/שבת בלבד (קרדיטים של Netlify).
+          if [ "$today" \> "2026-10-21" ]; then
+            echo "Daily releases ended on 2026-10-21; articles now ship with the Thursday/Saturday release."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           for f in $(git diff --name-only --diff-filter=A origin/main origin/dev -- src/content/blog src/content/tel-aviv-marathon); do
             content=$(git show "origin/dev:$f")
             if printf '%s\n' "$content" | grep -q '^draft:[[:space:]]*true'; then
