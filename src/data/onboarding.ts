@@ -275,7 +275,7 @@ export const onboardingTopics: OnboardingTopic[] = [
       href: "https://support.finalsurge.com/hc/en-us/articles/360051996673-Connecting-with-your-Coach",
       label: "ההסבר הרשמי של Final Surge: חיבור למאמן (באנגלית)",
     },
-    video: { youtubeId: null, src: "/videos/onboarding/app-signup.mp4", title: "הרשמה והתחברות לאפליקציית Final Surge" },
+    video: { youtubeId: "SICRiPevf_E", src: "/videos/onboarding/app-signup.mp4", title: "הרשמה והתחברות לאפליקציית Final Surge" },
   },
   {
     id: "garmin",
