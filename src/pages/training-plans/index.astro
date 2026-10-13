@@ -1,6 +1,7 @@
 ---
 // עמוד-שער לתוכניות האימון — מפנה לחמשת התתי-עמודים (סעיף 2 באפיון).
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import { trainingPlans } from "../../data/training-plans";
 
 const beginnersPlan = trainingPlans.find((p) => p.slug === "beginners")!;
@@ -99,6 +100,17 @@ const sortedPlans = [
     </dialog>
   </section>
 
+  <section class="container section watch-video-section">
+    <h2>וככה זה עובד על השעון</h2>
+    <p class="platform-intro">
+      האימון המובנה יורד מהתוכנית ישר לשעון הגרמין שלכם — חימום, אינטרוולים
+      וקצב מדויק לכל קטע, שלב אחרי שלב.
+    </p>
+    <div class="watch-video-wrap">
+      <YouTubeEmbed videoId="BhEHgbETurk" title="איך מבצעים אימון מהתוכנית בשעון Garmin, שלב אחרי שלב" />
+    </div>
+  </section>
+
   <section class="container section">
     <div class="plans-grid">
       {sortedPlans.map((plan) => (
@@ -153,6 +165,15 @@ const sortedPlans = [
 
   .platform-section {
     text-align: center;
+  }
+
+  .watch-video-section {
+    text-align: center;
+  }
+
+  .watch-video-wrap {
+    max-width: 640px;
+    margin: var(--space-4) auto 0;
   }
 
   .platform-intro {
