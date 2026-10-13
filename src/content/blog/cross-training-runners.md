@@ -23,9 +23,9 @@ draft: false
 
 ## מתי אימון צולב כן עוזר
 
-התפקיד שבו אימון צולב כן מוכיח את עצמו הוא שמירה על כושר בזמן שלא יכולים לרוץ, לא מניעת פציעה מראש. ריצה במים עמוקים (deep-water running) היא התחליף המדויק ביותר שנבדק: לפי מחקר ותיק אך מצוטט רבות, היא שומרת על צריכת החמצן המרבית כמעט ללא שינוי לאורך 4-6 שבועות של הפסקה מריצה.
+התפקיד שבו אימון צולב כן מוכיח את עצמו הוא שמירה על כושר בזמן שלא יכולים לרוץ, לא מניעת פציעה מראש. ריצה במים עמוקים (deep-water running) היא התחליף המדויק ביותר שנבדק: מחקר על רצים מאומנים מצא ש-6 שבועות של ריצה במים עמוקים שמרו על צריכת החמצן המרבית כמעט ללא שינוי, באופן דומה לקבוצת ביקורת שהמשיכה לרוץ על היבשה.
 
-שחייה ורכיבה הן אופציות סבירות לשמירה על בסיס אירובי כללי בזמן פציעה, אבל לכל אחת מגבלה משלה. שחייה נותנת מאמץ אירובי בעומס נמוך על הרגליים, אבל לא משחזרת את הדרישות השריריות והטכניות של ריצה. רכיבה נותנת גירוי אירובי משמעותי יותר, אבל עדיין מפעילה את הרגליים - במקרים מסוימים (למשל פלנטר פשיאיטיס או ITB) היא עלולה להחמיר את התסמינים, לא רק "לא לעזור". הבחירה צריכה להתאים לפציעה הספציפית ולתגובה שלכם אליה, לא רק לשאלה מה שורף יותר קלוריות.
+שחייה ורכיבה הן אופציות סבירות לשמירה על בסיס אירובי כללי בזמן פציעה, אבל לכל אחת מגבלה משלה. שחייה נותנת מאמץ אירובי בעומס נמוך על הרגליים, אבל לא משחזרת את הדרישות השריריות והטכניות של ריצה. רכיבה נותנת גירוי אירובי משמעותי יותר, אבל עדיין מפעילה את הרגליים - במקרים מסוימים (למשל פלנטר פשיאיטיס או ITB) היא עלולה להחמיר את התסמינים, לא רק "לא לעזור". הבחירה צריכה להתאים לפציעה הספציפית ולתגובה שלכם אליה, לא רק לשאלה מה נותן יותר נפח אירובי.
 
 ## ומה עם ביצועים
 
@@ -68,6 +68,8 @@ draft: false
 ## מקורות
 
 - Lauersen, J. B., Bertelsen, D. M., & Andersen, L. B. (2014). The effectiveness of exercise interventions to prevent sports injuries: a systematic review and meta-analysis of randomised controlled trials. *British Journal of Sports Medicine*. [doi:10.1136/bjsports-2013-092538](https://doi.org/10.1136/bjsports-2013-092538)
+- Lauersen, J. B., Andersen, T. E., & Andersen, L. B. (2018). Strength training as superior, dose-dependent and safe prevention of acute and overuse sports injuries: a systematic review, qualitative analysis and meta-analysis. *British Journal of Sports Medicine*. [doi:10.1136/bjsports-2018-099078](https://doi.org/10.1136/bjsports-2018-099078)
 - Woodard, K., Engler, A., & Tarascavage, N. (2025). An Exploratory, Retrospective Study on Injury Occurrence in Triathletes and Marathon Runners. *International Journal of Sports Physical Therapy*, 20(10). [PubMed](https://pubmed.ncbi.nlm.nih.gov/41048412/)
+- Wilber, R. L., Moffatt, R. J., Scott, B. E., Lee, D. T., & Cucuzzo, N. A. (1996). Influence of water run training on the maintenance of aerobic performance. *Medicine & Science in Sports & Exercise*. [PubMed](https://pubmed.ncbi.nlm.nih.gov/8871917/)
 
 עוד על חיזוק ומניעת פציעות אפשר למצוא גם ב[אינסטגרם שלי](https://www.instagram.com/tomer_almog_enduro_runners/).
