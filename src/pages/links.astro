@@ -1,0 +1,196 @@
+---
+// דף "קישורים" לביו של אינסטגרם: תמיד מציג למעלה את המאמר האחרון שפורסם (בלוג או סדרת מרתון ת"א),
+// ומתחתיו את הדפים הקבועים. הסטורי היומי האוטומטי מפנה לכאן ("הקישור בביו").
+// כל הקישורים נושאים ?src=ig_bio למדידה. הדף לא מיועד לחיפוש (noindex, ולא במפת האתר).
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const isLive = ({ data }: { data: { draft: boolean; publishDate: Date } }) =>
+  !data.draft && data.publishDate <= new Date();
+
+const blogPosts = (await getCollection("blog", isLive)).map((post) => ({
+  data: post.data,
+  href: `/blog/${post.id}/`,
+}));
+const marathonPosts = (await getCollection("telAvivMarathon", isLive)).map((post) => ({
+  data: post.data,
+  href: `/tel-aviv-marathon/${post.id}/`,
+}));
+const latest = [...blogPosts, ...marathonPosts].sort(
+  (a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+)[0];
+
+const src = "src=ig_bio";
+const withSrc = (href: string) => `${href}${href.includes("?") ? "&" : "?"}${src}`;
+
+const links = [
+  { href: "/races/", label: "לוח המרוצים", note: "כל המרוצים הקרובים בארץ" },
+  { href: "/training-plans/", label: "תוכניות אימון אונליין", note: "ליווי אישי, ממתחילים ועד אולטרה" },
+  { href: "/tel-aviv-marathon/", label: "הכנה למרתון תל אביב", note: "הסדרה המלאה, שבוע אחרי שבוע" },
+  { href: "/groups/", label: "קבוצות ריצה", note: "לחברות, ארגונים וקהילה" },
+  { href: "/blog/", label: "כל המאמרים", note: "פציעות, אימונים ומחקר" },
+];
+
+function formatHebrewDate(date: Date) {
+  return new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long" }).format(date);
+}
+---
+
+<BaseLayout
+  title="קישורים | תומר אלמוג ENDURO"
+  description="המאמר החדש, לוח המרוצים, תוכניות האימון וקבוצות הריצה של ENDURO במקום אחד."
+  canonicalPath="/links/"
+  noindex
+>
+  <section class="links-page container">
+    <h1>ENDURO · תומר אלמוג</h1>
+    <p class="intro">מאמן ריצה וכושר. כל מה שחדש באתר, במקום אחד.</p>
+
+    {latest && (
+      <a class="latest" href={withSrc(latest.href)}>
+        {latest.data.ogImage && (
+          <img src={latest.data.ogImage} alt="" loading="eager" width="640" height="360" />
+        )}
+        <span class="latest-tag">חדש באתר · {formatHebrewDate(latest.data.publishDate)}</span>
+        <span class="latest-title">{latest.data.title}</span>
+        <span class="latest-cta">לקריאה &larr;</span>
+      </a>
+    )}
+
+    <ul class="link-list">
+      {links.map((l) => (
+        <li>
+          <a href={withSrc(l.href)}>
+            <span class="label">{l.label}</span>
+            <span class="note">{l.note}</span>
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="https://wa.me/972526982993" target="_blank" rel="noopener noreferrer" class="whatsapp">
+          <span class="label">דברו איתי בוואטסאפ</span>
+          <span class="note">שאלות על אימונים ותוכניות</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .links-page {
+    max-width: 560px;
+    margin-inline: auto;
+    padding-block: var(--space-5);
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 0.25rem;
+  }
+
+  .intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-4);
+  }
+
+  .latest {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--color-white);
+    background: var(--color-navy-950);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+    text-align: start;
+  }
+
+  .latest img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .latest-tag,
+  .latest-title,
+  .latest-cta {
+    padding-inline: var(--space-3);
+  }
+
+  .latest-tag {
+    color: var(--color-gold-500);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .latest-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+
+  .latest-cta {
+    color: var(--color-gold-500);
+    font-weight: 700;
+  }
+
+  .latest:hover,
+  .latest:focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+  }
+
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .link-list a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.9rem 1rem;
+    border: 2px solid var(--color-navy-950);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .link-list a:hover,
+  .link-list a:focus-visible {
+    background: var(--color-navy-950);
+    color: var(--color-white);
+  }
+
+  .link-list a:focus-visible {
+    outline: 2px solid var(--color-gold-500);
+    outline-offset: 3px;
+  }
+
+  .label {
+    font-weight: 800;
+    font-size: 1.05rem;
+  }
+
+  .note {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .link-list a.whatsapp {
+    border-color: #1f8f4e;
+  }
+
+  .link-list a.whatsapp:hover,
+  .link-list a.whatsapp:focus-visible {
+    background: #1f8f4e;
+    color: var(--color-white);
+  }
+</style>
