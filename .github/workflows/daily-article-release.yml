@@ -89,7 +89,8 @@ jobs:
           git config user.name "enduro-races-bot"
           git config user.email "actions@users.noreply.github.com"
           start=$(git rev-parse HEAD)
-          if ! git merge --no-edit origin/dev -m "Daily article release: merge dev into main"; then
+          # --no-ff: תמיד commit מיזוג חדש, כדי ש-[skip netlify] על הקצה של dev לא יגיע לראש main וידלג על ה-build.
+          if ! git merge --no-ff --no-edit origin/dev -m "Daily article release: merge dev into main"; then
             git merge --abort
             echo "::error::Merging dev into main hit a conflict. Nothing was released; dev needs a manual merge."
             exit 1
