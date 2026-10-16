@@ -1,6 +1,6 @@
 name: Daily article release (from 17:00 Israel)
 
-# שחרור יומי של מאמרים (עד 21.10.2026). האתר מציג רק מאמרים שה-publishDate שלהם עבר בזמן ה-build,
+# שחרור מאמרים ב-17:00: כל יום עד 21.10.2026, ומ-22.10 רק בחמישי ובשבת (תומר, 16.10). האתר מציג רק מאמרים שה-publishDate שלהם עבר בזמן ה-build,
 # כך שמאמרים עתידיים יושבים ב-main מוסתרים, וצריך build חדש ביום שלהם כדי שיופיעו.
 # הריצות המתוזמנות של GitHub מגיעות במאגר הזה באיחור של שעות (שחרור "19:00" רץ בפועל ב-22:00-23:00),
 # לכן אין ריצה אחת ב-17:00 אלא בדיקה כל שעה: הריצה הראשונה שמגיעה אחרי 17:00 שעון ישראל, ביום שיש בו
@@ -32,9 +32,10 @@ jobs:
           run=false
           if [ "$EVENT" = "workflow_dispatch" ]; then run=true; fi
           if [ "$EVENT" = "schedule" ] && [ "$hour" -ge 17 ]; then run=true; fi
-          # תומר: שחרורים יומיים מותרים רק עד 21.10.2026. מ-22.10 חוזרים לחמישי/שבת בלבד (קרדיטים של Netlify).
-          if [ "$today" \> "2026-10-21" ]; then
-            echo "Daily releases ended on 2026-10-21; articles now ship with the Thursday/Saturday release."
+          # תומר: שחרורים יומיים מותרים רק עד 21.10.2026. מ-22.10 רק חמישי ושבת, גם הם ב-17:00 (קרדיטים של Netlify).
+          dow=$(TZ=Asia/Jerusalem date +%u)
+          if [ "$today" \> "2026-10-21" ] && [ "$dow" != "4" ] && [ "$dow" != "6" ]; then
+            echo "From 2026-10-22 articles ship only on Thursday and Saturday."
             run=false
           fi
           echo "Israel time: $today $hour:00, event: $EVENT, run: $run"
