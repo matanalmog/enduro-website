@@ -7,6 +7,10 @@ import TestimonialCard from "../components/TestimonialCard.astro";
 import FaqItem from "../components/FaqItem.astro";
 import YouTubeEmbed from "../components/YouTubeEmbed.astro";
 import { trainingPlans } from "../data/training-plans";
+import gallery from "../data/gallery.json";
+
+// רצועת "מהשטח" בעמוד הבית: 8 תמונות מתוך הגלריה, קישור לעמוד המלא.
+const fieldStrip = [gallery.races[0], gallery.trail[0], gallery.podium[4], gallery.group[0], gallery.races[6], gallery.kids[2], gallery.trail[14], gallery.races[10]];
 
 const beginnersPlan = trainingPlans.find((p) => p.slug === "beginners")!;
 const halfMarathonPlan = trainingPlans.find((p) => p.slug === "half-marathon")!;
@@ -400,6 +404,21 @@ const schema = [
     </div>
     <div class="results-footer">
       <a href="/about-me/#testimonials" class="results-link">לכל הסיפורים &larr;</a>
+    </div>
+  </section>
+
+  <section class="container section" id="field">
+    <h2>מהשטח</h2>
+    <p class="field-intro">מרוצים, אימונים ורגעים מהדרך, של המתאמנים שלנו.</p>
+    <div class="field-strip">
+      {fieldStrip.map((img) => (
+        <a href="/gallery/" class="field-item">
+          <img src={img.src} alt="תמונה מהמרוצים והאימונים של ENDURO" width={img.w} height={img.h} loading="lazy" decoding="async" />
+        </a>
+      ))}
+    </div>
+    <div class="results-footer">
+      <a href="/gallery/" class="results-link">לכל התמונות &larr;</a>
     </div>
   </section>
 
@@ -1545,6 +1564,36 @@ const schema = [
     .process-grid {
       grid-template-columns: 1fr;
     }
+  }
+
+  .field-intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-3);
+  }
+  .field-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-1);
+  }
+  @media (min-width: 760px) {
+    .field-strip { grid-template-columns: repeat(4, 1fr); }
+  }
+  .field-item {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 6px;
+    background: var(--color-gray-100);
+  }
+  .field-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  .field-item:hover img,
+  .field-item:focus-visible img {
+    transform: scale(1.04);
   }
 </style>
 

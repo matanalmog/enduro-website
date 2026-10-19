@@ -2,7 +2,7 @@
 title: "בניית בסיס בשבועות הראשונים להכנה למרתון תל אביב 2027"
 description: "כמה לרוץ בשבועות הראשונים של ההכנה למרתון תל אביב 2027, באיזה קצב, ולמה קצב ההעלאה בנפח חשוב יותר מהנפח עצמו בשלב הזה."
 focusKeyword: "בניית בסיס לריצה"
-ogImage: "/images/action/group-jog-park.jpg"
+ogImage: "/images/gallery/group-06.jpg"
 publishDate: 2026-10-17
 weekNumber: 3
 draft: false

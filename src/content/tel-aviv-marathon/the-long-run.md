@@ -2,7 +2,7 @@
 title: "הריצה הארוכה בהכנה למרתון תל אביב 2027: מה היא עושה ואיך מאריכים אותה נכון"
 description: "למה הריצה הארוכה היא האימון המרכזי בהכנה למרתון, איך מאריכים אותה בהדרגה, ואיך מתרגלים בה תדלוק ושתייה ליום המרוץ."
 focusKeyword: "ריצה ארוכה למרתון"
-ogImage: "/images/action/group-jog-park.jpg"
+ogImage: "/images/gallery/trail-04.jpg"
 publishDate: 2026-10-19
 weekNumber: 4
 draft: false

@@ -2,7 +2,7 @@
 title: "כאב בגיד אכילס בריצה: מה המחקר אומר ומה באמת עוזר"
 description: "כמה נפוץ גיד אכילס בקרב רצים, האם עלייה הדרגתית בנפח באמת מונעת אותו לפי המחקר, ומה כן מוכח: שתי תוכניות תרגול מבוססות מחקר, לוחות תרגילים מלאים, ומתי לעצור ולהיבדק."
 focusKeyword: "גיד אכילס ריצה"
-ogImage: "/images/action/trail-race-orchard-pack.jpg"
+ogImage: "/images/gallery/trail-12.jpg"
 publishDate: 2026-10-10
 draft: false
 ---

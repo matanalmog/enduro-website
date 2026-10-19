@@ -2,7 +2,7 @@
 title: "כאב בכף הרגל בבוקר: מה המחקר אומר על פלנטר פשיאיטיס אצל רצים"
 description: "כמה נפוץ באמת פלנטר פשיאיטיס אצל רצים לפי מחקר מ-2025, אילו גורמי סיכון באמת משפיעים (נפח שבועי, חוסר איזון בכוח הירך), ומה המחקר אומר שבאמת עוזר."
 focusKeyword: "פלנטר פשיאיטיס רצים"
-ogImage: "/images/action/solo-beach-stairs.jpg"
+ogImage: "/images/gallery/group-07.jpg"
 publishDate: 2026-10-13
 draft: false
 ---

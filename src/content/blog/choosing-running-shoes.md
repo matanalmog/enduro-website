@@ -2,7 +2,7 @@
 title: "איך לבחור נעלי ריצה: מדריך לפי צורת כף הרגל, הדריכה והמטרה"
 description: "איך בוחרים נעלי ריצה נכון - למה 'הנעל הכי יקרה' היא לא תמיד הנכונה, מה באמת משנה (דריכה, ריפוד, מטרה) ומתי להחליף זוג."
 focusKeyword: "איך לבחור נעלי ריצה"
-ogImage: "/images/action/agility-ladder-night-drill.jpg"
+ogImage: "/images/gallery/races-04.jpg"
 publishDate: 2026-10-15
 draft: false
 ---

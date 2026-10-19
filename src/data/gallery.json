@@ -1,0 +1,307 @@
+{
+ "races": [
+  {
+   "src": "/images/gallery/races-01.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-02.jpg",
+   "w": 788,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-03.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-04.jpg",
+   "w": 970,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-05.jpg",
+   "w": 512,
+   "h": 512
+  },
+  {
+   "src": "/images/gallery/races-06.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-07.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/races-08.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/races-09.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-10.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-11.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-12.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-13.jpg",
+   "w": 1137,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/races-14.jpg",
+   "w": 1050,
+   "h": 1400
+  }
+ ],
+ "podium": [
+  {
+   "src": "/images/gallery/podium-01.jpg",
+   "w": 787,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/podium-02.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/podium-03.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/podium-04.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/podium-05.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/podium-06.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/podium-07.jpg",
+   "w": 1050,
+   "h": 1400
+  }
+ ],
+ "trail": [
+  {
+   "src": "/images/gallery/trail-01.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-02.jpg",
+   "w": 1400,
+   "h": 787
+  },
+  {
+   "src": "/images/gallery/trail-03.jpg",
+   "w": 1400,
+   "h": 933
+  },
+  {
+   "src": "/images/gallery/trail-04.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/trail-05.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-06.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/trail-07.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/trail-08.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/trail-09.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-10.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-11.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-12.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-13.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-14.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/trail-15.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-16.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/trail-17.jpg",
+   "w": 1050,
+   "h": 1400
+  }
+ ],
+ "group": [
+  {
+   "src": "/images/gallery/group-01.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/group-02.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/group-03.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/group-04.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/group-05.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/group-06.jpg",
+   "w": 1400,
+   "h": 1398
+  },
+  {
+   "src": "/images/gallery/group-07.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/group-08.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/group-09.jpg",
+   "w": 1400,
+   "h": 663
+  },
+  {
+   "src": "/images/gallery/group-10.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/group-11.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/group-12.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/group-13.jpg",
+   "w": 1400,
+   "h": 663
+  }
+ ],
+ "kids": [
+  {
+   "src": "/images/gallery/kids-01.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/kids-02.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/kids-03.jpg",
+   "w": 1400,
+   "h": 1050
+  },
+  {
+   "src": "/images/gallery/kids-04.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/kids-05.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/kids-06.jpg",
+   "w": 1400,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/kids-07.jpg",
+   "w": 1050,
+   "h": 1400
+  },
+  {
+   "src": "/images/gallery/kids-08.jpg",
+   "w": 1050,
+   "h": 1400
+  }
+ ]
+}

@@ -2,7 +2,7 @@
 title: "איך בונים תוכנית אימונים שנתית ומשבצים מרוצים נכון?"
 description: "מדריך מעשי לבניית תוכנית אימונים שנתית: שלבי בסיס-בנייה-שיא-הפחתת עומס, איך בוחרים מרוץ עוגן ומשבצים סביבו מרוצי הכנה, וכמה זמן באמת לוקח להתאושש לפי מרחק."
 focusKeyword: "תכנון עונת מרוצים"
-ogImage: "/images/action/tomer-elite-race-pack.jpg"
+ogImage: "/images/gallery/podium-05.jpg"
 publishDate: 2026-09-26
 draft: false
 ---

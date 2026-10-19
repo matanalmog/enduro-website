@@ -157,8 +157,8 @@ export const runningGroups: RunningGroup[] = [
       "האימון מתקיים במיקום הסמוך למקום העבודה, כולל ליווי פרטני וקבוצתי עד להשגת המטרה, מרתון תל אביב, חצי מרתון, 10 ק\"מ או 5 ק\"מ, עבור רצים מתחילים ומנוסים כאחד.",
     ],
     image: {
-      src: "/images/action/business-group-race.jpg",
-      alt: "עובדי ארגון חוצים קו סיום יחד באירוע ריצה",
+      src: "/images/action/business-team-race-selfie.jpg",
+      alt: "צוות רצים בחולצות קבוצה תואמות לפני מרוץ",
     },
     clients: [
       "הנהלת בתי המשפט",

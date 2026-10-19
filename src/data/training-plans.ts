@@ -36,8 +36,8 @@ export const trainingPlans: TrainingPlan[] = [
     price: "350 ש״ח",
     priceNote: "לחודש, מתחילים עד 10 ק״מ",
     image: {
-      src: "/images/action/agility-ladder-night-drill.jpg",
-      alt: "אימון זריזות עם סולם וחישוקים באיצטדיון אתלטיקה בערב",
+      src: "/images/action/trail-race-orchard-runner.jpg",
+      alt: "רץ במרוץ שטח בשביל עפר בין פרדסים",
     },
     freePlanImages: [
       { src: "/images/free-plans/10k-month-1.png", alt: "תוכנית ריצה גנרית ל-10 ק\"מ, חודש 1" },
@@ -178,8 +178,8 @@ export const trainingPlans: TrainingPlan[] = [
     price: "500 ש״ח",
     priceNote: "לחודש, מורכבות ואולטרה מרתון",
     image: {
-      src: "/images/action/ultra-trail-mountain-pack.jpg",
-      alt: "קבוצת רצי אולטרה עם ציוד הידרציה ומקלות ריצה במסלול הרים",
+      src: "/images/action/ultra-pyrenees-meadow.jpg",
+      alt: "רץ שטח באחו ירוק מול רכס הרים בפירנאים",
     },
     faq: [
       {
