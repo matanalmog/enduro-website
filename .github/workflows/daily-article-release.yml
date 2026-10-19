@@ -31,7 +31,10 @@ jobs:
           today=$(TZ=Asia/Jerusalem date +%F)
           run=false
           if [ "$EVENT" = "workflow_dispatch" ]; then run=true; fi
-          if [ "$EVENT" = "schedule" ] && [ "$hour" -ge 17 ]; then run=true; fi
+          # שעת השחרור: 17:00, חוץ מ-20.10.2026 שתומר הקדים ל-12:00.
+          start=17
+          if [ "$today" = "2026-10-20" ]; then start=12; fi
+          if [ "$EVENT" = "schedule" ] && [ "$hour" -ge "$start" ]; then run=true; fi
           # תומר: שחרורים יומיים מותרים רק עד 21.10.2026. מ-22.10 רק חמישי ושבת, גם הם ב-17:00 (קרדיטים של Netlify).
           dow=$(TZ=Asia/Jerusalem date +%u)
           if [ "$today" \> "2026-10-21" ] && [ "$dow" != "4" ] && [ "$dow" != "6" ]; then
