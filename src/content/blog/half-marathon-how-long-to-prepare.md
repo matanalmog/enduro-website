@@ -2,7 +2,7 @@
 title: "חצי מרתון: כמה זמן צריך להתכונן ואיזו תוכנית מתאימה לך"
 description: "חצי מרתון דורש יותר מסיבולת בסיסית. כמה שבועות הכנה באמת צריך לפי נקודת הפתיחה שלכם, ואיך לבחור תוכנית שמתאימה ולא רק טבלה כללית."
 focusKeyword: "הכנה לחצי מרתון"
-ogImage: "/images/action/club-team-track-lineup.jpg"
+ogImage: "/images/gallery/races-03.jpg"
 publishDate: 2026-10-21
 draft: false
 ---

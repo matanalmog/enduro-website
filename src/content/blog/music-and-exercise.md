@@ -2,7 +2,7 @@
 title: "השפעת מוזיקה על פעילות גופנית עצימה"
 description: "מחקרים מראים שמוזיקה מגבירה הנאה, מוטיבציה והתמדה באימון. פלייליסט מומלץ לפי BPM לחימום, לאימון עיקרי ולהתאוששות."
 focusKeyword: "מוזיקה לאימון ריצה"
-ogImage: "/images/action/solo-beach-stairs.jpg"
+ogImage: "/images/gallery/trail-13.jpg"
 publishDate: 2024-11-03
 draft: false
 ---

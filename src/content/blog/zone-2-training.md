@@ -2,7 +2,7 @@
 title: "אימון Zone 2 בריצה: למה רצים שרוצים להיות מהירים צריכים ללמוד לרוץ לאט"
 description: "מה זה אימון Zone 2, איך יודעים שהריצה באמת קלה בלי מעבדה, מה המחקר אומר על הרבה ריצה קלה ומעט אימון קשה, ואיך לבדוק את זה על עצמכם בארבעה שבועות."
 focusKeyword: "אימון Zone 2"
-ogImage: "/images/action/group-jog-park.jpg"
+ogImage: "/images/gallery/trail-15.jpg"
 publishDate: 2026-10-05
 draft: false
 ---

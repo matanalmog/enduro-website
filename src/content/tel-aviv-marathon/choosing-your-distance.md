@@ -2,7 +2,7 @@
 title: "איך בוחרים מקצה למרתון תל אביב 2027: מרתון, חצי מרתון, 10 או 5 ק\"מ?"
 description: "איך בוחרים מקצה במרתון תל אביב 2027: קריטריונים מעשיים לכל מרחק, מתי עדיף לבחור השנה מקצה קצר יותר, וארבע שאלות לשאול את עצמכם לפני ההרשמה."
 focusKeyword: "איזה מקצה לבחור במרתון תל אביב"
-ogImage: "/images/action/tel-aviv-group-beach-drill.jpg"
+ogImage: "/images/gallery/races-11.jpg"
 publishDate: 2026-10-14
 weekNumber: 2
 draft: false

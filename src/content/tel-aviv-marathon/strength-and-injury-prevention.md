@@ -2,7 +2,7 @@
 title: "חיזוק בהכנה למרתון תל אביב 2027: איך משלבים אותו בשבוע הריצה"
 description: "כמה פעמים בשבוע לשלב אימוני חיזוק בהכנה למרתון, באילו ימים, מה המחקר אומר על כלכלת ריצה ומניעת פציעות, ומה עושים בשבועות העומס ובטייפר."
 focusKeyword: "חיזוק לרצים בהכנה למרתון"
-ogImage: "/images/action/trx-personal-training.jpg"
+ogImage: "/images/action/strength-dumbbell-lunges.jpg"
 publishDate: 2026-10-22
 weekNumber: 5
 draft: true

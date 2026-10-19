@@ -2,7 +2,7 @@
 title: "אימון צולב לרצים: מה המחקר אומר על רכיבה, שחייה ומניעת פציעות"
 description: "האם אימון צולב (רכיבה, שחייה) באמת מונע פציעות ריצה? מה המחקר מראה, למה חיזוק הוא הכלי האמיתי למניעת פציעות, ומתי כדאי להחליף ריצה באימון אחר."
 focusKeyword: "אימון צולב לרצים"
-ogImage: "/images/action/trx-personal-training.jpg"
+ogImage: "/images/action/functional-crawl-drill.jpg"
 publishDate: 2026-10-20
 draft: false
 ---

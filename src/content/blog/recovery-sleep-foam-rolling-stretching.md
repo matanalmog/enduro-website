@@ -2,7 +2,7 @@
 title: "התאוששות בין אימונים: שינה, רולר ומתיחות - מה באמת עוזר"
 description: "מה המחקר אומר על שינה, רולר קצף ומתיחות כאמצעי התאוששות לרצים - מה מבוסס, מה עוזר לכאב אבל לא לביצועים, ולמה שינה היא הבסיס שכדאי להתחיל ממנו."
 focusKeyword: "התאוששות לרצים"
-ogImage: "/images/action/beginners-group-park-stretch.jpg"
+ogImage: "/images/gallery/group-01.jpg"
 publishDate: 2026-10-18
 draft: false
 ---

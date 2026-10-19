@@ -2,7 +2,7 @@
 title: "שין ספלינט ברצים: ניהול עומסים, תרגילי חיזוק וחזרה לריצה"
 description: "כאבים בשוק בזמן ריצה? מה זה שין ספלינט, מתי צריך לעבור בדיקה, איך מורידים עומס, אילו תרגילים נפוצים ומה המחקר אומר עליהם, ואיך חוזרים לריצה בהדרגה."
 focusKeyword: "שין ספלינט"
-ogImage: "/images/action/beginners-group-park-stretch.jpg"
+ogImage: "/images/gallery/group-08.jpg"
 publishDate: 2026-10-05
 draft: false
 ---
