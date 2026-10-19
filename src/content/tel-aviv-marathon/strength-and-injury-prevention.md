@@ -5,7 +5,7 @@ focusKeyword: "חיזוק לרצים בהכנה למרתון"
 ogImage: "/images/action/strength-dumbbell-lunges.jpg"
 publishDate: 2026-10-22
 weekNumber: 5
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/the-long-run/) דיברנו על הריצה הארוכה. ככל שהיא מתארכת והשבוע מתמלא בקילומטרים, עולה שאלה מעשית: איפה מכניסים גם אימוני חיזוק, ואיך עושים את זה בלי להגיע עייפים לאימונים החשובים?

@@ -5,7 +5,7 @@ focusKeyword: "אימוני איכות לרצים"
 ogImage: "/images/gallery/group-09.jpg"
 publishDate: 2026-10-24
 weekNumber: 6
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/strength-and-injury-prevention/) דיברנו על שילוב חיזוק בשבוע הריצה. עכשיו מגיעים לאימונים שבהם מעלים את העצימות: טמפו וקטעים מהירים עם התאוששות ביניהם.
