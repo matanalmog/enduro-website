@@ -373,7 +373,6 @@ const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרוץ הסרגל/, code: "enduro26", organizer: "3plus" },
   { pattern: /אולטרה עוטף/, code: "enduro26", organizer: "3plus" },
   { pattern: /מרתון תל אביב/, code: "785859", organizer: "Kapaim Active" },
-  { pattern: /מרוץ הלילה של תל אביב/, code: "348200", organizer: "Kapaim Active" },
   { pattern: /בשביל הבנים/, code: "480944", organizer: "Kapaim Active" },
   { pattern: /מרתון (ה)?ירושלים/, code: "f3a48", organizer: "מרתון ווינר ירושלים" },
   { pattern: /מרתון חיפה/, code: "HMRTN26", organizer: "Shvoong" },
