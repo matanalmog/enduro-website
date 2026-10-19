@@ -153,8 +153,8 @@ export const kidsCoachingPages: CityCoachingPage[] = [
     ],
     images: [
       {
-        src: "/images/action/kids-athletics-team-poles.jpg",
-        alt: "קבוצת ילדים בתרגיל אתלטיקה קבוצתי עם מקלות באיצטדיון",
+        src: "/images/action/kids-long-jump.jpg",
+        alt: "ילד בקפיצה לרוחק בבור החול באימון אתלטיקה",
       },
     ],
     locations: ["רמת השרון", "הרצליה", "תל אביב, ולפי תיאום אזורי"],
