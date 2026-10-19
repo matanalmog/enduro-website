@@ -391,14 +391,6 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
             </label>
             <textarea name="משהו נוסף לדעת"></textarea>
           </div>
-          <div class="q-field q-agree">
-            <label class="q-agree-label" for="q-agree">
-              <input type="checkbox" id="q-agree" name="אישור הסכם" value="מאושר" required />
-              <span>קראתי את <a href="/agreement/" target="_blank" rel="noopener">הסכם הליווי</a>, הבנתי אותו ואני מאשר/ת את תנאיו.</span>
-            </label>
-            <input type="hidden" name="גרסת הסכם" value="2026-10-20" />
-            <input type="hidden" name="קישור להסכם" value="https://sport4you.co.il/agreement/" />
-          </div>
         </div>
 
         <div class="q-done" hidden>
@@ -821,32 +813,6 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     flex: 1;
   }
 
-  .q-agree {
-    border-top: 1px solid var(--color-gray-100);
-    padding-top: var(--space-3);
-  }
-
-  .q-agree-label {
-    display: flex;
-    gap: 0.6rem;
-    align-items: flex-start;
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  .q-agree-label input {
-    width: 1.25rem;
-    height: 1.25rem;
-    margin-top: 0.2rem;
-    flex-shrink: 0;
-    accent-color: var(--color-brand);
-  }
-
-  .q-agree-label a {
-    color: var(--color-brand-hover);
-    text-decoration: underline;
-  }
-
   .q-foot {
     text-align: center;
     color: var(--color-text-muted);
@@ -983,21 +949,9 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     doneScreen.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
-  const agreeBox = document.getElementById("q-agree");
-  const AGREE_MSG = "כדי לשלוח את השאלון יש לקרוא ולאשר את הסכם הליווי.";
-
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    // אישור ההסכם: חובה, בלי סימון מראש ובלי הסכמה אוטומטית.
-    if (!agreeBox.checked) {
-      errorEl.textContent = AGREE_MSG;
-      errorEl.hidden = false;
-      shakeCard();
-      agreeBox.focus();
-      return;
-    }
     if (!isStepValid(current)) {
-      errorEl.textContent = "נא למלא את כל השדות המסומנים בשלב זה.";
       errorEl.hidden = false;
       return;
     }
@@ -1025,11 +979,6 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
         ? formData.getAll(key).join(", ")
         : formData.get(key);
     }
-    // הוכחת אישור ההסכם: הסימון עצמו, הגרסה, הקישור והמועד המדויק של האישור.
-    payload["אישור הסכם"] = agreeBox.checked ? "מאושר" : "";
-    payload["גרסת הסכם"] = "2026-10-20";
-    payload["קישור להסכם"] = "https://sport4you.co.il/agreement/";
-    payload["מועד אישור הסכם"] = new Date().toISOString();
     payload._token = FORM_TOKEN;
 
     try {
