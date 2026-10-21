@@ -2,7 +2,7 @@
 title: "אימוני איכות בהכנה למרתון תל אביב 2027: מתי ואיך משלבים טמפו ואינטרוולים"
 description: "מתי להתחיל אימוני איכות אחרי שילוב החיזוק, מה ההבדל בין אימון סף לאינטרוולים מהירים, איך מחלקים את השבוע, ואיך מזהים שהמינון גבוה מדי."
 focusKeyword: "אימוני איכות לרצים"
-ogImage: "/images/gallery/group-09.jpg"
+ogImage: "/images/action/beach-group-sprint.jpg"
 publishDate: 2026-10-24
 weekNumber: 6
 draft: false
