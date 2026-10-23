@@ -811,6 +811,11 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
     margin: 0 0 var(--space-2);
   }
 
+  /* hidden חייב לגבור על display של .btn ו-.q-nav, אחרת כפתורים "מוסתרים" נשארים על המסך */
+  :global(#q-form [hidden]) {
+    display: none !important;
+  }
+
   .q-nav {
     display: flex;
     gap: var(--space-2);
@@ -978,7 +983,9 @@ const days = ["ראשון", "שני", "שלישי", "רביעי", "חמישי", 
 
   function showThankYou() {
     steps.forEach((s) => (s.hidden = true));
-    document.querySelector(".q-nav").hidden = true;
+    // .q-nav מוגדר display:flex ב-CSS, וזה גובר על התכונה hidden - לכן מסתירים ישירות ב-style.
+    document.querySelector(".q-nav").style.display = "none";
+    errorEl.hidden = true;
     doneScreen.hidden = false;
     doneScreen.scrollIntoView({ behavior: "smooth", block: "start" });
   }
