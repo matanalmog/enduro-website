@@ -46,3 +46,4 @@ draft: true
 
 - Riegel, P.S. (1981). Athletic Records and Human Endurance. *American Scientist*, 69(3), 285-290.
 - Tanda, G. (2011). A simple relationship for predicting marathon performance time on the basis of training indices. *Journal of Human Sport and Exercise*, 6(3), 511-520.
+- Tanda, G. (2022). A simple relationship for predicting marathon performance from training: Is it generally applicable? *Journal of Human Sport and Exercise*, 17(2), 293-301. [doi:10.14198/jhse.2022.172.05](https://doi.org/10.14198/jhse.2022.172.05)
