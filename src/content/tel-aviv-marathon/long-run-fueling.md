@@ -44,7 +44,7 @@ draft: true
 
 בכתבה הבאה: [נושא לקבוע].
 
-איך אתם מתדלקים בריצות הארוכות שלכם? כתבו לי בתגובות ב[אינסטגרם](https://www.instagram.com/tomer_almog_enduro_runners/) או ב[וואטסאפ](https://wa.me/972526982993).
+איך אתם מתדלקים בריצות הארוכות שלכם? כתבו לי בתגובות ב[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) או ב[וואטסאפ](https://wa.me/972526982993).
 
 ## מקורות
 
