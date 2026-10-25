@@ -1,0 +1,154 @@
+---
+// מדריך מרוץ סובב עמק 2026: מקצים, ניתוח ההקפה לפי ה-GPX הרשמי, תחנות, ציוד חובה. התוכן ב-src/data/race-prep.ts.
+// החלק האישי (זמני יעד ונתוני מתאמנים) לא נמצא כאן: ה-repo ציבורי.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PrepHero from "../../components/PrepHero.astro";
+import { sovevEmek as race } from "../../data/race-prep";
+
+const levelClass: Record<string, string> = { "קל": "sv-easy", "בינוני": "sv-mid", "מאתגר": "sv-hard" };
+---
+
+<BaseLayout
+  title="סובב עמק 2026: מדריך המסלול וההכנה | ENDURO"
+  description="אולטרה מרתון סובב עמק 2026: מקצים, שעות זינוק וזמני חיתוך, ניתוח הקפת 25 ק״מ קטע אחרי קטע, תחנות הזנה בלילה וציוד חובה."
+  canonicalPath="/races/sovev-emek/"
+>
+  <PrepHero
+    eyebrow="מדריך מרוץ · ENDURO"
+    title="סובב עמק 2026"
+    lead="הקפה של 25 ק״מ מחוות התבלינים בעמק יזרעאל, רובה רצה. הטיפוס מרוכז בשלושה גושים, ושני המאתגרים מגיעים אחרי תחנות. כאן: איפה קל, איפה מאתגר, ומה צריך לדעת על הלילה."
+  />
+
+  <div class="container sv-body">
+    <section aria-labelledby="sv-dist">
+      <h2 id="sv-dist">מקצים, זינוק וחיתוך</h2>
+      <div class="sv-table-wrap">
+        <table class="sv-table">
+          <thead><tr><th>מקצה</th><th>מסלול</th><th>טיפוס</th><th>זינוק</th><th>זמן מקסימום</th></tr></thead>
+          <tbody>
+            {race.distances.map((d) => (
+              <tr><td>{d.distance}</td><td>{d.loops}</td><td>{d.climb}</td><td>{d.start}</td><td>{d.cutoff ?? "—"}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="sv-note">
+        הטיפוס חושב מקובץ ה-GPX הרשמי (כ-320 מ׳ להקפת 25 ק״מ). באתר המרוץ מופיעים מספרים שונים במקומות שונים.
+      </p>
+    </section>
+
+    <section aria-labelledby="sv-loop">
+      <h2 id="sv-loop">ההקפה, קטע אחרי קטע</h2>
+      <ol class="sv-secs">
+        {race.sections.map((s) => (
+          <li class={levelClass[s.level]}>
+            <div class="sv-sec-top"><strong>{s.from} ← {s.to}</strong><span class="sv-lvl">{s.level}</span><span class="sv-km">ק״מ {s.km}</span></div>
+            <p>{s.text}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section aria-labelledby="sv-st">
+      <h2 id="sv-st">תחנות בהקפת 25 ק״מ</h2>
+      <ul class="sv-list">
+        {race.stations.map((s) => <li><strong>ק״מ {s.km}, {s.name}:</strong> {s.kind}</li>)}
+      </ul>
+      <p>
+        בלילה המאגר ונחל ציפורי בכיוון הלוך סגורים, ויש 8.7 ק״מ בין מעבר זרזיר לנחל ציפורי בחזור בלי מים. יוצאים מזרזיר עם לפחות ליטר.
+        תמיכה של צוות מותרת רק בנחל ציפורי ובמאגר.
+      </p>
+    </section>
+
+    <section aria-labelledby="sv-gear">
+      <h2 id="sv-gear">ציוד חובה</h2>
+      <ul class="sv-list">{race.gear.map((g) => <li>{g}</li>)}</ul>
+      <p class="sv-note">{race.gearNote}</p>
+    </section>
+
+    <p class="sv-links">
+      לפי <a href={race.link} target="_blank" rel="noopener">האתר הרשמי של המרוץ</a>, נבדק ב-25.10.2026. המסלול עשוי להשתנות.
+      עוד: <a href="/race-prep/ultra/">הכנה למרוץ אולטרה ושטח</a> · <a href="/races/">לוח המרוצים</a> ·
+      <a href="/training-plans/">תוכניות אימון</a> · <a href="/tel-aviv-marathon/">הדרך למרתון תל אביב</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .sv-body {
+    padding-block: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    max-width: 820px;
+  }
+  .sv-table-wrap {
+    overflow-x: auto;
+  }
+  .sv-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+  .sv-table th,
+  .sv-table td {
+    border: 1px solid var(--color-gray-100);
+    padding: 0.5rem 0.6rem;
+    text-align: start;
+    vertical-align: top;
+  }
+  .sv-table th {
+    background: var(--color-gray-50);
+  }
+  .sv-secs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  .sv-secs li {
+    border: 1px solid var(--color-gray-100);
+    border-inline-start: 5px solid var(--sv-c);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1rem;
+  }
+  .sv-secs p {
+    margin: 0.3rem 0 0;
+  }
+  .sv-easy {
+    --sv-c: #3f8f5a;
+  }
+  .sv-mid {
+    --sv-c: #c09020;
+  }
+  .sv-hard {
+    --sv-c: #c0502a;
+  }
+  .sv-sec-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+    align-items: baseline;
+  }
+  .sv-lvl {
+    font-weight: 700;
+    color: var(--sv-c);
+  }
+  .sv-km {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+  }
+  .sv-list {
+    padding-inline-start: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .sv-note,
+  .sv-links {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+</style>
