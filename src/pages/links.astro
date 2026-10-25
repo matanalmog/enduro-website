@@ -24,6 +24,8 @@ const src = "src=ig_bio";
 const withSrc = (href: string) => `${href}${href.includes("?") ? "&" : "?"}${src}`;
 
 const links = [
+  // זמני: מדריך מרוץ הלילה עד אחרי המרוץ (28.10.2026). להסיר בשחרור של 31.10.
+  { href: "/races/tlv-night-run/", label: "מדריך מרוץ הלילה תל אביב", note: "מה אוכלים, מה לובשים ומתי מגיעים" },
   { href: "/races/", label: "לוח המרוצים", note: "כל המרוצים הקרובים בארץ" },
   { href: "/training-plans/", label: "תוכניות אימון אונליין", note: "ליווי אישי, ממתחילים ועד אולטרה" },
   { href: "/tel-aviv-marathon/", label: "הכנה למרתון תל אביב", note: "הסדרה המלאה, שבוע אחרי שבוע" },
