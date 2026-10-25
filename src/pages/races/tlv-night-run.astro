@@ -14,7 +14,7 @@ const raceDateHe = new Intl.DateTimeFormat("he-IL", { weekday: "long", day: "num
   title="מרוץ הלילה תל אביב 2026: מדריך הכנה | ENDURO"
   description="מרוץ הלילה תל אביב 28.10.2026: שעות זינוק, זמני חיתוך, פייסרים, הגעה ברכבת, מה אוכלים ביום של מרוץ לילה, ביגוד, והכנה עד קו הסיום."
   canonicalPath="/races/tlv-night-run/"
-  ogImage="/images/action/ramat-hasharon-group-night.jpg"
+  ogImage="/images/races/tlv-night-run-start-gate.jpg"
 >
   <PrepHero
     eyebrow="מדריך מרוץ · ENDURO"
@@ -58,6 +58,24 @@ const raceDateHe = new Intl.DateTimeFormat("he-IL", { weekday: "long", day: "num
         לשינויים לפי דרישות המשטרה.
       </p>
     </section>
+
+    <figure class="nr-photos">
+      <img
+        src="/images/races/tlv-night-run-start-gate.jpg"
+        alt="שער הזינוק של מרוץ הלילה תל אביב בלילה, הכביש ריק לפני הזינוק"
+        width="1200"
+        height="800"
+        loading="lazy"
+      />
+      <img
+        src="/images/races/tlv-night-run-runners.jpg"
+        alt="אלפי רצים יוצאים משער הזינוק של מרוץ הלילה תל אביב"
+        width="800"
+        height="1200"
+        loading="lazy"
+      />
+      <figcaption>מרוץ הלילה תל אביב 2025. צילום: מארגני המרוץ</figcaption>
+    </figure>
 
     <h2 class="nr-prep-title">ההכנה, שלב אחרי שלב</h2>
     <RaceChecklist sections={nightRunPrep} storageKey="tlv-night-run-2026" />
@@ -108,6 +126,26 @@ const raceDateHe = new Intl.DateTimeFormat("he-IL", { weekday: "long", day: "num
   .nr-source,
   .nr-links {
     font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+  .nr-photos {
+    max-width: 760px;
+    margin: 0 0 var(--space-4);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-2);
+    align-items: stretch;
+  }
+  .nr-photos img {
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+  }
+  .nr-photos figcaption {
+    grid-column: 1 / -1;
+    font-size: 0.85rem;
     color: var(--color-text-muted);
   }
   .nr-prep-title {

@@ -15,6 +15,17 @@ export const race = {
   ],
 };
 
+// תמונות מהמרוץ של 2025 (הגיעו מתומר ב-25.10.2026). תומר ביקש להוריד אותן מהעמוד אחרי המרוץ:
+// הן מוצגות רק בבילד שרץ לפני showUntil, אז השחרור של 31.10 כבר בונה את העמוד בלעדיהן.
+export const racePhotos = {
+  showUntil: "2026-10-29",
+  caption: "מרוץ הלילה תל אביב 2025. צילום: מארגני המרוץ",
+  images: [
+    { src: "/images/races/tlv-night-run-start-gate.jpg", alt: "שער הזינוק של מרוץ הלילה תל אביב בלילה", width: 1200, height: 800 },
+    { src: "/images/races/tlv-night-run-runners.jpg", alt: "אלפי רצים יוצאים משער הזינוק של מרוץ הלילה", width: 800, height: 1200 },
+  ],
+};
+
 export const plans = [
   { label: "מתחילים", href: "/groups/palo-alto-runners/beginners/" },
   { label: "בינוניים", href: "/groups/palo-alto-runners/intermediate/" },
