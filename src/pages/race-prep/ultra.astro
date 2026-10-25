@@ -1,0 +1,36 @@
+---
+// הכנה למרוץ אולטרה ושטח (סובב עמק, UTMB ודומיהם): מ-3 חודשים לפני ועד ההתאוששות. התוכן ב-src/data/race-prep.ts.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PrepHero from "../../components/PrepHero.astro";
+import RaceChecklist from "../../components/RaceChecklist.astro";
+import { ultraPrep } from "../../data/race-prep";
+---
+
+<BaseLayout
+  title="הכנה למרוץ אולטרה ושטח | ENDURO"
+  description="צ׳קליסט הכנה לאולטרה ומרוצי שטח: 3 חודשים לפני, ציוד חובה, תזונה בתנועה, שקיות החלפה, ניהול המרוץ, לילה בשטח והתאוששות."
+  canonicalPath="/race-prep/ultra/"
+>
+  <PrepHero
+    eyebrow="ENDURO · תומר אלמוג"
+    title="הכנה למרוץ אולטרה ושטח"
+    lead="באולטרה ההכנה מתחילה 3 חודשים לפני. מסלול, ציוד, אוכל בתנועה וראש. מסמנים לאורך הדרך."
+  />
+  <div class="container rp-body">
+    <p class="rp-links">
+      <a href="/race-prep/">הכנה למרוץ כביש</a> ·
+      <a href="/races/">לוח המרוצים</a> ·
+      <a href="/training-plans/">תוכניות אימון</a>
+    </p>
+    <RaceChecklist sections={ultraPrep} storageKey="ultra" />
+  </div>
+</BaseLayout>
+
+<style>
+  .rp-body {
+    padding-block: var(--space-4);
+  }
+  .rp-links {
+    color: var(--color-text-muted);
+  }
+</style>

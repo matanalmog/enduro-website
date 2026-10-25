@@ -1,0 +1,37 @@
+---
+// הכנה למרוץ: עמוד כללי למרוצי כביש, משבוע לפני ועד היעד הבא. התוכן ב-src/data/race-prep.ts.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PrepHero from "../../components/PrepHero.astro";
+import RaceChecklist from "../../components/RaceChecklist.astro";
+import { generalPrep } from "../../data/race-prep";
+---
+
+<BaseLayout
+  title="הכנה למרוץ: מהשבוע שלפני ועד קו הסיום | ENDURO"
+  description="צ׳קליסט הכנה למרוץ ריצה: הימים שלפני, היום שלפני, מה אוכלים לפני מרוץ בוקר או ערב, קו הזינוק, המרוץ עצמו, התאוששות והיעד הבא."
+  canonicalPath="/race-prep/"
+>
+  <PrepHero
+    eyebrow="ENDURO · תומר אלמוג"
+    title="הכנה למרוץ"
+    lead="כל מה שעושים מהשבוע שלפני ועד היום שאחרי. מסמנים ורצים. רצים אולטרה או שטח ארוך? יש עמוד נפרד."
+  />
+  <div class="container rp-body">
+    <p class="rp-links">
+      <a href="/race-prep/ultra/">הכנה למרוץ אולטרה ושטח</a> ·
+      <a href="/races/tlv-night-run/">מדריך מרוץ הלילה תל אביב</a> ·
+      <a href="/races/">לוח המרוצים</a> ·
+      <a href="/training-plans/">תוכניות אימון</a>
+    </p>
+    <RaceChecklist sections={generalPrep} storageKey="general" />
+  </div>
+</BaseLayout>
+
+<style>
+  .rp-body {
+    padding-block: var(--space-4);
+  }
+  .rp-links {
+    color: var(--color-text-muted);
+  }
+</style>

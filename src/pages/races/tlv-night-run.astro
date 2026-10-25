@@ -1,0 +1,116 @@
+---
+// מדריך מרוץ הלילה תל אביב 2026: פרטי המרוץ מהאתר הרשמי + הכנה לפי שעות. התוכן ב-src/data/race-prep.ts.
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PrepHero from "../../components/PrepHero.astro";
+import RaceChecklist from "../../components/RaceChecklist.astro";
+import { tlvNightRun as race, nightRunPrep } from "../../data/race-prep";
+
+const raceDateHe = new Intl.DateTimeFormat("he-IL", { weekday: "long", day: "numeric", month: "long", year: "numeric" }).format(
+  new Date(`${race.date}T12:00:00`)
+);
+---
+
+<BaseLayout
+  title="מרוץ הלילה תל אביב 2026: מדריך הכנה | ENDURO"
+  description="מרוץ הלילה תל אביב 28.10.2026: שעות זינוק, זמני חיתוך, פייסרים, הגעה ברכבת, מה אוכלים ביום של מרוץ לילה, ביגוד, והכנה עד קו הסיום."
+  canonicalPath="/races/tlv-night-run/"
+  ogImage="/images/action/ramat-hasharon-group-night.jpg"
+>
+  <PrepHero
+    eyebrow="מדריך מרוץ · ENDURO"
+    title="מרוץ הלילה תל אביב 2026"
+    lead={`${raceDateHe}. 5, 10 ו-15 ק״מ. כל מה שצריך לדעת, ומה עושים מהיום שלפני ועד שחוזרים הביתה.`}
+  />
+
+  <div class="container nr-body">
+    <section class="nr-info" aria-labelledby="nr-facts">
+      <h2 id="nr-facts">פרטי המרוץ</h2>
+      <div class="nr-table-wrap">
+        <table class="nr-table">
+          <thead>
+            <tr><th>מרחק</th><th>זינוק</th><th>זמן מקסימום</th><th>פייסרים</th></tr>
+          </thead>
+          <tbody>
+            {
+              race.distances.map((d) => (
+                <tr>
+                  <td>{d.distance}</td>
+                  <td>{d.starts}</td>
+                  <td>{d.cutoff}</td>
+                  <td>{d.pacers ?? "—"}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <ul class="nr-facts">
+        <li><strong>זינוק וסיום:</strong> {race.location}. השערים נפתחים ב-{race.gatesOpen}.</li>
+        <li><strong>ערכות:</strong> {race.kitPickup}</li>
+        <li><strong>מסלול:</strong> {race.route}</li>
+      </ul>
+      <h3>הגעה</h3>
+      <ul class="nr-facts">
+        {race.arrival.map((a) => <li>{a}</li>)}
+      </ul>
+      <p class="nr-source">
+        לפי <a href={race.scheduleLink} target="_blank" rel="noopener">האתר הרשמי של המרוץ</a>. הלו״ז והמסלול נתונים
+        לשינויים לפי דרישות המשטרה.
+      </p>
+    </section>
+
+    <h2 class="nr-prep-title">ההכנה, שלב אחרי שלב</h2>
+    <RaceChecklist sections={nightRunPrep} storageKey="tlv-night-run-2026" />
+
+    <p class="nr-links">
+      עוד: <a href="/race-prep/">הכנה למרוץ, העמוד הכללי</a> · <a href="/races/">לוח המרוצים</a> ·
+      <a href="/training-plans/">תוכניות אימון</a> · <a href="/tel-aviv-marathon/">הדרך למרתון תל אביב</a>
+    </p>
+  </div>
+</BaseLayout>
+
+<style>
+  .nr-body {
+    padding-block: var(--space-4);
+  }
+  .nr-info {
+    max-width: 760px;
+    margin-bottom: var(--space-4);
+    padding: var(--space-3);
+    border-radius: var(--radius-lg);
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-gray-100);
+  }
+  .nr-info h2 {
+    margin-top: 0;
+  }
+  .nr-table-wrap {
+    overflow-x: auto;
+  }
+  .nr-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.95rem;
+    background: var(--color-white);
+  }
+  .nr-table th,
+  .nr-table td {
+    border: 1px solid var(--color-gray-100);
+    padding: 0.5rem 0.6rem;
+    text-align: start;
+  }
+  .nr-facts {
+    padding-inline-start: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .nr-source,
+  .nr-links {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+  .nr-prep-title {
+    margin-bottom: 0;
+  }
+</style>

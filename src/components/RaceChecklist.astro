@@ -1,0 +1,192 @@
+---
+// צ׳קליסט הכנה למרוץ לפי שלבים (ימים לפני, יום לפני, בוקר המרוץ...). משמש את עמודי /race-prep/ ואת מדריכי המרוצים.
+// הסימונים נשמרים בדפדפן של המשתמש לפי storageKey. התוכן מגיע מ-src/data/race-prep.ts.
+import type { PrepSection } from "../data/race-prep";
+
+interface Props {
+  sections: PrepSection[];
+  storageKey: string;
+}
+
+const { sections, storageKey } = Astro.props;
+---
+
+<nav class="rc-toc" aria-label="שלבי ההכנה">
+  {sections.map((sec) => <a href={`#${sec.id}`}>{sec.title}</a>)}
+</nav>
+
+<div class="rc-list" data-rc-key={storageKey}>
+  {
+    sections.map((sec) => (
+      <section class="rc-card" id={sec.id}>
+        <h2>{sec.title}</h2>
+        {sec.when && <p class="rc-when">{sec.when}</p>}
+        {sec.blocks.map((block, bi) => (
+          <div class="rc-block">
+            {block.title && <h3>{block.title}</h3>}
+            {block.intro && <p>{block.intro}</p>}
+            {block.kind === "checks" && (
+              <ul class="rc-checks">
+                {block.items.map((item, ii) => (
+                  <li>
+                    <label>
+                      <input type="checkbox" data-check={`${sec.id}-${bi}-${ii}`} />
+                      <span>{item}</span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {block.kind === "steps" && (
+              <ol class="rc-steps">
+                {block.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ol>
+            )}
+            {block.kind === "table" && (
+              <div class="rc-table-wrap">
+                <table class="rc-table">
+                  <thead>
+                    <tr>{block.head.map((h) => <th>{h}</th>)}</tr>
+                  </thead>
+                  <tbody>
+                    {block.rows.map((r) => (
+                      <tr>{r.map((c) => <td>{c}</td>)}</tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            {block.note && <p class="rc-note">{block.note}</p>}
+          </div>
+        ))}
+      </section>
+    ))
+  }
+</div>
+
+<script>
+  // כל רשימה שומרת את הסימונים שלה בנפרד. אם האחסון חסום, הסימון עובד רק עד רענון הדף.
+  document.querySelectorAll<HTMLElement>("[data-rc-key]").forEach((list) => {
+    const key = `race-prep-${list.dataset.rcKey}`;
+    let saved: string[] = [];
+    try {
+      saved = JSON.parse(localStorage.getItem(key) || "[]");
+    } catch {
+      saved = [];
+    }
+    list.querySelectorAll<HTMLInputElement>("input[data-check]").forEach((box) => {
+      const id = box.dataset.check ?? "";
+      box.checked = saved.includes(id);
+      box.addEventListener("change", () => {
+        saved = box.checked ? [...new Set([...saved, id])] : saved.filter((x) => x !== id);
+        try {
+          localStorage.setItem(key, JSON.stringify(saved));
+        } catch {
+          /* אחסון חסום */
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .rc-toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: var(--space-3) 0;
+  }
+  .rc-toc a {
+    padding: 0.35rem 0.8rem;
+    border: 1px solid var(--color-gray-100);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    text-decoration: none;
+    background: var(--color-gray-50);
+  }
+  .rc-list {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-3);
+    max-width: 760px;
+  }
+  .rc-card {
+    border: 1px solid var(--color-gray-100);
+    border-radius: var(--radius-md);
+    padding: var(--space-3);
+    scroll-margin-top: 90px;
+  }
+  .rc-card h2 {
+    margin: 0 0 0.3rem;
+    font-size: 1.35rem;
+  }
+  .rc-when {
+    margin: 0 0 0.6rem;
+    color: var(--color-text-muted);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  .rc-card h3 {
+    margin: 0.9rem 0 0.3rem;
+    font-size: 1.05rem;
+  }
+  .rc-block p {
+    margin: 0.3rem 0 0.6rem;
+  }
+  .rc-checks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .rc-checks label {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    cursor: pointer;
+  }
+  .rc-checks input {
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.15rem;
+    flex: none;
+    accent-color: var(--color-brand);
+  }
+  .rc-checks input:checked + span {
+    color: var(--color-text-muted);
+    text-decoration: line-through;
+  }
+  .rc-steps {
+    margin: 0;
+    padding-inline-start: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .rc-table-wrap {
+    overflow-x: auto;
+  }
+  .rc-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+  .rc-table th,
+  .rc-table td {
+    border: 1px solid var(--color-gray-100);
+    padding: 0.5rem 0.6rem;
+    text-align: start;
+    vertical-align: top;
+  }
+  .rc-table th {
+    background: var(--color-gray-50);
+  }
+  .rc-note {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+</style>
