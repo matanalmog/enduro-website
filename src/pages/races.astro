@@ -14,15 +14,10 @@ import FaqItem from "../components/FaqItem.astro";
 import RaceTable from "../components/RaceTable.astro";
 import racesData from "../data/races.json";
 import { mainBenefits, moreBenefits } from "../data/equipment-benefits";
-import { raceGuides } from "../data/race-prep";
+import { sortRaceGuides } from "../data/race-prep";
 
-// מדריכי מרוצים: הקרובים קודם, אחריהם עמודי ההכנה הכלליים, ובסוף מרוצים שכבר עברו.
 const todayIso = new Date().toISOString().slice(0, 10);
-const guidesSorted = [
-  ...raceGuides.filter((g) => g.date && g.date >= todayIso).sort((a, b) => a.date!.localeCompare(b.date!)),
-  ...raceGuides.filter((g) => !g.date),
-  ...raceGuides.filter((g) => g.date && g.date < todayIso),
-];
+const guidesSorted = sortRaceGuides(todayIso);
 
 const israelRaces = racesData.israel ?? [];
 const internationalRaces = racesData.international ?? [];

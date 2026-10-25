@@ -547,3 +547,12 @@ export const raceGuides: { href: string; title: string; text: string; date: stri
   { href: "/race-prep/", title: "הכנה למרוץ כביש", text: "מהשבוע שלפני ועד היעד הבא, 5 ק״מ עד מרתון", date: null },
   { href: "/race-prep/ultra/", title: "הכנה למרוץ אולטרה ושטח", text: "מ-3 חודשים לפני: מסלול, ציוד, אוכל בתנועה ולילה", date: null },
 ];
+
+// סדר התצוגה בלוח המרוצים ובבלוג: הקרובים קודם, אחריהם עמודי ההכנה הכלליים, ובסוף מרוצים שכבר עברו.
+export function sortRaceGuides(todayIso: string) {
+  return [
+    ...raceGuides.filter((g) => g.date && g.date >= todayIso).sort((a, b) => a.date!.localeCompare(b.date!)),
+    ...raceGuides.filter((g) => !g.date),
+    ...raceGuides.filter((g) => g.date && g.date < todayIso),
+  ];
+}
