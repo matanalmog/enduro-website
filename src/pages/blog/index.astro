@@ -7,6 +7,7 @@ import SocialIcon from "../../components/SocialIcon.astro";
 import YouTubeEmbed from "../../components/YouTubeEmbed.astro";
 import { getCollection } from "astro:content";
 import { youtubeVideos, categoryOrder, categorySlugs } from "../../data/youtube-videos";
+import { sortRaceGuides } from "../../data/race-prep";
 
 const youtubeGroups = categoryOrder
   .map((category) => ({
@@ -31,6 +32,10 @@ const latestPost = [...posts.map((post) => ({ post, href: `/blog/${post.id}/` })
   (a, b) => b.post.data.publishDate.valueOf() - a.post.data.publishDate.valueOf()
 )[0];
 
+// מדריכי המרוצים חיים ב-/races/ וב-/race-prep/, כאן רק מקשרים אליהם (המקור: raceGuides).
+const todayIso = new Date().toISOString().slice(0, 10);
+const raceGuides = sortRaceGuides(todayIso);
+
 function formatHebrewDate(date: Date) {
   return new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "long", year: "numeric" }).format(date);
 }
@@ -39,7 +44,7 @@ const socialCards = [
   {
     name: "instagram",
     label: "אינסטגרם",
-    href: "https://www.instagram.com/tomer_almog_enduro_runners/",
+    href: "https://www.instagram.com/tomeralmog_coach/",
     teaser: "תמונות מהאימונים, הקבוצות והתחרויות, ורגעים מהשטח בזמן אמת.",
   },
   {
@@ -75,6 +80,14 @@ const socialCards = [
             </svg>
           </span>
           <span>מאמרים כתובים</span>
+        </a>
+        <a href="#race-guides" class="hero-jump-card">
+          <span class="jump-icon jump-icon-races" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M6 21V4M6 4h11l-2 4 2 4H6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <span>מדריכי מרוצים</span>
         </a>
         <a href="#social" class="hero-jump-card">
           <span class="jump-icon jump-icon-social" aria-hidden="true">
@@ -141,6 +154,22 @@ const socialCards = [
             <span class="date">{formatHebrewDate(post.data.publishDate)}</span>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section id="race-guides" class="container section">
+    <h2>מדריכי מרוצים והכנה</h2>
+    <p class="section-lead">מה צריך לדעת לפני מרוץ ספציפי, ואיך מתכוננים למרוץ כביש או אולטרה. כל המרוצים הקרובים <a href="/races/">בלוח המרוצים</a>.</p>
+    <div class="posts-grid">
+      {raceGuides.map((g) => (
+        <a href={g.href} class="post-card">
+          <div class="post-body">
+            <span class="date">{g.date ? `${formatHebrewDate(new Date(g.date))}${g.date < todayIso ? " · עבר" : ""}` : "מדריך הכנה"}</span>
+            <h2>{g.title}</h2>
+            <p>{g.text}</p>
           </div>
         </a>
       ))}
@@ -230,7 +259,7 @@ const socialCards = [
 
   .hero-jump {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-2);
     margin-top: var(--space-4);
   }
@@ -271,12 +300,22 @@ const socialCards = [
     background: var(--color-gold-500);
   }
 
+  .jump-icon-races {
+    background: var(--color-brand);
+  }
+
   .jump-icon-social {
     background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7);
   }
 
   .jump-icon-youtube {
     background: #ff0000;
+  }
+
+  @media (max-width: 760px) {
+    .hero-jump {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media (max-width: 560px) {

@@ -72,4 +72,4 @@ draft: false
 - Woodard, K., Engler, A., & Tarascavage, N. (2025). An Exploratory, Retrospective Study on Injury Occurrence in Triathletes and Marathon Runners. *International Journal of Sports Physical Therapy*, 20(10). [PubMed](https://pubmed.ncbi.nlm.nih.gov/41048412/)
 - Wilber, R. L., Moffatt, R. J., Scott, B. E., Lee, D. T., & Cucuzzo, N. A. (1996). Influence of water run training on the maintenance of aerobic performance. *Medicine & Science in Sports & Exercise*. [PubMed](https://pubmed.ncbi.nlm.nih.gov/8871917/)
 
-עוד על חיזוק ומניעת פציעות אפשר למצוא גם ב[אינסטגרם שלי](https://www.instagram.com/tomer_almog_enduro_runners/).
+עוד על חיזוק ומניעת פציעות אפשר למצוא גם ב[אינסטגרם שלי](https://www.instagram.com/tomeralmog_coach/).
