@@ -36,8 +36,9 @@ jobs:
           if [ "$today" = "2026-10-20" ]; then start=12; fi
           if [ "$EVENT" = "schedule" ] && [ "$hour" -ge "$start" ]; then run=true; fi
           # תומר: עד 21.10.2026 כל יום. מ-22.10 חמישי ושבת. מ-27.10 גם שלישי (24.10, לשלושה חודשים). 17:00, קרדיטים של Netlify.
+          # חריג: שישי 30.10.2026, מאמר כאב הברך שנדחה מ-27.10 (תומר, 28.10).
           dow=$(TZ=Asia/Jerusalem date +%u)
-          if [ "$today" \> "2026-10-21" ] && [ "$dow" != "4" ] && [ "$dow" != "6" ] && { [ "$dow" != "2" ] || [ "$today" \< "2026-10-27" ]; }; then
+          if [ "$today" \> "2026-10-21" ] && [ "$today" != "2026-10-30" ] && [ "$dow" != "4" ] && [ "$dow" != "6" ] && { [ "$dow" != "2" ] || [ "$today" \< "2026-10-27" ]; }; then
             echo "Articles ship on Tuesday, Thursday and Saturday."
             run=false
           fi
