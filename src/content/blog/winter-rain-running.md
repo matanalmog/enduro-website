@@ -2,7 +2,8 @@
 title: "ריצה בחורף ובגשם: איך מתלבשים, רצים בבטחה ומחליטים מתי להישאר בבית"
 description: "מדריך מעשי לריצה בחורף הישראלי: איך מתלבשים לגשם וקור, נעליים ומשטחים רטובים, שיטפונות וברקים, נראות בחושך, ומתי נכון להעביר את האימון פנימה."
 focusKeyword: "ריצה בחורף"
-ogImage: "/images/action/beginners-group-park-stretch.jpg"
+ogImage: "/images/action/winter-rain-city-run.jpg"
+ogImageAlt: "שלושה רצים בביגוד ארוך במהלך ריצה על כביש עירוני רטוב בגשם"
 publishDate: 2026-11-03
 draft: false
 ---
