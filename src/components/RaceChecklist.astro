@@ -44,6 +44,13 @@ const { sections, storageKey } = Astro.props;
                 ))}
               </ol>
             )}
+            {block.kind === "bullets" && (
+              <ul class="rc-bullets">
+                {block.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
             {block.kind === "table" && (
               <div class="rc-table-wrap">
                 <table class="rc-table">
@@ -161,6 +168,13 @@ const { sections, storageKey } = Astro.props;
     text-decoration: line-through;
   }
   .rc-steps {
+    margin: 0;
+    padding-inline-start: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .rc-bullets {
     margin: 0;
     padding-inline-start: 1.3rem;
     display: flex;
