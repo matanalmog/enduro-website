@@ -46,7 +46,7 @@ const schema = [
     <p class="date">{formatHebrewDate(post.data.publishDate)}</p>
     <h1>{post.data.title}</h1>
     {post.data.ogImage && (
-      <img class="post-image" src={post.data.ogImage} alt={post.data.title} />
+      <img class="post-image" src={post.data.ogImage} alt={post.data.ogImageAlt ?? post.data.title} />
     )}
     <div class="prose">
       <Content />

@@ -37,7 +37,8 @@ const personalCoaching = defineCollection({
 
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
-  schema: z.object({ ...seoFields, publishDate: z.coerce.date() }),
+  // ogImageAlt: טקסט חלופי לתמונה הראשית. בלעדיו ה-alt הוא כותרת הכתבה.
+  schema: z.object({ ...seoFields, publishDate: z.coerce.date(), ogImageAlt: z.string().optional() }),
 });
 
 // סדרת הכתבות השבועית למרתון תל אביב — קולקציה נפרדת מהבלוג הכללי, לבקשת תומר (10/2026):
