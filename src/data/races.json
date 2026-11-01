@@ -175,8 +175,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "5, 10, 21, 42 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "DES26",
+      "discountOrganizer": "מרתון ישראל"
     },
     {
       "name": "מרוץ לוד",
@@ -329,7 +329,7 @@
       "distanceLabel": "5, 10, 21.1, 42.2 ק\"מ",
       "isNew": true,
       "discountCode": "ENDURO10",
-      "discountOrganizer": "מרתון ישראל (לבחור קבוצת ENDURO)"
+      "discountOrganizer": "מרתון ים המלח (לבחור קבוצת ENDURO)"
     },
     {
       "name": "מרוץ אור יהודה 2027",
