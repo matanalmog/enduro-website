@@ -386,7 +386,7 @@ const KNOWN_DISCOUNT_CODES = [
   // 3plus: רונית אישרה ב-01.11.2026 שהקוד פתוח לכל מרוצי 3plus השנה.
   { pattern: /הלילה של יבנה|באר יעקב|מזכרת בתיה|מרוץ לוד|כריסמס|מעיליא/, code: "enduro26", organizer: "3plus" },
   { pattern: /סובב עמק/, code: "SOVEVGROUP", organizer: "סובב עמק (Gold-Fish)" },
-  { pattern: /מרוץ אייל/, code: "ER26RG", organizer: "מרוץ אייל" },
+  { pattern: /מרוץ אייל/, code: "ER26LT", organizer: "מרוץ אייל" },
   { pattern: /מרתון טבריה/, code: "TIBERIASGROUP", organizer: "Gold-Fish" },
   { pattern: /ים המלח/, code: "ENDURO10", organizer: "מרתון ים המלח (לבחור קבוצת ENDURO)" },
   { pattern: /מרתון.*מדברי|מדברי.*אילת/, code: "DES26", organizer: "מרתון ישראל" },
