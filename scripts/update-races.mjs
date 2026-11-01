@@ -373,6 +373,7 @@ const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרוץ הסרגל/, code: "enduro26", organizer: "3plus" },
   { pattern: /אולטרה (יישובי ה)?עוטף/, code: "enduro26", organizer: "3plus" },
   { pattern: /מרוץ אייל/, code: "ER26RG", organizer: "מרוץ אייל" },
+  { pattern: /ים המלח/, code: "ENDURO10", organizer: "מרתון ישראל (לבחור קבוצת ENDURO)" },
   { pattern: /מרתון תל אביב/, code: "785859", organizer: "Kapaim Active" },
   { pattern: /בשביל הבנים/, code: "480944", organizer: "Kapaim Active" },
   { pattern: /מרתון (ה)?ירושלים/, code: "f3a48", organizer: "מרתון ווינר ירושלים" },
