@@ -170,11 +170,15 @@ let runpanelTextRows = [];
 
 // מרחקים שאומתו ידנית באתר המארגן, למרוץ שהמקורות האוטומטיים לא מסכימים עליו בתאריך (העגור 2027:
 // runpanel 30.10, מרתון ישראל 5.11; המקצים מאתר מרתון ישראל, 01.11.2026).
-const MANUAL_DISTANCES = [{ pattern: /מרוץ העגור/, label: '4, 10, 21.1 ק"מ' }];
+// MANUAL_DISTANCES גובר גם על מרחק שהגיע ממקור אוטומטי שגוי (אולטרה העוטף: runpanel כתב 101, תומר 01.11.2026: 21, 42, 108).
+const MANUAL_DISTANCES = [
+  { pattern: /מרוץ העגור/, label: '4, 10, 21.1 ק"מ' },
+  { pattern: /אולטרה (יישובי ה)?עוטף/, label: '21.1, 42, 108 ק"מ' },
+];
 
 function fillMissingDistances(events) {
   for (const e of events) {
-    const hit = !e.distanceLabel && MANUAL_DISTANCES.find((r) => r.pattern.test(e.name));
+    const hit = MANUAL_DISTANCES.find((r) => r.pattern.test(e.name));
     if (hit) e.distanceLabel = hit.label;
   }
   const STOP = new Set(["מרוץ", "מרתון", "חצי", "הלילה", "של", "אולטרה"]);
