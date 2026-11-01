@@ -145,14 +145,55 @@ async function fetchRealtiming() {
 // המרוץ (למשל "למאמן אישי ותוכנית - לחצו פה") - הוא מוסר לפני חיפוש המרחקים כדי שלא
 // יפריע להתאמה. נבדק ידנית מול עשרות שורות מהמקור החי (כולל מקרי קצה: רווח לפני
 // הפסיק, "ק״מ" עם גרש כפול שונה, ופסקה בלי תגית <a> שממילא לא נתפסת ע"י ה-regex).
+// תומר 01.11.2026: מרוץ בלי מרחקים בלוח זו טעות. הפורמט הצר הקודם ("– 5, 10 ק"מ" בלבד) הפיל בשקט
+// "ילדים + 2.5, 5", "5, 10, 15" בלי ק"מ, "שטח, 17, 35", "3 (צעידה), 6.7, 13, 22" ו-"21.1, 101 (שליחים) ק"מ".
+// לוקחים את כל המספרים שאחרי המקף ועד "ק"מ" (סוגריים מוסרים), עד 250 כדי לא לתפוס שנים.
+function distancesFromText(text) {
+  const seg = text.replace(/\([^)]*\)/g, " ").split(/ק["״]מ/)[0];
+  const nums = [...new Set([...seg.matchAll(/\d+(?:\.\d+)?/g)].map((x) => Number(x[0])))]
+    .filter((n) => n > 0 && n <= 250)
+    .sort((a, b) => a - b);
+  if (!nums.length) return null;
+  return `${/ילדים/.test(seg) ? "ילדים, " : ""}${nums.join(", ")} ק"מ`;
+}
+
 function extractDistanceLabel(tailHtml) {
   const withoutLinks = tailHtml.replace(/<a[^>]*>[\s\S]*?<\/a>/g, " ");
   const decoded = decodeEntities(withoutLinks.replace(/<[^>]+>/g, " "));
-  const m = decoded.match(/[–-]\s*([\d][\d.,\s]*?)\s*ק["״]מ/);
-  if (!m) return null;
-  const nums = m[1].split(",").map((s) => s.trim()).filter(Boolean);
-  if (!nums.length) return null;
-  return `${nums.join(", ")} ק"מ`;
+  const m = decoded.match(/[–-]\s*([\s\S]+)$/);
+  return m ? distancesFromText(m[1]) : null;
+}
+
+// כל שורות התאריך ב-runpanel כטקסט, כולל שורות בלי קישור (DMR, אור יהודה). משמשות רק להשלמת
+// מרחקים למרוץ שכבר נמצא ממקור אחר, לפי תאריך + מילה משותפת בשם.
+let runpanelTextRows = [];
+
+// מרחקים שאומתו ידנית באתר המארגן, למרוץ שהמקורות האוטומטיים לא מסכימים עליו בתאריך (העגור 2027:
+// runpanel 30.10, מרתון ישראל 5.11; המקצים מאתר מרתון ישראל, 01.11.2026).
+const MANUAL_DISTANCES = [{ pattern: /מרוץ העגור/, label: '4, 10, 21.1 ק"מ' }];
+
+function fillMissingDistances(events) {
+  for (const e of events) {
+    const hit = !e.distanceLabel && MANUAL_DISTANCES.find((r) => r.pattern.test(e.name));
+    if (hit) e.distanceLabel = hit.label;
+  }
+  const STOP = new Set(["מרוץ", "מרתון", "חצי", "הלילה", "של", "אולטרה"]);
+  for (const e of events) {
+    if (e.distanceLabel) continue;
+    const [y, mo, d] = e.date.split("-");
+    const dateRe = new RegExp(`(^|\\D)0?${Number(d)}(-\\d{1,2})?/0?${Number(mo)}(/(${y}|${y.slice(2)}))?(\\D|$)`);
+    const words = e.name.replace(/\b20\d\d\b/g, "").split(/[\s()"״׳'’-]+/).filter((w) => w.length >= 3 && !STOP.has(w));
+    const row = runpanelTextRows.find((t) => dateRe.test(t) && words.some((w) => t.includes(w)));
+    if (!row) continue;
+    let rest = row.replace(/^\s*[\d/-]+\s*[–-]?\s*/, "");
+    for (const w of e.name.split(/\s+/)) rest = rest.replace(w, " ");
+    if (/ק["״]מ/.test(rest)) e.distanceLabel = distancesFromText(rest);
+  }
+}
+
+// מרתונים מ-AIMS: הפיד לא כולל מקצים, אז המרחק נגזר מהשם (חצי מרתון או מרתון).
+function aimsDistanceLabel(name) {
+  return /half/i.test(name) ? '21.1 ק"מ' : '42.2 ק"מ';
 }
 
 async function fetchRunpanel() {
@@ -173,6 +214,9 @@ async function fetchRunpanel() {
   const rowRe = new RegExp(
     `<p><strong>(\\d{1,2})(?:-\\d{1,2})?/(\\d{1,2})(?:/(\\d{4}|\\d{2}))?\\s*(?:${DASH})?\\s*</strong>\\s*(?:${DASH}\\s*)?<a href="([^"]+)"[^>]*>([^<]+)</a>([\\s\\S]*?)</p>`,
     "g"
+  );
+  runpanelTextRows = [...html.matchAll(/<p><strong>([\s\S]*?)<\/p>/g)].map((r) =>
+    decodeEntities(r[1].replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ")
   );
   const events = [];
   let m;
@@ -329,6 +373,7 @@ async function fetchAims() {
       date,
       link: url ? (url.startsWith("http") ? url : `https://${url}`) : null,
       source: "aims-worldrunning.org",
+      distanceLabel: aimsDistanceLabel(summary),
     });
   }
   const oneYearAhead = new Date();
@@ -466,7 +511,7 @@ async function main() {
   // מרוצים שאף מקור לא חושף עם קישור (ב-runpanel DMR מופיע כטקסט בלי <a>). אומת מול
   // event.shvoong.co.il ב-01.11.2026. להסיר כשמקור אוטומטי יתחיל להחזיר אותם.
   const MANUAL_EVENTS = [
-    { name: "אתגר DMR מרוץ דימונה במדבר", region: "דרום", date: "2027-02-19", link: "https://dmrchallenge.co.il/", source: "manual" },
+    { name: "אתגר DMR מרוץ דימונה במדבר", region: "דרום", date: "2027-02-19", link: "https://dmrchallenge.co.il/", source: "manual", distanceLabel: '5, 10, 21, 30, 42 ק"מ' },
     { name: "אליפות ישראל ה-65 במרוצי שדה", region: "", date: "2026-11-27", link: "https://event.shvoong.co.il/events/%d7%90%d7%9c%d7%99%d7%a4%d7%95%d7%aa-%d7%99%d7%a9%d7%a8%d7%90%d7%9c-%d7%94-65-%d7%91%d7%9e%d7%a8%d7%95%d7%a6%d7%99-%d7%a9%d7%93%d7%94-2026/", source: "manual" },
   ];
   let israelMerged = mergeIsraelEvents(realtimingEvents, runpanelEvents);
@@ -481,6 +526,7 @@ async function main() {
   israelMerged = israelMerged.filter(
     (e) => e.source !== "runpanel.co.il" || !israelMerged.some((o) => ORGANIZER_SOURCES.has(o.source) && sameRaceNearby(o, e))
   );
+  fillMissingDistances(israelMerged);
   israelMerged = israelMerged
     .filter((e) => e.date >= today && !/מרוץ הילדים/.test(e.name))
     .sort((a, b) => a.date.localeCompare(b.date));

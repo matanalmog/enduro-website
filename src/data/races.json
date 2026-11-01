@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T11:23:53.658Z",
+  "generatedAt": "2026-11-01T20:44:49.851Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -120,6 +120,7 @@
       "date": "2026-11-14",
       "link": "https://www.realtiming.co.il/events/%D7%9E%D7%A8%D7%95%D7%A5-%D7%90%D7%99%D7%99%D7%9C-2026-%D7%91%D7%A8%D7%9E%D7%AA-%D7%94%D7%A9%D7%A8%D7%95%D7%9F",
       "source": "realtiming.co.il",
+      "distanceLabel": "5, 10, 15 ק\"מ",
       "isNew": true,
       "discountCode": "ER26LT",
       "discountOrganizer": "מרוץ אייל"
@@ -130,6 +131,7 @@
       "date": "2026-11-19",
       "link": "https://www.realtiming.co.il/events/modiin-night-2026",
       "source": "realtiming.co.il",
+      "distanceLabel": "ילדים, 2.5, 5 ק\"מ",
       "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
@@ -238,7 +240,7 @@
       "date": "2026-12-17",
       "link": "https://www.3plus.co.il/ultra-otef",
       "source": "runpanel.co.il",
-      "distanceLabel": null,
+      "distanceLabel": "21.1, 101 ק\"מ",
       "isNew": false,
       "discountCode": "enduro26",
       "discountOrganizer": "3plus"
@@ -304,7 +306,7 @@
       "date": "2027-01-15",
       "link": "https://www.ultradesert.com/goldcoast/",
       "source": "runpanel.co.il",
-      "distanceLabel": null,
+      "distanceLabel": "17, 35 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -337,6 +339,7 @@
       "date": "2027-02-12",
       "link": "https://www.realtiming.co.il/events/ory-2027",
       "source": "realtiming.co.il",
+      "distanceLabel": "5, 10 ק\"מ",
       "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
@@ -347,6 +350,7 @@
       "date": "2027-02-19",
       "link": "https://dmrchallenge.co.il/",
       "source": "manual",
+      "distanceLabel": "5, 10, 21, 30, 42 ק\"מ",
       "isNew": true,
       "discountCode": "dmr27_enduro",
       "discountOrganizer": "DMR דימונה צ'לנג'"
@@ -509,7 +513,7 @@
       "date": "2027-10-29",
       "link": "https://www.marathonisrael.co.il/event/%D7%94%D7%9E%D7%A8%D7%95%D7%A5-%D7%9C%D7%AA%D7%A7%D7%95%D7%95%D7%94/",
       "source": "runpanel.co.il",
-      "distanceLabel": null,
+      "distanceLabel": "3, 6.7, 13, 22 ק\"מ",
       "isNew": false,
       "discountCode": "ENDURO",
       "discountOrganizer": "מרתון ישראל (10%)"
@@ -520,6 +524,7 @@
       "date": "2027-11-05",
       "link": "https://www.marathonisrael.co.il/event/%d7%9e%d7%a8%d7%95%d7%a5-%d7%94%d7%a2%d7%92%d7%95%d7%a8/",
       "source": "marathonisrael.co.il",
+      "distanceLabel": "4, 10, 21.1 ק\"מ",
       "isNew": true,
       "discountCode": "ENDURO",
       "discountOrganizer": "מרתון ישראל (10%)"
@@ -532,6 +537,7 @@
       "date": "2026-11-01",
       "link": "https://www.hzim.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -542,6 +548,7 @@
       "date": "2026-11-01",
       "link": "https://www.tcsnycmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -552,6 +559,7 @@
       "date": "2026-11-01",
       "link": "https://aucklandmarathon.co.nz",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -562,6 +570,7 @@
       "date": "2026-11-01",
       "link": "https://www.maraton.istanbul",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -572,6 +581,7 @@
       "date": "2026-11-01",
       "link": "https://marathon.jtbc.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -582,6 +592,7 @@
       "date": "2026-11-01",
       "link": "https://www.ctrun.com.tw",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -592,6 +603,7 @@
       "date": "2026-11-01",
       "link": null,
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -602,6 +614,7 @@
       "date": "2026-11-01",
       "link": "https://www.sunmoonlakemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -612,6 +625,7 @@
       "date": "2026-11-07",
       "link": "https://hanoi-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -622,6 +636,7 @@
       "date": "2026-11-07",
       "link": "https://www.tianzhongmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -632,6 +647,7 @@
       "date": "2026-11-07",
       "link": "https://www.montereybayhalfmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -642,6 +658,7 @@
       "date": "2026-11-07",
       "link": "https://events.samarkandmarathon.uz/events",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -652,6 +669,7 @@
       "date": "2026-11-08",
       "link": "https://www.bkkmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -662,6 +680,7 @@
       "date": "2026-11-08",
       "link": "https://www.koratmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -672,6 +691,7 @@
       "date": "2026-11-08",
       "link": "https://www.marathon06.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -682,6 +702,7 @@
       "date": "2026-11-08",
       "link": "https://www.maratonadiravenna.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -692,6 +713,7 @@
       "date": "2026-11-08",
       "link": "https://www.maratonguadalajara.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -702,6 +724,7 @@
       "date": "2026-11-08",
       "link": "https://www.maratonadoporto.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -712,6 +735,7 @@
       "date": "2026-11-13",
       "link": "https://www.runrisenation.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -722,6 +746,7 @@
       "date": "2026-11-13",
       "link": "https://www.Run-Bangla.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -732,6 +757,7 @@
       "date": "2026-11-15",
       "link": "https://www.trivandrummarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -742,6 +768,7 @@
       "date": "2026-11-15",
       "link": "http://helpyourselffoundation.in",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -752,6 +779,7 @@
       "date": "2026-11-15",
       "link": "https://www.veronarunmarathon.it/?lang=en",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -762,6 +790,7 @@
       "date": "2026-11-15",
       "link": "https://www.hzmb-halfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -772,6 +801,7 @@
       "date": "2026-11-15",
       "link": "https://www.larnakamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -782,6 +812,7 @@
       "date": "2026-11-15",
       "link": "https://www.bangsaen42.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -792,6 +823,7 @@
       "date": "2026-11-15",
       "link": "https://www.maratondelahabana.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -802,6 +834,7 @@
       "date": "2026-11-15",
       "link": "https://www.kobe-marathon.net",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -812,6 +845,7 @@
       "date": "2026-11-15",
       "link": "https://borobudurmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -822,6 +856,7 @@
       "date": "2026-11-15",
       "link": "https://www.maratoninternacionaldepanama.com/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -832,6 +867,7 @@
       "date": "2026-11-20",
       "link": "https://inspiringbangladesh.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -842,6 +878,7 @@
       "date": "2026-11-22",
       "link": "https://olympicdayrun.gr",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -852,6 +889,7 @@
       "date": "2026-11-22",
       "link": "https://followyourpassion.it/milano21/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -862,6 +900,7 @@
       "date": "2026-11-22",
       "link": "https://halongmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -872,6 +911,7 @@
       "date": "2026-11-22",
       "link": "https://www.elopuramarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -882,6 +922,7 @@
       "date": "2026-11-27",
       "link": "https://www.marathonisrael.co.il/en/event/eilat-desert-marathon/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -892,6 +933,7 @@
       "date": "2026-11-28",
       "link": "https://www.fireservice.gov.bd",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -902,6 +944,7 @@
       "date": "2026-11-28",
       "link": "https://www.nepalgunjmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -912,6 +955,7 @@
       "date": "2026-11-28",
       "link": "https://www.gulfbank642marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -922,6 +966,7 @@
       "date": "2026-11-28",
       "link": "https://www.egyptianmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -932,6 +977,7 @@
       "date": "2026-11-29",
       "link": "https://www.ahmedabadmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -942,6 +988,7 @@
       "date": "2026-11-29",
       "link": "https://www.beirutmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -952,6 +999,7 @@
       "date": "2026-11-29",
       "link": "https://www.klmcuracaomarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -962,6 +1010,7 @@
       "date": "2026-11-29",
       "link": "https://www.jbgkolkatamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -972,6 +1021,7 @@
       "date": "2026-11-29",
       "link": "https://meiamaratonadosdescobrimentos.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -982,6 +1032,7 @@
       "date": "2026-11-29",
       "link": "https://www.firenzemarathon.it",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -992,6 +1043,7 @@
       "date": "2026-11-29",
       "link": "https://marathondelarochelle.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1002,6 +1054,7 @@
       "date": "2026-11-29",
       "link": "https://amazingthailandmarathon2025.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1012,6 +1065,7 @@
       "date": "2026-11-29",
       "link": "https://pinkcitymarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1022,6 +1076,7 @@
       "date": "2026-11-29",
       "link": "https://www.stopgbvmarathonzanzibar.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1032,6 +1087,7 @@
       "date": "2026-12-04",
       "link": "https://www.runjordan.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1042,6 +1098,7 @@
       "date": "2026-12-04",
       "link": "https://www.runbarbados.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1052,6 +1109,7 @@
       "date": "2026-12-05",
       "link": "https://midnightmarathon.in",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1062,6 +1120,7 @@
       "date": "2026-12-06",
       "link": "https://www.shang-ma.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1072,6 +1131,7 @@
       "date": "2026-12-06",
       "link": "https://hofu-yomiuri.jp/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1082,6 +1142,7 @@
       "date": "2026-12-06",
       "link": "https://www.singaporeinternationalmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1092,6 +1153,7 @@
       "date": "2026-12-06",
       "link": "https://hsinchucitymarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1102,6 +1164,7 @@
       "date": "2026-12-06",
       "link": "https://shenzhenmarathon.org.cn",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1112,6 +1175,7 @@
       "date": "2026-12-06",
       "link": "https://www.fukuoka-international-marathon.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1122,6 +1186,7 @@
       "date": "2026-12-06",
       "link": "https://www.bruneimarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1132,6 +1197,7 @@
       "date": "2026-12-06",
       "link": "https://www.marathonpune.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1142,6 +1208,7 @@
       "date": "2026-12-06",
       "link": "https://www.valenciaciudaddelrunning.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1152,6 +1219,7 @@
       "date": "2026-12-06",
       "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1162,6 +1230,7 @@
       "date": "2026-12-06",
       "link": "https://www.caymanislandsmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1172,6 +1241,7 @@
       "date": "2026-12-06",
       "link": "https://marathonhcmc.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1182,6 +1252,7 @@
       "date": "2026-12-06",
       "link": "https://www.reggaemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1192,6 +1263,7 @@
       "date": "2026-12-06",
       "link": "https://www.marathonsanjosecostarica.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1202,6 +1274,7 @@
       "date": "2026-12-06",
       "link": "https://www.marathon.comar.tn",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1212,6 +1285,7 @@
       "date": "2026-12-12",
       "link": "https://www.pyramidshalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1222,6 +1296,7 @@
       "date": "2026-12-12",
       "link": "https://www.adnocabudhabimarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1232,6 +1307,7 @@
       "date": "2026-12-12",
       "link": "https://www.dhakainternationalmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1242,6 +1318,7 @@
       "date": "2026-12-13",
       "link": "https://www.icemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1252,6 +1329,7 @@
       "date": "2026-12-13",
       "link": "https://www.skfgoarivermarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1262,6 +1340,7 @@
       "date": "2026-12-13",
       "link": "https://www.penangmarathon.gov.my",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1272,6 +1351,7 @@
       "date": "2026-12-13",
       "link": "https://www.scenicmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1282,6 +1362,7 @@
       "date": "2026-12-13",
       "link": "https://mtfujimarathon.com/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1292,6 +1373,7 @@
       "date": "2026-12-13",
       "link": "https://www.nara-marathon.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1302,6 +1384,7 @@
       "date": "2026-12-13",
       "link": "https://www.athletics.org.tw",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1312,6 +1395,7 @@
       "date": "2026-12-13",
       "link": "https://www.photak42.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1322,6 +1406,7 @@
       "date": "2026-12-20",
       "link": "https://www.indoremarathon.in",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1332,6 +1417,7 @@
       "date": "2026-12-20",
       "link": "https://www.facebook.com/BKKmidnightmarathon/?locale=th_TH",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1342,6 +1428,7 @@
       "date": "2026-12-20",
       "link": "https://www.chiangmaimarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1352,6 +1439,7 @@
       "date": "2026-12-20",
       "link": "https://www.guangzhou-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1362,6 +1450,7 @@
       "date": "2026-12-20",
       "link": "https://www.sportsnet.org.tw",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1372,6 +1461,7 @@
       "date": "2026-12-25",
       "link": "https://www.saidpurrunners.run",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1382,6 +1472,7 @@
       "date": "2027-01-01",
       "link": "https://www.facebook.com/Bhatiaryinternationalhalfmarathon",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1392,6 +1483,7 @@
       "date": "2027-01-01",
       "link": "https://www.neujahrsmarathon.ch",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1402,6 +1494,7 @@
       "date": "2027-01-03",
       "link": "https://www.thechennaimarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1412,6 +1505,7 @@
       "date": "2027-01-03",
       "link": "https://run.unicef.org.hk",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1422,6 +1516,7 @@
       "date": "2027-01-07",
       "link": "https://runsim.ru",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1432,6 +1527,7 @@
       "date": "2027-01-08",
       "link": "https://www.egyptianmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1442,6 +1538,7 @@
       "date": "2027-01-09",
       "link": "https://www.khonkaenmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1452,6 +1549,7 @@
       "date": "2027-01-09",
       "link": "https://www.khaoyaimarathon.info",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1462,6 +1560,7 @@
       "date": "2027-01-09",
       "link": "https://www.msm.no",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1472,6 +1571,7 @@
       "date": "2027-01-09",
       "link": "https://khm.com.tw",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1482,6 +1582,7 @@
       "date": "2027-01-10",
       "link": "https://marathonmerida.dashport.run",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1492,6 +1593,7 @@
       "date": "2027-01-10",
       "link": "https://www.bkkmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1502,6 +1604,7 @@
       "date": "2027-01-10",
       "link": "https://scbmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1512,6 +1615,7 @@
       "date": "2027-01-10",
       "link": "https://www.xmim.org/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1522,6 +1626,7 @@
       "date": "2027-01-11",
       "link": "https://www.jbgdurgapurmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1532,6 +1637,7 @@
       "date": "2027-01-15",
       "link": "https://www.chevronhoustonmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1542,6 +1648,7 @@
       "date": "2027-01-15",
       "link": "https://www.dohamarathonooredoo.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1552,6 +1659,7 @@
       "date": "2027-01-17",
       "link": "https://www.hkmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1562,6 +1670,7 @@
       "date": "2027-01-17",
       "link": "https://irunner.biji.co/twnmarathon2026",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1572,6 +1681,7 @@
       "date": "2027-01-17",
       "link": "https://www.MauiOceanfrontMarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1582,6 +1692,7 @@
       "date": "2027-01-17",
       "link": "https://tatamumbaimarathon.procam.in",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1592,6 +1703,7 @@
       "date": "2027-01-17",
       "link": "https://www.sportsnet.org.tw",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1602,6 +1714,7 @@
       "date": "2027-01-17",
       "link": "https://www.chombuengmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1612,6 +1725,7 @@
       "date": "2027-01-22",
       "link": "https://www.sports-bangla.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1622,6 +1736,7 @@
       "date": "2027-01-23",
       "link": "https://www.burirammarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1632,6 +1747,7 @@
       "date": "2027-01-24",
       "link": "https://twincitymarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1642,6 +1758,7 @@
       "date": "2027-01-24",
       "link": "https://www.nicosiamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1652,6 +1769,7 @@
       "date": "2027-01-29",
       "link": "https://muscatmarathon.om",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1662,6 +1780,7 @@
       "date": "2027-01-30",
       "link": "https://riyadhmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1672,6 +1791,7 @@
       "date": "2027-01-30",
       "link": "https://www.worldmarathonchallenge.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1682,6 +1802,7 @@
       "date": "2027-01-30",
       "link": "https://www.rakhalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1692,6 +1813,7 @@
       "date": "2027-01-31",
       "link": "https://www.osaka-marathon.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1702,6 +1824,7 @@
       "date": "2027-01-31",
       "link": "https://half.osaka-marathon.jp/index.html",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1712,6 +1835,7 @@
       "date": "2027-01-31",
       "link": "https://www.thermen-marathon.de",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1722,6 +1846,7 @@
       "date": "2027-01-31",
       "link": "https://www.madeiramarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1732,6 +1857,7 @@
       "date": "2027-01-31",
       "link": "https://www.marathonmarrakech.ma",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1742,6 +1868,7 @@
       "date": "2027-02-07",
       "link": "https://www.vadodaramarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1752,6 +1879,7 @@
       "date": "2027-02-07",
       "link": "https://www.betsudai.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1762,6 +1890,7 @@
       "date": "2027-02-07",
       "link": "https://www.kilimanjaromarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1772,6 +1901,7 @@
       "date": "2027-02-07",
       "link": "https://ehimemarathon.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1782,6 +1912,7 @@
       "date": "2027-02-07",
       "link": "https://www.km-half.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1792,6 +1923,7 @@
       "date": "2027-02-13",
       "link": "https://www.pokharamarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1802,6 +1934,7 @@
       "date": "2027-02-14",
       "link": "https://www.ethiopianrun.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1812,6 +1945,7 @@
       "date": "2027-02-14",
       "link": "https://www.bodhgayamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1822,6 +1956,7 @@
       "date": "2027-02-14",
       "link": "https://www.marathonjaipur.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1832,6 +1967,7 @@
       "date": "2027-02-14",
       "link": "https://www.splitmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1842,6 +1978,7 @@
       "date": "2027-02-14",
       "link": "http://www.senshu-marathon.jp/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1852,6 +1989,7 @@
       "date": "2027-02-14",
       "link": "https://www.romeoegiuliettarunhalfmarathon.it",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1862,6 +2000,7 @@
       "date": "2027-02-21",
       "link": "https://www.kyoto-marathon.com/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1872,6 +2011,7 @@
       "date": "2027-02-21",
       "link": "https://www.napolirunning.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1882,6 +2022,7 @@
       "date": "2027-02-21",
       "link": "https://kdamdavadmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1892,6 +2033,7 @@
       "date": "2027-02-21",
       "link": "https://www.avohk.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1902,6 +2044,7 @@
       "date": "2027-02-21",
       "link": "https://kitakyushu-marathon.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1912,6 +2055,7 @@
       "date": "2027-02-21",
       "link": "https://iemuemkolkatamarathon.org/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1922,6 +2066,7 @@
       "date": "2027-02-26",
       "link": "https://www.tlvmarathon.co.il",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1932,6 +2077,7 @@
       "date": "2027-02-27",
       "link": "https://www.cyprusmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1942,6 +2088,7 @@
       "date": "2027-02-28",
       "link": "https://daegu.go.kr/daegumarathon/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1952,6 +2099,7 @@
       "date": "2027-02-28",
       "link": "https://www.maltamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1962,6 +2110,7 @@
       "date": "2027-02-28",
       "link": "https://www.osaka-marathon.com/2026/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1972,6 +2121,7 @@
       "date": "2027-02-28",
       "link": "https://www.newdelhimarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1982,6 +2132,7 @@
       "date": "2027-03-06",
       "link": "https://mymarianas.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -1992,6 +2143,7 @@
       "date": "2027-03-07",
       "link": "https://www.tainanhalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2002,6 +2154,7 @@
       "date": "2027-03-07",
       "link": "https://www.efglaos.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2012,6 +2165,7 @@
       "date": "2027-03-07",
       "link": "https://www.maratonaclubedeportugal.com/en/corrida-marco-2022/edp-lisbon-half-marathon/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2022,6 +2176,7 @@
       "date": "2027-03-07",
       "link": "https://www.marathon.tokyo/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2032,6 +2187,7 @@
       "date": "2027-03-14",
       "link": "https://www.taipeifreewaymarathon.com/index.php",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2042,6 +2198,7 @@
       "date": "2027-03-14",
       "link": "https://www.indoremarathon.in",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2052,6 +2209,7 @@
       "date": "2027-03-14",
       "link": "https://www.tokushima-marathon.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2062,6 +2220,7 @@
       "date": "2027-03-14",
       "link": "https://womens-marathon.nagoya",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2072,6 +2231,7 @@
       "date": "2027-03-16",
       "link": "https://www.saharamarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2082,6 +2242,7 @@
       "date": "2027-03-19",
       "link": "https://www.jerusalem-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2092,6 +2253,7 @@
       "date": "2027-03-21",
       "link": "https://www.wanjinshi-marathon.com.tw",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2102,6 +2264,7 @@
       "date": "2027-03-21",
       "link": "https://www.wuximarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2112,6 +2275,7 @@
       "date": "2027-03-21",
       "link": "https://www.seoul-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2122,6 +2286,7 @@
       "date": "2027-03-21",
       "link": "https://www.lavalettemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2132,6 +2297,7 @@
       "date": "2027-03-21",
       "link": "https://www.cqmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2142,6 +2308,7 @@
       "date": "2027-03-21",
       "link": "https://www.marathonmiri.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2152,6 +2319,7 @@
       "date": "2027-03-21",
       "link": "https://swanseahalfmarathon.co.uk",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2162,6 +2330,7 @@
       "date": "2027-03-21",
       "link": "https://www.sc.com/fk/marathon",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2172,6 +2341,7 @@
       "date": "2027-03-21",
       "link": "https://www.rundanang.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2182,6 +2352,7 @@
       "date": "2027-03-22",
       "link": "https://www.lumbinipeacemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2192,6 +2363,7 @@
       "date": "2027-03-25",
       "link": "https://colombomarathon.lk",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2202,6 +2374,7 @@
       "date": "2027-03-27",
       "link": "https://www.wuximarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2212,6 +2385,7 @@
       "date": "2027-03-28",
       "link": "https://marathonspiritueldefes.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2222,6 +2396,7 @@
       "date": "2027-03-28",
       "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2232,6 +2407,7 @@
       "date": "2027-04-02",
       "link": "https://tursetsports.com/races/runtalya",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2242,6 +2418,7 @@
       "date": "2027-04-03",
       "link": "https://www.runczech.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2252,6 +2429,7 @@
       "date": "2027-04-03",
       "link": "https://www.limassolmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2262,6 +2440,7 @@
       "date": "2027-04-04",
       "link": "https://atgm.gr/?lang=en",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2272,6 +2451,7 @@
       "date": "2027-04-04",
       "link": "https://www.milanomarathon.it/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2282,6 +2462,7 @@
       "date": "2027-04-04",
       "link": "https://polmaratonwarszawski.com/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2292,6 +2473,7 @@
       "date": "2027-04-04",
       "link": "https://www.hobartmarathon.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2302,6 +2484,7 @@
       "date": "2027-04-04",
       "link": "https://www.generali-berliner-halbmarathon.de",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2312,6 +2495,7 @@
       "date": "2027-04-09",
       "link": "https://www.runjordan.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2322,6 +2506,7 @@
       "date": "2027-04-10",
       "link": "https://www.nnmarathonrotterdam.nl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2332,6 +2517,7 @@
       "date": "2027-04-10",
       "link": "https://solemotive.com/pages/canberra-marathon",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2342,6 +2528,7 @@
       "date": "2027-04-10",
       "link": "https://springhalfmarathon.runinbudapest.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2352,6 +2539,7 @@
       "date": "2027-04-10",
       "link": "https://www.pardubickyvinarskypulmaraton.cz",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2362,6 +2550,7 @@
       "date": "2027-04-11",
       "link": "https://www.bratislavamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2372,6 +2561,7 @@
       "date": "2027-04-11",
       "link": "https://www.maraton-cluj.ro/en",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2382,6 +2572,7 @@
       "date": "2027-04-11",
       "link": "https://www.enschedemarathon.nl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2392,6 +2583,7 @@
       "date": "2027-04-11",
       "link": "https://www.zuerichmarathon.ch",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2402,6 +2594,7 @@
       "date": "2027-04-11",
       "link": "https://patrashalfmarathon.gr/en",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2412,6 +2605,7 @@
       "date": "2027-04-11",
       "link": "https://crete-marathon.gr",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2422,6 +2616,7 @@
       "date": "2027-04-11",
       "link": "https://almaty-marathon.kz/en/events",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2432,6 +2627,7 @@
       "date": "2027-04-11",
       "link": "https://www.marathon-hannover.de",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2442,6 +2638,7 @@
       "date": "2027-04-17",
       "link": "https://www.bgdmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2452,6 +2649,7 @@
       "date": "2027-04-17",
       "link": "https://www.tjkathletics.tj/news.php?news_id=597",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2462,6 +2660,7 @@
       "date": "2027-04-18",
       "link": "https://www.facebook.com/bukidnonmarathon",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2472,6 +2671,7 @@
       "date": "2027-04-18",
       "link": "https://www.vienna-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2482,6 +2682,7 @@
       "date": "2027-04-18",
       "link": "https://www.rhodesmarathon.gr",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2492,6 +2693,7 @@
       "date": "2027-04-18",
       "link": "https://www.halfmarathon.poznan.pl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2502,6 +2704,7 @@
       "date": "2027-04-18",
       "link": "https://www.padovamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2512,6 +2715,7 @@
       "date": "2027-04-18",
       "link": "https://www.cracoviamaraton.pl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2522,6 +2726,7 @@
       "date": "2027-04-18",
       "link": "https://www.naganomarathon.gr.jp",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2532,6 +2737,7 @@
       "date": "2027-04-19",
       "link": "https://www.baa.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2542,6 +2748,7 @@
       "date": "2027-04-24",
       "link": "https://www.gdyniapolmaraton.pl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2552,6 +2759,7 @@
       "date": "2027-04-24",
       "link": "https://www.bergencitymarathon.no",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2562,6 +2770,7 @@
       "date": "2027-04-25",
       "link": "https://www.dlmls.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2572,6 +2781,7 @@
       "date": "2027-04-25",
       "link": "https://www.du-motion.com/en/home/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2582,6 +2792,7 @@
       "date": "2027-04-25",
       "link": "https://www.bigsurmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2592,6 +2803,7 @@
       "date": "2027-04-25",
       "link": "https://www.haspa-marathon-hamburg.de",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2602,6 +2814,7 @@
       "date": "2027-04-25",
       "link": "https://www.kaunasmarathon.lt",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2612,6 +2825,7 @@
       "date": "2027-04-25",
       "link": "http://www.gifu-marathon.jp/index.html",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2622,6 +2836,7 @@
       "date": "2027-04-25",
       "link": "https://www.istanbulyarimaratonu.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2632,6 +2847,7 @@
       "date": "2027-04-25",
       "link": "https://poseidon-athenshalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2642,6 +2858,7 @@
       "date": "2027-04-30",
       "link": "https://www.terengganumarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2652,6 +2869,7 @@
       "date": "2027-05-01",
       "link": "https://kazan.run",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2662,6 +2880,7 @@
       "date": "2027-05-02",
       "link": "https://www.adelaidemarathon.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2672,6 +2891,7 @@
       "date": "2027-05-02",
       "link": "https://www.runczech.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2682,6 +2902,7 @@
       "date": "2027-05-02",
       "link": "https://www.torontomarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2692,6 +2913,7 @@
       "date": "2027-05-02",
       "link": "https://www.belfastcitymarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2702,6 +2924,7 @@
       "date": "2027-05-03",
       "link": "https://www.mkmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2712,6 +2935,7 @@
       "date": "2027-05-08",
       "link": "https://www.marathon.nl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2722,6 +2946,7 @@
       "date": "2027-05-09",
       "link": "https://moscowhalf.runc.run",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2732,6 +2957,7 @@
       "date": "2027-05-09",
       "link": "https://www.copenhagenmarathon.dk",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2742,6 +2968,7 @@
       "date": "2027-05-09",
       "link": "https://newrun.com.ua/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2752,6 +2979,7 @@
       "date": "2027-05-09",
       "link": "https://www.generaligenevemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2762,6 +2990,7 @@
       "date": "2027-05-09",
       "link": "https://www.diacoregaboronemarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2772,6 +3001,7 @@
       "date": "2027-05-15",
       "link": "https://www.great-wall-marathon.com.cn",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2782,6 +3012,7 @@
       "date": "2027-05-15",
       "link": "https://www.maraton-radenci.si",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2792,6 +3023,7 @@
       "date": "2027-05-16",
       "link": "https://www.borneomarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2802,6 +3034,7 @@
       "date": "2027-05-22",
       "link": "https://www.moonlighthalfmarathon.it",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2812,6 +3045,7 @@
       "date": "2027-05-23",
       "link": "https://www.wuerzburg-marathon.de",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2822,6 +3056,7 @@
       "date": "2027-05-23",
       "link": "https://www.lzmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2832,6 +3067,7 @@
       "date": "2027-05-23",
       "link": "https://www.salzburg-marathon.at",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2842,6 +3078,7 @@
       "date": "2027-05-23",
       "link": "https://www.lima42k.com.pe",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2852,6 +3089,7 @@
       "date": "2027-05-29",
       "link": "https://www.everestmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2862,6 +3100,7 @@
       "date": "2027-05-29",
       "link": "https://stockholmmarathon.se",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2872,6 +3111,7 @@
       "date": "2027-05-30",
       "link": "https://www.madagascarmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2882,6 +3122,7 @@
       "date": "2027-06-06",
       "link": "https://www.torshavnmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2892,6 +3133,7 @@
       "date": "2027-06-06",
       "link": "https://www.brisbanemarathon.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2902,6 +3144,7 @@
       "date": "2027-06-06",
       "link": "https://www.klmarubamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2912,6 +3155,7 @@
       "date": "2027-06-06",
       "link": "https://www.scenicmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2922,6 +3166,7 @@
       "date": "2027-06-06",
       "link": "https://www.corkcitymarathon.ie",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2932,6 +3177,7 @@
       "date": "2027-06-12",
       "link": "https://mcs.wroc.pl/kontakt-polmaraton",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2942,6 +3188,7 @@
       "date": "2027-06-12",
       "link": "https://www.phuketmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2952,6 +3199,7 @@
       "date": "2027-06-12",
       "link": "https://scoremarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2962,6 +3210,7 @@
       "date": "2027-06-12",
       "link": "https://www.helsinkihalfmarathon.fi",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2972,6 +3221,7 @@
       "date": "2027-06-13",
       "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2982,6 +3232,7 @@
       "date": "2027-06-13",
       "link": "https://www.comrades.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -2992,6 +3243,7 @@
       "date": "2027-06-13",
       "link": "https://www.kigalimarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3002,6 +3254,7 @@
       "date": "2027-06-19",
       "link": "https://www.msm.no",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3012,6 +3265,7 @@
       "date": "2027-06-20",
       "link": "https://mandirimarathon.co.id",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3022,6 +3276,7 @@
       "date": "2027-06-20",
       "link": "https://www.indonesiawomenhalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3032,6 +3287,7 @@
       "date": "2027-06-20",
       "link": "https://www.waterfordvikingmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3042,6 +3298,7 @@
       "date": "2027-06-27",
       "link": "https://www.maratontangamanga.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3052,6 +3309,7 @@
       "date": "2027-06-27",
       "link": "https://www.volcanomarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3062,6 +3320,7 @@
       "date": "2027-06-27",
       "link": "https://www.hamburg-halbmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3072,6 +3331,7 @@
       "date": "2027-06-27",
       "link": "https://saromanblue.jp/index.shtml",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3082,6 +3342,7 @@
       "date": "2027-07-02",
       "link": "https://www.zermattmarathon.ch",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3092,6 +3353,7 @@
       "date": "2027-07-03",
       "link": "https://www.goldcoastmarathon.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3102,6 +3364,7 @@
       "date": "2027-07-04",
       "link": "https://www.vicfallsmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3112,6 +3375,7 @@
       "date": "2027-07-11",
       "link": "https://cairnsmarathon.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3122,6 +3386,7 @@
       "date": "2027-07-17",
       "link": null,
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3132,6 +3397,7 @@
       "date": "2027-07-18",
       "link": "https://panamamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3142,6 +3408,7 @@
       "date": "2027-07-18",
       "link": "https://www.runairlie.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3152,6 +3419,7 @@
       "date": "2027-08-01",
       "link": "https://www.npmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3162,6 +3430,7 @@
       "date": "2027-08-01",
       "link": "https://www.sunshinecoastmarathon.com.au",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3172,6 +3441,7 @@
       "date": "2027-08-07",
       "link": "https://runsim.ru",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3182,6 +3452,7 @@
       "date": "2027-08-08",
       "link": "https://sarawakenergymarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3192,6 +3463,7 @@
       "date": "2027-08-08",
       "link": "https://www.taipinghalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3202,6 +3474,7 @@
       "date": "2027-08-08",
       "link": "https://www.cambodia-events.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3212,6 +3485,7 @@
       "date": "2027-08-10",
       "link": "https://www.abumarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3222,6 +3496,7 @@
       "date": "2027-08-13",
       "link": "https://irunnersevents.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3232,6 +3507,7 @@
       "date": "2027-08-20",
       "link": "https://www.paavonurmimarathon.fi",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3242,6 +3518,7 @@
       "date": "2027-08-21",
       "link": "https://stockholmhalfmarathon.se",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3252,6 +3529,7 @@
       "date": "2027-08-21",
       "link": "https://www.rmi.is/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3262,6 +3540,7 @@
       "date": "2027-08-21",
       "link": "https://www.songkhlamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3272,6 +3551,7 @@
       "date": "2027-08-28",
       "link": "https://stavangermarathon.no/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3282,6 +3562,7 @@
       "date": "2027-08-28",
       "link": "https://nmdchyderabadmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3292,6 +3573,7 @@
       "date": "2027-08-28",
       "link": "https://www.helsinkimarathon.fi",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3302,6 +3584,7 @@
       "date": "2027-08-29",
       "link": "https://www.mumbaihalfmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3312,6 +3595,7 @@
       "date": "2027-08-29",
       "link": "https://longfordmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3322,6 +3606,7 @@
       "date": "2027-09-05",
       "link": "https://www.facebook.com/Watlaharnraihalfmarathon",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3332,6 +3617,7 @@
       "date": "2027-09-05",
       "link": "https://halfmarathon.runinbudapest.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3342,6 +3628,7 @@
       "date": "2027-09-10",
       "link": "https://www.tallinnmarathon.ee",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3352,6 +3639,7 @@
       "date": "2027-09-10",
       "link": "https://www.jungfrau-marathon.ch",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3362,6 +3650,7 @@
       "date": "2027-09-11",
       "link": "https://kbhalf.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3372,6 +3661,7 @@
       "date": "2027-09-12",
       "link": "https://www.volksbank-muenster-marathon.de",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3382,6 +3672,7 @@
       "date": "2027-09-19",
       "link": "https://www.meiamaratonadoporto.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3392,6 +3683,7 @@
       "date": "2027-09-25",
       "link": "https://www.marathon.md",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3402,6 +3694,7 @@
       "date": "2027-09-26",
       "link": "https://www.wachaumarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3412,6 +3705,7 @@
       "date": "2027-09-26",
       "link": "https://www.hcamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3422,6 +3716,7 @@
       "date": "2027-09-26",
       "link": "https://www.lochnessmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3432,6 +3727,7 @@
       "date": "2027-09-26",
       "link": "https://maratonwarszawski.com/en/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3442,6 +3738,7 @@
       "date": "2027-09-26",
       "link": "https://www.generali-berlin-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3452,6 +3749,7 @@
       "date": "2027-10-03",
       "link": "https://sekhoniafmarathon.in",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3462,6 +3760,7 @@
       "date": "2027-10-10",
       "link": "https://www.sparkasse-3-laender-marathon.at",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3472,6 +3771,7 @@
       "date": "2027-10-10",
       "link": "https://www.runvictoriamarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3482,6 +3782,7 @@
       "date": "2027-10-10",
       "link": "https://chicagomarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3492,6 +3793,7 @@
       "date": "2027-10-15",
       "link": "https://activepulsebd.com/product/apcm2026/",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3502,6 +3804,7 @@
       "date": "2027-10-16",
       "link": "https://www.thesshalfmarathon.org",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "21.1 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3512,6 +3815,7 @@
       "date": "2027-10-16",
       "link": "https://www.ljubljanamarathon.si",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3522,6 +3826,7 @@
       "date": "2027-10-17",
       "link": "https://www.greatwelshmarathon.co.uk",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3532,6 +3837,7 @@
       "date": "2027-10-17",
       "link": "https://www.marathonkuching.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3542,6 +3848,7 @@
       "date": "2027-10-24",
       "link": "https://www.venicemarathon.it",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3552,6 +3859,7 @@
       "date": "2027-10-24",
       "link": "https://www.lausanne-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3562,6 +3870,7 @@
       "date": "2027-10-24",
       "link": "https://www.antwerpmarathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3572,6 +3881,7 @@
       "date": "2027-10-30",
       "link": "https://cimarathon.china-airlines.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3582,6 +3892,7 @@
       "date": "2027-10-30",
       "link": "https://www.tcsamsterdammarathon.nl",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3592,6 +3903,7 @@
       "date": "2027-10-31",
       "link": "https://www.frankfurt-marathon.com",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -3602,6 +3914,7 @@
       "date": "2027-10-31",
       "link": "https://www.swisscitymarathon.ch",
       "source": "aims-worldrunning.org",
+      "distanceLabel": "42.2 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null

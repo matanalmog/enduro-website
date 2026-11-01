@@ -164,6 +164,7 @@ const distanceOptionsPresent = filterable
             <div class="race-tags">
               {race.region && <span class="race-tag">{race.region}</span>}
               {showDistance && distance && <span class="race-tag race-tag-distance num">{distance}</span>}
+              {showDistance && !distance && <span class="race-tag race-tag-distance">מרחקים יפורסמו בהמשך</span>}
               {race.discountCode && <span class="code-badge">קוד: {race.discountCode}</span>}
             </div>
             {plan && (
