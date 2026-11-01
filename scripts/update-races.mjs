@@ -389,7 +389,7 @@ const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרוץ אייל/, code: "ER26RG", organizer: "מרוץ אייל" },
   { pattern: /ים המלח/, code: "ENDURO10", organizer: "מרתון ים המלח (לבחור קבוצת ENDURO)" },
   { pattern: /מרתון.*מדברי|מדברי.*אילת/, code: "DES26", organizer: "מרתון ישראל" },
-  { pattern: /מרתון תל אביב/, code: "785859", organizer: "Kapaim Active" },
+  { pattern: /מרתון תל אביב/, code: "503842", organizer: "Kapaim Active" },
   { pattern: /בשביל הבנים/, code: "480944", organizer: "Kapaim Active" },
   { pattern: /מרתון (ה)?ירושלים/, code: "f3a48", organizer: "מרתון ווינר ירושלים" },
   { pattern: /מרתון חיפה/, code: "HMRTN26", organizer: "Shvoong" },
