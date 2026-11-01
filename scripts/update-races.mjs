@@ -449,7 +449,13 @@ async function main() {
   const marathonIsraelEvents = marathonIsraelRes.status === "fulfilled" ? marathonIsraelRes.value : [];
   const threePlusEvents = threePlusRes.status === "fulfilled" ? threePlusRes.value : [];
 
+  // מרוצים שאף מקור לא חושף עם קישור (ב-runpanel DMR מופיע כטקסט בלי <a>). אומת מול
+  // event.shvoong.co.il ב-01.11.2026. להסיר כשמקור אוטומטי יתחיל להחזיר אותם.
+  const MANUAL_EVENTS = [
+    { name: "אתגר DMR מרוץ דימונה במדבר", region: "דרום", date: "2027-02-19", link: "https://dmrchallenge.co.il/", source: "manual" },
+  ];
   let israelMerged = mergeIsraelEvents(realtimingEvents, runpanelEvents);
+  israelMerged = mergeIsraelEvents(israelMerged, MANUAL_EVENTS);
   israelMerged = mergeIsraelEvents(israelMerged, marathonIsraelEvents);
   israelMerged = mergeIsraelEvents(israelMerged, threePlusEvents);
   // אותו מרוץ בתאריכים שונים בין מקורות (העגור 2027: runpanel 30.10, מרתון ישראל 5.11):
