@@ -383,6 +383,9 @@ function parseUtmbDate(str) {
 const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרוץ הסרגל/, code: "enduro26", organizer: "3plus" },
   { pattern: /אולטרה (יישובי ה)?עוטף/, code: "enduro26", organizer: "3plus" },
+  // 3plus: רונית אישרה ב-01.11.2026 שהקוד פתוח לכל מרוצי 3plus השנה.
+  { pattern: /הלילה של יבנה|באר יעקב|מזכרת בתיה|מרוץ לוד|כריסמס|מעיליא/, code: "enduro26", organizer: "3plus" },
+  { pattern: /סובב עמק/, code: "SOVEVGROUP", organizer: "סובב עמק (Gold-Fish)" },
   { pattern: /מרוץ אייל/, code: "ER26RG", organizer: "מרוץ אייל" },
   { pattern: /ים המלח/, code: "ENDURO10", organizer: "מרתון ישראל (לבחור קבוצת ENDURO)" },
   { pattern: /מרתון תל אביב/, code: "785859", organizer: "Kapaim Active" },
@@ -453,6 +456,7 @@ async function main() {
   // event.shvoong.co.il ב-01.11.2026. להסיר כשמקור אוטומטי יתחיל להחזיר אותם.
   const MANUAL_EVENTS = [
     { name: "אתגר DMR מרוץ דימונה במדבר", region: "דרום", date: "2027-02-19", link: "https://dmrchallenge.co.il/", source: "manual" },
+    { name: "אליפות ישראל ה-65 במרוצי שדה", region: "", date: "2026-11-27", link: "https://event.shvoong.co.il/events/%d7%90%d7%9c%d7%99%d7%a4%d7%95%d7%aa-%d7%99%d7%a9%d7%a8%d7%90%d7%9c-%d7%94-65-%d7%91%d7%9e%d7%a8%d7%95%d7%a6%d7%99-%d7%a9%d7%93%d7%94-2026/", source: "manual" },
   ];
   let israelMerged = mergeIsraelEvents(realtimingEvents, runpanelEvents);
   israelMerged = mergeIsraelEvents(israelMerged, MANUAL_EVENTS);

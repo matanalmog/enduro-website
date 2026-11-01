@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T11:06:23.609Z",
+  "generatedAt": "2026-11-01T11:23:53.658Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
@@ -23,8 +23,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "10, 21, 42, 50, 100 ק\"מ",
       "isNew": true,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "SOVEVGROUP",
+      "discountOrganizer": "סובב עמק (Gold-Fish)"
     },
     {
       "name": "מרוץ הלילה של יבנה",
@@ -34,8 +34,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "enduro26",
+      "discountOrganizer": "3plus"
     },
     {
       "name": "מרוץ נשר",
@@ -56,8 +56,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "enduro26",
+      "discountOrganizer": "3plus"
     },
     {
       "name": "מרוץ רצים ללא גבולות",
@@ -111,8 +111,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "enduro26",
+      "discountOrganizer": "3plus"
     },
     {
       "name": "מרוץ אייל 2026 ברמת השרון",
@@ -186,6 +186,16 @@
       "source": "runpanel.co.il",
       "distanceLabel": "0.5, 1.2, 2, 5, 10 ק\"מ",
       "isNew": false,
+      "discountCode": "enduro26",
+      "discountOrganizer": "3plus"
+    },
+    {
+      "name": "אליפות ישראל ה-65 במרוצי שדה",
+      "region": "",
+      "date": "2026-11-27",
+      "link": "https://event.shvoong.co.il/events/%d7%90%d7%9c%d7%99%d7%a4%d7%95%d7%aa-%d7%99%d7%a9%d7%a8%d7%90%d7%9c-%d7%94-65-%d7%91%d7%9e%d7%a8%d7%95%d7%a6%d7%99-%d7%a9%d7%93%d7%94-2026/",
+      "source": "manual",
+      "isNew": true,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -241,8 +251,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "enduro26",
+      "discountOrganizer": "3plus"
     },
     {
       "name": "אולטרה דרזט 8",
