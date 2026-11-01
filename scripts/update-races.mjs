@@ -60,6 +60,7 @@ const KNOWN_DUPLICATE_NAMES = [
   { test: /הבוז.ולה/, canonical: "מרוץ הבוזולה" },
   { test: /מרתון.*מדברי.*אילת|מרתון.*אילת.*מדברי/, canonical: "מרתון מדברי אילת" },
   { test: /מרוץ אייל/, canonical: "מרוץ אייל רמת השרון" },
+  { test: /רצים ביחד/, canonical: "מרוץ רצים ביחד" },
 ];
 
 // לצורכי דה-דופליקציה בלבד: מסיר שנה (המקורות לא עקביים אם היא מופיעה בשם),
@@ -114,22 +115,27 @@ async function fetchRealtiming() {
   if (!res.ok) throw new Error(`realtiming.co.il responded ${res.status}`);
   const html = await res.text();
 
-  const rowRe = /<tr class="events_list_row"[^>]*><td class="name"><a href="([^"]+)">([^<]+)<\/a><\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><td>([^<]*)<\/td><\/tr>/g;
+  // עיצוב חדש (נבדק 01.11.2026): כל מרוץ הוא <a class="roster-row"> עם תאריך "d.m" + שנה ב-sub,
+  // שם ב-r-title, קטגוריה בתגית stamp הראשונה ואזור ב-r-region. הטבלה הישנה (events_list_row)
+  // הוסרה מהאתר, ובלי התיקון הזה נעלמו בשקט כל המרוצים שרק realtiming מפרסם.
+  const rowRe =
+    /<a href="([^"]+)"\s*class="roster-row[^"]*"[\s\S]*?<span class="d">(\d{1,2})\.(\d{1,2})<\/span>\s*<span class="sub">(\d{4})[\s\S]*?<span class="r-title">([^<]+)<\/span>[\s\S]*?<span class="stamp[^"]*">([^<]+)<\/span>[\s\S]*?<div class="r-region">([\s\S]*?)<\/div>/g;
   const events = [];
   let m;
   while ((m = rowRe.exec(html))) {
-    const [, href, name, category, region, dateStr] = m;
-    const date = parseDdMmYyyy(dateStr);
-    if (!date || !RUNNING_CATEGORIES.has(category.trim())) continue;
+    const [, href, dd, mm, yyyy, name, category, regionHtml] = m;
+    if (!RUNNING_CATEGORIES.has(category.trim())) continue;
+    const region = (regionHtml.match(/<span class="v">([^<]*)<\/span>/) || [])[1] || "";
     events.push({
       name: decodeEntities(name),
       region: decodeEntities(region),
-      date,
+      date: `${yyyy}-${mm.padStart(2, "0")}-${dd.padStart(2, "0")}`,
       link: new URL(href, "https://www.realtiming.co.il").toString(),
       source: "realtiming.co.il",
     });
   }
-  return events;
+  if (!events.length) throw new Error("realtiming.co.il: no rows matched, the page layout probably changed");
+  return events.filter((e) => e.date >= today);
 }
 
 // ---------- מקור 2: runpanel.co.il (ישראל) ----------
@@ -161,16 +167,21 @@ async function fetchRunpanel() {
   // קישור נוסף אחרי שם המרוץ (למשל "למאמן אישי ותוכנית - לחצו פה") - זה גרם לירידת
   // מרוצים אמיתיים (כמו מרתון חיפה) מהרשימה בלי אזהרה. אומת מול המקור החי. הקבוצה
   // הנוספת (tail) נשמרת כדי לשלוף ממנה את מרחקי המקצים.
+  // תאריכים בפועל במקור (נבדק 01.11.2026): "05/11/26 –", "08/05/2027", "16/04/27-",
+  // וטווח בלי שנה "05-06/11" (סובב עמק). בטווח לוקחים את היום הראשון, ושנה חסרה נקבעת לפי
+  // הקרוב העתידי. בגלל הפורמט הצר הקודם נפלו בשקט מרוצים כמו סובב עמק, מודיעין והבננה.
   const rowRe = new RegExp(
-    `<p><strong>(\\d{1,2})/(\\d{1,2})/(\\d{2})\\s*${DASH}\\s*</strong>\\s*<a href="([^"]+)"[^>]*>([^<]+)</a>([\\s\\S]*?)</p>`,
+    `<p><strong>(\\d{1,2})(?:-\\d{1,2})?/(\\d{1,2})(?:/(\\d{4}|\\d{2}))?\\s*(?:${DASH})?\\s*</strong>\\s*(?:${DASH}\\s*)?<a href="([^"]+)"[^>]*>([^<]+)</a>([\\s\\S]*?)</p>`,
     "g"
   );
   const events = [];
   let m;
   while ((m = rowRe.exec(html))) {
-    const [, dd, mm, yy, href, name, tail] = m;
-    const date = parseDdMmYyyy(`${dd}/${mm}/${yy}`, 2);
-    if (!date) continue;
+    const [, dd, mm, yRaw, href, name, tail] = m;
+    let yyyy = yRaw ? (yRaw.length === 2 ? `20${yRaw}` : yRaw) : today.slice(0, 4);
+    let date = `${yyyy}-${mm.padStart(2, "0")}-${dd.padStart(2, "0")}`;
+    if (!yRaw && date < today) date = `${Number(yyyy) + 1}${date.slice(4)}`;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) continue;
     const decodedName = decodeEntities(name);
     events.push({
       name: decodedName,
@@ -441,7 +452,17 @@ async function main() {
   let israelMerged = mergeIsraelEvents(realtimingEvents, runpanelEvents);
   israelMerged = mergeIsraelEvents(israelMerged, marathonIsraelEvents);
   israelMerged = mergeIsraelEvents(israelMerged, threePlusEvents);
-  israelMerged = israelMerged.filter((e) => e.date >= today).sort((a, b) => a.date.localeCompare(b.date));
+  // אותו מרוץ בתאריכים שונים בין מקורות (העגור 2027: runpanel 30.10, מרתון ישראל 5.11):
+  // סומכים על אתר המארגן ומוותרים על השורה של runpanel. מרוצי ילדים בלבד לא נכנסים ללוח.
+  const ORGANIZER_SOURCES = new Set(["marathonisrael.co.il", "3plus.co.il"]);
+  const sameRaceNearby = (a, b) =>
+    normalizeName(a.name) === normalizeName(b.name) && Math.abs(Date.parse(a.date) - Date.parse(b.date)) <= 21 * 864e5;
+  israelMerged = israelMerged.filter(
+    (e) => e.source !== "runpanel.co.il" || !israelMerged.some((o) => ORGANIZER_SOURCES.has(o.source) && sameRaceNearby(o, e))
+  );
+  israelMerged = israelMerged
+    .filter((e) => e.date >= today && !/מרוץ הילדים/.test(e.name))
+    .sort((a, b) => a.date.localeCompare(b.date));
 
   const international = aimsRes.status === "fulfilled" ? aimsRes.value : [];
   const utmbSeries = utmbRes.status === "fulfilled" ? utmbRes.value : [];
