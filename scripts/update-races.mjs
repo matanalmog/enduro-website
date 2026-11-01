@@ -396,6 +396,13 @@ const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרוץ מדבר(?!י)/, code: "DRMR26", organizer: "Shvoong" },
   { pattern: /עיר ועמק|עמק המעיינות/, code: "EMEK26", organizer: "Shvoong" },
   { pattern: /DMR|דימונה/, code: "dmr27_enduro", organizer: "DMR דימונה צ'לנג'" },
+  // שוונג: קופון ENDURO הכללי לכל האירועים שלהם בלי קוד ייעודי (לא כולל מקצי משפחות).
+  // מייל שוונג 19.05.2026 + אישור תומר 01.11.2026. חייב להישאר אחרי הקודים הייעודיים של שוונג.
+  {
+    pattern: /מרוץ נשר|חופים נתניה|מרוץ הגבורה|מרוץ קיסריה|מרוץ חדרה|מרוץ סביון|לילה.*(קרית|קריית) גת|לילה.*באר שבע|קרית אונו|גני תקווה|קרית אתא|קריית אתא/,
+    code: "ENDURO",
+    organizer: "Shvoong (לא כולל מקצי משפחות)",
+  },
 ];
 
 function matchKnownDiscountCode(name) {

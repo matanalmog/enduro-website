@@ -45,8 +45,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2.5, 5, 10 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "Shvoong (לא כולל מקצי משפחות)"
     },
     {
       "name": "מרוץ באר יעקב",
@@ -229,8 +229,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "Shvoong (לא כולל מקצי משפחות)"
     },
     {
       "name": "אולטרה יישובי העוטף",
@@ -273,8 +273,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "1.2, 5, 10, 21 ק\"מ",
       "isNew": true,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "Shvoong (לא כולל מקצי משפחות)"
     },
     {
       "name": "מרתון טבריה",
@@ -435,8 +435,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10, 21.1 ק\"מ",
       "isNew": true,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "Shvoong (לא כולל מקצי משפחות)"
     },
     {
       "name": "מרוץ הרצליה 2027",
