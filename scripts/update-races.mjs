@@ -371,7 +371,8 @@ function parseUtmbDate(str) {
 // התאמה אוטומטית לפי שם המרוץ. אם מארגן מתחדש קוד משנה לשנה, יש לעדכן כאן ידנית.
 const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרוץ הסרגל/, code: "enduro26", organizer: "3plus" },
-  { pattern: /אולטרה עוטף/, code: "enduro26", organizer: "3plus" },
+  { pattern: /אולטרה (יישובי ה)?עוטף/, code: "enduro26", organizer: "3plus" },
+  { pattern: /מרוץ אייל/, code: "ER26RG", organizer: "מרוץ אייל" },
   { pattern: /מרתון תל אביב/, code: "785859", organizer: "Kapaim Active" },
   { pattern: /בשביל הבנים/, code: "480944", organizer: "Kapaim Active" },
   { pattern: /מרתון (ה)?ירושלים/, code: "f3a48", organizer: "מרתון ווינר ירושלים" },
