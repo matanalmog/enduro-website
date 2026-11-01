@@ -390,6 +390,8 @@ const KNOWN_DISCOUNT_CODES = [
   { pattern: /מרתון טבריה/, code: "TIBERIASGROUP", organizer: "Gold-Fish" },
   { pattern: /ים המלח/, code: "ENDURO10", organizer: "מרתון ים המלח (לבחור קבוצת ENDURO)" },
   { pattern: /מרתון.*מדברי|מדברי.*אילת/, code: "DES26", organizer: "מרתון ישראל" },
+  // מרתון ישראל: 10% בקוד ENDURO לכל המרוצים שלהם ב-2027 (תומר 01.11.2026). אילת 2026 נשאר עם DES26.
+  { pattern: /חצי מרתון התבור|הרי הגעש|חרמון|הבוז.ולה|מרוץ התקווה|מרוץ העגור/, code: "ENDURO", organizer: "מרתון ישראל (10%)" },
   { pattern: /מרתון תל אביב/, code: "503842", organizer: "Kapaim Active" },
   { pattern: /בשביל הבנים/, code: "480944", organizer: "Kapaim Active" },
   { pattern: /מרתון (ה)?ירושלים/, code: "f3a48", organizer: "מרתון ווינר ירושלים" },

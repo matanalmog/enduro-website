@@ -391,8 +391,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "5, 10, 21.1 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "מרתון ישראל (10%)"
     },
     {
       "name": "מרוץ שביל כרמל-כנרת",
@@ -424,8 +424,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "3, 6.5, 15, 35.17 ק\"מ",
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "מרתון ישראל (10%)"
     },
     {
       "name": "מרוץ קיסריה",
@@ -489,8 +489,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "2.7, 6, 10 ק\"מ",
       "isNew": true,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "מרתון ישראל (10%)"
     },
     {
       "name": "מרוץ הבוז׳ולה",
@@ -500,8 +500,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": "5, 8, 11 ק\"מ",
       "isNew": true,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "מרתון ישראל (10%)"
     },
     {
       "name": "מרוץ התקווה",
@@ -511,8 +511,8 @@
       "source": "runpanel.co.il",
       "distanceLabel": null,
       "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "מרתון ישראל (10%)"
     },
     {
       "name": "מרוץ העגור",
@@ -521,8 +521,8 @@
       "link": "https://www.marathonisrael.co.il/event/%d7%9e%d7%a8%d7%95%d7%a5-%d7%94%d7%a2%d7%92%d7%95%d7%a8/",
       "source": "marathonisrael.co.il",
       "isNew": true,
-      "discountCode": null,
-      "discountOrganizer": null
+      "discountCode": "ENDURO",
+      "discountOrganizer": "מרתון ישראל (10%)"
     }
   ],
   "international": [
