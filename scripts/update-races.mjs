@@ -174,6 +174,9 @@ let runpanelTextRows = [];
 const MANUAL_DISTANCES = [
   { pattern: /מרוץ העגור/, label: '4, 10, 21.1 ק"מ' },
   { pattern: /אולטרה (יישובי ה)?עוטף/, label: '21.1, 42, 108 ק"מ' },
+  // תומר 02.11.2026: הרצליה וראש העין 5 ו-10 (באתרים עדיין "פרטים בהמשך").
+  { pattern: /מרוץ הרצליה/, label: '5, 10 ק"מ' },
+  { pattern: /מרוץ (הבנים )?ראש העין/, label: '5, 10 ק"מ' },
 ];
 
 function fillMissingDistances(events) {

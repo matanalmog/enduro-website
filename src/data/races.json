@@ -374,7 +374,8 @@
       "source": "realtiming.co.il",
       "isNew": true,
       "discountCode": null,
-      "discountOrganizer": null
+      "discountOrganizer": null,
+      "distanceLabel": "5, 10 ק\"מ"
     },
     {
       "name": "מרתון ירושלים",
@@ -450,7 +451,8 @@
       "source": "realtiming.co.il",
       "isNew": true,
       "discountCode": null,
-      "discountOrganizer": null
+      "discountOrganizer": null,
+      "distanceLabel": "5, 10 ק\"מ"
     },
     {
       "name": "מרוץ מודיעין",
