@@ -217,6 +217,24 @@ export const onboardingSteps: OnboardingStep[] = [
   },
 ];
 
+// סמסונג (תומר 1.11.2026): נבדק מול watchletic.com והבלוג של Final Surge. ייבוא אימונים מתוכננים ב-Watchletic
+// הוא חלק מ-Watchletic Club בתשלום (בניגוד לנוסח שהגיע מ-Gemini, שטען שזה חינמי).
+onboardingSteps.push({
+  id: "samsung-watch",
+  title: "Samsung Galaxy Watch",
+  intro: "לשעון של סמסונג אין חיבור ישיר ב-Final Surge. מתחברים דרך אפליקציה לשעוני Wear OS, ויש שתי אפשרויות.",
+  link: { href: "https://www.watchletic.com/wear-os", label: "Watchletic לשעוני Wear OS (באנגלית)" },
+  items: [
+    { text: "Watchletic: מורידים מ-Google Play, מתחברים מתוכה ל-Final Surge ומאשרים גישה. האימונים המתוכננים מגיעים לשעון, ואת האימון של היום פותחים מה-Tile של Watchletic בשעון. אחרי האימון הוא נשלח חזרה ל-Final Surge." },
+    { text: "שימו לב: לפי האתר של Watchletic, העברת האימונים המתוכננים מ-Final Surge לשעון היא חלק מהמנוי בתשלום (Watchletic Club). שליחת אימון שבוצע ל-Final Surge חינמית." },
+    { text: "Sporty Go!: מעלה ל-Final Surge אימונים שבוצעו בשעון, אבל לא מעבירה לשעון אימונים מתוכננים. בשעון פותחים Sporty Go!, מחליקים למעלה בתפריט התחתון, נכנסים ל-Settings, ובקטע Upload to מדליקים את Final Surge." },
+    { text: "ב-Sporty Go! ממשיכים בטלפון שמחובר לשעון ב-Bluetooth: מתחברים ל-Final Surge ומאשרים. כדי להעלות אימון: היסטוריית האימונים במסך הראשי, בוחרים אימון ולוחצים על אייקון ההעלאה הכחול." },
+  ],
+  note: "המידע לפי האתר של Watchletic והבלוג של Final Surge, נבדק בנובמבר 2026. צילומי מסך משעון סמסונג יתווספו.",
+  media: [],
+  ready: true,
+});
+
 onboardingSteps.push({
   id: "sync",
   title: "אימון לא מופיע? בודקים סנכרון של השעון",
@@ -300,6 +318,18 @@ export const onboardingTopics: OnboardingTopic[] = [
       label: "ההסבר הרשמי של Final Surge: Apple Watch Integration Guide (באנגלית)",
     },
     video: { youtubeId: null, title: "חיבור Apple Watch ל-Final Surge" },
+  },
+  {
+    id: "samsung",
+    label: "חיבור לשעון Samsung",
+    icon: "⌚",
+    summary: "Galaxy Watch ושעוני Wear OS: Watchletic או Sporty Go!.",
+    steps: ["samsung-watch"],
+    official: {
+      href: "https://blog.finalsurge.com/sync-workouts-from-sporty-go-wear-os-smartwatch-app/",
+      label: "ההסבר הרשמי של Final Surge: Sync Workouts from Sporty Go! (באנגלית)",
+    },
+    video: { youtubeId: null, title: "חיבור שעון Samsung ל-Final Surge" },
   },
   {
     id: "strava",
