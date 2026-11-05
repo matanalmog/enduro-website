@@ -39,4 +39,4 @@ draft: true
 
 ## מקורות
 
-- Martinez, M.W., Chung, E.H., Thompson, A.A., & Baggish, A.L. (2021). Coronavirus Disease 2019 and the Athletic Heart: Emerging Perspectives on Pathology, Risks, and Return to Play. *JAMA Cardiology*, 6(2), 219-227.
+- Kim, J.H., Levine, B.D., Phelan, D., Emery, M.S., Martinez, M.W., Chung, E.H., Thompson, P.D., & Baggish, A.L. (2021). Coronavirus Disease 2019 and the Athletic Heart: Emerging Perspectives on Pathology, Risks, and Return to Play. *JAMA Cardiology*, 6(2), 219-227. [PubMed](https://pubmed.ncbi.nlm.nih.gov/33104154/)
