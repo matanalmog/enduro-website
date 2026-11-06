@@ -6,7 +6,7 @@ keywords: ["ריצה ארוכה בחורף", "שתייה בריצה", "תדלו�
 ogImage: "/images/gallery/winter-03.jpg"
 publishDate: 2026-11-21
 weekNumber: 14
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/rehearsing-race-clothing/) דיברנו על תרגול ביגוד המרוץ. הפעם נרחיב את המבט: מה משתנה בריצה הארוכה כשעוברים מריצות קיץ לריצות חורף?

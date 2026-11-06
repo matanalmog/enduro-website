@@ -6,7 +6,7 @@ keywords: ["נעלי מרתון", "נעלי ריצה", "מתי להחליף נע
 ogImage: "/images/gallery/trail-16.jpg"
 publishDate: 2026-11-26
 weekNumber: 15
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/long-run-in-winter/) דיברנו על הריצה הארוכה בחורף. הפעם נעבור לפריט שנמצא עם הרגליים שלנו בכל אחד מ-42.2 הקילומטרים: נעלי הריצה.

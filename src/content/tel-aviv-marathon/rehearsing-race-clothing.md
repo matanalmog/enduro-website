@@ -6,7 +6,7 @@ keywords: ["ביגוד למרתון", "מה ללבוש במרתון", "שפשו�
 ogImage: "/images/gallery/trail-21.jpg"
 publishDate: 2026-11-19
 weekNumber: 13
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/recovery-during-heavy-weeks/) דיברנו על התאוששות בשבועות העומס. הפעם נעסוק במשהו שנראה שולי, אבל יכול להשפיע מאוד על חוויית הריצה: הביגוד שתלבשו ביום המרתון.

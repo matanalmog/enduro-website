@@ -6,7 +6,7 @@ keywords: ["חימום לפני מרתון", "חימום לפני מרוץ", "ב
 ogImage: "/images/gallery/group-16.jpg"
 publishDate: 2026-11-28
 weekNumber: 16
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/race-day-shoes/) דיברנו על נעלי המרתון. הפעם נגיע לרגעים שלפני הזינוק: איך מנהלים נכון את הזמן בין ההגעה לאזור המרוץ לבין יריית הפתיחה, במיוחד כשמגיעים מוקדם וממתינים בבוקר קר.

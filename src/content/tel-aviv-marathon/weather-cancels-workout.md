@@ -6,7 +6,7 @@ keywords: ["אימון חורף מבוטל", "ריצה בגשם", "הכנה למ
 ogImage: "/images/gallery/winter-06.jpg"
 publishDate: 2026-11-12
 weekNumber: 11
-draft: true
+draft: false
 ---
 
 ב[כתבה הקודמת](/tel-aviv-marathon/long-run-fueling/) דיברנו על תדלוק נכון בריצות הארוכות. הפעם נעסוק באתגר אחר של תקופת ההכנה למרתון תל אביב 2027: מזג האוויר.
