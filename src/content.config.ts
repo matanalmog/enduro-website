@@ -8,6 +8,8 @@ const seoFields = {
   title: z.string(),
   description: z.string(),
   focusKeyword: z.string().optional(),
+  // keywords: מילות מפתח משניות לכתבה (meta keywords + keywords ב-JSON-LD של Article). לבקשת תומר, 6/11/2026.
+  keywords: z.array(z.string()).optional(),
   ogImage: z.string().optional(),
   draft: z.boolean().default(false),
 };

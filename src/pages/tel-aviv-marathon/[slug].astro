@@ -38,6 +38,7 @@ const schema = [
     "description": post.data.description,
     "datePublished": post.data.publishDate.toISOString(),
     "author": { "@type": "Person", "name": "תומר אלמוג" },
+    ...(post.data.keywords?.length ? { "keywords": post.data.keywords.join(", ") } : {}),
   },
   {
     "@context": "https://schema.org",
@@ -53,6 +54,7 @@ const schema = [
 <BaseLayout
   title={post.data.title}
   description={post.data.description}
+  keywords={post.data.keywords}
   canonicalPath={`/tel-aviv-marathon/${post.id}/`}
   ogType="article"
   ogImage={post.data.ogImage}

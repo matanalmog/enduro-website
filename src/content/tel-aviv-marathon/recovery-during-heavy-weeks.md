@@ -2,6 +2,7 @@
 title: "התאוששות בשבועות העומס בהכנה למרתון תל אביב 2027: שינה, ימים קלים וסימני אזהרה"
 description: "למה שבועות העומס הגבוה בהכנה למרתון הם גם העונה שבה קל יותר להצטנן, מה המחקר אומר על הקשר בין עומס אימונים לבין מחלות דרכי נשימה, ואיך שומרים על עצמכם."
 focusKeyword: "התאוששות בהכנה למרתון"
+keywords: ["התאוששות בהכנה למרתון", "שינה ורצים", "הצטננות ואימונים", "עומס אימונים", "מרתון תל אביב 2027"]
 ogImage: "/images/gallery/group-03.jpg"
 publishDate: 2026-11-14
 weekNumber: 12
@@ -190,7 +191,7 @@ draft: true
 
 כתבו לי באינסטגרם או בוואטסאפ:
 
-[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) | [וואטסאפ](https://wa.me/972526982993)
+[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) | [טיקטוק](https://www.tiktok.com/@tomeralmog_coach) | [פייסבוק](https://www.facebook.com/tomeral/) | [וואטסאפ](https://wa.me/972526982993) | [האתר](/)
 
 ## מקורות
 

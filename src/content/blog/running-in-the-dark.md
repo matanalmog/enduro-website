@@ -2,6 +2,7 @@
 title: "ריצה בחושך בחורף: נראות, תאורה ובחירת מסלול"
 description: "איך גורמים לנהגים לזהות אתכם מוקדם יותר בריצה בחושך? מחזירי אור על המפרקים, פנס ריצה, ביגוד מתאים ובחירת מסלול בטוח."
 focusKeyword: "ריצה בחושך"
+keywords: ["ריצה בחושך", "ריצה בלילה", "מחזירי אור לריצה", "פנס ריצה", "בטיחות בריצה"]
 ogImage: "/images/gallery/track-01.jpg"
 ogImageAlt: "רץ על מסלול אתלטיקה מואר בשעות החשכה"
 publishDate: 2026-11-24
@@ -140,7 +141,7 @@ draft: true
 
 איך אתם מתמודדים עם ריצה בחושך? פנס ראש, וסט מחזיר אור או מסלול מואר? כתבו לי באינסטגרם או בוואטסאפ.
 
-[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) | [וואטסאפ](https://wa.me/972526982993)
+[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) | [טיקטוק](https://www.tiktok.com/@tomeralmog_coach) | [פייסבוק](https://www.facebook.com/tomeral/) | [וואטסאפ](https://wa.me/972526982993) | [האתר](/)
 
 ## מקורות
 

@@ -2,6 +2,7 @@
 title: "כשמזג האוויר מבטל אימון בהכנה למרתון תל אביב 2027: מה עושים עכשיו"
 description: "סופת גשמים, ברקים או רוח חזקה ביטלו לכם אימון? מתי עוברים להליכון, מתי מזיזים אימון ומתי פשוט מוותרים? מדריך לניהול אימוני החורף בהכנה למרתון."
 focusKeyword: "אימון חורף מבוטל"
+keywords: ["אימון חורף מבוטל", "ריצה בגשם", "הכנה למרתון", "מרתון תל אביב 2027", "הליכון במקום ריצה"]
 ogImage: "/images/gallery/winter-06.jpg"
 publishDate: 2026-11-12
 weekNumber: 11
@@ -129,7 +130,7 @@ draft: true
 
 כתבו לי באינסטגרם או בוואטסאפ:
 
-[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) | [וואטסאפ](https://wa.me/972526982993)
+[אינסטגרם](https://www.instagram.com/tomeralmog_coach/) | [טיקטוק](https://www.tiktok.com/@tomeralmog_coach) | [פייסבוק](https://www.facebook.com/tomeral/) | [וואטסאפ](https://wa.me/972526982993) | [האתר](/)
 
 ## מקורות והרחבה
 
