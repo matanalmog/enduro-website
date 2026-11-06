@@ -2,7 +2,7 @@
 title: "כשמזג האוויר מבטל אימון בהכנה למרתון תל אביב 2027: מה עושים עכשיו"
 description: "סופת גשמים או רוח חזקה ביטלו לכם אימון? איך מחליטים בין הליכון, הזזת יום לאימון אחר, או ויתור, ואיך שומרים על אימוני המפתח בחורף בלי לשבור את התוכנית."
 focusKeyword: "אימון חורף מבוטל"
-ogImage: "/images/gallery/group-11.jpg"
+ogImage: "/images/gallery/winter-06.jpg"
 publishDate: 2026-11-12
 weekNumber: 11
 draft: true
