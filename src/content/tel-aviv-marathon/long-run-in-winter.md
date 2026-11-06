@@ -2,7 +2,7 @@
 title: "הריצה הארוכה בחורף בהכנה למרתון תל אביב 2027: ביגוד, שתייה ותדלוק"
 description: "מה שונה בריצה הארוכה בחורף לעומת הקיץ: ביגוד שכבות, למה הצמא מטעה בקור, ולמה כמות התדלוק לא משתנה גם אם לא מרגישים צמאים או רעבים כמו בחום."
 focusKeyword: "ריצה ארוכה בחורף"
-ogImage: "/images/gallery/trail-29.jpg"
+ogImage: "/images/gallery/winter-03.jpg"
 publishDate: 2026-11-21
 weekNumber: 14
 draft: true
