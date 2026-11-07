@@ -22,6 +22,8 @@ export interface Props {
   noindex?: boolean;
   /** אובייקט/מערך JSON-LD אחד או יותר (LocalBusiness, Person, Review, FAQPage...) */
   schema?: Record<string, unknown> | Record<string, unknown>[];
+  /** מילות מפתח לכתבה (meta keywords) */
+  keywords?: string[];
 }
 
 const {
@@ -32,6 +34,7 @@ const {
   ogType = "website",
   noindex = false,
   schema,
+  keywords,
 } = Astro.props;
 
 const siteName = "Enduro | sport4you.co.il";
@@ -73,6 +76,7 @@ const gaMeasurementId = "G-GFM3NPHDKY";
 
     <title>{title} | {siteName}</title>
     <meta name="description" content={description} />
+    {keywords && keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 

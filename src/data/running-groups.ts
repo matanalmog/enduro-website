@@ -126,8 +126,8 @@ export const runningGroups: RunningGroup[] = [
       "מעוניינים להיות בין הראשונים לדעת כשהקבוצה תיפתח? השאירו פרטים בטופס למטה ונעדכן אתכם ברגע שיש תאריך.",
     ],
     image: {
-      src: "/images/action/tel-aviv-group-beach-drill.jpg",
-      alt: "אימון ריצה וזריזות על חוף הים בתל אביב",
+      src: "/images/gallery/group-13.jpg",
+      alt: "קבוצת רצים בחולצות לבנות עם ידיים למעלה על הדשא מול הים",
     },
     faq: [
       {
