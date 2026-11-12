@@ -6,6 +6,9 @@ export interface NavChild {
   href: string;
   groupLabel?: string;
   groupHref?: string; // כשהכותרת של הקבוצה היא גם קישור לעמוד
+  // קבוצה מתקפלת (12.11.2026): כפתור צהוב שפותח את הפריטים של אותה קבוצה
+  toggleGroup?: string; // הטקסט של הכפתור, מופיע לפני הפריט הראשון בקבוצה
+  group?: string; // מזהה הקבוצה שאליה הפריט שייך
 }
 
 export interface NavItem {
@@ -47,14 +50,14 @@ const navItems: NavItem[] = [
     children: [
       { label: "שיפור יכולות אתלטיות לכדורגלנים", href: "/kids-coaching/football-conditioning/", groupLabel: "יכולות אתלטיות" },
       { label: "הכנה לכיתות ספורט", href: "/kids-coaching/ramat-hasharon/" },
-      { label: "מאמן כושר אישי לילדים", href: "/kids-coaching/ramat-hasharon/", groupLabel: "ילדים" },
-      { label: "מאמן כושר אישי לילדים בהרצליה", href: "/kids-coaching/herzliya/" },
-      { label: "מאמן כושר אישי לילדים בתל אביב", href: "/kids-coaching/tel-aviv/" },
-      { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
       { label: "מאמן כושר אישי לגיל השלישי", href: "/personal-coaching/seniors/", groupLabel: "גיל שלישי" },
       { label: "מאמן כושר אישי למבוגרים", href: "/personal-coaching/ramat-hasharon/", groupLabel: "אימון למבוגרים" },
       { label: "מאמן כושר אישי בהרצליה", href: "/personal-coaching/herzliya/" },
       { label: "מאמן כושר אישי בתל אביב", href: "/personal-coaching/tel-aviv/" },
+      { label: "מאמן כושר אישי לילדים", href: "/kids-coaching/ramat-hasharon/", groupLabel: "ילדים" },
+      { label: "מאמן כושר אישי לילדים בהרצליה", href: "/kids-coaching/herzliya/" },
+      { label: "מאמן כושר אישי לילדים בתל אביב", href: "/kids-coaching/tel-aviv/" },
+      { label: "קבוצות אתלטיקה", href: "/kids-coaching/athletics-groups/" },
     ],
   },
   { label: "בלוג", href: "/blog/" },
@@ -64,10 +67,10 @@ const navItems: NavItem[] = [
     children: [
       { label: "גלריה", href: "/gallery/" },
       { label: "מחשבוני ריצה", href: "/calculators/" },
-      { label: "שאלון קליטת מתאמן", href: "/questionnaire/" },
-      { label: "הסכם ליווי ריצה", href: "/agreement/" },
-      { label: "חיבור אפליקציות", href: "/start-here/" },
-      { label: "אפליקציית אימון", href: "/training-app/" },
+      { label: "שאלון קליטה", href: "/questionnaire/", toggleGroup: "מתאמני ENDURO", group: "enduro-athletes" },
+      { label: "הסכם ליווי", href: "/agreement/", group: "enduro-athletes" },
+      { label: "חיבור אפליקציות", href: "/start-here/", group: "enduro-athletes" },
+      { label: "אפליקציות אימון", href: "/training-app/", group: "enduro-athletes" },
     ],
   },
 ];
@@ -125,7 +128,15 @@ const ctaHref = isHome ? "#lead-form" : "/#lead-form";
                         <a href={child.groupHref}>{child.groupLabel}</a>
                       </li>
                     )}
-                    <li>
+                    {child.toggleGroup && (
+                      <li class="submenu-toggle-item">
+                        <button type="button" class="submenu-toggle" data-toggle-group={child.group} aria-expanded="false">
+                          {child.toggleGroup}
+                          <span class="chevron" aria-hidden="true">▾</span>
+                        </button>
+                      </li>
+                    )}
+                    <li class:list={[{ "grouped-item": child.group }]} data-group={child.group}>
                       <a href={child.href}>{child.label}</a>
                     </li>
                   </>
@@ -357,6 +368,47 @@ const ctaHref = isHome ? "#lead-form" : "/#lead-form";
     text-decoration: underline;
   }
 
+  .submenu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.6rem var(--space-2);
+    border: 0;
+    border-top: 1px solid var(--color-navy-700);
+    margin-top: 0.25rem;
+    background: transparent;
+    color: var(--color-gold-500);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: start;
+    cursor: pointer;
+  }
+
+  .submenu-toggle:hover,
+  .submenu-toggle:focus-visible {
+    color: var(--color-white);
+    background: var(--color-navy-700);
+  }
+
+  .submenu-toggle[aria-expanded="true"] .chevron {
+    transform: rotate(180deg);
+  }
+
+  .grouped-item {
+    display: none;
+  }
+
+  .submenu.group-open .grouped-item {
+    display: list-item;
+  }
+
+  .submenu.group-open .grouped-item a {
+    padding-inline-start: calc(var(--space-2) + 0.75rem);
+  }
+
   .submenu li:first-child.submenu-group-label {
     border-top: none;
     margin-top: 0;
@@ -459,6 +511,17 @@ const ctaHref = isHome ? "#lead-form" : "/#lead-form";
   toggle?.addEventListener("click", () => {
     const isOpen = nav?.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  });
+
+  // קבוצה מתקפלת בתפריט (מתאמני ENDURO): הכפתור פותח וסוגר את הפריטים שלה
+  document.querySelectorAll(".submenu-toggle").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const submenu = button.closest(".submenu");
+      const open = submenu?.classList.toggle("group-open");
+      button.setAttribute("aria-expanded", String(Boolean(open)));
+    });
   });
 
   // במובייל: קליק על פריט עם תפריט-משנה פותח/סוגר אותו במקום לנווט מיד
