@@ -7,27 +7,31 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const ctaHref = "/?src=calculators#lead-form";
 
 const calcNav = [
+  { href: "#splits", label: "קצב וזמני ביניים" },
   { href: "#hr-zones", label: "זוני דופק" },
   { href: "#pace-zones", label: "זוני קצב אימון" },
   { href: "#interval-track", label: "מסלול-כביש" },
-  { href: "#treadmill", label: "המרת הליכון" },
+  { href: "#treadmill", label: "המרת מסילה" },
   { href: "#predictor", label: "מנבא תוצאות" },
-  { href: "/tel-aviv-marathon/#pace-calculator", label: "קצב וזמן סיום" },
+  { href: "#vo2max", label: "VO₂max" },
+  { href: "#age-grade", label: "דירוג לפי גיל" },
 ];
 ---
 
 <BaseLayout
   title="מחשבוני ריצה"
-  description="מחשבוני ריצה מבית ENDURO: זוני דופק, זוני קצב אימון, המרת קצב מסלול-כביש, המרת הליכון, ומנבא תוצאות מרוץ. כלים חינמיים למאמנים ורצים."
+  description="מחשבוני ריצה מבית ENDURO: קצב וזמני ביניים, זוני דופק (כולל Karvonen), זוני קצב אימון, המרת קצב מסלול-כביש, המרת מסילה, מנבא תוצאות, VO₂max משוער ודירוג לפי גיל. כלים חינמיים למאמנים ורצים."
   canonicalPath="/calculators/"
 >
   <section class="hero">
     <div class="container hero-inner">
       <h1>מחשבוני ריצה</h1>
       <p class="lead">
-        כלים מהירים לתכנון האימונים שלכם: זוני דופק, זוני קצב, המרות בין
-        מסלול, כביש והליכון, ומנבא תוצאות. כל המחשבונים כאן הם כלי עזר כללי,
-        לא תחליף לתוכנית אימונים מותאמת אישית.
+        כלים מהירים לתכנון האימונים שלכם: קצב, זמן סיום וזמני ביניים, זוני
+        דופק לפי דופק מקסימלי או לפי דופק מנוחה (Karvonen), זוני קצב אימון,
+        המרות בין מסלול, כביש ומסילה, מנבא תוצאות, VO₂max משוער ודירוג תוצאה
+        לפי גיל. כל המחשבונים כאן הם כלי עזר כללי, לא תחליף לתוכנית אימונים
+        מותאמת אישית.
       </p>
       <div class="hero-actions">
         <a href={ctaHref} class="btn btn-primary">בדקו התאמה לתוכנית אישית &larr;</a>
@@ -41,8 +45,77 @@ const calcNav = [
     ))}
   </nav>
 
+  <!-- ===================== קצב וזמני ביניים ===================== -->
+  <section class="container section section-muted" id="splits">
+    <h2>מחשבון קצב וזמני ביניים</h2>
+    <p class="section-note">
+      בחרו מרחק, ואז הזינו זמן סיום או קצב לק"מ. המחשבון ישלים את הנתון החסר,
+      יציג מהירות בקמ"ש ויבנה טבלת זמני ביניים לכל ק"מ (במרתון: כל 5 ק"מ).
+      מתכוננים למרתון תל אביב? יש גם <a href="/tel-aviv-marathon/#pace-calculator">מחשבון קצב בעמוד מרתון תל אביב</a>.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-row">
+        <label for="sp-distance">מרחק</label>
+        <select id="sp-distance">
+          <option value="5">5 ק"מ</option>
+          <option value="10" selected>10 ק"מ</option>
+          <option value="21.0975">חצי מרתון (21.1 ק"מ)</option>
+          <option value="42.195">מרתון (42.2 ק"מ)</option>
+          <option value="custom">מרחק אחר</option>
+        </select>
+      </div>
+
+      <div class="calc-panel" id="sp-custom-panel" hidden>
+        <label for="sp-custom">מרחק בק"מ</label>
+        <input type="number" id="sp-custom" min="0.1" max="250" step="0.01" placeholder="לדוגמה 15" inputmode="decimal" />
+      </div>
+
+      <div class="calc-panel">
+        <label id="sp-time-label">זמן סיום (שעות : דקות : שניות)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="sp-time-label">
+          <input type="number" id="sp-time-h" min="0" max="99" placeholder="שע" inputmode="numeric" aria-label="שעות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="sp-time-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="sp-time-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות" />
+        </div>
+      </div>
+
+      <div class="calc-panel">
+        <label id="sp-pace-label">או קצב (דקות : שניות לק"מ)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="sp-pace-label">
+          <input type="number" id="sp-pace-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות לק&quot;מ" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="sp-pace-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות לק&quot;מ" />
+        </div>
+        <p class="calc-hint">אם מילאתם גם זמן וגם קצב, השדה שעודכן אחרון קובע.</p>
+      </div>
+
+      <button type="button" id="sp-submit" class="btn btn-primary">חשבו</button>
+
+      <p id="sp-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="sp-results" class="calc-results" hidden>
+        <p id="sp-result-line" class="calc-result-line"></p>
+        <p id="sp-speed-line" class="calc-result-sub"></p>
+        <div class="table-wrap">
+          <table class="calc-splits">
+            <thead><tr><th>נקודה</th><th>זמן מצטבר</th></tr></thead>
+            <tbody id="sp-splits-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="calc-disclaimer">
+        החישוב מניח קצב אחיד לאורך כל המרחק. במרוץ אמיתי עליות, רוח, חום
+        ותחנות שתייה משנים את הקצב בפועל.
+      </p>
+    </div>
+  </section>
+
   <!-- ===================== זוני דופק ===================== -->
-  <section class="container section section-muted" id="hr-zones">
+  <section class="container section" id="hr-zones">
     <h2>מחשבון זוני דופק</h2>
     <p class="section-note">
       חשבו את זוני האימון שלכם לפי דופק, בשתי שיטות נפוצות: אחוז מהדופק
@@ -100,7 +173,7 @@ const calcNav = [
   </section>
 
   <!-- ===================== זוני קצב אימון ===================== -->
-  <section class="container section" id="pace-zones">
+  <section class="container section section-muted" id="pace-zones">
     <h2>מחשבון זוני קצב אימון</h2>
     <p class="section-note">
       הזינו תוצאה ממרוץ אחרון, ובחרו שיטה לחישוב קצבי האימון: Daniels (VDOT),
@@ -160,7 +233,7 @@ const calcNav = [
   </section>
 
   <!-- ===================== מסלול-כביש (אינטרוולים) ===================== -->
-  <section class="container section section-muted" id="interval-track">
+  <section class="container section" id="interval-track">
     <h2>מחשבון קצב אינטרוולים: מסלול &harr; כביש</h2>
     <p class="section-note">
       המרה בין קצב ריצה בכביש (דקות לק"מ) לזמני הקפה במסלול אתלטיקה, לתכנון
@@ -221,11 +294,11 @@ const calcNav = [
     </div>
   </section>
 
-  <!-- ===================== המרת הליכון ===================== -->
-  <section class="container section" id="treadmill">
-    <h2>מחשבון המרת הליכון</h2>
+  <!-- ===================== המרת מסילה ===================== -->
+  <section class="container section section-muted" id="treadmill">
+    <h2>מחשבון המרת מסילה</h2>
     <p class="section-note">
-      המרה בין קצב ריצה בכביש (דקות לק"מ) למהירות הליכון (קמ"ש), ולהפך.
+      המרה בין קצב ריצה בכביש (דקות לק"מ) למהירות מסילה (קמ"ש), ולהפך.
     </p>
 
     <div class="calculator">
@@ -257,7 +330,7 @@ const calcNav = [
       </div>
 
       <p class="calc-disclaimer">
-        טיפ מקצועי נפוץ: ריצה על הליכון בשיפוע 0% קלה יותר מריצה בכביש
+        טיפ מקצועי נפוץ: ריצה על מסילה בשיפוע 0% קלה יותר מריצה בכביש
         (אין התנגדות רוח), לכן רבים מוסיפים כ-1% שיפוע כדי לדמות מאמץ דומה
         לחוץ.
       </p>
@@ -265,7 +338,7 @@ const calcNav = [
   </section>
 
   <!-- ===================== מנבא תוצאות ===================== -->
-  <section class="container section section-muted" id="predictor">
+  <section class="container section" id="predictor">
     <h2>מחשבון מנבא תוצאות</h2>
     <p class="section-note">
       לפי נוסחת Riegel המוכרת: הזינו תוצאה ממרוץ אחד, וקבלו הערכה לזמן צפוי
@@ -314,6 +387,133 @@ const calcNav = [
       </p>
     </div>
   </section>
+
+  <!-- ===================== VO2max ===================== -->
+  <section class="container section section-muted" id="vo2max">
+    <h2>מחשבון צריכת חמצן מרבית (VO₂max)</h2>
+    <p class="section-note">
+      הזינו תוצאת מרוץ, וקבלו הערכה של צריכת החמצן המרבית שלכם (במ"ל לק"ג
+      לדקה) לפי נוסחת Daniels-Gilbert, אותה נוסחה שעליה מבוסס ערך ה-VDOT.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-row">
+        <label for="vo2-distance">מרחק המרוץ</label>
+        <select id="vo2-distance">
+          <option value="0.8">800 מ'</option>
+          <option value="1.5">1,500 מ'</option>
+          <option value="1.609344">מייל (1,609 מ')</option>
+          <option value="3">3,000 מ'</option>
+          <option value="5">5 ק"מ</option>
+          <option value="10" selected>10 ק"מ</option>
+          <option value="21.0975">חצי מרתון</option>
+          <option value="42.195">מרתון מלא</option>
+          <option value="custom">מרחק אחר</option>
+        </select>
+      </div>
+
+      <div class="calc-panel" id="vo2-custom-panel" hidden>
+        <label for="vo2-custom">מרחק בק"מ</label>
+        <input type="number" id="vo2-custom" min="0.4" max="100" step="0.01" placeholder="לדוגמה 8" inputmode="decimal" />
+      </div>
+
+      <div class="calc-panel">
+        <label id="vo2-time-label">זמן הסיום (שעות : דקות : שניות)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="vo2-time-label">
+          <input type="number" id="vo2-time-h" min="0" max="9" placeholder="שע" inputmode="numeric" aria-label="שעות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="vo2-time-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="vo2-time-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות" />
+        </div>
+      </div>
+
+      <button type="button" id="vo2-submit" class="btn btn-primary">חשבו VO₂max</button>
+
+      <p id="vo2-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="vo2-results" class="calc-results" hidden>
+        <p id="vo2-result-line" class="calc-result-line"></p>
+        <p id="vo2-note" class="calc-hint" hidden></p>
+      </div>
+
+      <p class="calc-disclaimer">
+        זו הערכה שמחושבת מתוצאת מרוץ, לא מדידה. VO₂max אמיתי נמדד במעבדה
+        במבחן מאמץ עם ניתוח גזים. הערך כאן מושפע גם מחסכוניות הריצה, מהתנאים
+        ביום המרוץ ומרמת המאמץ, ושימושי בעיקר למעקב אחרי שינוי לאורך זמן.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== דירוג לפי גיל ===================== -->
+  <section class="container section" id="age-grade">
+    <h2>מחשבון דירוג לפי גיל (Age Grading)</h2>
+    <p class="section-note">
+      השוו תוצאה לרמת השיא האפשרית לגיל ולמין שלכם. אחוז דירוג הגיל מאפשר
+      להשוות בין רצים בגילאים שונים, ולעקוב אחרי ההתקדמות שלכם גם כשהשנים
+      עוברות.
+    </p>
+
+    <div class="calculator">
+      <div class="calc-row">
+        <label for="ag-distance">מרחק</label>
+        <select id="ag-distance">
+          <option value="5">5 ק"מ</option>
+          <option value="10" selected>10 ק"מ</option>
+          <option value="21">חצי מרתון</option>
+          <option value="42">מרתון מלא</option>
+        </select>
+      </div>
+
+      <div class="calc-row">
+        <label for="ag-sex">מין</label>
+        <select id="ag-sex">
+          <option value="M" selected>גבר</option>
+          <option value="F">אישה</option>
+        </select>
+      </div>
+
+      <div class="calc-panel">
+        <label for="ag-age">גיל ביום המרוץ (18 עד 90)</label>
+        <input type="number" id="ag-age" min="18" max="90" placeholder="לדוגמה 45" inputmode="numeric" />
+      </div>
+
+      <div class="calc-panel">
+        <label id="ag-time-label">זמן הסיום (שעות : דקות : שניות)</label>
+        <div class="calc-time-inputs" role="group" aria-labelledby="ag-time-label">
+          <input type="number" id="ag-time-h" min="0" max="9" placeholder="שע" inputmode="numeric" aria-label="שעות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="ag-time-m" min="0" max="59" placeholder="דק" inputmode="numeric" aria-label="דקות" />
+          <span aria-hidden="true">:</span>
+          <input type="number" id="ag-time-s" min="0" max="59" placeholder="שנ" inputmode="numeric" aria-label="שניות" />
+        </div>
+      </div>
+
+      <button type="button" id="ag-submit" class="btn btn-primary">חשבו דירוג</button>
+
+      <p id="ag-error" class="calc-error" role="alert" hidden></p>
+
+      <div id="ag-results" class="calc-results" hidden>
+        <p id="ag-result-line" class="calc-result-line"></p>
+        <p id="ag-level-line" class="calc-result-sub"></p>
+        <p id="ag-equiv-line" class="calc-result-sub"></p>
+      </div>
+
+      <p class="calc-disclaimer">
+        מקור המקדמים: טבלאות דירוג הגיל לריצות כביש של Alan Jones לשנת 2025
+        (גרסה 2025-07-27), שאושרו על ידי מועצת ריצות המאסטרס למרחקים ארוכים של
+        USATF ומבוססות על שיטת WMA.
+        <a href="https://github.com/AlanLyttonJones/Age-Grade-Tables" target="_blank" rel="noopener">לטבלאות המקור</a>.
+        הרמות המילוליות לפי המקובל ב-WMA: 90% ומעלה רמה עולמית, 80% רמה
+        לאומית, 70% רמה אזורית, 60% רמה מקומית.
+      </p>
+    </div>
+  </section>
+
+  <p class="container calc-general-note">
+    כל המחשבונים בעמוד הם כלי עזר כללי שמבוסס על נוסחאות וטבלאות מקובלות.
+    התוצאות הן הערכה, לא אבחון ולא מרשם אימון אישי.
+  </p>
 
   <div class="container cta-band">
     <p>רוצים תוכנית אימונים שבנויה סביב הקצבים והזוֹנים שלכם, לא טבלה כללית?</p>
@@ -513,6 +713,20 @@ const calcNav = [
     margin-bottom: var(--space-2);
   }
 
+  .calc-result-sub {
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .calc-general-note {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding-top: var(--space-4);
+    margin-bottom: 0;
+  }
+
   .calc-splits {
     width: 100%;
     border-collapse: collapse;
@@ -565,6 +779,137 @@ const calcNav = [
     const n = Number(value);
     return Number.isFinite(n) ? n : null;
   }
+
+  // קורא שדות שעות/דקות/שניות (שדה ריק = 0). מחזיר null אם הפורמט לא תקין.
+  function readHms(ids: string[]): number | null {
+    const parts = ids.map((id) => parseInt((document.getElementById(id) as HTMLInputElement | null)?.value || "0", 10));
+    if (parts.some((p) => Number.isNaN(p) || p < 0)) return null;
+    // השדה הראשון (שעות או דקות) לא מוגבל, השאר עד 59
+    if (parts.slice(1).some((p) => p > 59)) return null;
+    return parts.reduce((acc, p) => acc * 60 + p, 0);
+  }
+
+  function hasAnyValue(ids: string[]): boolean {
+    return ids.some((id) => ((document.getElementById(id) as HTMLInputElement | null)?.value ?? "").trim() !== "");
+  }
+
+  function showCalcError(errorEl: HTMLElement | null, resultsEl: HTMLElement | null, message: string) {
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.hidden = false;
+    }
+    if (resultsEl) resultsEl.hidden = true;
+  }
+
+  // נוסחאות Daniels & Gilbert הפומביות (Running Formula): צריכת החמצן במהירות
+  // נתונה (מטר לדקה), ואחוז ה-VO2max שאפשר להחזיק לאורך זמן נתון (בדקות).
+  function vo2AtVelocity(vMeterPerMin: number): number {
+    return -4.6 + 0.182258 * vMeterPerMin + 0.000104 * vMeterPerMin ** 2;
+  }
+
+  function percentVo2Max(tMinutes: number): number {
+    return 0.8 + 0.1894393 * Math.exp(-0.012778 * tMinutes) + 0.2989558 * Math.exp(-0.1932605 * tMinutes);
+  }
+
+  function danielsVo2Max(distanceKm: number, totalSeconds: number): number {
+    const tMinutes = totalSeconds / 60;
+    return vo2AtVelocity((distanceKm * 1000) / tMinutes) / percentVo2Max(tMinutes);
+  }
+
+  // ---------- קצב וזמני ביניים ----------
+  (function splits() {
+    const distanceSelect = document.getElementById("sp-distance") as HTMLSelectElement | null;
+    const customPanel = document.getElementById("sp-custom-panel");
+    const customInput = document.getElementById("sp-custom") as HTMLInputElement | null;
+    const submitBtn = document.getElementById("sp-submit");
+    const errorEl = document.getElementById("sp-error");
+    const resultsEl = document.getElementById("sp-results");
+    const resultLineEl = document.getElementById("sp-result-line");
+    const speedLineEl = document.getElementById("sp-speed-line");
+    const splitsBody = document.getElementById("sp-splits-body");
+
+    const TIME_IDS = ["sp-time-h", "sp-time-m", "sp-time-s"];
+    const PACE_IDS = ["sp-pace-m", "sp-pace-s"];
+
+    // השדה האחרון שהמשתמש עדכן קובע מה מחושב
+    let lastEdited: "time" | "pace" = "time";
+    TIME_IDS.forEach((id) => document.getElementById(id)?.addEventListener("input", () => (lastEdited = "time")));
+    PACE_IDS.forEach((id) => document.getElementById(id)?.addEventListener("input", () => (lastEdited = "pace")));
+
+    distanceSelect?.addEventListener("change", () => {
+      if (customPanel) customPanel.hidden = distanceSelect.value !== "custom";
+    });
+
+    function formatKm(km: number): string {
+      return `${Number(km.toFixed(2))} ק"מ`;
+    }
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+      const fail = (msg: string) => showCalcError(errorEl, resultsEl, msg);
+
+      let distanceKm: number;
+      if (distanceSelect?.value === "custom") {
+        const custom = numOrNull(customInput?.value ?? "");
+        if (!custom || custom < 0.1 || custom > 250) {
+          fail('נא להזין מרחק תקין בק"מ (0.1 עד 250).');
+          return;
+        }
+        distanceKm = custom;
+      } else {
+        distanceKm = parseFloat(distanceSelect?.value ?? "10");
+      }
+
+      const hasTime = hasAnyValue(TIME_IDS);
+      const hasPace = hasAnyValue(PACE_IDS);
+      if (!hasTime && !hasPace) {
+        fail("נא להזין זמן סיום או קצב.");
+        return;
+      }
+      const usePace = hasPace && (!hasTime || lastEdited === "pace");
+
+      let totalSeconds: number;
+      let paceSecPerKm: number;
+      if (usePace) {
+        const pace = readHms(PACE_IDS);
+        if (pace === null || pace <= 0) {
+          fail('פורמט קצב לא תקין (דקות:שניות לק"מ).');
+          return;
+        }
+        paceSecPerKm = pace;
+        totalSeconds = pace * distanceKm;
+        if (resultLineEl) resultLineEl.textContent = `זמן סיום צפוי: ${formatTime(totalSeconds)}`;
+      } else {
+        const time = readHms(TIME_IDS);
+        if (time === null || time <= 0) {
+          fail("פורמט זמן לא תקין (שעות:דקות:שניות).");
+          return;
+        }
+        totalSeconds = time;
+        paceSecPerKm = time / distanceKm;
+        if (resultLineEl) resultLineEl.textContent = `קצב נדרש: ${formatPace(paceSecPerKm)}`;
+      }
+
+      const kmh = 3600 / paceSecPerKm;
+      if (speedLineEl) speedLineEl.textContent = `מהירות: ${kmh.toFixed(2)} קמ"ש · מרחק: ${formatKm(distanceKm)}`;
+
+      // כל ק"מ, ובמרחקים של 30 ק"מ ומעלה (מרתון) כל 5 ק"מ. השורה האחרונה היא קו הסיום.
+      const step = distanceKm >= 30 ? 5 : 1;
+      const points: number[] = [];
+      for (let km = step; km < distanceKm - 1e-6; km += step) points.push(km);
+      points.push(distanceKm);
+
+      if (splitsBody) {
+        splitsBody.innerHTML = points
+          .map((km, i) => {
+            const label = i === points.length - 1 ? `${formatKm(km)} (סיום)` : formatKm(km);
+            return `<tr><td>${label}</td><td>${formatTime(paceSecPerKm * km)}</td></tr>`;
+          })
+          .join("");
+      }
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
 
   // ---------- זוני דופק ----------
   (function hrZones() {
@@ -673,16 +1018,8 @@ const calcNav = [
       if (resultsEl) resultsEl.hidden = true;
     }
 
-    // נוסחאות Daniels & Gilbert הפומביות (Running Formula) - קירוב לפי המהירות
-    // והזמן של תוצאת המרוץ, לא טבלת הזוֹנים המדויקת מהספר.
-    function vo2AtVelocity(vMeterPerMin: number): number {
-      return -4.6 + 0.182258 * vMeterPerMin + 0.000104 * vMeterPerMin ** 2;
-    }
-
-    function percentVo2Max(tMinutes: number): number {
-      return 0.8 + 0.1894393 * Math.exp(-0.012778 * tMinutes) + 0.2989558 * Math.exp(-0.1932605 * tMinutes);
-    }
-
+    // קירוב לפי נוסחאות Daniels & Gilbert (ראו עזרים משותפים), לא טבלת
+    // הזוֹנים המדויקת מהספר.
     function velocityForVo2(vo2Target: number): number {
       // היפוך הריבועית של vo2AtVelocity: a*v^2 + b*v + c = 0
       const a = 0.000104;
@@ -836,7 +1173,7 @@ const calcNav = [
     });
   })();
 
-  // ---------- המרת הליכון ----------
+  // ---------- המרת מסילה ----------
   (function treadmill() {
     const modeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-tm-mode]"));
     const pacePanel = document.querySelector<HTMLElement>('[data-tm-panel="pace"]');
@@ -887,7 +1224,7 @@ const calcNav = [
           return;
         }
         const kmh = 3600 / paceSecPerKm;
-        if (resultLineEl) resultLineEl.textContent = `מהירות הליכון: ${kmh.toFixed(1)} קמ"ש`;
+        if (resultLineEl) resultLineEl.textContent = `מהירות מסילה: ${kmh.toFixed(1)} קמ"ש`;
       } else {
         const kmh = numOrNull(speedInput?.value ?? "");
         if (!kmh || kmh <= 0) {
@@ -953,6 +1290,136 @@ const calcNav = [
           })
           .join("");
       }
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
+
+  // ---------- VO2max (Daniels-Gilbert) ----------
+  (function vo2max() {
+    const distanceSelect = document.getElementById("vo2-distance") as HTMLSelectElement | null;
+    const customPanel = document.getElementById("vo2-custom-panel");
+    const customInput = document.getElementById("vo2-custom") as HTMLInputElement | null;
+    const submitBtn = document.getElementById("vo2-submit");
+    const errorEl = document.getElementById("vo2-error");
+    const resultsEl = document.getElementById("vo2-results");
+    const resultLineEl = document.getElementById("vo2-result-line");
+    const noteEl = document.getElementById("vo2-note");
+
+    distanceSelect?.addEventListener("change", () => {
+      if (customPanel) customPanel.hidden = distanceSelect.value !== "custom";
+    });
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+      const fail = (msg: string) => showCalcError(errorEl, resultsEl, msg);
+
+      let distanceKm: number;
+      if (distanceSelect?.value === "custom") {
+        const custom = numOrNull(customInput?.value ?? "");
+        if (!custom || custom < 0.4 || custom > 100) {
+          fail('נא להזין מרחק תקין בק"מ (0.4 עד 100).');
+          return;
+        }
+        distanceKm = custom;
+      } else {
+        distanceKm = parseFloat(distanceSelect?.value ?? "10");
+      }
+
+      const totalSeconds = readHms(["vo2-time-h", "vo2-time-m", "vo2-time-s"]);
+      if (totalSeconds === null || totalSeconds <= 0) {
+        fail("פורמט זמן לא תקין (שעות:דקות:שניות).");
+        return;
+      }
+
+      const vo2 = danielsVo2Max(distanceKm, totalSeconds);
+      if (!Number.isFinite(vo2) || vo2 < 10 || vo2 > 95) {
+        fail("התוצאה מחוץ לטווח הסביר. בדקו את המרחק והזמן שהוזנו.");
+        return;
+      }
+      if (resultLineEl) resultLineEl.textContent = `VO₂max משוער: ${vo2.toFixed(1)} מ"ל/ק"ג/דקה`;
+
+      // הנוסחה נבנתה על תוצאות של כ-3.5 דקות עד כ-4 שעות
+      const minutes = totalSeconds / 60;
+      if (noteEl) {
+        noteEl.hidden = minutes >= 3.5 && minutes <= 240;
+        noteEl.textContent = "שימו לב: הנוסחה נבנתה על תוצאות של כ-3.5 דקות עד כ-4 שעות, ולכן מחוץ לטווח הזה ההערכה פחות מדויקת.";
+      }
+      if (resultsEl) resultsEl.hidden = false;
+    });
+  })();
+
+  // ---------- דירוג לפי גיל (Age Grading) ----------
+  (function ageGrade() {
+    // מקדמי גיל לריצות כביש: Alan Jones, 2025 Road Age-Grading Tables
+    // (Version 2025-07-27, אושרו ע"י USATF Masters Long Distance Running Council).
+    // github.com/AlanLyttonJones/Age-Grade-Tables, "2025 Files"/MaleRoadStd2025.xlsx + FemaleRoadStd2025.xlsx
+    // oc = זמן התקן הפתוח (שיא) בשניות; המערכים = מקדם הגיל לגילאי 18 עד 90 (אינדקס 0 = גיל 18).
+    type AgeTable = { oc: Record<string, number> } & Record<string, number[] | Record<string, number>>;
+    const AGE_DATA: Record<"M" | "F", AgeTable> = {
+    M: {
+      oc: { "5": 769, "10": 1584, "21": 3451, "42": 7235 },
+      "5": [0.9995, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.9999, 0.9988, 0.9965, 0.993, 0.9883, 0.9824, 0.9755, 0.9685, 0.9615, 0.9545, 0.9475, 0.9405, 0.9335, 0.9265, 0.9195, 0.9125, 0.9055, 0.8985, 0.8915, 0.8845, 0.8775, 0.8705, 0.8635, 0.8565, 0.8495, 0.8425, 0.8355, 0.8285, 0.8215, 0.8145, 0.8075, 0.8005, 0.7935, 0.7865, 0.7795, 0.7725, 0.7655, 0.7585, 0.7514, 0.7436, 0.7353, 0.7264, 0.7169, 0.7068, 0.696, 0.6847, 0.6728, 0.6603, 0.6472, 0.6334, 0.6191, 0.6042, 0.5887, 0.5726, 0.5558, 0.5385, 0.5206, 0.5021, 0.483, 0.4632, 0.4429],
+      "10": [0.9818, 0.9903, 0.9968, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.9996, 0.9985, 0.9967, 0.9942, 0.9909, 0.9869, 0.9822, 0.9767, 0.9705, 0.9636, 0.9561, 0.9486, 0.9411, 0.9336, 0.9261, 0.9186, 0.9111, 0.9036, 0.8961, 0.8886, 0.8811, 0.8736, 0.8661, 0.8586, 0.8511, 0.8436, 0.8361, 0.8286, 0.8211, 0.8136, 0.8061, 0.7986, 0.7911, 0.7836, 0.7761, 0.7686, 0.7611, 0.7536, 0.7461, 0.7386, 0.7308, 0.7223, 0.7131, 0.7033, 0.6928, 0.6816, 0.6697, 0.6572, 0.644, 0.6301, 0.6156, 0.6004, 0.5845, 0.568, 0.5508, 0.5329, 0.5143, 0.4951, 0.4752, 0.4546],
+      "21": [0.985, 0.995, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.9996, 0.9982, 0.996, 0.9928, 0.9888, 0.9839, 0.9781, 0.9714, 0.9638, 0.956, 0.9483, 0.9405, 0.9327, 0.9249, 0.9171, 0.9094, 0.9016, 0.8938, 0.886, 0.8782, 0.8705, 0.8627, 0.8549, 0.8471, 0.8393, 0.8316, 0.8238, 0.816, 0.8082, 0.8004, 0.7927, 0.7849, 0.7771, 0.7693, 0.7615, 0.7538, 0.746, 0.7382, 0.7304, 0.7223, 0.7135, 0.704, 0.6938, 0.683, 0.6715, 0.6593, 0.6464, 0.6328, 0.6185, 0.6036, 0.588, 0.5717, 0.5547, 0.537, 0.5186, 0.4996, 0.4799, 0.4595, 0.4384],
+      "42": [0.968, 0.982, 0.992, 0.998, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.9999, 0.9979, 0.9934, 0.9865, 0.9783, 0.9701, 0.9619, 0.9537, 0.9455, 0.9373, 0.9291, 0.9209, 0.9127, 0.9045, 0.8963, 0.8881, 0.8799, 0.8717, 0.8635, 0.8553, 0.8471, 0.8389, 0.8307, 0.8225, 0.8143, 0.8061, 0.7979, 0.7897, 0.7815, 0.7733, 0.7651, 0.7569, 0.7487, 0.7405, 0.7323, 0.7241, 0.7155, 0.7063, 0.6963, 0.6857, 0.6743, 0.6623, 0.6495, 0.6361, 0.6219, 0.6071, 0.5915, 0.5753, 0.5583, 0.5407, 0.5223, 0.5033, 0.4835, 0.4631, 0.4419],
+    },
+    F: {
+      oc: { "5": 834, "10": 1726, "21": 3772, "42": 7796 },
+      "5": [0.9953, 1, 1, 1, 1, 1, 1, 1, 1, 0.9997, 0.999, 0.9977, 0.9959, 0.9936, 0.9908, 0.9875, 0.9836, 0.9793, 0.9744, 0.9691, 0.9632, 0.9568, 0.9499, 0.9425, 0.9346, 0.9262, 0.9172, 0.9078, 0.898, 0.8883, 0.8786, 0.8689, 0.8592, 0.8495, 0.8398, 0.8301, 0.8204, 0.8107, 0.8009, 0.7912, 0.7815, 0.7718, 0.7621, 0.7524, 0.7427, 0.733, 0.7233, 0.7136, 0.7038, 0.6941, 0.6844, 0.6747, 0.665, 0.6553, 0.6456, 0.6359, 0.6262, 0.6165, 0.6067, 0.597, 0.5868, 0.5758, 0.564, 0.5515, 0.5382, 0.5242, 0.5094, 0.4938, 0.4775, 0.4604, 0.4426, 0.424, 0.4046],
+      "10": [0.982, 0.992, 0.998, 1, 1, 1, 1, 1, 1, 1, 0.9998, 0.9991, 0.998, 0.9964, 0.9944, 0.992, 0.9891, 0.9857, 0.9819, 0.9777, 0.973, 0.9679, 0.9623, 0.9563, 0.9499, 0.9429, 0.9356, 0.9278, 0.9195, 0.9109, 0.9017, 0.8921, 0.8822, 0.8723, 0.8623, 0.8524, 0.8425, 0.8325, 0.8226, 0.8126, 0.8027, 0.7928, 0.7828, 0.7729, 0.7629, 0.753, 0.7431, 0.7331, 0.7232, 0.7132, 0.7033, 0.6934, 0.6834, 0.6735, 0.6635, 0.6536, 0.6437, 0.6337, 0.6234, 0.6123, 0.6005, 0.5879, 0.5745, 0.5604, 0.5455, 0.5299, 0.5135, 0.4963, 0.4784, 0.4597, 0.4403, 0.4201, 0.3991],
+      "21": [0.968, 0.982, 0.992, 0.998, 1, 1, 1, 1, 1, 1, 0.9998, 0.9991, 0.9979, 0.9962, 0.9941, 0.9915, 0.9884, 0.9849, 0.9809, 0.9764, 0.9714, 0.966, 0.9601, 0.9537, 0.9468, 0.9395, 0.9317, 0.9234, 0.9147, 0.9055, 0.8958, 0.8856, 0.8753, 0.8649, 0.8546, 0.8442, 0.8339, 0.8235, 0.8132, 0.8028, 0.7925, 0.7821, 0.7718, 0.7614, 0.7511, 0.7407, 0.7304, 0.72, 0.7097, 0.6993, 0.689, 0.6786, 0.6683, 0.6579, 0.6476, 0.6372, 0.6269, 0.6165, 0.6059, 0.5945, 0.5822, 0.5692, 0.5554, 0.5407, 0.5253, 0.5091, 0.4921, 0.4742, 0.4556, 0.4362, 0.4159, 0.3949, 0.3731],
+      "42": [0.9217, 0.9391, 0.9553, 0.9689, 0.9801, 0.9888, 0.995, 0.9988, 1, 1, 0.9998, 0.9992, 0.9983, 0.997, 0.9953, 0.9932, 0.9907, 0.9879, 0.9847, 0.9811, 0.9771, 0.9727, 0.968, 0.9629, 0.9574, 0.9515, 0.9453, 0.9386, 0.9316, 0.9242, 0.9165, 0.9083, 0.8998, 0.8909, 0.8816, 0.872, 0.8619, 0.8515, 0.8407, 0.8297, 0.8186, 0.8076, 0.7965, 0.7854, 0.7744, 0.7633, 0.7523, 0.7412, 0.7301, 0.7191, 0.708, 0.697, 0.6859, 0.6748, 0.6638, 0.6527, 0.6413, 0.629, 0.6159, 0.6021, 0.5874, 0.572, 0.5557, 0.5386, 0.5208, 0.5021, 0.4827, 0.4624, 0.4413, 0.4195, 0.3968, 0.3734, 0.3491],
+    },
+    };
+    const MIN_AGE = 18;
+    const MAX_AGE = 90;
+
+    const distanceSelect = document.getElementById("ag-distance") as HTMLSelectElement | null;
+    const sexSelect = document.getElementById("ag-sex") as HTMLSelectElement | null;
+    const ageInput = document.getElementById("ag-age") as HTMLInputElement | null;
+    const submitBtn = document.getElementById("ag-submit");
+    const errorEl = document.getElementById("ag-error");
+    const resultsEl = document.getElementById("ag-results");
+    const resultLineEl = document.getElementById("ag-result-line");
+    const levelLineEl = document.getElementById("ag-level-line");
+    const equivLineEl = document.getElementById("ag-equiv-line");
+
+    function levelFor(pct: number): string {
+      if (pct >= 100) return "ברמת שיא עולם לגיל (כדאי לבדוק שהנתונים הוזנו נכון)";
+      if (pct >= 90) return "רמה עולמית";
+      if (pct >= 80) return "רמה לאומית";
+      if (pct >= 70) return "רמה אזורית";
+      if (pct >= 60) return "רמה מקומית";
+      return "רמת ריצה כללית (מתחת ל-60%)";
+    }
+
+    submitBtn?.addEventListener("click", () => {
+      if (errorEl) errorEl.hidden = true;
+      const fail = (msg: string) => showCalcError(errorEl, resultsEl, msg);
+
+      const distKey = distanceSelect?.value ?? "10";
+      const sex = sexSelect?.value === "F" ? "F" : "M";
+      const age = numOrNull(ageInput?.value ?? "");
+      if (age === null || !Number.isInteger(age) || age < MIN_AGE || age > MAX_AGE) {
+        fail(`נא להזין גיל שלם בין ${MIN_AGE} ל-${MAX_AGE}.`);
+        return;
+      }
+      const totalSeconds = readHms(["ag-time-h", "ag-time-m", "ag-time-s"]);
+      if (totalSeconds === null || totalSeconds <= 0) {
+        fail("פורמט זמן לא תקין (שעות:דקות:שניות).");
+        return;
+      }
+
+      const table = AGE_DATA[sex];
+      const factor = (table[distKey] as number[])[age - MIN_AGE];
+      const openStandard = table.oc[distKey];
+      const ageStandard = openStandard / factor; // זמן השיא לגיל ולמין
+      const pct = (ageStandard / totalSeconds) * 100;
+      const equivalent = totalSeconds * factor; // זמן שקול בגיל השיא
+
+      if (resultLineEl) resultLineEl.textContent = `דירוג גיל: ${pct.toFixed(1)}%`;
+      if (levelLineEl) levelLineEl.textContent = `רמה: ${levelFor(pct)}`;
+      if (equivLineEl) equivLineEl.textContent = `זמן שקול בגיל השיא: ${formatTime(equivalent)} · זמן התקן לגיל ${age}: ${formatTime(ageStandard)}`;
       if (resultsEl) resultsEl.hidden = false;
     });
   })();
