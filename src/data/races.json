@@ -155,7 +155,8 @@
       "source": "manual",
       "isNew": false,
       "discountCode": null,
-      "discountOrganizer": null
+      "discountOrganizer": null,
+      "distanceLabel": "מרחקים יפורסמו בהמשך"
     },
     {
       "name": "חצי מרתון עיר ועמק (עמק המעיינות)",
@@ -163,7 +164,7 @@
       "date": "2026-12-04",
       "link": "https://maianotrun.shvoong.co.il/",
       "source": "runpanel.co.il",
-      "distanceLabel": "5, 10 ק\"מ",
+      "distanceLabel": "5, 10, 21.1 ק\"מ",
       "isNew": false,
       "discountCode": "EMEK26",
       "discountOrganizer": "Shvoong"
@@ -273,7 +274,7 @@
       "date": "2027-01-21",
       "link": "https://spartanion.com/%D7%A2%D7%9E%D7%95%D7%93-%D7%94%D7%91%D7%99%D7%AA/",
       "source": "runpanel.co.il",
-      "distanceLabel": "100 ק\"מ",
+      "distanceLabel": "100 ק\"מ, 100 מייל, 6/12/24 שעות",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
