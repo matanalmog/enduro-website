@@ -30,12 +30,17 @@ function formatHebrewDate(iso: string) {
 }
 
 // קודים מומלצים שביקשת שיוצגו בנפרד ובבולט בראש העמוד.
+// תומר 15.11.2026: הסדר קבוע (גם בנייד): תל אביב, ים המלח, ירושלים. מוצגים עד 4 קודים, ומרוץ
+// שהתאריך שלו עבר יורד לבד: בבנייה, וגם בדפדפן (data-until) כדי שלא יחכה לשחרור הבא.
+// כדי להוסיף מרוץ: שורה עם race, code, note ו-date (יום המרוץ, YYYY-MM-DD). הבא בתור נכנס במקום מרוץ שעבר.
+const FEATURED_MAX = 4;
 const featuredDiscountCodes = [
-  { race: "מרוץ אייל", code: "ER26LT", note: "הרשמה רגילה" },
-  { race: "DMR דימונה", code: "dmr27_enduro", note: "קבוצתי" },
-  { race: "מרתון תל אביב", code: "503842", note: "קבוצת ENDURO" },
-  { race: "מרתון ים המלח", code: "ENDURO10", note: "לבחור קבוצת ENDURO" },
-];
+  { race: "מרתון תל אביב", code: "503842", note: "קבוצת ENDURO", date: "2027-02-26" },
+  { race: "מרתון ים המלח", code: "ENDURO10", note: "לבחור קבוצת ENDURO", date: "2027-02-05" },
+  { race: "מרתון ירושלים", code: "f3a48", note: "קוד הנחה להרשמה", date: "2027-03-19" },
+  { race: "DMR דימונה", code: "dmr27_enduro", note: "קבוצתי", date: "2027-02-19" },
+  { race: "מרוץ אייל", code: "ER26LT", note: "הרשמה רגילה", date: "2026-11-14" },
+].filter((item) => item.date >= todayIso);
 
 
 const faqs = [
@@ -84,6 +89,7 @@ const schema = [
           מידע מקיף ומעודכן על מירוצי כביש ושטח, עזרה בתכנון עונת המירוצים
           וגילוי אתגרים חדשים, וקודי הנחה בלעדיים לחברי Enduro.
         </p>
+        {israelRaces.length > 0 && <a href="#calendar-il" class="btn btn-primary race-calendar-link">ללוח המרוצים בישראל ↓</a>}
         <a href="https://wa.me/972526982993" class="btn hero-whatsapp-btn" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
             <path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.26A9.5 9.5 0 1 0 12 2.5Zm0 1.7a7.8 7.8 0 0 1 6.6 11.95l-.24.38.7 2.56-2.62-.69-.37.22A7.8 7.8 0 1 1 12 4.2Zm-3.1 3.62c-.17 0-.45.06-.68.32-.24.26-.9.88-.9 2.14s.92 2.48 1.05 2.65c.13.17 1.8 2.87 4.44 3.9 2.2.87 2.64.7 3.12.65.47-.04 1.52-.62 1.73-1.22.22-.6.22-1.11.15-1.22-.06-.1-.24-.16-.5-.29-.26-.13-1.53-.75-1.77-.84-.24-.09-.4-.13-.58.13-.17.26-.66.84-.81 1.01-.15.17-.3.19-.55.06-.26-.13-1.08-.4-2.06-1.27-.76-.68-1.28-1.51-1.43-1.77-.15-.26-.02-.4.11-.53.12-.12.26-.3.4-.46.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.58-1.45-.8-1.98-.2-.5-.42-.44-.58-.45Z" />
@@ -102,21 +108,12 @@ const schema = [
     </div>
   </section>
 
-  <div class="container calc-promo">
-    <span class="calc-promo-icon" aria-hidden="true">&#128202;</span>
-    <span class="calc-promo-text">
-      <strong>מתכננים קצב למרוץ הבא?</strong>
-      זוני דופק, זוני קצב אימון, מנבא תוצאות ועוד - כל מחשבוני הריצה במקום אחד
-    </span>
-    <a href="/calculators/" class="btn calc-promo-btn">בדקו עכשיו את המחשבונים &larr;</a>
-  </div>
-
   <section class="container section featured-codes">
     <h2>קודי הנחה מובילים</h2>
     <div class="featured-grid">
-      {featuredDiscountCodes.map((item) => (
+      {featuredDiscountCodes.map((item, index) => (
         item.code ? (
-          <details class="featured-card featured-reveal">
+          <details class="featured-card featured-reveal" data-until={item.date} hidden={index >= FEATURED_MAX}>
             <summary>
               <span class="featured-race">{item.race}</span>
               <span class="featured-hint">לחצו לצפייה בקוד</span>
@@ -125,7 +122,7 @@ const schema = [
             <span class="featured-note">{item.note}</span>
           </details>
         ) : (
-          <div class="featured-card">
+          <div class="featured-card" data-until={item.date} hidden={index >= FEATURED_MAX}>
             <span class="featured-race">{item.race}</span>
             <span class="featured-pending">קוד לבירור</span>
             <span class="featured-note">{item.note}</span>
@@ -135,8 +132,15 @@ const schema = [
     </div>
   </section>
 
+  <div class="container quick-jump">
+    <a href="#calendar-il" class="quick-jump-card">מרוצים בארץ</a>
+    <a href="#calendar-world" class="quick-jump-card">מרוצים בעולם</a>
+    <a href="#calendar-utmb" class="quick-jump-card">מרוצי שטח</a>
+  </div>
+
   <section class="container section featured-codes equipment-codes" id="equipment">
-    <h2>קודי הנחה לציוד ריצה של ENDURO</h2>
+    <details class="equipment-toggle">
+      <summary><span>קודי הנחה לציוד ריצה של ENDURO</span><span class="equipment-toggle-action">לחצו להצגת הקודים <span aria-hidden="true">⌄</span></span></summary>
     <div class="featured-grid equipment-grid">
       {mainBenefits.map((item) => (
         <details class="featured-card featured-reveal equipment-card">
@@ -173,7 +177,17 @@ const schema = [
         </ul>
       </details>
     </div>
+    </details>
   </section>
+
+  <div class="container calc-promo">
+    <span class="calc-promo-icon" aria-hidden="true">&#128202;</span>
+    <span class="calc-promo-text">
+      <strong>מתכננים קצב למרוץ הבא?</strong>
+      זוני דופק, זוני קצב אימון, מנבא תוצאות ועוד - כל מחשבוני הריצה במקום אחד
+    </span>
+    <a href="/calculators/" class="btn calc-promo-btn">בדקו עכשיו את המחשבונים &larr;</a>
+  </div>
 
   <section class="container section race-guides" id="guides">
     <h2>מדריכי מרוצים והכנה</h2>
@@ -187,12 +201,6 @@ const schema = [
       ))}
     </div>
   </section>
-
-  <div class="container quick-jump">
-    <a href="#calendar-il" class="quick-jump-card">מרוצים בארץ</a>
-    <a href="#calendar-world" class="quick-jump-card">מרוצים בעולם</a>
-    <a href="#calendar-utmb" class="quick-jump-card">מרוצי שטח</a>
-  </div>
 
   {israelRaces.length > 0 && (
     <section class="container section section-muted" id="calendar-il">
@@ -266,6 +274,46 @@ const schema = [
       <a href="https://wa.me/972526982993" class="btn btn-outline" target="_blank" rel="noopener noreferrer">שלחו וואטסאפ</a>
     </div>
   </section>
+  <script is:inline define:vars={{ featuredMax: FEATURED_MAX }}>
+    // קוד הנחה של מרוץ שהתאריך שלו עבר (שעון ישראל) יורד גם לפני השחרור הבא, והבא בתור נכנס במקומו.
+    (() => {
+      const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jerusalem' }).format(new Date());
+      let shown = 0;
+      for (const card of document.querySelectorAll('.featured-codes:not(.equipment-codes) [data-until]')) {
+        const show = card.dataset.until >= today && shown < featuredMax;
+        card.hidden = !show;
+        if (show) shown++;
+      }
+    })();
+  </script>
+  <script is:inline>
+    (() => {
+      const calendar = document.getElementById('calendar-il');
+      const navigation = performance.getEntriesByType('navigation')[0];
+      if (!calendar || location.hash || navigation?.type === 'back_forward'
+        || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const interactionEvents = ['pointerdown', 'wheel', 'touchstart', 'keydown'];
+      let timer;
+      let frame;
+      const cancel = () => {
+        clearTimeout(timer);
+        cancelAnimationFrame(frame);
+        for (const event of interactionEvents) window.removeEventListener(event, cancel);
+        window.removeEventListener('pagehide', cancel);
+      };
+
+      for (const event of interactionEvents) window.addEventListener(event, cancel, { passive: true });
+      window.addEventListener('pagehide', cancel, { once: true });
+      frame = requestAnimationFrame(() => {
+        calendar.scrollIntoView({ behavior: 'instant', block: 'start' });
+        timer = setTimeout(() => {
+          cancel();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1100);
+      });
+    })();
+  </script>
 </BaseLayout>
 
 <style>
@@ -468,6 +516,47 @@ const schema = [
     background: var(--color-navy-900);
   }
 
+  .featured-card[hidden] { display: none; }
+  .equipment-toggle > summary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    cursor: pointer;
+    padding: 1.1rem 1.25rem;
+    border: 2px solid var(--color-primary, #1e4b40);
+    border-radius: 0.75rem;
+    background: #edf5ef;
+    color: #183e32;
+    font-size: 1.1rem;
+    font-weight: 800;
+  }
+  .equipment-toggle > summary::-webkit-details-marker { display: none; }
+  .equipment-toggle > summary:hover { background: #e1efe5; }
+  .equipment-toggle > summary:focus-visible { outline: 3px solid #1e4b40; outline-offset: 3px; }
+  .equipment-toggle-action {
+    display: inline-flex;
+    gap: 0.35rem;
+    align-items: center;
+    border-radius: 2rem;
+    padding: 0.4rem 0.8rem;
+    background: #1e4b40;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  .equipment-toggle[open] .equipment-toggle-action > span { transform: rotate(180deg); }
+  .equipment-toggle[open] > summary { margin-bottom: 1rem; }
+  #calendar-il, #calendar-world, #calendar-utmb { scroll-margin-top: 6rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    #calendar-il:target, #calendar-world:target, #calendar-utmb:target {
+      animation: race-calendar-enter 320ms ease-out both;
+    }
+    @keyframes race-calendar-enter {
+      from { opacity: 0.55; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
   .quick-jump {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -676,7 +765,7 @@ const schema = [
   }
 
   .equipment-codes {
-    padding-top: 0;
+    padding-top: clamp(1.25rem, 3vw, 2rem);
   }
 
   .equipment-grid {
