@@ -1,11 +1,13 @@
 {
-  "generatedAt": "2026-11-14T20:15:59.827Z",
+  "generatedAt": "2026-11-15T05:29:20.985Z",
   "sources": {
     "israel": [
       "realtiming.co.il",
       "runpanel.co.il",
       "marathonisrael.co.il",
-      "3plus.co.il"
+      "3plus.co.il",
+      "ultradesert.com",
+      "iaa.co.il"
     ],
     "international": [
       "aims-worldrunning.org"
@@ -15,17 +17,6 @@
     ]
   },
   "israel": [
-    {
-      "name": "מרוץ אייל (רמה\"ש)",
-      "region": "השרון",
-      "date": "2026-11-14",
-      "link": "https://www.eyalrun.co.il/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "2.5, 5, 10, 15 ק\"מ",
-      "isNew": false,
-      "discountCode": "ER26LT",
-      "discountOrganizer": "מרוץ אייל"
-    },
     {
       "name": "מרוץ הלילה של מודיעין 2026",
       "region": "שפלה",
@@ -54,8 +45,8 @@
       "date": "2026-11-20",
       "link": "https://etzion.smarticket.co.il/%D7%9E%D7%99%D7%A8%D7%95%D7%A5_%D7%94%D7%9E%D7%93%D7%91%D7%A8_1632/?id=1952",
       "source": "runpanel.co.il",
-      "distanceLabel": null,
-      "isNew": true,
+      "distanceLabel": "מרחקים יפורסמו בהמשך",
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -154,7 +145,7 @@
       "link": "https://www.3plus.co.il/b-y",
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": "enduro26",
       "discountOrganizer": "3plus"
     },
@@ -165,7 +156,7 @@
       "link": "https://bishvilhagiborot.co.il/",
       "source": "runpanel.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -192,12 +183,12 @@
       "discountOrganizer": "3plus"
     },
     {
-      "name": "אולטרה דרזט 8",
-      "region": "",
+      "name": "אולטרה דזרט 8",
+      "region": "צפון מדבר יהודה",
+      "distanceLabel": "10, 21.1, 42.2 ק\"מ",
       "date": "2026-12-25",
       "link": "https://www.ultradesert.com/ud8/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "10, 21, 42 ק\"מ",
+      "source": "ultradesert.com",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -225,23 +216,23 @@
       "discountOrganizer": "Gold-Fish"
     },
     {
+      "name": "מרוץ חופי הזהב",
+      "region": "חוף הכרמל",
+      "distanceLabel": "17, 35 ק\"מ",
+      "date": "2027-01-15",
+      "link": "https://www.ultradesert.com/goldcoast/",
+      "source": "ultradesert.com",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "מרוץ יוני בערבה 2027",
       "region": "הנגב והערבה",
       "date": "2027-01-15",
       "link": "https://www.realtiming.co.il/events/yoni-2027",
       "source": "realtiming.co.il",
       "distanceLabel": "2, 5, 10 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ חופי הזהב",
-      "region": "",
-      "date": "2027-01-15",
-      "link": "https://www.ultradesert.com/goldcoast/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "17, 35 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -274,7 +265,7 @@
       "date": "2027-02-12",
       "link": "https://www.realtiming.co.il/events/ory-2027",
       "source": "realtiming.co.il",
-      "distanceLabel": "5, 10 ק\"מ",
+      "distanceLabel": "10/5 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -368,6 +359,17 @@
       "discountOrganizer": null
     },
     {
+      "name": "מרוץ נס ציונה",
+      "date": "2027-04-09",
+      "link": "https://www.3plus.co.il/nes-ziona-run/",
+      "region": "",
+      "distanceLabel": "10/5/2 ק\"מ",
+      "source": "iaa.co.il",
+      "isNew": false,
+      "discountCode": null,
+      "discountOrganizer": null
+    },
+    {
       "name": "מרוץ הרי הגעש",
       "region": "",
       "date": "2027-04-16",
@@ -396,17 +398,6 @@
       "link": "https://www.realtiming.co.il/events/herzliya-2027",
       "source": "realtiming.co.il",
       "distanceLabel": "5, 10 ק\"מ",
-      "isNew": false,
-      "discountCode": null,
-      "discountOrganizer": null
-    },
-    {
-      "name": "מרוץ מודיעין",
-      "region": "",
-      "date": "2027-05-08",
-      "link": "https://www.modiinrun.co.il/",
-      "source": "runpanel.co.il",
-      "distanceLabel": "0.3, 1.8, 5, 10, 15 ק\"מ",
       "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
@@ -450,7 +441,8 @@
       "date": "2027-09-17",
       "link": "https://www.realtiming.co.il/events/kiryat-ata-2027",
       "source": "realtiming.co.il",
-      "isNew": true,
+      "distanceLabel": "מרחקים יפורסמו בהמשך",
+      "isNew": false,
       "discountCode": "ENDURO",
       "discountOrganizer": "Shvoong (לא כולל מקצי משפחות)"
     },
@@ -460,7 +452,8 @@
       "date": "2027-09-18",
       "link": "https://www.realtiming.co.il/events/mazraa-2027",
       "source": "realtiming.co.il",
-      "isNew": true,
+      "distanceLabel": "מרחקים יפורסמו בהמשך",
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -1617,7 +1610,7 @@
       "link": "https://sportsforall.com.sa",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -1980,7 +1973,7 @@
       "link": "https://polmaratonwarszawski.com/en/",
       "source": "aims-worldrunning.org",
       "distanceLabel": "21.1 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -2475,7 +2468,7 @@
       "link": "https://www.riminimarathon.it",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -2772,7 +2765,7 @@
       "link": "https://pushkin-run.ru",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3421,7 +3414,7 @@
       "link": "https://pushkin-run.ru",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3509,7 +3502,7 @@
       "link": "https://galaxymarathon.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3542,7 +3535,7 @@
       "link": "https://www.caledoniangroupevents.co.uk/loch-ness-marathon",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3619,7 +3612,7 @@
       "link": "https://www.maratonaclubedeportugal.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3630,7 +3623,7 @@
       "link": "https://www.maratonaclubedeportugal.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "21.1 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3729,7 +3722,7 @@
       "link": "https://www.palmademallorcamarathon.com/english",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3839,7 +3832,7 @@
       "link": "https://www.marathon06.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3850,7 +3843,7 @@
       "link": "https://www.maraton.istanbul",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3861,7 +3854,7 @@
       "link": "https://www.runrisenation.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "21.1 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3872,7 +3865,7 @@
       "link": "https://www.tianzhongmarathon.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -3883,7 +3876,7 @@
       "link": "https://www.trivandrummarathon.com",
       "source": "aims-worldrunning.org",
       "distanceLabel": "42.2 ק\"מ",
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     }
@@ -4072,7 +4065,7 @@
       "link": "https://chiangmai.utmb.world/races/PAGODA50-DAY",
       "source": "utmb.world",
       "distanceKm": 57,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -4083,7 +4076,7 @@
       "link": "https://chiangmai.utmb.world/races/PAGODA50-NIGHT",
       "source": "utmb.world",
       "distanceKm": 57,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -4094,7 +4087,7 @@
       "link": "https://chiangmai.utmb.world/races/INTHANON20",
       "source": "utmb.world",
       "distanceKm": 20,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     },
@@ -4105,7 +4098,7 @@
       "link": "https://chiangmai.utmb.world/races/CHIANGDAO160",
       "source": "utmb.world",
       "distanceKm": 173,
-      "isNew": true,
+      "isNew": false,
       "discountCode": null,
       "discountOrganizer": null
     }

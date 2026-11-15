@@ -60,6 +60,15 @@ const KNOWN_DUPLICATE_NAMES = [
   { test: /הבוז.ולה/, canonical: "מרוץ הבוזולה" },
   { test: /מרתון.*מדברי.*אילת|מרתון.*אילת.*מדברי/, canonical: "מרתון מדברי אילת" },
   { test: /מרוץ אייל/, canonical: "מרוץ אייל רמת השרון" },
+  { test: /מרתון.*טבריה/, canonical: "מרתון טבריה" },
+  { test: /ספרטניון/, canonical: "ספרטניון תל אביב" },
+  { test: /מרתון.*ים המלח/, canonical: "מרתון ים המלח" },
+  { test: /מרתון.*תל אביב/, canonical: "מרתון תל אביב" },
+  { test: /מרתון.*ירושלים/, canonical: "מרתון ירושלים" },
+  { test: /מרוץ אור יהודה/, canonical: "מרוץ אור יהודה" },
+  { test: /אולטרה (?:דזרט|דרזט) 8/, canonical: "אולטרה דזרט 8" },
+  { test: /מרוץ אשקלון/, canonical: "מרוץ אשקלון" },
+  { test: /מרוץ קיסריה/, canonical: "מרוץ קיסריה" },
   { test: /רצים ביחד/, canonical: "מרוץ רצים ביחד" },
 ];
 
@@ -201,6 +210,8 @@ function fillMissingDistances(events) {
     for (const w of e.name.split(/\s+/)) rest = rest.replace(w, " ");
     if (/ק["״]מ/.test(rest)) e.distanceLabel = distancesFromText(rest);
   }
+  // תומר: אף שורה בלוח לא נשארת בלי מרחק. מרוץ שהמארגן עוד לא פרסם לו מקצים מקבל את הנוסח הזה, בלי ניחוש.
+  for (const e of events) if (!e.distanceLabel) e.distanceLabel = "מרחקים יפורסמו בהמשך";
 }
 
 // מרתונים מ-AIMS: הפיד לא כולל מקצים, אז המרחק נגזר מהשם (חצי מרתון או מרתון).
@@ -496,6 +507,67 @@ async function loadExisting() {
   }
 }
 
+
+const ULTRA_DESERT_PAGES = [
+  { name: "אולטרה דזרט 8", region: "צפון מדבר יהודה", slug: "ud8", distanceLabel: '10, 21.1, 42.2 ק"מ' },
+  { name: "מרוץ חופי הזהב", region: "חוף הכרמל", slug: "goldcoast", distanceLabel: '17, 35 ק"מ' },
+];
+
+function plainText(html) {
+  return decodeEntities(html.replace(/<[^>]*>/g, " ").replace(/&ndash;/g, "–").replace(/\s+/g, " ")).replace(/ /g, " ").trim();
+}
+
+async function fetchHtml(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
+  if (!response.ok) throw new Error(`${url}: HTTP ${response.status}`);
+  return response.text();
+}
+
+async function fetchUltraDesert() {
+  const events = await Promise.all(ULTRA_DESERT_PAGES.map(async ({ slug, ...event }) => {
+    const link = new URL(slug + "/", "https://www.ultradesert.com/").href;
+    const html = await fetchHtml(link);
+    const heading = [...html.matchAll(/<h[1-3]\b[^>]*>([\s\S]*?)<\/h[1-3]>/gi)]
+      .map(match => plainText(match[1])).find(text => /^\d{1,2}\/\d{1,2}\/20\d{2}\s*[-–]/.test(text));
+    const date = heading && parseDdMmYyyy(heading.match(/^\S+/)[0]);
+    if (!date) throw new Error(`לא נמצא תאריך אירוע בכותרת: ${link}`);
+    return { ...event, date, link, source: "ultradesert.com" };
+  }));
+  return events;
+}
+
+async function fetchAthleticsAssociation() {
+  const index = "https://www.iaa.co.il/" + encodeURI("אירועים/מרוצי-כביש/");
+  const html = await fetchHtml(index);
+  const currentYear = Number(today.slice(0, 4));
+  const links = new Set();
+  for (const match of html.matchAll(/<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const year = Number(plainText(match[2]).match(/יומן מרוצים לשנת (20\d{2})/)?.[1]);
+    if (year === currentYear || year === currentYear + 1) {
+      const url = new URL(decodeEntities(match[1]), index);
+      if (url.hostname === "www.iaa.co.il") links.add(url.href);
+    }
+  }
+  if (!links.size) throw new Error("לא נמצא יומן מרוצי כביש לשנה הנוכחית או הבאה");
+  const pages = await Promise.all([...links].map(async url => {
+    const calendar = await fetchHtml(url);
+    const events = [];
+    for (const row of calendar.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)) {
+      const cells = [...row[1].matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map(cell => cell[1]);
+      if (cells.length < 7) continue;
+      const date = parseDdMmYyyy(plainText(cells[0]));
+      const name = plainText(cells[1]);
+      if (!date || !name) continue;
+      const href = cells[6].match(/href=["']([^"']+)["']/i)?.[1];
+      const link = href && /^https?:\/\//i.test(href) ? decodeEntities(href) : url;
+      events.push({ name, date, link, region: inferRegionFromName(name), distanceLabel: plainText(cells[2]), source: "iaa.co.il" });
+    }
+    if (!events.length) throw new Error(`לא נמצאו שורות מרוץ: ${url}`);
+    return events;
+  }));
+  return pages.flat();
+}
+
 async function main() {
   const existing = await loadExisting();
 
@@ -506,10 +578,12 @@ async function main() {
     fetchThreePlus(),
     fetchAims(),
     fetchUtmbSeries(),
+    fetchUltraDesert(),
+    fetchAthleticsAssociation(),
   ]);
 
-  const [realtimingRes, runpanelRes, marathonIsraelRes, threePlusRes, aimsRes, utmbRes] = results;
-  for (const [i, name] of ["realtiming", "runpanel", "marathonisrael", "3plus", "aims", "utmb"].entries()) {
+  const [realtimingRes, runpanelRes, marathonIsraelRes, threePlusRes, aimsRes, utmbRes, ultraRes, iaaRes] = results;
+  for (const [i, name] of ["realtiming", "runpanel", "marathonisrael", "3plus", "aims", "utmb", "ultradesert", "iaa"].entries()) {
     if (results[i].status === "rejected") {
       console.warn(`⚠️  מקור ${name} נכשל: ${results[i].reason.message}`);
     }
@@ -526,10 +600,19 @@ async function main() {
     { name: "אתגר DMR מרוץ דימונה במדבר", region: "דרום", date: "2027-02-19", link: "https://dmrchallenge.co.il/", source: "manual", distanceLabel: '5, 10, 21, 30, 42 ק"מ' },
     { name: "אליפות ישראל ה-65 במרוצי שדה", region: "", date: "2026-11-27", link: "https://event.shvoong.co.il/events/%d7%90%d7%9c%d7%99%d7%a4%d7%95%d7%aa-%d7%99%d7%a9%d7%a8%d7%90%d7%9c-%d7%94-65-%d7%91%d7%9e%d7%a8%d7%95%d7%a6%d7%99-%d7%a9%d7%93%d7%94-2026/", source: "manual" },
   ];
-  let israelMerged = mergeIsraelEvents(realtimingEvents, runpanelEvents);
+  const verifiedOrCached = (result, source) => result.status === "fulfilled"
+    ? result.value : (existing.israel ?? []).filter(event => event.source === source);
+  const ultraEvents = verifiedOrCached(ultraRes, "ultradesert.com");
+  const iaaEvents = verifiedOrCached(iaaRes, "iaa.co.il");
+  const modiinDates = new Set(iaaEvents.filter(event => normalizeName(event.name) === "מרוץמודיעין").map(event => event.date));
+  const verifiedRunpanelEvents = runpanelEvents.filter(event => !modiinDates.size
+    || normalizeName(event.name) !== "מרוץמודיעין" || modiinDates.has(event.date));
+  let israelMerged = mergeIsraelEvents(ultraEvents, realtimingEvents);
+  israelMerged = mergeIsraelEvents(israelMerged, verifiedRunpanelEvents);
   israelMerged = mergeIsraelEvents(israelMerged, MANUAL_EVENTS);
   israelMerged = mergeIsraelEvents(israelMerged, marathonIsraelEvents);
   israelMerged = mergeIsraelEvents(israelMerged, threePlusEvents);
+  israelMerged = mergeIsraelEvents(israelMerged, iaaEvents);
   // אותו מרוץ בתאריכים שונים בין מקורות (העגור 2027: runpanel 30.10, מרתון ישראל 5.11):
   // סומכים על אתר המארגן ומוותרים על השורה של runpanel. מרוצי ילדים בלבד לא נכנסים ללוח.
   const ORGANIZER_SOURCES = new Set(["marathonisrael.co.il", "3plus.co.il"]);
@@ -553,7 +636,7 @@ async function main() {
   const output = {
     generatedAt: new Date().toISOString(),
     sources: {
-      israel: ["realtiming.co.il", "runpanel.co.il", "marathonisrael.co.il", "3plus.co.il"],
+      israel: ["realtiming.co.il", "runpanel.co.il", "marathonisrael.co.il", "3plus.co.il", "ultradesert.com", "iaa.co.il"],
       international: ["aims-worldrunning.org"],
       utmbSeries: ["utmb.world"],
     },
